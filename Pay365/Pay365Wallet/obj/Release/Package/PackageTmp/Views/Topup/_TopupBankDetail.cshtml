@@ -1,0 +1,216 @@
+﻿<section class="page-section">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card">
+                <div id="topup_bank_info" class="card-title">
+                    <span class="bank-icon">
+                        <img alt="">
+                    </span>
+                    <span id="topup_bank_name"></span>
+                    <input type="hidden" id="topup_bankcode" />
+                </div>
+                <input type="hidden" id="topup_bank_serviceid"/>
+                <div id="cardContentStep1">
+                    <div class="card-content">
+                        <div class="form-group input-field">
+                            <i class="material-icons prefix">phone_iphone</i>
+                            <input maxlength="20" id="topup_account" onkeyup="utils.transactionAccountNumberFormat(this, event);" type="text" value="" class="success">
+                            <label for="topup_account" class="active">Tài khoản nạp</label>
+                            <span class="error-text"></span>
+                            <span class="success-text"></span>
+                            <span id="topup_account_name" class="charge-name"></span>
+                        </div>
+                        <div class="form-group input-field">
+                            <i class="material-icons prefix">monetization_on</i>
+                            <input maxlength="13" id="topup_amount" onblur="topup.CalculateTotalAmount();" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.formatCurrency(this,event);" type="text" class="autocomplete">
+                            <label for="topup_amount">Số tiền nạp</label>
+                            <span class="error-text"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <div id="fast_recharge" class="prices">
+                                <a href="javascript:;" data-amount="10000" class="price-flat">10.000đ</a>
+
+                                <a href="javascript:;" data-amount="20000" class="price-flat">20.000đ</a>
+
+                                <a href="javascript:;" data-amount="50000" class="price-flat">50.000đ</a>
+
+                                <a href="javascript:;" data-amount="100000" class="price-flat">100.000đ</a>
+                            </div>
+                        </div>
+                        <div class="form-group input-field captcha">
+                            <i class="material-icons prefix"></i>
+                            <input class="custom-captcha" maxlength="4" id="topup_captcha" type="text">
+                            <label for="topup_captcha">Mã kiểm tra</label>
+                            <input id="inputToken" type="hidden" />
+                            <div class="captcha-image">
+                                <img id="imgCaptcha" width="100" height="35">
+                                <i onclick="utils.refreshCaptcha(null, 'payment');" class="btn-reload material-icons">refresh</i>
+                            </div>
+                            <span class="error-text" style="float: left;"></span>
+                        </div>
+                        <div class="form-group input-field">
+                            <div class="fee">
+                                <input id="input--3" type="text" disabled="disabled">
+                                <label for="input--3"><strong id="topup_fee_rate" data-fee_rate="1.1" class="danger">Phí nạp: 0%</strong></label>
+                            </div>
+                        </div>
+                        <div class="form-group input-field">
+                            <div class="fee">
+                                <input id="input--3" type="text" disabled="disabled">
+                                <label for="input--3"><strong id="topup_total_amount" class="danger">Tổng thanh toán: <t>0đ</t></strong></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-button">
+                        <a id="bt_topup_confirm" onclick="topup.ConfirmTopup();" href="javascript:;" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Tiếp theo<i class="material-icons">chevron_right</i></a>
+                    </div>
+                </div>
+
+                <div id="cardContentStep2" style="display: none;">
+                    <div class="card-content">
+                        <div class="form-group input-field">
+                            <table class="table-data">
+                                <tr>
+                                    <td width="40%">Tài khoản được nạp:</td>
+                                    <td id="topup_account_2"></td>
+                                </tr>
+                                <tr>
+                                    <td width="40%">Số tiền:</td>
+                                    <td id="amount_step2"></td>
+                                </tr>
+                                <tr>
+                                    <td width="40%">Phí:</td>
+                                    <td><span id="fee_step2" class="danger"></span></td>
+                                </tr>
+                                <tr>
+                                    <td width="40%">Tổng tiền:</td>
+                                    <td><span id="total_step2" class="danger"></span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group input-field">
+                            <i class="material-icons prefix">credit_card</i>
+                            <input maxlength="25" id="card_number" type="text">
+                            <label for="card_number">Số thẻ</label>
+                            <span class="error-text"></span>
+                        </div>
+                        <div class="form-group input-field">
+                            <i class="material-icons prefix">person</i>
+                            <input maxlength="50" id="account_holder" onkeypress="utils.charCodeOnly(event);" type="text">
+                            <label for="account_holder">Tên chủ thẻ</label>
+                            <span class="error-text"></span>
+                        </div>
+                        <div class="form-group input-field">
+                            <i class="material-icons prefix">insert_invitation</i>
+                            <input maxlength="15" id="passport" type="text">
+                            <label for="passport">Số CMND/ Hộ chiếu</label>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-button">
+                        <a href="javascript:;" onclick="topup.BackStep(1);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> Quay lại</a>
+                        <a href="javascript:;" id="btConfirmStep2" onclick="topup.ConfirmTopupStep2();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Tiếp theo<i class="material-icons">chevron_right</i></a>
+                    </div>
+                </div>
+
+                <div id="cardContentStep3" style="display: none;">
+                    <div class="card-content">
+                        <p>Vui lòng nhập mã xác thực</p>
+                        <div class="form-group input-field">
+                            <i class="material-icons prefix">sms</i>
+                            <input maxlength="6" id="otp_3" type="text">
+                            <label for="otp_3">Nhập OTP</label>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                    <div class="card-button">
+                        <a href="javascript:;" onclick="topup.BackStep(2);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> Quay lại</a>
+                        <a href="javascript:;" id="btConfirmStep3" onclick="topup.ConfirmTopupStep3();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Nạp tiền<i class="material-icons">chevron_right</i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-title" style="padding-bottom: 15px; padding-top: 35px">
+                    Giao dịch nạp tiền gần đây
+                    <a href="javascript:;" class="more waves-effect waves-primary"><i class="material-icons">keyboard_arrow_right</i></a>
+                </div>
+                <ul id="topup_bank_recent_t" class="collapsible popout warning" data-collapse-number="1" data-collapsible="accordion"></ul>
+
+                <script id="topup_bank_recent_tmpl" type="text/x-jquery-tmpl">
+                    {{each listBankRecent}}
+                    <li>
+                        <div class="collapsible-header">
+                            <div class="trans-head">
+                                <div class="icon" style="line-height: initial;"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/nap-tien.svg" alt=""></div>
+                                <div class="info">
+                                    <p class="success"><strong>${utils.formatMoney($value.JsonObject.Amount)}<sup>đ</sup></strong></p>
+                                    <p>${utils.formDateTime($value.JsonObject.CreateTime)}</p>
+                                </div>
+                                <div class="content">
+                                    <p><strong>Nạp tiền Ví điện tử</strong></p>
+                                    <p>Nguồn nạp: ${common.getbankName($value.JsonObject.BankCode)}</p>
+                                </div>
+                                <i class="material-icons up">keyboard_arrow_up</i>
+                            </div>
+                        </div>
+                    </li>
+                    {{/each}}
+                </script>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    $(function () {
+        $('.collapsible').collapsible({
+            accordion: true
+        });
+        $('#fast_recharge').on('click', 'a', function () {
+            var value = $(this).attr('data-amount');
+            $('#topup_amount').val(utils.formatMoney(value));
+            $('#topup_amount').focus();
+            topup.CalculateTotalAmount();
+        });
+
+        $('#cardContentStep1').on('keyup', 'input', function (event) {
+            if (!$("#cardContentStep1").is(":visible")) {
+                return;
+            }
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                topup.ConfirmTopup();
+            }
+            else
+                $(this).removeClass('error success').parent().find('.error-text').text('');
+        });
+
+        $('#cardContentStep2').on('keyup', 'input', function (event) {
+            if (!$("#cardContentStep2").is(":visible")) {
+                return;
+            }
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                topup.ConfirmTopupStep2();
+            }
+            else
+                $(this).removeClass('error success').parent().find('.error-text').text('');
+        });
+
+        $('#cardContentStep3').on('keyup', 'input', function (event) {
+            if (!$("#cardContentStep3").is(":visible")) {
+                return;
+            }
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                topup.ConfirmTopupStep3();
+            }
+            else
+                $(this).removeClass('error success').parent().find('.error-text').text('');
+        });
+    });
+</script>

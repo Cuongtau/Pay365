@@ -1,0 +1,1341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>F:\WebPublic\Pay365</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>09/09/2017 14:53:56</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Account.en.resx">
+      <publishTime>09/09/2017 14:53:56</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Account.resx">
+      <publishTime>09/09/2017 14:53:56</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Account_info.en.resx">
+      <publishTime>09/09/2017 14:53:56</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Account_info.resx">
+      <publishTime>09/09/2017 14:53:56</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Cashout.en.resx">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Cashout.resx">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Common.en.resx">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Common.resx">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Home.en.resx">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Home.resx">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="App_GlobalResources/News.en.resx">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="App_GlobalResources/News.resx">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Payment.en.resx">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Payment.resx">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Register.en.resx">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Register.resx">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Topup.en.resx">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Topup.resx">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Transfer.en.resx">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Transfer.resx">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>09/09/2017 14:53:15</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>09/09/2017 14:53:15</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>09/09/2017 14:53:56</publishTime>
+    </File>
+    <File Include="bin/HtmlSanitizationLibrary.dll">
+      <publishTime>09/09/2017 14:53:57</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>09/09/2017 14:53:19</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>09/09/2017 14:53:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>09/09/2017 14:53:19</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>09/09/2017 14:53:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>09/09/2017 14:53:21</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>09/09/2017 14:53:21</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>09/09/2017 14:53:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>09/09/2017 14:53:23</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>09/09/2017 14:53:30</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>09/09/2017 14:53:32</publishTime>
+    </File>
+    <File Include="bin/NLog.dll">
+      <publishTime>09/09/2017 14:53:55</publishTime>
+    </File>
+    <File Include="bin/Pay365.Utils.dll">
+      <publishTime>09/09/2017 17:39:04</publishTime>
+    </File>
+    <File Include="bin/Pay365.Utils.pdb">
+      <publishTime>09/09/2017 17:39:04</publishTime>
+    </File>
+    <File Include="bin/Pay365Wallet.dll">
+      <publishTime>09/09/2017 17:39:11</publishTime>
+    </File>
+    <File Include="bin/Pay365Wallet.pdb">
+      <publishTime>09/09/2017 17:39:11</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>09/09/2017 14:53:23</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe.config">
+      <publishTime>09/09/2017 14:53:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.rsp">
+      <publishTime>09/09/2017 14:53:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe">
+      <publishTime>09/09/2017 14:53:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.rsp">
+      <publishTime>09/09/2017 14:53:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>09/09/2017 14:53:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>09/09/2017 14:53:30</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
+      <publishTime>09/09/2017 14:53:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>09/09/2017 14:53:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
+      <publishTime>09/09/2017 14:53:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>09/09/2017 14:53:30</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>09/09/2017 14:53:25</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
+      <publishTime>09/09/2017 14:53:29</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
+      <publishTime>09/09/2017 14:53:30</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>09/09/2017 14:53:25</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.AppContext.dll">
+      <publishTime>09/09/2017 14:53:27</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>09/09/2017 14:53:28</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.StackTrace.dll">
+      <publishTime>09/09/2017 14:53:28</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.dll">
+      <publishTime>09/09/2017 14:53:28</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
+      <publishTime>09/09/2017 14:53:29</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>09/09/2017 14:53:31</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>09/09/2017 14:53:29</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe.config">
+      <publishTime>09/09/2017 14:53:29</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.rsp">
+      <publishTime>09/09/2017 14:53:29</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>09/09/2017 14:53:30</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>09/09/2017 14:53:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>09/09/2017 14:53:23</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>09/09/2017 14:53:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>09/09/2017 14:53:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>09/09/2017 14:53:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>09/09/2017 14:53:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>09/09/2017 14:53:23</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>09/09/2017 14:53:23</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>09/09/2017 14:53:35</publishTime>
+    </File>
+    <File Include="Content/assets/css/bootstrap.min.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/assets/css/codemirror.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/assets/css/flag-icon.min.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/assets/css/font-awesome.min.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/assets/css/homepage.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/assets/css/jquery.mCustomScrollbar.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/assets/css/materialize.min.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/assets/css/odometer-theme-default.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/assets/css/style.css">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/fontawesome-webfont.eot">
+      <publishTime>09/09/2017 14:54:00</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/fontawesome-webfont.svg">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/fontawesome-webfont.ttf">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/fontawesome-webfont.woff">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/fontawesome-webfont.woff2">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/FontAwesome.otf">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/glyphicons-halflings-regular.eot">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/glyphicons-halflings-regular.woff">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/MaterialIcons-Regular.eot">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/MaterialIcons-Regular.ijmap">
+      <publishTime>09/09/2017 14:53:59</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/MaterialIcons-Regular.svg">
+      <publishTime>09/09/2017 14:54:00</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/MaterialIcons-Regular.ttf">
+      <publishTime>09/09/2017 14:54:00</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/MaterialIcons-Regular.woff">
+      <publishTime>09/09/2017 14:54:00</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/MaterialIcons-Regular.woff2">
+      <publishTime>09/09/2017 14:54:00</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/roboto/Roboto-Bold.woff">
+      <publishTime>09/09/2017 14:54:00</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/roboto/Roboto-Bold.woff2">
+      <publishTime>09/09/2017 14:54:00</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/roboto/Roboto-Light.woff">
+      <publishTime>09/09/2017 14:54:00</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/roboto/Roboto-Light.woff2">
+      <publishTime>09/09/2017 14:54:00</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/roboto/Roboto-Medium.woff">
+      <publishTime>09/09/2017 14:54:00</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/roboto/Roboto-Medium.woff2">
+      <publishTime>09/09/2017 14:54:00</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/roboto/Roboto-Regular.woff">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/roboto/Roboto-Regular.woff2">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/roboto/Roboto-Thin.woff">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/fonts/roboto/Roboto-Thin.woff2">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/images/404-2.png">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/images/404.png">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/images/bg-using-app.jpg">
+      <publishTime>09/09/2017 14:54:02</publishTime>
+    </File>
+    <File Include="Content/assets/images/bg-using-mobile.jpg">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/1.logo 1 dong-duong ban-file png_1.png">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/1427360955.jpg">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/24cdf16a-6dbb-11e6-b6d2-04011537df01.jpg">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/4fe3f1c8_AnBinh-bank.jpg">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/a7a2a32b15163049bb95acbe9e16cb68.jpg">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/AGR.png">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/avatar-e7ebe75ef32665085311d2d6c3a75e97.jpg">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/BAB.png">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/BIDV-logo-without-artboard.png">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/BIDV.png">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/DAB.png">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/GPB.png">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/HDB.png">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/HDbank-logo.jpg">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/HSBC.png">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/image-share.png">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/Logo BAB_two colour-01.png">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/logo PvcomBank PNG-01.png">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/logo+ngan+hang+kien+long+bank.jpg">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/logo+techcombank.jpg">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/logo-acb-new.png">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/logo-bvb.jpg">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/logo-Eximbank.gif">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/logo-ngan-hang-SCB.jpg">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/logo-ngan-hang-vietinbank.jpg">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/logo-ngan-hang-vpbank-vector-1768.jpg">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/Logo-OCB.jpg">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/logo-pgbank.jpg">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/logo-SHB.jpg">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/Logo_LPB_chuan_da_auto_correct.jpg">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/MasterCard.png">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/MSB.png">
+      <publishTime>09/09/2017 14:54:05</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/Nam A Bank.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/PayPal.svg.png">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/SacombankLogo.png">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/Saigonbank_1.jpg">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/seabank1.jpg">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/Viet-Capital-Bank-Logo.jpg">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/VIETABANK-TH.gif">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/VIETBANK.jpg">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/vietcombank.jpg">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/banks/visa.jpg">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/evn.jpg">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/1.png">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/10.png">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/11.png">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/12.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/13.png">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/14.png">
+      <publishTime>09/09/2017 14:54:06</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/15.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/16.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/17.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/18.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/19.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/2.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/20.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/21.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/22.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/23.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/24.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/25.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/26.png">
+      <publishTime>09/09/2017 14:54:07</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/27.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/28.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/29.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/3.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/30.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/32.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/4.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/5.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/6.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/7.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/8.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/9.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/ABB.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/ACB.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/BIDV.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/BVB.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/CTG.png">
+      <publishTime>09/09/2017 14:54:08</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/DAB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/EIB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/GPB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/HDB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/JCB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/KLB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/LPB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/Mastercard.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/MB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/MSB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/NamA-Bank.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/NASB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/NVB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/OCB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/OJB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/PGBank.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/Pvcombank.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/SaiGon-Bank.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/SCB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/SEAB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/SHB.png">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/STB.png">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/TCB.png">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/Thumbs.db">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/TMCP-SaiGon-Bank.png">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/TPB.png">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/VAB.png">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/VARB.png">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/VCB.png">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/VIB.png">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/Visa.png">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/VPB.png">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/logo-banks/VRB.png">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/brands/viettel.jpg">
+      <publishTime>09/09/2017 14:54:04</publishTime>
+    </File>
+    <File Include="Content/assets/images/captcha.jpg">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/images/games/tip.jpg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icon-cash-in.svg">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/images/icon-cash-out.svg">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/images/icon-reload.png">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/images/icon-transfer.svg">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/chuyen-tien.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/flat-line/cart.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/flat-line/secure.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/flat-line/user.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/flat-line/wallet.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/flat-line/web.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/nap-tien.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/payicon/borrow.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/payicon/cash-in.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/payicon/cash-out.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/payicon/game-card.svg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/payicon/phone-card.svg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/payicon/transfer.svg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/rut-tien.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/icons/thanh-toan.svg">
+      <publishTime>09/09/2017 14:54:10</publishTime>
+    </File>
+    <File Include="Content/assets/images/imac.png">
+      <publishTime>09/09/2017 14:54:02</publishTime>
+    </File>
+    <File Include="Content/assets/images/iphone-macbook.png">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/logo-appstore.png">
+      <publishTime>09/09/2017 14:54:02</publishTime>
+    </File>
+    <File Include="Content/assets/images/logo-googleplay.png">
+      <publishTime>09/09/2017 14:54:02</publishTime>
+    </File>
+    <File Include="Content/assets/images/logo-mastercard.png">
+      <publishTime>09/09/2017 14:54:02</publishTime>
+    </File>
+    <File Include="Content/assets/images/logo-paypal.png">
+      <publishTime>09/09/2017 14:54:02</publishTime>
+    </File>
+    <File Include="Content/assets/images/logo-purple.svg">
+      <publishTime>09/09/2017 14:54:02</publishTime>
+    </File>
+    <File Include="Content/assets/images/logo-visa.png">
+      <publishTime>09/09/2017 14:54:02</publishTime>
+    </File>
+    <File Include="Content/assets/images/logo-white.svg">
+      <publishTime>09/09/2017 14:54:02</publishTime>
+    </File>
+    <File Include="Content/assets/images/logo.jpg">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/images/logo.svg">
+      <publishTime>09/09/2017 14:54:01</publishTime>
+    </File>
+    <File Include="Content/assets/images/material-background.jpg">
+      <publishTime>09/09/2017 14:54:02</publishTime>
+    </File>
+    <File Include="Content/assets/images/pattern-stores.jpg">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/pattern-stores.png">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/persons/1.jpg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/persons/2.jpg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/persons/3.png">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/persons/4.png">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/persons/5.png">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/phone_iphone.svg">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/polygon-background.png">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/post.jpg">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/posts/1.jpg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/posts/2.jpg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/posts/3.jpg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/posts/4.jpg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/posts/5.jpg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/posts/6.jpg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/posts/7.jpg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/posts/8.jpg">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/images/recaptcha.png">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/security-app.svg">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/security-email.svg">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/security-sms.svg">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/security-voice.svg">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/sidebar-background.jpg">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/transaction-verified.png">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/tut.gif">
+      <publishTime>09/09/2017 14:54:09</publishTime>
+    </File>
+    <File Include="Content/assets/images/us.svg">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/vn.svg">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/world-black.png">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/images/world-white.png">
+      <publishTime>09/09/2017 14:54:03</publishTime>
+    </File>
+    <File Include="Content/assets/js/appear.min.js">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/js/bootstrap.min.js">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/js/codemirror.js">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="Content/assets/js/jquery.mCustomScrollbar.concat.min.js">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/js/kkcountdown.min.js">
+      <publishTime>09/09/2017 14:54:11</publishTime>
+    </File>
+    <File Include="Content/assets/js/material.js">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="Content/assets/js/materialize.min.js">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="Content/assets/js/materializeSelectOverride.js">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="Content/assets/js/odometer.min.js">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="Content/assets/js/parallax.min.js">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="Content/bootstrap-datetimepicker.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/css/365.css">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="Content/css/printcardstyle.css">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="Content/libs/animate.min.css">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="Content/libs/cropper.css">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="Content/libs/croppie.css">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>09/09/2017 14:53:58</publishTime>
+    </File>
+    <File Include="Content/Validation/bootstrapValidator.css">
+      <publishTime>09/09/2017 14:54:12</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>09/09/2017 14:53:56</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>09/09/2017 14:53:56</publishTime>
+    </File>
+    <File Include="images/favicon.ico">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="images/olaii-logo-black-small.png">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="images/olaii-logo-black-smaller.png">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="images/olaii-logo-black.png">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="images/us.svg">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="images/vn.svg">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="images/X618po.gif">
+      <publishTime>09/09/2017 14:54:30</publishTime>
+    </File>
+    <File Include="locales/en/common.errorcode.json">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="locales/en/common.homepage.json">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="locales/en/common.news.json">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="locales/en/common.register.json">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="locales/en/profile.account.json">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="locales/en/profile.password.json">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="locales/en/transaction.cashoutmoney.json">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="locales/en/transaction.payment.json">
+      <publishTime>09/09/2017 14:54:13</publishTime>
+    </File>
+    <File Include="locales/en/transaction.topupmoney.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/en/transaction.transfermoney.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/en/wallet.integrated.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/en/wallet.vtcpro.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/common.errorcode.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/common.homepage.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/common.news.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/common.register.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/profile.account.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/profile.password.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/transaction.cashoutmoney.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/transaction.payment.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/transaction.topupmoney.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/transaction.transfermoney.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/wallet.integrated.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="locales/vi/wallet.vtcpro.json">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="NLog.config">
+      <publishTime>09/09/2017 14:53:56</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>09/09/2017 14:53:56</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>09/09/2017 14:54:14</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.2.4.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.2.4.min.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.2.4.min.map">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.2.1.map">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.2.1.min.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/libs/bootbox.min.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/libs/cacheJS/cacheJS.array.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/cacheJS/cacheJS.array.min.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/cacheJS/cacheJS.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/cacheJS/cacheJS.min.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/client-custom.min.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/libs/cropper/cropper.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/croppie/croppie.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/croppie/croppie.min.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/date-time/bootstrap-datetimepicker.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/date-time/formatter.min.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/date-time/jquery.datetimepicker.full.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/date-time/jquery.datetimepicker.full.min.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/date-time/jquery.datetimepicker.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/date-time/jquery.datetimepicker.min.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/date-time/moment.min.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/device.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/libs/i18next-1.6.3.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/libs/i18next-1.6.3.min.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/libs/jquery-jtemplates.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/jquery.tmpl.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/libs/md5.min.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/paging/jquery.pager.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/paging/jquery.simplePagination.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/libs/validation/bootstrapValidator.js">
+      <publishTime>09/09/2017 14:54:16</publishTime>
+    </File>
+    <File Include="Scripts/main.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/utils.js">
+      <publishTime>09/09/2017 14:54:15</publishTime>
+    </File>
+    <File Include="Scripts/views/account_info.js">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Scripts/views/account_secure.js">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Scripts/views/account_update.js">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Scripts/views/common.js">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Scripts/views/header.js">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Scripts/views/login.js">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Scripts/views/news.js">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Scripts/views/register.js">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Scripts/views/trans_cashout.js">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Scripts/views/trans_payment.js">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Scripts/views/trans_topup.js">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Scripts/views/trans_transfer.js">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Views/Account/AccountInfo.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Account/Index.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Account/Link_Card.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Account/_AccountCertification.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Account/_VerifyEmail.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/AccountSecure/Index.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Cashout/Cashout.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Cashout/_CashoutBankDetail.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Cashout/_CashoutBankOnlineDetail.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Home/Contact.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Home/Guide.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Home/GuideDetail.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Home/Login.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Home/NotFound.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Home/Partner.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Home/Privacy.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/Home/_LoginOTP.cshtml">
+      <publishTime>09/09/2017 14:54:18</publishTime>
+    </File>
+    <File Include="Views/News/Index.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/News/News_Detail.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/News/News_Search.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/News/News_Tags.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Payment/BuyProduct.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Payment/Index.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Payment/Payment.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Payment/Payment_Bill.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Payment/Payment_Comfirm.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Register/_ActiveAccount.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutOut.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginLayout.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Shared/_MainLayout.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Topup/TopupBank.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Topup/_TopupBankDetail.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/TransactionHistory/History.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Transfer/TransferMoney.cshtml">
+      <publishTime>09/09/2017 14:54:19</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>09/09/2017 14:54:17</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/09/2017 17:39:18</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,138 @@
+﻿@{
+    var isAuthenticated = HttpContext.Current.User.Identity.IsAuthenticated;
+    if (!isAuthenticated)
+    {
+        Layout = "~/Views/Shared/_LayoutOut.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_MainLayout.cshtml";
+    }
+}
+<main class="main">
+    <section class="main-top">
+        <div class="content">
+            <p class="page-title">@Resources.Common.guide_1</p>
+            <div class="pay-breadcrumbs">
+                <a href="@Html.Raw(Pay365.Utils.Config.Domain)thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                <a href="javascript:;" class="breadcrumb waves-effect waves-light">@Resources.Common.guide_1</a>
+            </div>
+        </div>
+    </section>
+    <div class="dashboard">
+        <section class="page-section">
+            <div class="page-head">
+                <div class="faq-search-wrap">
+                    <div class="faq-search">
+                        <div class="faq-guide">@Resources.Common.guide_2</div>
+                        <div class="row">
+                            <div class="input-field">
+                                <i class="material-icons prefix">search</i>
+                                <input type="text" id="guide_keyword">
+                                <label for="i1">@Resources.Common.guide_3</label>
+                            </div>
+                            <div class="button-search">
+                                <a href="javascript:;" onclick="SearchGuide();" class="btn btn-primary waves-effect waves-light">@Resources.Common.btn_search</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content">
+                <div class="row faq">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-title">@Resources.Common.guide_4</div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=account" class="faq-link col-sm-6">
+                                        <div class="faq-category">
+                                            <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/user.svg" alt=""></div>
+                                            <div class="content">
+                                                <p class="title">@Resources.Account_info.lbl_account</p>
+                                                <p class="text">@Resources.Common.guide_5</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=wallet" class="faq-link col-sm-6">
+                                        <div class="faq-category">
+                                            <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/wallet.svg" alt=""></div>
+                                            <div class="content">
+                                                <p class="title">@Resources.Common.guide_12</p>
+                                                <p class="text">@Resources.Common.guide_6</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="row">                         
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=shopping" class="faq-link col-sm-6">
+                                        <div class="faq-category">
+                                            <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/cart.svg" alt=""></div>
+                                            <div class="content">
+                                                <p class="title">@Resources.Common.guide_13</p>
+                                                <p class="text">@Resources.Common.guide_7</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=faq" class="faq-link col-sm-6">
+                                        <div class="faq-category">
+                                            <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/web.svg" alt=""></div>
+                                            <div class="content">
+                                                <p class="title">FAQ</p>
+                                                <p class="text">@Resources.Common.guide_8</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-title">@Resources.Common.guide_10</div>
+                            <div id="related_question_t" class="card-content">
+                            </div>
+                            <script id="related_question_tmpl" type="text/x-jquery-tmpl">
+                                <ul class="questions">
+                                    {{each RandomQuestion}}
+                                        <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=${category}&detail=${$value.Alias}${$value.NewsID}"><i class="material-icons">keyboard_arrow_right</i>${$value.Title}</a></li>
+                                    {{/each}}
+                                </ul>
+                            </script>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">@Resources.Common.guide_9</div>
+                            <div class="card-content">
+                                <div class="support">
+                                    <p>@Resources.Common.guide_11</p>
+                                    <div class="center-align">
+                                        <a href="tel:19006505" class="btn btn-primary waves-effect waves-light">1900-6505</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<script type="text/javascript">
+    $(function () {
+        guide.GetRelatedGuide('faq', 5);
+    });
+    function SearchGuide() {
+        var keyword = $('#guide_keyword').val().trim();
+        if (!keyword) {
+            ModalNotificationInit(utils.getCurrentLanguage() === 'en' ? 'Please enter your keyword' : 'Vui lòng nhập từ khóa'); return;
+        }            
+        window.location.href = utils.rootUrl() + 'huong-dan/chi-tiet' + '?category=search&keyword=' + encodeURIComponent(keyword);
+    }
+
+    $('#guide_keyword').keyup(function (event) {
+        var keyCode = event.keyCode || event.which;
+        if (keyCode === 13) {
+            SearchGuide();
+        }
+    });
+</script>

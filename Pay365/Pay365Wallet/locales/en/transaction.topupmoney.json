@@ -1,0 +1,27 @@
+﻿{
+  "error": {
+    "system_busy": "System is busy, please try again later",
+    "account_empty": "Please enter your account number",
+    "amount_empty": "Please enter your amount",
+    "bellow_min_amount": "Min topup amount is 10.000đ",
+    "bankcode_empty": "Can't get bank infomation, please try again",
+    "captcha_empty": "Please enter your verify code",
+    "captcha_token_empty": "Can't get infomation verify code",
+    "sign_data_empty": "Can't get sign data, please try again",
+    "securecode_empty": "Please enter your secure code",
+    "bank_account_holder_empty": "Please enter bank account holder",
+    "bank_account_number_empty": "Please enter bank account number",
+    "opendate_empty": "Please enter open date by format MM/yy",
+    "opendate_invalid": "Open date invalid format",
+    "back_previous": "Back to previous step",
+    "over_max": "The topup money must be lower max litmit value ",
+    "below_min": "The topup money must be higher min litmit value ",
+    "day_limit": "The topup money exceed limit value, max limit value in day is ",
+    "month_limit": "The topup money exceed limit value, max limit value in month is",
+    "securetype_empty": "Please choose secure type",
+    "bank_account_number_empty2": "Please enter your bank account number",
+    "bank_account_number_empty3": "Please enter your client code",
+    "passport_empty": "Please enter your passport number",
+    "bank_account_number_invalid": "Your bank card number invalid"
+  }
+}

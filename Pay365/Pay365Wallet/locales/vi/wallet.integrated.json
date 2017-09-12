@@ -1,0 +1,53 @@
+﻿{
+  "website_integrated": {
+    "common_err": "Hệ thống đang bận, vui lòng thử lại sau",
+    "err1": "Vui lòng nhập tên website",
+    "err2": "Vui lòng chọn logo cho website",
+    "err3": "Vui lòng nhập địa chỉ website",
+    "err4": "Vui lòng nhập địa chỉ website nhận thông báo",
+    "err5": "Vui lòng nhập mã bảo mật",
+    "err6": "Mã bảo mật không hợp lệ",
+    "err7": "Vui lòng chọn phương thức tính phí",
+    "noti1": "Cập nhật tích hợp website thành công",
+    "noti2": "Thêm mới tích hợp website thành công",
+    "noti3": "Cập nhật tích hợp website không thành công",
+    "noti4": "Thêm mới tích hợp website không thành công"
+  },
+  "mobileapp_integrated": {
+    "common_err": "Hệ thống đang bận, vui lòng thử lại sau",
+    "err1": "Vui lòng nhập tên ứng dụng",
+    "err2": "Vui lòng chọn hệ điều hành",
+    "err3": "Vui lòng chọn ngôn ngữ",
+    "err4": "Vui lòng nhập mật khẩu kết nối",
+    "err5": "Vui lòng chọn phương thức tính phí",
+    "noti1": "Cập nhật tích hợp mobile thành công",
+    "noti2": "Thêm mới tích hợp mobile thành công",
+    "noti3": "Cập nhật tích hợp mobile không thành công",
+    "noti4": "Thêm mới tích hợp mobile không thành công"
+  },
+  "button_integrated": {
+    "common_err": "Hệ thống đang bận, vui lòng thử lại sau",
+    "err1": "Vui lòng nhập tên sản phẩm",
+    "err2": "Vui lòng nhập giá sản phẩm",
+    "err3": "Vui lòng nhập số lượng sản phẩm",
+    "err4": "Vui lòng nhập nội dung text cho nút",
+    "err5": "Vui lòng nhập mô tả",
+    "err6": "Vui lòng chọn biểu phí tích hợp",
+    "err7": "Vui lòng chọn ngôn ngữ",
+    "err8": "Vui lòng chọn loại tiền",
+    "err9": "Vui lòng chọn phương thức thanh toán",
+    "err10": "Vui lòng nhập tên tổ chức, người phát động",
+    "err11": "Vui lòng nhập số điện thoại",
+    "err12": "Vui lòng nhập địa chỉ",
+    "err13": "Vui lòng nhập mã hoàn cảnh",
+    "err14": "Vui lòng chọn file cần upload",
+    "noti1": "Cập nhật tích hợp nút thành công",
+    "noti2": "Thêm mới tích hợp nút thành công",
+    "noti3": "Cập nhật tích hợp nút không thành công",
+    "noti4": "Thêm mới tích hợp nút không thành công",
+    "noti5": "Cập nhật tích hợp QR Code thành công",
+    "noti6": "Thêm mới tích hợp QR Code thành công",
+    "noti7": "Cập nhật tích hợp QR Code không thành công",
+    "noti8": "Thêm mới tích hợp QR Code không thành công"
+  }
+}

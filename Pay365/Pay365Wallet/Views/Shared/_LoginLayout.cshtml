@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@Resources.Home.lbl_titleWeb</title>
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Poppins:500,700|Roboto:300,400,500&subset=latin,vietnamese" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/css/flag-icon.min.css" rel="stylesheet">
+    @Styles.Render("~/Content/login_css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <meta name="description" content="Ví điện tử- Cổng thanh toán điện tử Pay365" />
+    <meta name="keyword" content="Ví điện tử- Cổng thanh toán điện tử Pay365" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="@Html.Raw(Pay365.Utils.Config.Domain)" />
+    <meta property="og:site_name" content="Ví điện tử - Cổng thanh toán điện tử Pay365" />
+    <meta property="og:image" content="@Html.Raw(Pay365.Utils.Config.Domain)Content/Images/logo-pay.svg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="300" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:title" content="Ví điện tử- Cổng thanh toán điện tử Pay365" />
+    <meta property="og:description" content="Ví điện tử- Cổng thanh toán điện tử Pay365" />
+    <script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "Organization",
+        "url" : "@Html.Raw(Pay365.Utils.Config.Domain)",
+        "logo": "@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-purple.svg",
+        "contactPoint" : [
+        { "@@type" : "ContactPoint",
+        "telephone" : "+84-19006505",
+        "contactType" : "customer service"
+        } ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+        "@@context" : "http://schema.org",
+        "@@type" : "WebSite",
+        "name" : "Ví điện tử- Cổng thanh toán điện tử Pay365",
+        "alternateName" : "Ví điện tử- Cổng thanh toán điện tử Pay365",
+        "url" : "@Html.Raw(Pay365.Utils.Config.Domain)",
+        "logo": "@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-purple.svg",
+        "sameAs" : [
+        "https://twitter.com/pay365",
+        "https://www.facebook.com/pay365",
+        "https://plus.google.com/106377879920743719402/posts?hl=en",
+        "@Html.Raw(Pay365.Utils.Config.Domain)"
+        ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+        "@@context": "http://schema.org/",
+        "@@type": "Review",
+        "itemReviewed": {
+        "@@type": "Thing",
+        "name": "pay365 Team"
+        },
+        "author": {
+        "@@type": "Person",
+        "name": "Pay365 Team"
+        },
+        "reviewRating": {
+        "@@type": "Rating",
+        "ratingValue": "7",
+        "bestRating": "10"
+        },
+        "publisher": {
+        "@@type": "Organization",
+        "name": "pay365"
+        }
+        }
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-105001096-1', 'auto');
+
+        $(function () {
+            trackingPageView();
+        });
+
+    </script>
+    <script type="text/javascript">
+        window.$zopim || (function (d, s) {
+            var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+                                                               d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+                z.set.
+                    _.push(o)
+            }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute('charset', 'utf-8');
+            $.src = 'https://v2.zopim.com/?53hxOfjSlu7ueig66jO5r1GClMwgcgj4'; z.t = +new Date; $.
+                type = 'text/javascript';
+            e.parentNode.insertBefore($, e);
+            $.onload = function () {
+                $zopim.livechat.theme.setColor('#834be1', 'badge');
+                $zopim.livechat.window.setColor('#834be1');
+                $zopim.livechat.theme.reload();
+            }
+        })(document, 'script');
+    </script>
+</head>
+
+<body class="accountPage">
+    <div class="wrapper">
+        <header class="header">
+            <nav class="top-bar">
+                <div class="container">
+                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)" class="logo pull-left"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-purple.svg" alt=""></a>
+                    <div class="pull-right">
+                        @if (Pay365Wallet.Helpers.LanguageHelper.GetCurrentLanguage() == "vi")
+                        {
+                            <p class="current-language">
+                                <span class="flag-icon flag-icon-vn"></span>
+                                <span class="language-label">@Resources.Home.String3</span>
+                                <a href="javascript:;" class="dropdown collapsed" data-toggle="collapse" data-target="#listLanguages" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                            </p>
+                            <ul class="languages" id="listLanguages">
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="flag-icon flag-icon-vn"></span>
+                                        <span class="language">@Resources.Home.String3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)Home/ChangeLanguage?lang=en">
+                                        <span class="flag-icon flag-icon-us"></span>
+                                        <span class="language">English</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        }
+                        else
+                        {
+                            <p class="current-language">
+                                <span class="flag-icon flag-icon-us"></span>
+                                <span class="language-label">English</span>
+                                <a href="javascript:;" class="dropdown collapsed" data-toggle="collapse" data-target="#listLanguages" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                            </p>
+                            <ul class="languages" id="listLanguages">
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="flag-icon flag-icon-us"></span>
+                                        <span class="language">English</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)Home/ChangeLanguage?lang=vi">
+                                        <span class="flag-icon flag-icon-vn"></span>
+                                        <span class="language">@Resources.Home.String3</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </nav>
+        </header>
+        @RenderBody()
+    </div>
+
+    <div id="modal-alert" class="modal">
+        <div class="modal-content">
+            <h4 id="modal_title">@Resources.Home.String33</h4>
+            <p id="modal_content"></p>
+        </div>
+        <div class="modal-footer">
+            <a href="javascript:;" id="btnAlert" class="modal-action modal-close waves-effect waves-light btn btn-danger">@Resources.Home.String32</a>
+        </div>
+    </div>
+    <div id="notification_modal" class="modal">
+        <div class="modal-content">
+            <h4>@Resources.Home.String33</h4>
+            <p id="modal_content"></p>
+        </div>
+        <div class="modal-footer">
+            <a href="javascript:;" class="modal-action modal-close waves-effect waves-green btn-flat">@Resources.Home.String32</a>
+        </div>
+    </div>
+
+    <div id="modal_notification_result" class="modal">
+        <div class="modal-content">
+            <h4 style="font-size: 15px;"><i class="material-icons icon-success">check</i>Giao dịch thành công</h4>
+            <div id="content">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a id="bt_close" href="javascript:;" class="modal-action waves-effect waves-light btn btn-default">Về trang chủ</a>
+            <a id="bt_continue" href="javascript:;" class="modal-action waves-effect waves-light btn">Tiếp tục mua sắm</a>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/pay365libjs")
+    @Scripts.Render("~/bundles/pay365commonjs")
+    <script src="~/Content/assets/js/materialize.min.js"></script>
+    <script src="~/Content/assets/js/material.js"></script>
+    @Scripts.Render("~/bundles/pay365viewjs")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode'];
+        var currlang = utils.getCurrentLanguage();
+        i18n.init({
+            lng: currlang,
+            resGetPath: "@Html.Raw(Pay365.Utils.Config.Domain)locales/__lng__/__ns__.json",
+            ns: { namespaces: listResource, defaultNs: 'common.homepage' }, //khai báo các file resource
+        },
+        function (t) {
+            $(".translang").i18n();
+        });
+
+        $(function () {
+            payMainLoad();
+            //var callback = function () {
+            //    window.location.href = utils.rootUrl() + 'thong-tin-tai-khoan';
+            //};
+            //common.CheckAuthenticated(callback);
+        });
+
+
+        $(window).scroll(function () {
+            topBar();
+        });
+        $(window).resize(function () {
+            topBar();
+        });
+
+        $(window).on("load", function () {
+            $(".counter").appear(function () {
+                counter();
+            });
+            topBar();
+            countdown();
+            $('.modal').modal();
+        });
+    </script>
+</body>
+</html>

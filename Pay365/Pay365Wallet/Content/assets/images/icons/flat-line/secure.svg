@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 60.9 58.4" style="enable-background:new 0 0 60.9 58.4;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#B29FF7;stroke:#343537;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#343537;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#636466;stroke-width:1.8;stroke-miterlimit:10;}
+	.st4{fill:#636466;}
+	.st5{fill:none;stroke:#343537;stroke-width:2;stroke-miterlimit:10;}
+	.st6{fill:#FFAB7D;stroke:#343537;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+	.st7{fill:none;stroke:#343537;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st8{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<g id="message-phone">
+	<g>
+		<path class="st0" d="M9.2,7V4.5c0-1.8,1.5-3.3,3.3-3.3h24.3c1.8,0,3.3,1.5,3.3,3.3V7H9.2z"/>
+		<path class="st0" d="M12.5,57.2c-1.8,0-3.3-1.5-3.3-3.3v-8.3h30.9v8.3c0,1.8-1.5,3.3-3.3,3.3H12.5z"/>
+		<polyline class="st1" points="40.1,12.8 40.1,7 9.2,7 9.2,45.6 40.1,45.6 40.1,31.1 40.1,12.8 		"/>
+		<path class="st1" d="M26.6,31.1"/>
+	</g>
+	<g>
+		<path class="st2" d="M40.1,12.8V4.5c0-1.8-1.5-3.3-3.3-3.3H12.5c-1.8,0-3.3,1.5-3.3,3.3v49.4c0,1.8,1.5,3.3,3.3,3.3h24.3
+			c1.8,0,3.3-1.5,3.3-3.3V31.1V12.8z"/>
+		<line class="st2" x1="9.2" y1="45.6" x2="40.1" y2="45.6"/>
+		<line class="st2" x1="9.2" y1="7" x2="40.1" y2="7"/>
+	</g>
+	<line class="st3" x1="22.7" y1="4.1" x2="26.6" y2="4.1"/>
+	<circle class="st4" cx="24.7" cy="51.4" r="2"/>
+	<g>
+		<path class="st5" d="M48.2,19.5"/>
+		<path class="st5" d="M28.2,19.5"/>
+	</g>
+	<g>
+		<path class="st6" d="M40.1,12.9l11.7,5.2v7.8c0,3.6-1.1,6.9-3.3,9.9c-2.2,3-5,4.9-8.3,5.7c-3.3-0.8-6.1-2.7-8.3-5.7
+			c-2.2-3-3.3-6.3-3.3-9.9v-7.8L40.1,12.9z"/>
+	</g>
+	<polyline class="st7" points="35.2,28.1 39.6,32.1 46.7,21.9 	"/>
+	<line class="st8" x1="33.3" y1="19.7" x2="38.5" y2="17.4"/>
+</g>
+</svg>

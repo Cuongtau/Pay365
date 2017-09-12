@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VTCApp.AdminService.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VTCApp.AdminService.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Card_BlockUnblockRequestData">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RequestData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CardSerial" type="xs:long" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Status" type="xs:int" />
+          <xs:element minOccurs="0" name="UserConfirm" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Card_BlockUnblockRequestData" nillable="true" type="tns:Card_BlockUnblockRequestData" />
+  <xs:complexType name="RequestData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Sign" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestData" nillable="true" type="tns:RequestData" />
+  <xs:complexType name="ResponseData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Extend" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResponseCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseData" nillable="true" type="tns:ResponseData" />
+</xs:schema>

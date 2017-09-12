@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1A9C7621-A78B-4E8B-99AA-55217AB8B899}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess.OrdersAPI</RootNamespace>
+    <AssemblyName>DataAccess.OrdersAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DbHelpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DbHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAOImpl\BankDAOImpl.cs" />
+    <Compile Include="DAOImpl\LocationDAOImpl.cs" />
+    <Compile Include="DAOImpl\MerchantOrderDAOImpl.cs" />
+    <Compile Include="DAOImpl\OrderDAOImpl.cs" />
+    <Compile Include="DAOImpl\IntegratedPaymentDAOImpl.cs" />
+    <Compile Include="DAOImpl\VNPostOfficeDAOImpl.cs" />
+    <Compile Include="DAO\IBankDAO.cs" />
+    <Compile Include="DAO\ILocationDAO.cs" />
+    <Compile Include="DAO\IMerchantOrderDAO.cs" />
+    <Compile Include="DAO\IOrderDAO.cs" />
+    <Compile Include="DAO\IIntegratedPaymentDAO.cs" />
+    <Compile Include="DAO\IVNPostOfficeDAO.cs" />
+    <Compile Include="DTO\Bank.cs" />
+    <Compile Include="DTO\MerchantOrder.cs" />
+    <Compile Include="DTO\National.cs" />
+    <Compile Include="DTO\Order.cs" />
+    <Compile Include="DTO\IntegratedPayment.cs" />
+    <Compile Include="DTO\OrderBankCheck.cs" />
+    <Compile Include="DTO\VNPostOffice.cs" />
+    <Compile Include="Factory\AbstractDAOFactory.cs" />
+    <Compile Include="Factory\ADODAOFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\VTCPay2.0\VTCPay.Utils\Pay365.Utils.csproj">
+      <Project>{3b96f267-7c5b-41f6-933a-ef49f15f5076}</Project>
+      <Name>Pay365.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,102 @@
+﻿<div class="card">
+    <div class="card-title">
+        <a href="javscript:;" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+        Chứng thực tài khoản
+    </div>
+    <div class="card-content">
+        <div class="card-form">
+            <div class="note">
+                <p>Để chứng thực tài khoản, bạn phải gửi ảnh CMND/Passport để thực hiện chứng thực.</p>
+                <p><strong>Lưu ý: </strong></p>
+                <ul>
+                    <li><strong>- Ảnh up lên không quá 5MB</strong></li>
+                    <li><strong>- Không gửi quá 4 ảnh</strong></li>
+                </ul>
+            </div>
+            <div class="verify-images">
+                <div class="upload">
+                    <input type="file" id="file_upload_1" class="file_img" accept="image/x-png, image/gif, image/jpeg">
+                    <label for="file_upload_1" class="waves-effect waves-light"><i class="material-icons">add</i></label>
+                </div>
+                <div id="selected_file_upload_1" class="selected" style="display: none;">
+                    <div class="image">
+                        <img src="~/content/assets/images/persons/3.png" class="img-responsive" alt="">
+                        <a href="javascript:;" class="btn-close" data-position="bottom" data-delay="0" data-tooltip="Xóa"><i class="material-icons">clear</i></a>
+                    </div>
+                </div>
+                <div class="upload">
+                    <input type="file" id="file_upload_2" class="file_img" accept="image/x-png, image/gif, image/jpeg">
+                    <label for="file_upload_2" class="waves-effect waves-light"><i class="material-icons">add</i></label>
+                </div>
+                <div id="selected_file_upload_2" class="selected" style="display: none;">
+                    <div class="image" style="margin-left: 15px">
+                        <img src="~/content/assets/images/persons/3.png" class="img-responsive" alt="">
+                        <a href="javascript:;" class="btn-close" data-position="bottom" data-delay="0" data-tooltip="Xóa"><i class="material-icons">clear</i></a>
+                    </div>
+                </div>
+                <div class="upload">
+                    <input type="file" id="file_upload_3" class="file_img" accept="image/x-png, image/gif, image/jpeg">
+                    <label for="file_upload_3" class="waves-effect waves-light"><i class="material-icons">add</i></label>
+                </div>
+                <div id="selected_file_upload_3" class="selected" style="display: none;">
+                    <div class="image" style="margin-left: 15px">
+                        <img src="~/content/assets/images/persons/3.png" class="img-responsive" alt="">
+                        <a href="javascript:;" class="btn-close" data-position="bottom" data-delay="0" data-tooltip="Xóa"><i class="material-icons">clear</i></a>
+                    </div>
+                </div>
+                <div class="upload">
+                    <input type="file" id="file_upload_4" class="file_img" accept="image/x-png, image/gif, image/jpeg">
+                    <label for="file_upload_4" class="waves-effect waves-light"><i class="material-icons">add</i></label>
+                </div>
+                <div id="selected_file_upload_4" class="selected" style="display: none;">
+                    <div class="image" style="margin-left: 15px">
+                        <img src="~/content/assets/images/persons/3.png" class="img-responsive" alt="">
+                        <a href="javascript:;" class="btn-close" data-position="bottom" data-delay="0" data-tooltip="Xóa"><i class="material-icons">clear</i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-button">
+                <a href="javascript:;" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Quay lại</a>
+                <a href="javascript:;" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Gửi yêu cầu</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('.file_img').on("change", function () {
+            var that = this;
+            var id = that.id;
+            if (typeof (FileReader) != "undefined") {
+                $($(that)[0].files).each(function () {
+                    var that2 = this;
+                    var file = $(that2);
+                    //Ảnh lớn hơn 1MB thì return lỗi;
+                    if (file[0].size > 5120000) {
+                        $('#modal-alert #modal_content').text('Dung lượng ảnh không được vượt quá 5MB');
+                        $('#modal-alert').modal('open');
+                        return;
+                    }
+                    var reader = new FileReader();
+                    utils.loading();
+                    reader.onload = function (e) {
+                        $("#" + id).parent('.upload').hide();
+                        $('#selected_' + id).find('img').attr('src', e.target.result);
+                        $('#selected_' + id).show();
+                        utils.unLoading();
+                    };
+                    reader.readAsDataURL(file[0]);
+                });
+            } else {
+                alert("Trình duyệt không hỗ trợ HTML5 upload");
+            }
+        });
+
+        $('.btn-close').on('click', function () {
+            var $that = $(this).parents('.selected');         
+            $that.prev(".upload").show();
+            $that.hide();
+        });
+    })
+</script>

@@ -1,0 +1,369 @@
+﻿
+@{
+    ViewBag.Title = Resources.Account.SetupSecure;
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<main class="main">
+    <section class="main-top">
+        <div class="content">
+            <p class="page-title">@Resources.Account.Secure</p>
+            <div class="pay-breadcrumbs">
+                <a href="/thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                <a href="/cai-dat-bao-mat" class="breadcrumb waves-effect waves-light">@Resources.Account.Secure</a>
+            </div>
+        </div>
+    </section>
+    <div class="dashboard">
+        <section class="security-section">
+            <div class="page-head">
+                <ul class="list-fixed-w-info">
+                    <li>
+                        <span class="label">@Resources.Account.AccountName : </span>
+                        <span class="data txtUsrName"></span>
+                    </li>
+                    <li>
+                        <span class="label">@Resources.Account.SecureType : </span>
+                        <span class="data txtTypeSecure"></span>
+                    </li>
+                    <li id="div_limitSecure">
+                        <span class="label">@Resources.Account.Limitation : </span>
+                        <span class="data"><strong class="txtLimitSecure"></strong><i class="material-icons warning pointer" data-position="bottom" data-delay="0" data-tooltip="@Resources.Account.NoteLimitSecure">info</i></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="page-content">
+                <div class="tab-slides" id="dv_account_secure">
+                    <div id="boxSecureType" class="div_slide security-forms @(ViewBag.TypeView == 0 ? "div_active" : "div_prev")">
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6">
+                                <div id="secureType_1" class="card pricing">
+                                    <div class="title">OTP SMS</div>
+                                    <div class="icon">
+                                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-sms.svg" alt="">
+                                    </div>
+                                    <div class="description">
+                                        @Resources.Account.NoteOTPSMS: (<strong class="secondary txtUsrName"></strong> ) @Resources.Account_info.lbl_noteOTP_SMS
+                                        <p class="hm primary">@Resources.Account.Limitation: <span class="LimitCurrent"></span></p>
+                                    </div>
+                                    <div class="button">
+                                        <a href="javascript:;" onclick="account_secure.actionSecure(1);" class="btn btn-secondary uppercase waves-effect waves-light">@Resources.Home.String2</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div id="secureType_2" class="card pricing">
+                                    <div class="title">OTP Email</div>
+                                    <div class="icon">
+                                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-email.svg" alt="">
+                                    </div>
+                                    <div class="description">
+                                        @Resources.Account.NoteOTPEmail: <strong class="secondary txtEmailAddress"></strong> @Resources.Account_info.lbl_noteOTP_Email
+                                        <p class="hm primary">@Resources.Account.Limitation: <span class="LimitCurrent"></span></p>
+                                    </div>
+                                    <div class="button">
+                                        <a href="javascript:;" onclick="account_secure.actionSecure(2);" class="btn btn-secondary uppercase waves-effect waves-light">@Resources.Home.String2</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div id="secureType_4" class="card pricing">
+                                    <div class="title">OTP Application</div>
+                                    <div class="icon">
+                                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-app.svg" alt="">
+                                    </div>
+                                    <div class="description">
+                                        @Resources.Account.NoteOTPApp <strong class="secondary">Pay365 OTP</strong> @Resources.Account.getVerifyCode
+                                        <p class="hm primary">@Resources.Account.Limitation: <span class="LimitCurrent"></span></p>
+                                    </div>
+                                    <div class="button">
+                                        <a href="javascript:;" onclick="account_secure.actionSecure(3);" class="btn btn-secondary uppercase waves-effect waves-light">@Resources.Home.String2</a>
+                                    </div>
+                                    <div class="coming-soon">
+                                        <div class="ribbon"><span>Coming Soon</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div id="secureType_3" class="card pricing">
+                                    <div class="title">OTP voice</div>
+                                    <div class="icon">
+                                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-voice.svg" alt="">
+                                    </div>
+                                    <div class="description">
+                                        @Resources.Account.NoteOTPVoice
+                                        <p class="hm primary">@Resources.Account.Limitation: <span class="LimitCurrent"></span></p>
+                                    </div>
+                                    <div class="button">
+                                        <a href="javascript:;" onclick="account_secure.actionSecure(4);" class="btn btn-secondary uppercase waves-effect waves-light">@Resources.Home.String2</a>
+                                    </div>
+                                    <div class="coming-soon">
+                                        <div class="ribbon"><span>Coming Soon</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="boxRegisterOTPSMS" class="div_slide card card-single div_next">
+                        <div class="card-title">
+                            <a href="javascript:;" onclick="account_secure.actionSecure(0,'prev');" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+                            @Resources.Account.RegisterOTP SMS
+                        </div>
+
+                        <div class="card-content">
+                            <div class="card-form">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="security-image">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-sms.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <ul class="list-fixed-w-info">
+                                            <li>
+                                                <span class="label">@Resources.Account.AccountName : </span>
+                                                <span class="data txtUsrName"></span>
+                                            </li>
+                                            <li>
+                                                <span class="label">@Resources.Account.MobileReceiveSecure: </span>
+                                                <span class="data txtUsrName"></span>
+                                            </li>
+                                        </ul>
+                                        <p>
+                                            @Resources.Account.TextSMS: <strong class="secondary">PAY365 OTP DK [@Resources.Account.Limitation OTP]</strong> @Resources.Account.Send <strong class="secondary">8095</strong>.
+                                        </p>
+                                        <p>@Resources.Account.NoteOTP1</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-button">
+                            <a href="javascript:;" onclick="account_secure.actionSecure(0,'prev');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnBack</a>
+                        </div>
+                    </div>
+
+                    <div id="boxRegisterOTPEmail" class="div_slide card card-single div_next">
+                        <div class="card-title">
+                            <a href="javascript:;" onclick="account_secure.actionSecure(0,'prev');" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+                            @Resources.Account.RegisterOTP Email
+                        </div>
+
+                        <div class="card-content">
+                            <div class="card-form">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="security-image">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-email.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <ul class="list-fixed-w-info">
+                                            <li>
+                                                <span class="label">@Resources.Account.AccountName : </span>
+                                                <span class="data txtUsrName"></span>
+                                            </li>
+                                            <li>
+                                                <span class="label">@Resources.Account.EmailGetSecureCode:  </span>
+                                                <span class="data txtEmailAddress"></span>
+                                            </li>
+                                        </ul>
+                                        <div class="form-group input-field">
+                                            <input id="txtLimitOTPEmail" type="text" maxlength="10" onkeypress='utils.checkOnlyNumber(this, event);' onkeyup="utils.formatCurrency(this, event);utils.ChangeText(event);">
+                                            <label for="txtLimitOTPEmail">@Resources.Account.LimitationRegister</label>
+                                            <span class="error-text"></span>
+                                        </div>
+                                        <p>@Resources.Account.NoteOTP1</p>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-danger center" style="display:none"></div>
+                            </div>
+                        </div>
+                        <div class="card-button">
+                            <a href="javascript:;" onclick="account_secure.actionSecure(0,'prev');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnBack</a>
+                            <a href="javascript:;" onclick="account_secure.RegisterSecureOTP(2);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Home.String2</a>
+                        </div>
+                    </div>
+
+                    <div id="boxRegisterOTPApp" class="div_slide card card-single div_next">
+                        <div class="card-title">
+                            <a href="javascript:;" onclick="account_secure.actionSecure(0,'prev');" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+                            @Resources.Account.RegisterOTP App
+
+                        </div>
+
+                        <div class="card-content">
+                            <div class="card-form">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="security-image">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-app.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <p style="margin-bottom: 30px;">@Resources.Account.NoteOTP2</p>
+                                        <div class="row">
+                                            <div class="col-sm-6"><a href="#!" class="btn-store"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-appstore.png" alt=""></a></div>
+                                            <div class="col-sm-6"><a href="#!" class="btn-store"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-googleplay.png" alt=""></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-button">
+                            <a href="javascript:;" onclick="account_secure.actionSecure(0,'prev');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnBack</a>
+                        </div>
+                    </div>
+                    <div id="boxRegisterOTPVoice" class="div_slide card card-single div_next">
+                        <div class="card-title">
+                            <a href="javascript:;" onclick="account_secure.actionSecure(0,'prev');" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+                            @Resources.Account.RegisterOTP Voice
+
+                        </div>
+
+                        <div class="card-content">
+                            <div class="card-form">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="security-image">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-voice.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <ul class="list-fixed-w-info">
+                                            <li>
+                                                <span class="label">@Resources.Account.AccountName : </span>
+                                                <span class="data txtUsrName"></span>
+                                            </li>
+                                        </ul>
+                                        <div class="form-group input-field">
+                                            <input id="txtLimitOTPVoice" type="text" maxlength="10" onkeypress='utils.checkOnlyNumber(this, event);utils.ChangeText(event);' onkeyup="utils.formatCurrency(this, event);">
+                                            <label for="txtLimitOTPVoice">@Resources.Account.LimitationRegister</label>
+                                            <span class="error-text"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-button">
+                            <a href="javascript:;" onclick="account_secure.actionSecure(0,'prev');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnBack</a>
+                            <a href="javascript:;" onclick="account_secure.RegisterSecureOTP(3);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Home.String2</a>
+                        </div>
+                    </div>
+                    <div id="boxChangeLimitSecure" class="div_slide card card-single @(ViewBag.TypeView == 0 ? "div_next" : "div_active")">
+                        <div class="card-title">
+                            <a href="javascript:;" onclick="account_secure.actionSecure(0,'prev');" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+                            @Resources.Account.ChangeLimitation
+
+                        </div>
+
+                        <div class="card-content">
+                            <div class="card-form">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="security-image">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-sms.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <ul class="list-fixed-w-info">
+                                            <li>
+                                                <span class="label">@Resources.Account.AccountName : </span>
+                                                <span class="data txtUsrName"></span>
+                                            </li>
+                                            <li>
+                                                <span class="label">@Resources.Account.SecureType : </span>
+                                                <span class="data txtTypeSecure"></span>
+                                            </li>
+                                            <li>
+                                                <span class="label">@Resources.Account.Limitation : </span>
+                                                <span class="data txtLimitSecure"></span>
+                                            </li>
+                                        </ul>
+                                        <div class="form-group input-field">
+                                            <input id="txtNewLimitSecure" type="text" maxlength="10" onkeypress='utils.checkOnlyNumber(this, event);' onkeyup="utils.formatCurrency(this, event);utils.ChangeText(event);">
+                                            <label for="txtNewLimitSecure">@Resources.Account.LimitationNew</label>
+                                            <span class="error-text"></span>
+                                        </div>
+
+                                        <p>@Resources.Account.NoteOTP1</p>
+                                    </div>
+                                </div>
+                                <div class="alert alert-danger center" style="display:none"></div>
+                            </div>
+                        </div>
+                        <div class="card-button">
+                            <a href="javascript:;" onclick="account_secure.actionSecure(0,'prev');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnBack</a>
+                            <a href="javascript:;" id="btnChangeLimit" onclick="account_secure.ChangeLimitSecure();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.ChangeLimitation</a>
+                        </div>
+                    </div>
+                    <div id="boxRegisterOTPConfirm" class="div_slide card card-single div_next">
+                        <div class="card-title">
+                            <a href="javascript:;" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+                            <span id="hd_title">@Resources.Account.RegisterOTP Email</span>
+
+                        </div>
+
+                        <div class="card-content">
+                            <div class="card-form">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="security-image">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-sms.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <ul class="list-fixed-w-info">
+                                            <li>
+                                                <span class="label">@Resources.Account.AccountName : </span>
+                                                <span class="data txtUsrName"></span>
+                                            </li>
+                                            <li>
+                                                <span class="label">@Resources.Account.SecureType : </span>
+                                                <span class="data typeSecureReg"></span>
+                                            </li>
+                                            <li>
+                                                <span class="label">@Resources.Account.Limitation : </span>
+                                                <span class="data limitSecureReg"></span>
+                                            </li>
+                                            <li id="r_new_limit" style="display:none">
+                                                <span class="label">@Resources.Account.LimitationNew : </span>
+                                                <span class="data txtNewLimitSecure"></span>
+                                            </li>
+                                        </ul>
+                                        <p id="txtNoteSecure">@Html.Raw(Resources.Account.StringMsg1)</p>
+
+                                        <div class="form-group input-field">
+                                            <a href="javascript:;" onclick="account_secure.Resend_OTP();" id="btnResendOTP" class="btn btn-sm btn-flat btn-secondary btn-input-right waves-effect waves-light">@Resources.Account.Resend</a>
+                                            <input id="txtVerifyCode" type="text" maxlength="6" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.ChangeText(event);">
+                                            <label for="txtVerifyCode">@Resources.Account.EnterVerifyCode</label>
+                                            <span class="error-text"></span>
+                                        </div>
+                                        <p id="txtNoteSecure2" style="display:none">@Html.Raw(Resources.Account.NoteSecureOTPSMS)</p>
+                                    </div>
+                                </div>
+                                <div class="alert alert-danger center" style="display:none"></div>
+                            </div>
+                        </div>
+                        <div class="card-button">
+                            <a href = "javascript:;" id="btnBackReg" onclick="account_secure.actionSecure(0,'prev');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnBack</a>
+                            @*<a href="javascript:;" id="btnChangeLimit" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.ChangeLimitation</a>*@
+                            <a href="javascript:;" id="btnConfirmReg" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnConfirm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<div style="display:none" id="btnChangeLitmitation">
+    <a href="javascript:;" onclick="account_secure.actionSecure(5);" class="btn btn-primary uppercase waves-effect waves-light">@Resources.Account.ChangeLimitation</a>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        account_secure.pageLoad();
+    });
+</script>

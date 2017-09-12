@@ -1,0 +1,465 @@
+﻿@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<div class="container">
+    <ul class="tabs">
+        <li class="tab"><a id="login_tab" class="active" href="#tab-1" onclick="utils.refreshCaptcha('formLogin');">@Resources.Register.String1</a></li>
+        <li class="tab"><a id="register_tab" href="#tab-2" onclick="utils.refreshCaptcha('form_register');">@Resources.Register.String9</a></li>
+    </ul>
+    <div class="tab-panel">
+        <div class="panel panel-login" id="tab-1">
+            <div id="formLogin" class="div_active">
+                <div class="head">
+                    <div class="icon">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <div class="title">@Resources.Register.String1</div>
+                </div>
+                <div id="content_login" class="content">
+                    <div class="login">
+                        <div class="form-group">
+                            <div class="icon">
+                                <i class="material-icons">phone_iphone</i>
+                            </div>
+                            <div class="form-data input-field">
+                                <input type="text" autocomplete="off" id="login_phone" class="user-focus" onkeypress="utils.forceNumber(this, event);" maxlength="20">
+                                <label for="login_phone">@Resources.Register.String2</label>
+                                <span class="error-text"></span>
+                                <span class="success-text"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="icon">
+                                <i class="material-icons">lock</i>
+                            </div>
+                            <div class="form-data input-field">
+                                <i class="material-icons eye">visibility</i>
+                                <input type="password" autocomplete="off" class="input-password password-focus" maxlength="18" id="login_password">
+                                <label for="login_password">@Resources.Register.String3</label>
+                                <span class="error-text"></span>
+                                <span class="success-text"></span>
+                            </div>
+                        </div>
+                        <div id="form_login_captcha" class="form-group" style="display:none;">
+                            <div class="icon">
+                                <i class="material-icons">lock</i>
+                            </div>
+                            <div class="form-data input-field captcha-out">
+                                <input type="text" maxlength="4" class="custom-captcha captcha-focus" id="login_captcha">
+                                <label for="login_captcha">@Resources.Register.String4</label>
+                                <input id="inputToken" type="hidden" />
+                                <div class="captcha-image">
+                                    <img id="imgCaptcha" width="100" height="35" />
+                                    <i onclick="utils.refreshCaptcha('formLogin');" class="btn-reload material-icons">refresh</i>
+                                </div>
+                                <span class="error-text" style="float: left;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group submit">
+                            <div class="row">
+                                <div class="col-sm-6 pull-left"><a href="javascript:;" onclick="account_changepass.Vw_ForgotPassword();" class="btn-lost pull-left">@Resources.Register.String5</a></div>
+                                <div class="col-sm-6 pull-right"><a id="btLogin" href="javascript:;" onclick="login.Login();" class="btn btn-primary waves-effect waves-light">@Resources.Register.String1</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="foot">
+                    <div class="row">
+                        <div id="footer_login" class="col-sm-12">
+                            <p>@Resources.Register.String7 ?</p>
+                            <div><a href="javascript:;" onclick="$('#register_tab').click();" class="btn btn-flat btn-primary">@Resources.Register.String8</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="formForgetPass" class="div_hidden">
+                <div class="head">
+                    <div class="icon">
+                        <i class="material-icons">person</i>
+                    </div>
+                    <div class="title">@Resources.Account.ForgotPass</div>
+                </div>
+                <div class="content">
+                    <div class="tab-slides" id="ts-1">
+                        <div id="typeReset" class="div_slide div_active">
+                            <ul class="lost">
+                                <li>
+                                    <a href="javascript:;" onclick="account_changepass.Vw_ResetPassViaSMS();" class="waves-effect wave-primary">
+                                        <i class="material-icons icon">phone_iphone</i>
+                                        <div class="text">
+                                            <p>@Resources.Account.ResetPassword</p>
+                                            <strong>@Resources.Account.ViaSms</strong>
+                                        </div>
+                                        <i class="material-icons arrow">chevron_right</i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" onclick="account_changepass.Vw_ResetPassViaEmail();" class="waves-effect wave-primary">
+                                        <i class="material-icons icon">email</i>
+                                        <div class="text">
+                                            <p>@Resources.Account.ResetPassword</p>
+                                            <strong>@Resources.Account.ViaEmail</strong>
+                                        </div>
+                                        <i class="material-icons arrow">chevron_right</i>
+                                    </a>
+                                </li>
+                                <li class="otp-voice">
+
+                                    <i class="material-icons icon">record_voice_over</i>
+
+                                    <div class="text">
+                                        <p>@Resources.Account.ResetPassViaSupport <br /><strong><u>1900 6505</u></strong></p>
+                                    </div>
+
+                                </li>
+                            </ul>
+
+
+                        </div>
+                        <div id="resetPassStep1" class="lost div_slide div_next">
+                            <div class="content-title tit_rs_sms">@Resources.Account.ResetPassViaSMS</div>
+                            <div class="content-title tit_rs_email">@Resources.Account.ResetPassViaEmail</div>
+                            <form id="recoveryForm_checkinput" autocomplete="off" class="form-horizontal" role="form" method="post" action="">
+                                <div class="form-group" id="inputUser">
+                                    <div class="form-data input-field">
+                                        <i class="material-icons prefix">phone_iphone</i>
+                                        <input type="text" id="txtUsername" name="Username" maxlength="11" class="" onkeypress="utils.checkOnlyNumber(this, event);utils.ChangeText(event);">
+                                        <label for="txtUsername" class="">@Resources.Account.AccountName</label>
+                                        <span class="error-text help-block" id="errUsername"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="inputEmail" style="display:none">
+                                    <div class="form-data input-field">
+                                        <i class="material-icons prefix">email</i>
+                                        <input type="text" id="txtEmail" maxlength="150" name="Email" onkeypress="utils.ChangeText(event);">
+                                        <label for="email">@Resources.Account.EmailAddress</label>
+                                        <span class="error-text help-block" id="errEmail"></span>
+                                    </div>
+                                </div>
+                                <p class="p-error-text" style="display:none"></p>
+                                <div class="form-group submit">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xs-6 left-align"><a href="javascript:;" onclick="account_changepass.backStep();" class="btn btn-flat btn-primary uppercase"><i class="material-icons">chevron_left</i> @Resources.Account.BtnBack</a></div>
+                                        <div class="col-sm-6 col-xs-6"><a href="javascript:;" onclick="account_changepass.ResetPass_CheckInput();" class="btn btn-primary waves-effect waves-light">@Resources.Account.BtnConfirm</a></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="resetPassStep2" class="lost div_slide div_next">
+                            <div class="content-title tit_rs_sms">@Resources.Account.ResetPassViaSMS</div>
+                            <div class="content-title tit_rs_email">@Resources.Account.ResetPassViaEmail</div>
+                            <form id="recoveryForm_ChangePass" autocomplete="off" class="form-horizontal" role="form" method="post" action="">
+                                <div id="content_msg_sms">
+                                    <p>@Resources.Account.StringMsg1 : <span class="secondary" id="sendOTP_Mobile"></span>. @Resources.Account.PleaseEnterCode</p>
+
+                                </div>
+
+                                <div id="content_msg_email">
+                                    <p>@Resources.Account.StringMsg3 : <span class="secondary" id="sendOTP_Email"></span>. @Resources.Account.PleaseEnterCode</p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-data input-field">
+                                        <a href="javascript:;" id="resendOTP" style="display:none" onclick="account_changepass.ResendOTPEmail();" class="btn btn-sm btn-input-right waves-effect waves-light btn-secondary">@Resources.Account.Resend</a>
+                                        <i class="material-icons prefix">phonelink_lock</i>
+                                        <input type="text" id="txtConfirmCode" maxlength="6" name="confirmCode" data-length="6" onkeypress="utils.checkOnlyNumber(this, event);">
+                                        <label for="txtConfirmCode">@Resources.Account.VerifyCode</label>
+                                        <span class="error-text help-block" id="errConfirmCode"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-data input-field">
+                                        <i class="material-icons eye">visibility</i>
+                                        <i class="material-icons prefix">lock</i>
+                                        <input type="password" class="input-password" id="txtPasswordChange" name="newPassword">
+                                        <label for="txtPasswordChange">@Resources.Account.NewPassword</label>
+                                        <span class="error-text help-block" id="errNewPass"></span>
+                                        <ul class="rule">
+                                            <li><i class="material-icons">done</i> @Resources.Account.RulePassword1</li>
+                                            <li><i class="material-icons">done</i> @Resources.Account.RulePassword2</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-data input-field">
+                                        <i class="material-icons eye">visibility</i>
+                                        <i class="material-icons prefix">lock</i>
+                                        <input type="password" class="input-password" id="txtRePasswordChange" name="confirmPassword">
+                                        <label for="txtRePasswordChange">@Resources.Account.RenewPassword</label>
+                                        <span class="error-text help-block" id="errConfirmPass"></span>
+                                    </div>
+                                </div>
+                                <p class="p-error-text" style="display:none"></p>
+                                <div class="form-group submit">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xs-6 left-align"><a href="javascript:;" onclick="account_changepass.backStep();" class="btn btn-flat btn-primary uppercase"><i class="material-icons">chevron_left</i> @Resources.Account.BtnBack</a></div>
+                                        <div class="col-sm-6 col-xs-6"><button type="submit" class="btn btn-primary waves-effect waves-light">@Resources.Account.BtnConfirm </button></div>
+                                    </div>
+                                </div>
+                                <p>
+                                    @Html.Raw(Resources.Account.StringMsg2)
+                                </p>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="foot">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="javascript:;" onclick="account_changepass.Vw_FormLogin();" class="btn btn-flat btn-primary uppercase"><i class="material-icons">chevron_left</i> @Resources.Account.BtnBack</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="panel panel-register" id="tab-2">
+            <div class="head">
+                <div class="icon">
+                    <i class="material-icons">person_add</i>
+                </div>
+                <div class="title">@Resources.Register.String9</div>
+            </div>
+            <div class="content">
+                <div id="form_register" class="register">
+                    <div class="form-group">
+                        <div class="icon">
+                            <i class="material-icons">phone_iphone</i>
+                        </div>
+                        <div class="form-data input-field">
+                            <input maxlength="20" type="text" id="reg_account_name" class="user-focus" onkeypress="utils.forceNumber(this, event);" autocomplete="off">
+                            <label for="reg_account_name">@Resources.Register.String2</label>
+                            <span class="error-text"></span>
+                            <span class="success-text"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="icon">
+                            <i class="material-icons">lock</i>
+                        </div>
+                        <div class="form-data input-field">
+                            <i class="material-icons eye">visibility</i>
+                            <input type="password" maxlength="18" class="input-password password-focus" id="reg_password">
+                            <label for="reg_password">@Resources.Register.String3</label>
+                            <span class="error-text"></span>
+                            <span class="success-text"></span>
+                            <ul class="rule">
+                                <li><i class="material-icons">done</i>@Resources.Register.String6</li>
+                                <li><i class="material-icons">done</i>@Resources.Register.String15</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="icon">
+                            <i class="material-icons">lock</i>
+                        </div>
+                        <div class="form-data input-field">
+                            <i class="material-icons eye">visibility</i>
+                            <input type="password" maxlength="18" class="input-password repassword-focus" id="reg_repassword">
+                            <label for="reg_repassword">@Resources.Register.String10</label>
+                            <span class="error-text"></span>
+                            <span class="success-text"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="icon">
+                            <i class="material-icons">face</i>
+                        </div>
+                        <div class="form-data input-field">
+
+                            <input type="text" maxlength="50" class="fullname-focus" id="reg_fullname">
+                            <label for="reg_fullname">@Resources.Register.String11</label>
+                            <span class="error-text"></span>
+                            <span class="success-text"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="icon">
+                            <i class="material-icons">mail</i>
+                        </div>
+                        <div class="form-data input-field">
+                            <input type="email" maxlength="50" class="email-focus" id="reg_email">
+                            <label for="reg_email">Email</label>
+                            <span class="error-text"></span>
+                            <span class="success-text"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="icon">
+                            <i class="material-icons">cake</i>
+                        </div>
+                        <div class="form-data input-field">
+                            <input type="text" class="datepicker" id="reg_birth">
+                            <label for="reg_birth">@Resources.Register.String12</label>
+                            <span class="error-text"></span>
+                            <span class="success-text"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="icon">
+                            <i class="material-icons">wc</i>
+                        </div>
+                        <div class="form-data">
+                            <div id="group_gerne" class="input-radio">
+                                <input type="radio" class="filled-in" name="reg_gerne" value="1" id="male" checked />
+                                <label for="male">@Resources.Register.String13</label>
+
+                                <input type="radio" class="filled-in" name="reg_gerne" value="0" id="female" />
+                                <label for="female">@Resources.Register.String14</label>
+                            </div>
+                            <span class="error-text"></span>
+                            <span class="success-text"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="icon">
+                            <i class="material-icons">fingerprint</i>
+                        </div>
+                        <div class="form-data input-field captcha-out">
+                            <input class="custom-captcha captcha-focus" maxlength="4" type="text" id="reg_captcha">
+                            <label for="reg_captcha">@Resources.Register.String4</label>
+                            <input id="inputToken" type="hidden" />
+                            <div class="captcha-image">
+                                <img id="imgCaptcha" width="100" height="35" />
+                                <i onclick="utils.refreshCaptcha('form_register');" class="btn-reload material-icons">refresh</i>
+                            </div>
+                            <span class="error-text" style="float: left;"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="">
+                            <div class="input-radio error">
+                                <input type="checkbox" class="filled-in" id="reg_term" checked>
+                                <label for="reg_term">@Resources.Register.String23 <a target="_blank" href="@Html.Raw(Pay365.Utils.Config.Domain)tin-tuc/9/dieu-khoan-su-dung-27">@Resources.Register.String25</a></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group submit">
+                        <div class="row">
+                            <div class="col-sm-12"><a id="btRegister" href="javascript:;" onclick="register.ConfirmRegister();" class="btn btn-primary waves-effect waves-light">@Resources.Register.String9</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popup_success" class="modal">
+    <div class="modal-content">
+        <h4><i class="material-icons icon-success">check</i></h4>
+        <p>@Html.Raw(Resources.Account.ResetPasswordSuccess)</p>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-sm-12 center"><a href="javascript:;" onclick="account_changepass.Vw_FormLogin();" class="modal-action modal-close waves-effect waves-primary btn btn-success">Đăng nhập</a></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        var action = window.location.pathname;
+        $('.tab a').removeClass('active');
+        $('#tab-1, #tab-2').removeClass('active');
+        $('#tab-1, #tab2').hide();
+        if (action === '/dang-ky' || action === '/register') {
+            $('#register_tab').addClass('active');
+            $('#tab-2').show();
+            $('#tab-2').addClass('active');
+            utils.getCaptcha('form_register');
+        }
+        else {
+            $('#login_tab').addClass('active');
+            $('#tab-1').show();
+            $('#tab-1').addClass('active');
+            if (action === '/quen-mat-khau') {
+                $('#formLogin').toggleClass("div_active div_hidden");
+                $('#formForgetPass').toggleClass("div_hidden div_active");
+                return;
+            }
+            else if (action.indexOf('/kich-hoat') !== -1||action.indexOf('/active-account') !== -1) {
+                register.ActiveAccountView('@ViewBag.AccountName','@ViewBag.Email', '#tab-1');
+            }
+            //$('#formForgetPass').toggleClass("div_active div_hidden");
+            //$('#formLogin').toggleClass("div_hidden div_active");
+        }
+
+        $('#formLogin, #form_register, #form_active_account').on('keyup', 'input', function (event) {
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13 && !event.currentTarget.value) {
+                return;
+            }
+            $(this).removeClass('error success');
+            $(this).parent().find('.error-text').text('');
+            $('.p-error-text').remove();
+            if (this.id === 'reg_password') {
+                var password = this.value;
+                if (password.length >= 6 && password.length <= 18)
+                    $(this).siblings('.rule').find('li:first').css('color', 'green');
+                else
+                    $(this).siblings('.rule').find('li:first').css('color', '#3e3e3e');
+
+                if (utils.validatePassword(password))
+                    $(this).siblings('.rule').find('li:last').css('color', '#3e3e3e');
+                else
+                    $(this).siblings('.rule').find('li:last').css('color', 'green');
+            }
+            else if (this.id === 'reg_fullname') {
+                utils.letterOnly(this);
+            }
+        });
+
+        if (utils.getCurrentLanguage() === 'en') {
+            $('.datepicker').pickadate({
+                selectMonths: true,
+                selectYears: 180,
+                closeOnSelect: true,
+                format: 'dd/mm/yyyy',
+                onStart: function () {
+                    this.set('view', new Date(1991, 6, 30));
+                }
+            });
+        }
+        else {
+            $('.datepicker').pickadate({
+                selectMonths: true,
+                selectYears: 180,
+                closeOnSelect: true,
+                format: 'dd/mm/yyyy',
+                monthsFull: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+                monthsShort: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+                onStart: function () {
+                    this.set('view', new Date(1991, 6, 30));
+                }
+            });
+        }
+
+        setTimeout(function () {
+            if ($('#login_phone').val()) {
+            $('#login_password').siblings('label').addClass('active');
+        } }, 1000);
+
+    });
+
+    $('#formLogin input').keyup(function (event) {
+        if ($("#btLogin").hasClass("disabled")) return;
+        var keyCode = event.keyCode || event.which;
+        if (keyCode === 13) {
+            login.Login();
+        }
+    });
+
+    $('#form_register input').keyup(function (event) {
+        if ($("#btRegister").hasClass("disabled")) return;
+        var keyCode = event.keyCode || event.which;
+        if (keyCode == 13) {
+            register.ConfirmRegister();
+        }
+    });
+
+    $("#login_phone").focus();
+</script>

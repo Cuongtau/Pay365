@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Log Screen";
+    Layout = "~/Views/Shared/_LayoutLockUser.cshtml";
+}
+
+@model DataAccess.ReportAPI.DTO.Users
+<input type="hidden" value="@Model.Username" id="Username" />
+
+<div class="page-lock">
+    <div class="page-logo">
+        <a class="brand" href="index-2.html">
+            <img src="../../assets/admin/layout/img/logo-big.png" alt="logo">
+        </a>
+    </div>
+    <div class="page-body">
+        <img class="page-lock-img" src="../../assets/admin/pages/media/profile/profile.jpg" alt="">
+        <div class="page-lock-info">
+            <h1>@Model.FullName</h1>
+            <span class="email">
+                @Model.Email
+            </span>
+            <span class="locked">
+                Locked
+            </span>
+
+            <div class="form-inline" id="logon_screen">
+                <div class="messager-body">
+                    <div class="alert alert-success display-hide alert-dismissable">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <label>Đăng nhập thành công !!!</label>
+                    </div>
+                    <div class="alert alert-danger display-hide alert-dismissable">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        <label id="ErrorLbl">Cố lỗi khi đăng nhập</label>
+                    </div>
+                </div>
+                <div class="input-group input-medium">
+                    <input class="form-control" placeholder="Password" id="Password" type="password" name="Password">
+                    <span class="input-group-btn">
+                        <button type="button" id="btn_logscreen" class="btn blue icn-only"><i class="m-icon-swapright m-icon-white"></i></button>
+                    </span>
+                </div>
+
+                <!-- /input-group -->
+                <div class="relogin">
+                    <a href="@Html.Raw(Pay365.Utils.Config.UrlRoot)Account/FormLogin">
+                        Not @Model.Username ?
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer-custom">
+        2014 © Metronic. Admin Dashboard Template.
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Password").focus();
+        $("#logon_screen").keypress(function (event) {
+            if (event.which == 13) {
+                $("#btn_logscreen").click();
+            }
+            return;
+        });
+        $("#btn_logscreen").click(function () {
+            var password = $("#Password");
+            if(password.val().trim() == "")
+            {
+                $("#ErrorLbl").text("vui lòng nhập mật khẩu");
+                $(".alert-danger").show("slow");
+                $(".alert-success").hide();
+                $("#Password").focus();
+                setTimeout(function () { $(".alert-danger").hide("slow"); }, 3000);
+                return;
+            }
+            LoginUser();
+        });
+    });
+</script>

@@ -1,0 +1,318 @@
+﻿@{
+    ViewBag.Title = "Báo cáo tổng hợp hệ thống";
+}
+@model DataAccess.ReportAPI.DTO.GeneralReportSystem
+<!-- /.row -->
+<div class="portlet blue box">
+    <div class="portlet-title"><div class="caption"><i class="fa fa-gears"></i>BÁO CÁO TỔNG HỢP HỆ THỐNG</div></div>
+    <div class="portlet-body">
+
+        <div id="dgrid" class="dataTables_wrapper" role="grid">
+            <div id="ReportPartial">
+                <!-- /.row -->
+                <div class="clearfix" id="reportGeneralReport">
+                    <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="portlet yellow-lemon box">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-group"></i>Nghiệp Vụ Tài Khoản
+                                </div>
+                                <div class="tools">
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain + "ReportAccount/GeneralAccount")" class="more">chi tiết</a>
+                                    <a href="javascript:;" class="collapse" title="show/hide">
+                                    </a>
+                                    <a href="javascript:;" class="reload" title="reload">
+                                    </a>
+                                    <a href="javascript:;" class="remove" title="remove">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <table class="table table-bordered table-striped table-hover no-footer">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">Tài khoản đăng ký</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.RegisterNumber > 0 ? string.Format("{0:##,###}", Model.RegisterNumber).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">Tài khoản kích hoạt</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.ActiveNumber > 0 ? string.Format("{0:##,###}", Model.ActiveNumber).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">Tài khoản còn số dư</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.AccountHasBalance > 0 ? string.Format("{0:##,###}", Model.AccountHasBalance).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="portlet blue-ebonyclay box">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-group"></i>Số dư tài khoản
+                                </div>
+                                <div class="tools">
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain + "ReportSystem/GeneralBalanceReport")" class="more">chi tiết</a>
+                                    <a href="javascript:;" class="collapse" title="show/hide">
+                                    </a>
+                                    <a href="javascript:;" class="reload" title="reload">
+                                    </a>
+                                    <a href="javascript:;" class="remove" title="remove">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <table class="table table-bordered table-striped table-hover no-footer">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">Số dư tài khoản cá nhân</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.BalancePerson > 0 ? string.Format("{0:##,###}", Model.BalancePerson).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">Số dư tài khoản doanh nghiệp</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.BalanceBussiness > 0 ? string.Format("{0:##,###}", Model.BalanceBussiness).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">Số dư tài khoản nghiệp vụ</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.BalanceTransaction > 0 ? string.Format("{0:##,###}", Model.BalanceTransaction).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ DƯ HỆ THỐNG</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.TotalBalance > 0 ? string.Format("{0:##,###}", Model.TotalBalance).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="portlet green-jungle box">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-globe"></i>Cổng Thanh Toán
+                                </div>
+                                <div class="tools">
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain + "ReportMerchant/GeneralMerchantReport")" class="more">chi tiết</a>
+                                    <a href="javascript:;" class="collapse" title="show/hide">
+                                    </a>
+                                    <a href="javascript:;" class="reload" title="reload">
+                                    </a>
+                                    <a href="javascript:;" class="remove" title="remove">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <table class="table table-bordered table-striped table-hover no-footer">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ Merchant tích hợp</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.MerchantAccount > 0 ? string.Format("{0:##,###}", Model.MerchantAccount).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ giao dịch</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.MerchantTransation > 0 ? string.Format("{0:##,###}", Model.MerchantTransation).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">Giá trị trung bình giao dịch</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.MerchantValueAverage > 0 ? string.Format("{0:##,###}", Model.MerchantValueAverage).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr class="" style="margin:15px 0;width:100%;float:left;" />
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="portlet purple-soft box">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-money"></i>Nghiệp Vụ Tiêu/Truy Thu
+                                </div>
+                                
+                            </div>
+                            <div class="portlet-body">
+                                <table class="table table-bordered table-striped table-hover no-footer">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ TÀI KHOẢN phát sinh gd tiêu</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.OutputAccount > 0 ? string.Format("{0:##,###}", Model.OutputAccount).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ giao dịch tiêu</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.OutputTransaction > 0 ? string.Format("{0:##,###}", Model.OutputTransaction).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ tiền tiêu</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.OutputMoney > 0 ? string.Format("{0:##,###}", Model.OutputMoney).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ TÀI KHOẢN TRUY THU</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.ArrearsAccount > 0 ? string.Format("{0:##,###}", Model.ArrearsAccount).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ GD TRUY THU</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.ArrearsTransaction > 0 ? string.Format("{0:##,###}", Model.ArrearsTransaction).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ TIỀN TRUY THU</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.ArrearsMoney > 0 ? string.Format("{0:##,###}", Model.ArrearsMoney).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="portlet red-flamingo box">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-group"></i>Nghiệp Vụ nạp/hoàn tiền
+                                </div>
+                                <div class="tools">
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain + "ReportTransaction/GeneralTransactionInput")" class="more">chi tiết</a>
+                                    <a href="javascript:;" class="collapse" title="show/hide">
+                                    </a>
+                                    <a href="javascript:;" class="reload" title="reload">
+                                    </a>
+                                    <a href="javascript:;" class="remove" title="remove">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <table class="table table-bordered table-striped table-hover no-footer">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ TÀI KHOẢN phát sinh gd NẠP</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.InputAccount > 0 ? string.Format("{0:##,###}", Model.InputAccount).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ giao dịch NẠP</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.InputTransaction > 0 ? string.Format("{0:##,###}", Model.InputTransaction).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ tiền NẠP</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.InputMoney > 0 ? string.Format("{0:##,###}", Model.InputMoney).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ TÀI KHOẢN phát sinh gd HOÀN TRẢ</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.RefundAccount > 0 ? string.Format("{0:##,###}", Model.RefundAccount).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ giao dịch HOÀN TRẢ</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.RefundTransaction > 0 ? string.Format("{0:##,###}", Model.RefundTransaction).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="textDate control-label text-info">SỐ tiền HOÀN TRẢ</label>
+                                            </td>
+                                            <td align="right">
+                                                @(Model.RefundMoney > 0 ? string.Format("{0:##,###}", Model.RefundMoney).Replace(",", ".") : "0")
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,160 @@
+﻿@{
+    ViewBag.Title = "Báo cáo chi tiết giao dịch nạp";
+}
+
+<div class="clearfix"></div>
+<div class="table-responsive">
+    <b>Số giao dịch nạp (@ViewBag.TotalRow)</b>
+    <table class="table table-striped table-hover dataTable no-footer" id="table-static" width="100%">
+        <thead>
+            <tr class="info">
+                <th width="6%">Mã GD</th>
+                <th width="10%">Số tài khoản</th>
+                <th width="12%">Tên tài khoản</th>
+                <th width="16%">Thời gian bắt đầu</th>
+                <th width="16%">Thời gian hoàn thành</th>
+                <th width="16%">Số tiền nạp</th>
+                <th width="10%">Phí VTC thu</th>
+                <th width="10%">Ngân hàng</th>
+                @*<th width="10%">Đối tác</th>*@
+                <th width="10%">Người thực hiện</th>
+            </tr>
+        </thead>
+
+        <tbody></tbody>
+        <tfoot>
+            @if (Model != null && Model.Count > 0)
+            {
+                <tr>
+                    <td align="center" valign="middle">
+                        <b>Tổng số</b>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><b>@((ViewBag.TotalAmount == 0) ? "0" : string.Format("{0: ##,###}", ViewBag.TotalAmount).Replace(",", "."))</b></td>
+                    <td style="text-align:right"><b>@((ViewBag.TotalFee == 0) ? "0" : string.Format("{0: ##,###}", ViewBag.TotalFee).Replace(",", "."))</b></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
+        </tfoot>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var listjson = '@Html.Raw(ViewBag.listjson)';
+        var payType = parseInt('@ViewBag.PayType');
+        var datajson = JSON.parse(listjson);
+        var datacolumns = [
+                    { "data": "TransactionID", "type":"string" },
+                    { "data": "AccountName", "type": "string", "sortable":false },
+                    { "data": "FullName", "type": "string", "sortable": false },
+                    { "data": "CreatedTime" },
+                    { "data": "EndTime" },
+                    { "data": "Amount" },
+                    { "data": "Fee" },
+                    { "data": "BankName", "type": "string" },
+                    { "data": "CreatedUser", "type": "string" },
+        ];
+        var table = $('#table-static').DataTable({
+            dom: 'Bfrtp',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            "data": datajson,
+            "columns": datacolumns,
+            buttons: [
+                {
+                    extend: 'collection',
+                    text: "<i class='fa fa-cloud-download'></i>Xuất dữ liệu",
+                    buttons: [
+                            {
+                                extend: 'copy',
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                text: "<i class='fa fa-copy'></i>Copy",
+                                footer: true,
+                                title: "Báo cáo chi tiết giao dịch Nạp"
+                            },
+                            {
+                                extend: 'csvHtml5',
+                                text: "<i class='fa fa-file-text-o'></i>Csv",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                footer: true,
+                                title: "Báo cáo chi tiết giao dịch Nạp"
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: "<i class='fa fa-file-excel-o'></i>Excel",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                footer: true,
+                                title: "Báo Cáo chi tiết Giao Dịch Nạp",
+                                filename: 'Báo Cáo chi tiết Giao Dịch Nạp',
+                                typeTime: 1
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: "<i class='fa fa-file-word-o'></i>Word",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                doctype: 'doc',
+                                footer: true,
+                                title: 'Báo Cáo chi tiết Giao Dịch Nạp',
+                                filename: 'Báo Cáo chi tiết Giao Dịch Nạp',
+                                typeTime: 1
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                text: "<i class='fa fa-file-pdf-o'></i>PDF",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                footer: true,
+                                title: 'Báo Cáo chi tiết Giao Dịch Nạp',
+                                headerRows: 2,
+                                typeTime: 1,
+                                orientation: 'landscape'
+                            },
+                            {
+                                extend: 'print',
+                                text: "<i class='fa fa-print'></i>Print",
+                                autoPrint: false,
+                                footer: true,
+                                title: 'Báo Cáo chi tiết Giao Dịch Nạp',
+                                typeTime: 1
+                            }
+                    ]
+                },
+                'pageLength',
+                 {
+                     extend: "colvis",
+                     text: "<i class='fa fa-eye-slash'></i>Ẩn/hiện cột"
+                 }
+            ],
+            "aaSorting": [[3, 'desc']],
+            "bSort": true,
+            'fixedHeader': true,
+            "fnDrawCallback": function (oSettings) {
+                rowspanDTable(oSettings, "table-static", 1);
+            },
+            searching: false,
+            pageLength: 25
+        });
+        table.buttons().container().appendTo('#example_wrapper .col-sm-6:eq(0)');
+        $('#table-static').on('page.dt', function () {
+            $("html,body").animate({ scrollTop: $('#table-static').offset().top - 100 }, 'fast');
+        });
+    });
+
+</script>

@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Thanh toán hóa đơn";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<main class="main" id="content_page">
+  
+</main>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.get(utils.rootUrl() + "Payment/Payment").done(function (data) {
+            $('#content_page').html(data);
+        });
+    });
+    function getDetail() {
+        $.get(utils.rootUrl() + "Payment/Payment_Bill").done(function (data) {
+            $('#content_page').html(data);
+        });
+    };
+</script>
+

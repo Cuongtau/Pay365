@@ -1,0 +1,166 @@
+﻿
+@{
+    var isAuthenticated = HttpContext.Current.User.Identity.IsAuthenticated;
+    if (!isAuthenticated)
+    {
+        Layout = "~/Views/Shared/_LayoutOut.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_MainLayout.cshtml";
+    }
+}
+
+<main class="main">
+    <section class="main-top">
+        <div class="content">
+            <p class="page-title">@Resources.Common.String18</p>
+            <div class="pay-breadcrumbs">
+                <a href="@Html.Raw(Pay365.Utils.Config.Domain + "thong-tin")" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                <a href="@Html.Raw(Pay365.Utils.Config.Domain + "contact")" class="breadcrumb waves-effect waves-light">@Resources.Common.String18</a>
+            </div>
+        </div>
+    </section>
+    <div class="dashboard">
+        <section class="page-section">
+
+            <div class="page-contact" id="div_contact">
+                <div class="info">
+                    <div class="company">
+                        <p><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo.svg" alt=""></p>
+                        <p><strong>@Resources.Common.lbl_company</strong></p>
+                    </div>
+                    <div class="contact-caption">@Resources.Common.String19</div>
+                    <p>
+                        <span class="contact-info">
+                            <i class="material-icons">phone_iphone</i>
+                            <span><a href="tel:19006505">1900-6505</a></span>
+                        </span>
+                        <span class="contact-info">
+                            <i class="material-icons">link</i>
+                            <span><a href="https://www.pay365.vn">https://www.pay365.vn</a></span>
+                        </span>
+                        <span class="contact-info">
+                            <i class="material-icons">call</i>
+                            <span><a href="tel:02473006505">(024)-73 006 505</a></span>
+                        </span>
+                    </p>
+
+                    <div class="contact-caption">@Resources.Common.lbl_corperation</div>
+                    <p>
+                        <span class="contact-info">
+                            <i class="material-icons">person</i>
+                            <span>Ms. Duong Thi Phuong</span>
+                        </span>
+                    </p>
+                    <p>
+                        <span class="contact-info">
+                            <i class="fa fa-skype"></i>
+                            <span><a href="skype:phuongdt_ojb">phuongdt_ojb</a></span>
+                        </span>
+                    </p>
+                    <p>
+                        <span class="contact-info">
+                            <i class="material-icons">email</i>
+                            <span><a href="mailto:hotro@pay365.vn">hotro@pay365.vn</a></span>
+                        </span>
+                    </p>
+
+                    <div class="address">
+                        <div class="icon">
+                            <i class="material-icons">business</i>
+                        </div>
+                        <div class="content">
+                            <p class="head">@Resources.Common.Address1</p>
+                            <p>@Resources.Common.lbl_AddressName</p>
+                        </div>
+                    </div>
+
+                    @*<div class="address">
+                            <div class="icon">
+                                <i class="material-icons">place</i>
+                            </div>
+                            <div class="content">
+                                <p class="head">Hà Nội</p>
+                                <p>Số xx, đường xx xxx xxx, quận xx xxx.</p>
+                            </div>
+                        </div>
+                        <div class="address">
+                            <div class="icon">
+                                <i class="material-icons">place</i>
+                            </div>
+                            <div class="content">
+                                <p class="head">Hồ Chí Minh</p>
+                                <p>Số xx, đường xx xxx xxx, quận xx xxx.</p>
+                            </div>
+                        </div>*@
+                </div>
+                <div class="contact">
+                    <div class="contact-caption">@Resources.Common.String20</div>
+                    <p align="left">@Resources.Common.lbl_contact_note</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-field">
+                                <input id="txt_fullname" type="text">
+                                <label for="txt_fullname">@Resources.Account_info.lbl_fullname</label>
+                                <span class="error-text" id="txterror_fullname"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-field">
+                                <input id="txt_title" type="text">
+                                <label for="txt_title">@Resources.Common.String21</label>
+                                <span class="error-text" id="txterror_title"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-field">
+                                <input id="txt_email" type="text">
+                                <label for="txt_email">@Resources.Account_info.lbl_email</label>
+                                <span class="error-text" id="txterror_email"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-field">
+                                <input onkeypress="utils.checkOnlyNumber(this, event);" id="txt_phone" type="text">
+                                <label for="txt_phone">@Resources.Common.String22</label>
+                                <span class="error-text" id="txterror_phone"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-field">
+                                <textarea id="txt_content" class="materialize-textarea"></textarea>
+                                <label for="txt_content">@Resources.Common.String23</label>
+                                <span class="error-text" id="txterror_content"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a href="javascript:;" id="btnSendContact" onclick="news.SendContact();" class="btn btn-primary waves-effect waves-light">@Resources.Common.btn_SendEmail</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+</main>
+
+<script type="text/javascript">
+    $('#div_contact input').keyup(function (event) {
+        if ($("#btnSendContact").hasClass("disabled")) return;
+        var keyCode = event.keyCode || event.which;
+        if (keyCode == 13) {
+            news.SendContact();
+        }
+    });
+
+    $(document).on('keyup', '#div_contact input', function () {
+        $(this).removeClass('error success');
+        $(this).parent().find('.error-text').text('');
+    });
+</script>

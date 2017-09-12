@@ -1,0 +1,218 @@
+﻿@if (ViewBag.Role == -1)
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            window.location = UrlRoot + "Account/FormLogin";
+        });
+    </script>
+}
+else if (ViewBag.Role == -2)
+{
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-lg-12">
+                <div class="centering text-center error-container">
+                    <div class="text-center">
+                        <h2 class="without-margin">Don't worry. It's <span class="text-warning"><big>403</big></span> error only.</h2>
+                        <h4 class="text-warning">Access denied</h4>
+                    </div>
+                    <div class="text-center">
+                        <h3><small>Choose an option below</small></h3>
+                    </div>
+                    <hr>
+                    <ul class="pager">
+                        <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)">&larr; Home</a></li>
+                        <li><a href="@Html.Raw(ViewBag.UrlLogin)?act=out" style="color:#005bff; font-size:13px;text-decoration:underline">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+else
+{
+    <div class="clearfix"></div>
+    <div class="table-responsive">
+        <b>Số giao dịch Rút Tiền (@ViewBag.TotalRow)</b>
+        <table class="table table-striped table-hover dataTable no-footer" id="table-static" style="width: 100%">
+            <thead>
+
+                <tr class="info">
+                    <th style="width:6%;">Thời gian</th>
+                    <th style="width:12%;">Số TK Pay</th>
+                    <th style="width:12%;">Tên TK Pay</th>
+                    <th style="width:10%;">Số tiền rút</th>
+                    <th style="width:8%;">Phí VTC thu</th>
+                    <th style="width:10%;">Ngân hàng</th>
+                    <th style="width:10%;">Số TK Ngân Hàng</th>
+                    <th style="width:12%;">Tên chủ thẻ NH</th>
+                    <th style="width:10%;">Chi nhánh</th>
+                    <th style="width:5%;">Phương thức</th>
+                    <th style="width:5%;">Mã đối soát</th>
+                </tr>
+            </thead>
+
+            <tfoot>
+                <tr>
+                    <td align="right" style="text-align:right" valign="middle">
+                        <b>Tổng </b>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><b>@((ViewBag.TotalMoney == 0) ? ViewBag.TotalMoney : string.Format("{0:##,###}", ViewBag.TotalMoney).Replace(",", "."))</b></td>
+                    <td style="text-align:right"><b>@((ViewBag.TotalMoneyFee == 0) ? ViewBag.TotalMoneyFee : string.Format("{0:##,###}", ViewBag.TotalMoneyFee).Replace(",", "."))</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+
+        </table>
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var listjson = '@Html.Raw(ViewBag.listjson)';
+            var datajson = JSON.parse(listjson);
+            var table = $('#table-static').DataTable({
+                dom: 'Bf<"chooseChart">tp',
+                lengthMenu: [
+                        [10, 25, 50],
+                        ['10 rows', '25 rows', '50 rows']
+                ],
+                "data": datajson,
+                "columns": [
+                    { "data": "CreatedTime" },
+                       { "data": "AccountName", "type":"string" },
+                       { "data": "FullName" },
+                       { "data": "Amount" },
+                       { "data": "Fee" },
+                       { "data": "BankCode" },
+                       { "data": "BankAccount", "type": "string" },
+                       { "data": "BankAccountName" },
+                       { "data": "BankBranch" },
+                       {
+                           "data": "PayType",
+                           "type": "string",
+                           "render": function (data, type, row, meta) {
+                               return data == 11 ? 'Trực tiếp' : 'Gián tiếp';
+                           }
+                       },
+                       {
+                           "data": "BankRefTransID",
+                           "type":"string"
+                       }
+                           
+                ],
+                buttons: [
+                        {
+                            extend: 'collection',
+                            text: "<i class='fa fa-cloud-download'></i>Xuất dữ liệu",
+                            buttons: [
+                                {
+                                    extend: 'copy',
+                                    exportOptions: {
+                                        columns: ':visible'
+                                    },
+                                    text: "<i class='fa fa-copy'></i>Copy",
+                                    footer: true,
+                                    title: "Báo Cáo Rút Tiền"
+                                },
+                                {
+                                    extend: 'csvHtml5',
+                                    text: "<i class='fa fa-file-text-o'></i>Csv",
+                                    exportOptions: {
+                                        columns: ':visible'
+                                    },
+                                    footer: true,
+                                    title: "Báo Cáo Rút Tiền"
+                                },
+                                {
+                                    extend: 'excelHtml5',
+                                    text: "<i class='fa fa-file-excel-o'></i>Excel",
+                                    exportOptions: {
+                                        columns: ':visible'
+                                    },
+                                    footer: true,
+                                    title: "Báo Cáo Rút Tiền",
+                                    filename: "Báo Cáo Rút Tiền",
+                                    typeTime: 0
+                                },
+                                {
+                                    extend: 'excelHtml5',
+                                    text: "<i class='fa fa-file-word-o'></i>Word",
+                                    exportOptions: {
+                                        columns: ':visible'
+                                    },
+                                    doctype: 'doc',
+                                    footer: true,
+                                    title: "Báo Cáo Rút Tiền",
+                                    filename: "Báo Cáo Rút Tiền",
+                                    typeTime: 0
+                                },
+                                {
+                                    extend: 'pdfHtml5',
+                                    text: "<i class='fa fa-file-pdf-o'></i>PDF",
+                                    exportOptions: {
+                                        columns: ':visible'
+                                    },
+                                    pageSize: 'LEGAL',
+                                    orientation: 'landscape',
+                                    footer: true,
+                                    title: "Báo Cáo Rút Tiền",
+                                    typeTime: 0
+                                },
+                                {
+                                    extend: 'print',
+                                    text: "<i class='fa fa-print'></i>Print",
+                                    autoPrint: false,
+                                    footer: true,
+                                    title: "Báo Cáo Rút Tiền",
+                                    typeTime: 0
+                                }
+                            ]
+                        },
+
+                        'pageLength',
+                        {
+                            extend: "colvis",
+                            text: "<i class='fa fa-eye-slash'></i>Ẩn/hiện cột"
+                        }
+                ],
+                "bAutoWidth": true,
+                "aaSorting": [[0, 'desc']],
+                "bSort": true,
+                "fnDrawCallback": function (oSettings) {
+                    rowspanDTable(oSettings, "table-static", '0');
+                },
+                searching: false,
+                pageLength: 25,
+                reponsive: true
+            });
+            table.buttons().container().appendTo('#example_wrapper .col-sm-6:eq(0)');
+            $('#table-static').on('page.dt', function () {
+                $("html,body").animate({ scrollTop: $('#table-static').offset().top - 100 }, 'fast');
+            });
+
+            if ('@ViewBag.LineChart' != "" && '@ViewBag.LineChart' != undefined)
+                serieLine = JSON.parse('@Html.Raw(ViewBag.LineChart)');
+            if ('@ViewBag.PieChart' != "" && '@ViewBag.PieChart' != undefined)
+                seriePie = JSON.parse('@Html.Raw(ViewBag.PieChart)');
+
+            Highcharts.setOptions({
+                colors: ['#1ba39c', '#4572A7', '#89A54E', '#80699B', '#3D96AE', '#DB843D', '#92A8CD', '#A47D7C', '#B5CA92'],
+            });
+            
+            ChartCashout();
+            
+        });
+
+    </script>
+
+}

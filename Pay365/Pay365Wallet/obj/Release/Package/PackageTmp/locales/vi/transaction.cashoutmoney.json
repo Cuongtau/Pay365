@@ -1,0 +1,27 @@
+﻿{
+  "error": {
+    "defaultErr": "Hệ thống đang bận, vui lòng thử lại sau",
+    "securecodeEmpty": "Vui lòng nhập mã bảo mật",
+    "resendODPExceed": "Mã ODP chỉ được nhận lại tối đa 3 lần/ngày",
+    "bankaccount_empty": "Vui lòng nhập số tài khoản",
+    "bankaccount_empty2": "Vui lòng nhập số thẻ",
+    "bankaccount_empty3": "Vui lòng nhập số điện thoại",
+    "bankaccountholder_empty": "Vui lòng nhập chủ tài khoản",
+    "bankbranch_empty": "Vui lòng nhập chi nhánh",
+    "location_empty": "Vui lòng chọn tỉnh thành phố",
+    "amount_empty": "Vui lòng nhập số tiền muốn rút",
+    "min_amount": "Số tiền rút tối thiểu là 50.000đ",
+    "vrfcode_empty": "Vui lòng nhập mã kiểm tra",
+    "vrfcode_infomation_empty": "Không lấy được thông tin mã kiểm tra",
+    "account_unlink": "Tài khoản của bạn chưa được gắn kết với thẻ ngân hàng, bạn có muốn gắn kết ngay?",
+    "reason_empty": "Vui lòng nhập lý do rút tiền",
+    "bank_account_number_invalid": "Số tài khoản ngân hàng không hợp lệ",
+    "bank_card_invalid": "Số thẻ ngân hàng không hợp lệ"
+  },
+  "form": {
+    "lbl1": "Thẻ rút tiền",
+    "lbl2": "Số tài khoản",
+    "lbl3": "Số thẻ",
+    "lbl4": "Tài khoản ngân hàng"
+  }
+}

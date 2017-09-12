@@ -1,0 +1,269 @@
+﻿@{
+    var isAuthenticated = HttpContext.Current.User.Identity.IsAuthenticated;
+    if (!isAuthenticated)
+    {
+        Layout = "~/Views/Shared/_LayoutOut.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_MainLayout.cshtml";
+    }
+}
+
+<main class="main">
+    <section class="main-top">
+        <div class="content">
+            <p class="page-title">@Resources.Common.guide_1</p>
+            <div class="pay-breadcrumbs">
+                <a href="@Html.Raw(Pay365.Utils.Config.Domain)thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                <a href="javascript:;" class="breadcrumb waves-effect waves-light">@Resources.Common.guide_1</a>
+            </div>
+        </div>
+    </section>
+    <div class="dashboard">
+        <section class="page-section">
+            <div class="page-head">
+                <div class="faq-search-wrap">
+                    <div class="faq-search">
+                        <div class="faq-guide">@Resources.Common.guide_2</div>
+                        <div class="row">
+                            <div class="input-field">
+                                <i class="material-icons prefix">search</i>
+                                <input id="guide_keyword" type="text">
+                                <label for="i1">@Resources.Common.guide_3</label>
+                            </div>
+                            <div class="button-search">
+                                <a href="javascript:;" onclick="guide.GetListGuideDetail('search', null);" class="btn btn-primary waves-effect waves-light">@Resources.Common.btn_search</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content">
+                <div class="row faq">
+                    <div class="col-lg-8">
+                        <div id="guide_detail_t" class="card">                           
+                        </div>
+                        <script id="guide_detail_tmpl" type="text/x-jquery-tmpl">
+                            <div class="card-title">${title}</div>
+                            <div class="card-content">
+                                <ul class="collapsible collapsible-faq" data-collapse-number="1" data-collapsible="accordion">
+                                    {{each guides}}
+                                    <li data-alias="${$value.Alias}${$value.NewsID}">
+                                        <div class="collapsible-header">${$value.Title}</div>
+                                        <div class="collapsible-body"><span>{{html $value.Content}}</span></div>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        </script>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-title">@Resources.Common.guide_10</div>
+                            <div id="related_question_t" class="card-content">                                                          
+                            </div>
+                            <script id="related_question_tmpl" type="text/x-jquery-tmpl">
+                                <ul class="questions">
+                                    {{if IsSearch}}
+                                        {{each RandomQuestion}}
+                                            <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=${category}&detail=${$value.Alias}${$value.NewsID}"><i class="material-icons">keyboard_arrow_right</i>${$value.Title}</a></li>
+                                        {{/each}}
+                                    {{else}}
+                                        {{each RandomQuestion}}
+                                            <li><a href="javascript:;" onclick="guide.GuideFocusDetail(this);" data-alias="${$value.Alias}${$value.NewsID}"><i class="material-icons">keyboard_arrow_right</i>${$value.Title}</a></li>
+                                        {{/each}}
+                                    {{/if}}
+                                    
+                                </ul>
+                            </script>
+                        </div>
+                        <div class="card hotline">
+                            <div class="card-title">@Resources.Common.guide_9</div>
+                            <div class="card-content">
+                                <div class="support">
+                                    <p>@Resources.Common.guide_11</p>
+                                    <div class="center-align">
+                                        <a href="tel:19006505" class="btn btn-primary waves-effect waves-light">1900 6505</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">@Resources.Common.String26</div>
+                            <div class="card-content">
+                                <div class="row" style="margin-bottom: 0;">
+                                    @{var category = Request.QueryString["category"];}
+                                    @if (category == "account")
+                                    {
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=wallet" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/wallet.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Common.guide_12</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=shopping" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/cart.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Common.guide_13</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=faq" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/web.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">FAQ</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    }
+                                    else if (category == "wallet")
+                                    {
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=account" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/user.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Account_info.lbl_account</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=shopping" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/cart.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Common.guide_13</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=faq" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/web.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">FAQ</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    }
+                                    else if (category == "shopping")
+                                    {
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=account" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/user.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Account_info.lbl_account</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=wallet" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/wallet.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Common.guide_12</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=faq" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/web.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">FAQ</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    }
+                                    else if (category == "faq")
+                                    {
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=account" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/user.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Account_info.lbl_account</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=wallet" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/wallet.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Common.guide_12</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=shopping" class="faq-link col-sm-4">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/cart.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Common.guide_13</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=account" class="faq-link col-sm-3">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/user.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Account_info.lbl_account</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=wallet" class="faq-link col-sm-3">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/wallet.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Common.guide_12</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=shopping" class="faq-link col-sm-3">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/cart.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">@Resources.Common.guide_13</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=faq" class="faq-link col-sm-3">
+                                            <div class="faq-category">
+                                                <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/web.svg" alt=""></div>
+                                                <div class="content">
+                                                    <p class="title">FAQ</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </div>
+</main>
+<script type="text/javascript">
+    $(function () {
+        //faq: 11
+        //account: 13
+        //wallet: 14
+        //shopping: 15
+        var category = utils.getParameterByName('category');
+        if (category === 'search') {
+            $('#guide_keyword').val(decodeURIComponent(utils.getParameterByName('keyword')));
+        }           
+        guide.GetListGuideDetail(category, utils.getParameterByName('detail'));
+    });
+
+    $('#guide_keyword').keyup(function (event) {
+        var keyCode = event.keyCode || event.which;
+        if (keyCode === 13) {
+            guide.GetListGuideDetail('search', null);
+        }
+    });
+</script>

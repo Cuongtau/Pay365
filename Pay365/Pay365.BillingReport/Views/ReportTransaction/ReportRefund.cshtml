@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "Báo cáo tổng hợp giao dịch hoàn tiền";
+    var ListBank = (List<Pay365.BillingReport.ReportService.BankInfo>)ViewBag.ListBank;
+    var ListWebsite = (List<Pay365.BillingReport.ReportService.WebsitePayment>)ViewBag.ListWebsite;
+}
+
+<div class="portlet blue box">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-pie-chart"></i>BÁO CÁO HOÀN TIỀN GIAO DỊCH
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+            <a href="javascript:;" class="reload">
+            </a>
+            <a href="javascript:;" class="remove">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row" id="Rp_TransactionRefund">
+            <div class="col-md-12">
+                <div class="clear">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-address-book-o"></i>Tên merchant</label>
+                        <select class="form-control" id="ddlWebsite" multiple="multiple">
+                            @if (ListWebsite != null && ListWebsite.Count > 0)
+                                    {
+                                        foreach (var b in ListWebsite)
+                                        {
+                                    <option value="@b.ID">@Html.Raw(b.WebName)</option>
+                                        }
+                                    }
+                        </select>
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-id-card-o"></i>Số tài khoản</label>
+                        <div class="col-lg-7 col-md-7"><input class="form-control" id="txtAccountName" maxlength="20" /></div>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-bank"></i>Đối tác</label>
+                        <select class="form-control" id="ddlListBank" multiple="multiple">
+                            @if (ListBank != null && ListBank.Count > 0)
+                                    {
+                                        var ListBankDonestic = ListBank.FindAll(b => b.BankType == 1);
+                                        var ListBankInternation = ListBank.FindAll(b => b.BankType == 2);
+                                    <optgroup label="Thẻ quốc tế">
+                                        @foreach (var b in ListBankInternation)
+                                            {
+                                            <option value="@b.BankID">@Html.Raw(b.BankCode)</option>
+                                            }
+                                    </optgroup>
+
+                                    <optgroup label="Thẻ quốc tế">
+                                        @foreach (var b in ListBankDonestic)
+                                            {
+                                            <option value="@b.BankID">@Html.Raw(b.BankCode)</option>
+                                            }
+                                    </optgroup>
+                                    }
+                        </select>
+                    </div>
+
+
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-shopping-cart"></i>Loại giao dịch</label>
+                        <select class="form-control" id="ddlTransType">
+                            <option value="0">Tất cả</option>
+                            <option value="1">Thanh toán</option>
+                            <option value="2">Rút tiền</option>
+                        </select>
+                    </div>
+                    
+                </div>
+                <div class="clear">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divFromDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i><span id="txtFromDate">Từ Ngày</span></label>
+                        <div class="date" id="datetimeFromDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="fromDate" class="form-control" name="datetimeFromDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divToDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i>Đến Ngày</label>
+                        <div class="date" id="datetimeToDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="toDate" class="form-control" name="datetimeToDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-clock-o"></i>Biểu đồ</label>
+                        <div class="selectBox">
+                            <select id="ddlSelectChart" class="form-control">
+                                <option value="0">Không hiển thị</option>
+                                <option value="1" selected>Biểu đồ Line</option>
+                                <option value="2">Biểu đồ Pie</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-6 col-xs-12" style="text-align:center">
+                        <button id="btnSearch" class="btn blue" value="Tìm Kiếm">
+                            <span class="glyphicon glyphicon-hand-right"></span>Tìm Kiếm
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="dgrid" class="dataTables_wrapper form-inline" role="grid">
+            <div id="ReportChart"></div>
+            <div id="ReportPartial"></div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datetimeFromDate').datetimepicker({
+            pickTime: false
+        });
+        $('#datetimeToDate').datetimepicker({
+            pickTime: false
+        });
+        $("#ddlListBank").multiselect({
+            enableClickableOptGroups: true,
+            enableCollapsibleOptGroups: true,
+            enableFiltering: true,
+            includeSelectAllOption: true,
+            maxHeight: 200,
+            buttonWidth: '180px',
+        });
+        $("#ddlWebsite").multiselect({
+            enableClickableOptGroups: true,
+            enableCollapsibleOptGroups: true,
+            enableFiltering: true,
+            includeSelectAllOption: true,
+            maxHeight: 200,
+            buttonWidth: '180px',
+        });
+        var fromdate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.fromDate)';
+        var todate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.toDate)';
+        $('#datetimeFromDate').data("DateTimePicker").setDate(fromdate);
+        $('#datetimeToDate').data("DateTimePicker").setDate(todate);
+
+        $("#datetimeFromDate").on("dp.change dp.show", function (e) {
+            $('#datetimeToDate').data("DateTimePicker").setMinDate(e.date);
+        });
+        $("#datetimeToDate").on("dp.change dp.show", function (e) {
+            $('#datetimeFromDate').data("DateTimePicker").setMaxDate(e.date);
+        });
+
+        $("#btnSearch").click(function () {
+            GeneralReportRefund();
+        });
+        $("#Rp_TransactionRefund").keypress(function (event) {
+            if (event.which == 13) {
+                GetListPartial();
+            }
+        });
+
+        GeneralReportRefund();
+
+        $("#ddlSelectChart").change(function () {
+            ChartRefund();
+        });
+        $("#ddlTypeData").change(function () {
+            $("#ddlSelectChart").val(0);
+        });
+
+
+
+    });
+
+
+</script>

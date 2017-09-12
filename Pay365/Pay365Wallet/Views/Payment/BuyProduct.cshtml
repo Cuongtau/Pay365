@@ -1,0 +1,530 @@
+﻿@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = Resources.Home.lbl_titleWeb;
+
+    int TypeView = Convert.ToInt32(ViewBag.Id);
+    string TitlePayment = "";
+    switch (TypeView)
+    {
+        case 1:
+            TitlePayment = Resources.Payment.typeview1;
+            ViewBag.Title = Resources.Payment.typeview1;
+            break;
+        case 2:
+            TitlePayment = Resources.Payment.typeview2;
+            ViewBag.Title = Resources.Payment.typeview2;
+            break;
+        case 3:
+            TitlePayment = Resources.Payment.typeview3;
+            ViewBag.Title = Resources.Payment.typeview3;
+            break;
+        case 4:
+            TitlePayment = Resources.Payment.typeview4;
+            ViewBag.Title = Resources.Payment.typeview4;
+            break;
+    }
+
+}
+<main class="main">
+    <section class="main-top">
+        <div class="content">
+            <p class="page-title">@TitlePayment</p>
+            <div class="pay-breadcrumbs">
+                <a href="/thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                <a href="javascript:;" onclick="location.reload();" class="breadcrumb waves-effect waves-light">@TitlePayment</a>
+            </div>
+        </div>
+    </section>
+    <div class="dashboard">
+        <section class="page-section">
+            <div id="ts-parent" class="tab-slides">
+                <div class="div_slide @(TypeView == 1 ? " div_prev" : "div_active" )" id="View_ListItem">
+                    <div class="card" id="list_item_recent_t">
+
+
+                        <script id="list_item_recent_tmpl" type="text/x-jquery-tmpl">
+                            @if (TypeView == 2)
+                            {
+                                <div class="card-title">
+                                    @Resources.Payment.String1
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="card-title">
+                                    @Resources.Payment.String21
+                                </div>
+                            }
+                            <div class="card-content center-align" style="padding: 5px 24px">
+                                <div class="row">
+                                    {{each listPaymentRecent}}
+                                    <div class="box-bank-icon service">
+                                        <a href="javascript:;" onclick="payment.Vw_BuyCard(this);" data-cid="${$value.CategoryID}" class="bank-icon" title="${$value.Description}">
+                                            <img src="${$value.Logo}" alt="${$value.Description}">
+                                            <span class="badge">-${$value.DiscountRate}%</span>
+                                            <span>${$value.Description}</span>
+                                        </a>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+
+                        </script>
+                    </div>
+                    <div class="page-content">
+                        <div class="card">
+                            <div class="card-title">
+
+                                @if (ViewBag.Id == 2 || ViewBag.Id == 4)
+                                {
+                                    <div>@Resources.Payment.String2</div>
+                                }
+                                else if (ViewBag.Id == 3)
+                                {
+                                    <div>@Resources.Payment.String3</div>
+                                }
+                                <div class="form-group input-field">
+                                    <i class="material-icons subfix btn-search">search</i>
+                                    <input id="input-id" type="text" placeholder="@Resources.Common.btn_search" onkeyup="payment.searchListProduct();">
+                                    <span class="error-text"></span>
+                                </div>
+                            </div>
+                            <div class="card-content center-align" style="padding: 5px 24px">
+                                <div class="row" id="list-item-payment">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="div_slide @(TypeView == 1 ? " div_active" : "div_next" )" id="View_Payment">
+                    <div class="col-md-7">
+                        <div class="card" id="payment_step1">
+                            <div class="card-title">
+                                @if (ViewBag.Id != 1)
+                                {
+                                    <span class="bank-icon" style="display:none">
+                                        <img src="" alt="">
+                                    </span>
+                                }
+                                <span class="title">@Resources.Payment.String4</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="alert alert-danger center" style="display:none"></div>
+                                @if (ViewBag.Id == 1 || ViewBag.Id == 2)
+                                {
+                                    if (ViewBag.Id == 1)
+                                    {
+                                        <div class="form-data" style="padding-left: 3rem">
+                                            <span class="input-radio">
+                                                <input name="groupPhone" class="with-gap" type="radio" onchange="payment.select_Type(event);" id="tra-truoc" checked="checked" />
+                                                <label for="tra-truoc">@Resources.Payment.String5</label>
+                                            </span>
+                                            <span class="input-radio">
+                                                <input name="groupPhone" class="with-gap" type="radio" onchange="payment.select_Type(event);" id="tra-sau" />
+                                                <label for="tra-sau">@Resources.Payment.String6</label>
+                                            </span>
+                                        </div>
+                                    }
+                                    <div class="input-field input-dropdown">
+                                        
+                                        @if (ViewBag.Id == 1)
+                                        {
+                                            <i class="material-icons prefix">phone_iphone</i>
+                                            <div class="input-dropdown-content">
+                                                <a class='dropdown-button dropdown-input' href='javascript:;' data-activates='ddr-input-phone'><i class="material-icons">keyboard_arrow_down</i></a>
+                                                <ul id='ddr-input-phone' class='dropdown-content'></ul>
+                                            </div>
+                                            <input id="txtPhoneNumber" type="text" maxlength="13" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.formatPhoneInput(this, event); utils.ChangeText(event); payment.GetListAmount(this,'ddr-select-amount');">
+                                            <label for="txtPhoneNumber">@Resources.Payment.String7</label>
+                                        }
+                                        else if (ViewBag.Id == 2)
+                                        {
+                                            <i class="material-icons prefix">videogame_asset</i>
+                                            <div class="input-dropdown-content">
+                                                <a class='dropdown-button dropdown-input' href='javascript:;' data-activates='ddr-input-nick'><i class="material-icons">keyboard_arrow_down</i></a>
+                                                <ul id='ddr-input-nick' class='dropdown-content'></ul>
+                                            </div>
+                                            <input id="txtNickname" type="text" maxlength="13" onkeyup="utils.ChangeText(event);">
+                                            <label for="txtNickname">@Resources.Payment.NickName</label>
+                                        }
+                                        <span class="error-text"></span>
+                                        <span class="success-text"></span>
+
+                                    </div>
+                                    <div class="input-field input-dropdown" id="ddl_selectAmount" style="margin-top: 1.5rem"> 
+                                        <i class="material-icons prefix">monetization_on</i>
+                                        @if (ViewBag.Id == 1)
+                                        {
+                                            @*<div class="input-dropdown-content">
+                                                <a class='dropdown-button dropdown-input' href='javascript:;' data-activates='ddr-input-amount'><i class="material-icons">keyboard_arrow_down</i></a>
+                                                <ul id='ddr-input-amount' class='dropdown-content'></ul>
+                                            </div>*@
+                                            <select id="ddr-select-amount" onchange="payment.changeSelectAmount();">
+                                                @*<option value="" disabled selected>@Resources.Payment.String9</option>*@
+                                            </select>
+
+                                            <input id="txtAmount" type="hidden" maxlength="10" onkeypress='utils.checkOnlyNumber(this, event);' onkeyup="utils.ChangeText(event); utils.formatCurrency(this, event);payment.changeAmount();">
+                                            <label for="txtAmount">@Resources.Payment.String9</label>
+                                        }
+                                        else
+                                        {
+                                            <select id="ddr-select-gameAmount" onchange="payment.changeSelectGameAmount(1);">
+                                                @*<option value="" disabled selected>@Resources.Payment.value6</option>*@
+                                            </select>
+                                            <label for="ddr-select-gameAmount">@Resources.Payment.String9</label>
+                                            @*<span class="select-subfix">10.500 Rik</span>*@
+                                        }
+                                        
+                                        <span class="error-text"></span>
+                                        <span class="success-text"></span>
+                                    </div>
+                                    <div class="input-field form-group" id="choose_amount" style="display:none">
+                                        <div class="prices">
+                                            <a href="javascript:;" id="choose_amount_3" class="price-flat">50.000 VNĐ</a>
+                                            <a href="javascript:;" id="choose_amount_4" class="price-flat">100.000 VNĐ</a>
+                                            <a href="javascript:;" id="choose_amount_5" class="price-flat">200.000 VNĐ</a>
+                                            <a href="javascript:;" id="choose_amount_6" class="price-flat">500.000 VNĐ</a>
+                                            <a href="javascript:;" id="choose_amount_7" class="price-flat">1.000.000 VNĐ</a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="input-field">
+                                        <i class="material-icons prefix">monetization_on</i>
+                                        <select id="ddr-select-amount" onchange="payment.changeSelectAmount();">
+                                            @*<option value="" disabled selected>@Resources.Payment.String10</option>*@
+                                        </select>
+                                        <label for="ddr-select-amount">@Resources.Payment.String9</label>
+                                        <span class="error-text"></span>
+                                        <span class="success-text"></span>
+                                    </div>
+                                    <div class="input-field" style="margin-bottom: 20px;">
+                                        <i class="material-icons prefix">local_offer</i>
+                                        <input type="number" id="txtQuantity" value="1" class="input-number" min="1" max="99" maxlength="2" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.ChangeText(event); payment.changeSelectAmount();maxLengthCheck(this);" onkeydown="maxLengthCheck(this);">
+
+                                        <label for="txtQuantity">@Resources.Payment.String11</label>
+                                        <span class="error-text"></span>
+                                        <span class="success-text"></span>
+                                    </div>
+
+                                }
+                                @*<div class="input-field">
+                                    <div class="row padding-left-row">
+                                        <div class="col-sm-6 left-align"><span class="label label-danger">@Resources.Payment.value8 <span id="discount">0%</span></span></div>
+                                        <div class="col-sm-6 right-align"><p><strong class="primary">@Resources.Payment.String13: <span id="totalAmount">0đ</span></strong></p></div>
+                                    </div>
+                                   
+                                </div>*@
+                                <div class="input-field">
+                                    <div class="row padding-left-row">
+                                        <span class="label label-danger">@Resources.Payment.value8 <span id="discount">6.2%</span></span>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <div class="row padding-left-row">
+                                        <div class="col-sm-6">@Resources.Payment.String13: <strong class="primary" id="totalAmount">0<sup>VNĐ</sup></strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-button">
+                                @if (ViewBag.Id != 1)
+                                {
+                                    <a href="javascript:;" onclick="payment.actionView('ts-parent', 'prev', 'View_ListItem');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
+                                }
+                                <a href="javascript:;" id="btnPaymentCheckInput" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-title" style="padding-bottom: 15px; padding-top: 35px">
+                                @Resources.Payment.String14
+                                <a href="@Html.Raw(Pay365.Utils.Config.Domain + "history")" class="more waves-effect waves-primary"><i class="material-icons">keyboard_arrow_right</i></a>
+                            </div>
+                            <ul id="payment_recent_t" class="collapsible popout warning" data-collapse-number="1" data-collapsible="accordion"></ul>
+
+                            <script id="payment_recent_t_tmpl" type="text/x-jquery-tmpl">
+                                {{each listPaymentRecent}}
+                                <li onclick="payment.getTransactionDetail(this, '${$value.JsonObject.TransactionID}');">
+                                    <div class="collapsible-header">
+                                        <div class="trans-head">
+                                            <div class="icon">
+                                                {{if $value.CateInfo && $value.CateInfo.Logo != ""}}
+                                                <img src=" ${$value.CateInfo.Logo}" alt="">
+                                                {{else}}
+                                                <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/evn.jpg" alt="">
+                                                {{/if}}
+                                            </div>
+                                            <div class="info">
+                                                <p class="success"><strong>${utils.formatMoney($value.JsonObject.Amount)}<sup>VNĐ</sup></strong></p>
+                                                <p>${utils.formDateTime($value.JsonObject.CreateTime)}</p>
+                                            </div>
+                                            <div class="content">
+                                                <p>
+                                                    <strong>
+                                                        {{if $value.CateInfo}}
+                                                        ${$value.CateInfo.Description}
+                                                        {{/if}}
+                                                    </strong>
+                                                </p>
+                                                {{if $value.JsonObject.ServiceID == 1}}
+                                                <p>Số điện thoại nạp: ${$value.JsonObject.UserName}</p>
+                                                {{else $value.JsonObject.ServiceID == 5}}
+                                                <p>Tài khoản: ${$value.JsonObject.UserName}</p>
+                                                {{else $value.JsonObject.ServiceID == 6 || $value.JsonObject.ServiceID == 4}}
+                                                <p>@Resources.Payment.String11: ${$value.JsonObject.Quantiry}</p>
+                                                {{/if}}
+                                            </div>
+                                            <i class="material-icons up">keyboard_arrow_up</i>
+                                        </div>
+                                    </div>
+                                    <div class="collapsible-body">
+                                        <div class="trans-body-content" id="trans_detail_t">
+
+                                        </div>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </script>
+
+                            <script id="trans_detail_tmpl" type="text/x-jquery-tmpl">
+                                <div class="col-md-12">
+                                    <table class="table-data">
+                                        <tr>
+                                            <td align="left">@Resources.Payment.value1 :</td>
+                                            <td  align="right">${TransID}</td>
+                                        </tr>
+                                        <tr>
+                                            <td  align="left">@Resources.Payment.value2 :</td>
+                                            <td  align="right">${utils.formDateTime(CreatedTime)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td  align="left">@Resources.Payment.value3 :</td>
+                                            <td  align="right">${ServiceName}</td>
+                                        </tr>
+                                        <tr>
+                                            <td  align="left">@Resources.Payment.value4 :</td>
+                                            <td  align="right">${ProductName}</td>
+                                        </tr>
+                                        @*{{if RelatedUsername != ""}}
+                                        <tr id="relateAccount">
+                                            <td  align="left">@Resources.Payment.value5 :</td>
+                                            <td  align="right">${RelatedUsername}</td>
+                                        </tr>
+                                        {{/if}}*@
+                                        {{if ProductValue > 0}}
+                                        <tr id="amountPayment">
+                                            <td  align="left">@Resources.Payment.value6 :</td>
+                                            <td  align="right">${utils.formatMoney(ProductValue)}<sup>VNĐ</sup></td>
+                                        </tr>
+                                        {{/if}}
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table-data">
+                                        <tr>
+                                            <td  align="left">@Resources.Payment.value7 :</td>
+                                            <td  align="right">${utils.formatMoney(Amount)}<sup>VNĐ</sup></td>
+                                        </tr>
+                                        <tr>
+                                            <td  align="left">@Resources.Payment.value8 :</td>
+                                            <td  align="right">${Discount}%</td>
+                                        </tr>
+                                        <tr>
+                                            <td  align="left">@Resources.Payment.value9 :</td>
+                                            <td  align="right">${utils.formatMoney(Fee)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td  align="left">@Resources.Payment.value10 :</td>
+                                            <td  align="right">${utils.formatMoney(GrandAmount)}<sup>VNĐ</sup></td>
+                                        </tr>
+                                        <tr>
+                                            <td  align="left">@Resources.Payment.value11 :</td>
+                                            <td  align="right">Ví điện tử Pay365</td>
+                                        </tr>
+                                        <tr>
+                                            <td  align="left">@Resources.Payment.value12 :</td>
+                                            <td  align="right">
+                                                {{if Status == 1}}
+                                                @Resources.Payment.status1
+                                                {{else Status == 0}}
+                                                @Resources.Payment.status0
+                                                {{else}}
+                                                @Resources.Payment.status_fail
+                                                {{/if}}
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </script>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="card card-single div_slide div_next" id="View_PaymentConfirm">
+                    <div class="card-title">
+                        @Resources.Payment.String15
+                    </div>
+                    <div class="card-content">
+                        <div class="alert alert-danger center" style="display:none"></div>
+
+                        <table class="table-data">
+                            <tr>
+                                <td width="40%">@Resources.Payment.value3:</td>
+                                <td id="TransType"></td>
+                            </tr>
+                            <tr>
+                                <td width="40%">@Resources.Payment.value4:</td>
+                                <td id="Product"></td>
+                            </tr>
+                            <tr id="info_account">
+                                <td width="40%">@Resources.Payment.value13:</td>
+                                <td id="PhoneTopup"></td>
+                            </tr>
+                            <tr id="info_quantity" style="display:none">
+                                <td width="40%">@Resources.Payment.String11:</td>
+                                <td id="Quantity"></td>
+                            </tr>
+                            <tr>
+                                <td width="40%">@Resources.Payment.value6:</td>
+                                <td id="AmountTopup"></td>
+                            </tr>
+                            <tr>
+                                <td width="40%">@Resources.Payment.value8:</td>
+                                <td id="DiscountRate"></td>
+                            </tr>
+                            <tr>
+                                <td width="40%">@Resources.Payment.value10:</td>
+                                <td id="TotalPayment"></td>
+                            </tr>
+                            <tr>
+                                <td width="40%">@Resources.Payment.value11:</td>
+                                <td id="PaymentType"></td>
+                            </tr>
+                        </table>
+
+                        <p class="txtNoteSecure"></p>
+
+                        <div class="form-group input-field" id="isCheckSecure">
+                            <i class="material-icons prefix">phonelink_lock</i>
+                            <a href="javascript:;" id="btnResendOTP" onclick="payment.Resend_OTP();" class="btn btn-sm btn-flat btn-secondary btn-input-right waves-effect waves-light">@Resources.Account.Resend</a>
+                            <input id="txtVerifyCode" type="text" maxlength="6" data-length="6" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.ChangeText(event);">
+                            <label for="txtVerifyCode">@Resources.Account.EnterVerifyCode</label>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                    <div class="card-button">
+                        <a href="javascript:;" onclick="payment.actionView('ts-parent','prev','View_Payment');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Account.BtnBack</a>
+                        <a href="javascript:;" id="btnPaymentConfirm" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btnPayment <i class="material-icons">chevron_right</i></a>
+                    </div>
+                </div>
+
+
+                <div class="card card-single div_slide div_next" id="View_ListCardInfo">
+                    <div class="result-body">
+                        <h4><i class="material-icons icon-success">check</i>@Resources.Payment.TransactionSuccess</h4>
+                        <div id="content">
+                            <p style="font-size: 15px;" class="tit_msg"></p>
+                            <div class="row center" id="action_export">
+                                <a href="javascript:;" onclick="payment.printCard(1);" class="btn btn-primary">@Resources.Payment.PrintNormal</a>
+                                <a href="javascript:;" onclick="payment.printCard(2);" class="btn btn-primary">@Resources.Payment.PrintTemp</a>
+                                <a href="javascript:;" id="export_card_excel" onclick="payment.ExportCardExcel();" class="btn btn-primary">@Resources.Payment.ExportExcel</a>
+                                @*<a href="javascript:;" class="btn btn-primary">@Resources.Payment.SendSMS</a>*@
+                            </div>
+                            <div id="listCardData" class="table-responsive">
+                                <table class="table table-card table-bordered table-striped table-hover" id="table-card-transaction">
+                                    <thead>
+                                        <tr>
+                                            <th align="center">
+                                                <input type="checkbox" class="filled-in" id="take_all">
+                                                <label for="take_all" data-position="bottom" data-delay="0" data-tooltip="Chọn tất cả"></label>
+                                            </th>
+                                            <th align="center">@Resources.Payment.table1</th>
+                                            <th align="center">@Resources.Payment.table2</th>
+                                            <th align="center">@Resources.Payment.table3</th>
+                                            <th align="center">@Resources.Payment.table4</th>
+                                            <th align="center">@Resources.Payment.table5</th>
+                                            <th align="center">@Resources.Payment.table6</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listCardTemp"></tbody>
+                                </table>
+                                
+                                <script id="listCardTemp_tmpl" type="text/x-jquery-tmpl">
+                                    {{each listCardData}}
+                                    <tr>
+                                        <td align="center"><input type="checkbox" value="${$value.Number}" class="filled-in checkbox_i" id="i_${$value.Number}" {{if $value.isCheck}} checked {{/if}}><label for="i_${$value.Number}"></label></td>
+                                        <td align="center">${$value.Number}</td>
+                                        <td align="center">${$value.ProductName}</td>
+                                        <td align="center">${utils.formatMoney($value.Value)}<sup>VNĐ</sup></td>
+                                        <td align="center">${$value.Code}</td>
+                                        <td align="center">${$value.Serial}</td>
+                                        <td align="center">${utils.formDateTime($value.ExpriredDate)}</td>
+                                    </tr>
+                                    {{/each}}
+
+                                </script>
+                            </div>
+                            <div class="row">
+                                <div class="pull-left">
+                                    <a href="javascript:;" id="viewCardSelect" onclick="payment.ShowCardSelected(this);" class="modal-action modal-close waves-effect waves-light btn btn-default">@Resources.Payment.ViewCardSelected</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a id="bt_back" href="@Html.Raw(Pay365.Utils.Config.Domain + "thong-tin")" class="modal-action modal-close waves-effect waves-light btn btn-default">@Resources.Payment.GoHome</a>
+                                </div>
+                                <div id="pager">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+
+        payment.Init('@ViewBag.Id');
+        $('.input-number').input_number({
+            min: 1,
+            callback: function () {
+                payment.changeSelectAmount();
+            }
+        });
+        
+        $("#View_PaymentConfirm").keypress(function (event) {
+            if (event.which == 13) {
+                event.preventDefault();
+                $("#btnPaymentConfirm").click();
+            }
+        });
+
+        $('#txtPhoneNumber, #txtNickname').click(function (e) {
+            let dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
+            setTimeout(function () {
+                dropdown.dropdown('open');
+            }, 100);
+        });
+
+        $('#choose_amount a').click(function () {
+            var amount = this.text;
+            if (amount.indexOf('VNĐ') >= 0)
+                amount = amount.replace('VNĐ', '');
+            $('#txtAmount').val(amount.trim());
+            $('#txtAmount').focus();
+            payment.changeAmount();
+        });
+    });
+</script>

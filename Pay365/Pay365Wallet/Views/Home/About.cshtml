@@ -1,0 +1,120 @@
+﻿
+@{
+    var isAuthenticated = HttpContext.Current.User.Identity.IsAuthenticated;
+    if (!isAuthenticated)
+    {
+        Layout = "~/Views/Shared/_LayoutOut.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_MainLayout.cshtml";
+    }
+}
+
+<main class="main">
+    
+    <section class="main-top">
+        <div class="content">
+            <p class="page-title">@Resources.Common.String17</p>
+            <div class="pay-breadcrumbs">
+                <a href="@Html.Raw(Pay365.Utils.Config.Domain + "thong-tin")" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                <a href="@Html.Raw(Pay365.Utils.Config.Domain + "ve-chung-toi")" class="breadcrumb waves-effect waves-light">@Resources.Common.String17</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="dashboard">
+        <section class="page-section">
+            <div class="col-lg-9 col-md-7">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="article" id="about_t">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-5 widgets">
+                <div class="card">
+                    <div class="card-title">@Resources.Common.lbl_exploreMore</div>
+                    <div class="card-content">
+                        <ul class="questions">
+                            <li><a href="@Html.Raw(Pay365.Utils.Config.Domain + "tin-tuc/9/dieu-khoan-su-dung-27")">@Resources.Common.lbl_termUse</a></li>
+                            <li><a href="/huong-dan">@Resources.Common.Menu_partner</a></li>
+                            <li><a href="/lien-he">@Resources.Common.String18</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="socials">
+                    <a href="#!" class="social-link facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#!" class="social-link twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="#!" class="social-link instagram"><i class="fa fa-instagram"></i></a>
+                    <a href="#!" class="social-link tumblr"><i class="fa fa-tumblr"></i></a>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script id="about_tmpl" type="text/x-jquery-tmpl">
+    <h1 class="article-title">${ Title }</h1>
+
+    <div class="article-content">
+        {{html Content}}.<br/><br/>
+    </div>
+
+    <div class="row hidden">
+        <div class="col-md-6">
+            <div class="article-about-stats">
+                <div class="icon">
+                    <i class="material-icons">group</i>
+                </div>
+                <div class="content">
+                    <p class="head">Total Guests</p>
+                    <p class="count">160.000.000+</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="article-about-stats">
+                <div class="icon">
+                    <i class="material-icons">business</i>
+                </div>
+                <div class="content">
+                    <p class="head">Cities</p>
+                    <p class="count">65.000+</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="article-about-stats">
+                <div class="icon">
+                    <i class="material-icons">location_city</i>
+                </div>
+                <div class="content">
+                    <p class="head">Castles</p>
+                    <p class="count">1.500+</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="article-about-stats">
+                <div class="icon">
+                    <i class="material-icons">public</i>
+                </div>
+                <div class="content">
+                    <p class="head">Countries</p>
+                    <p class="count">191+</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        news.LoadPage_About();
+    });
+</script>

@@ -1,0 +1,19 @@
+﻿{
+  "error": {
+    "defaultErr": "System is busy, please try again latter",
+    "securecodeEmpty": "Please enter your secure code",
+    "resendODPExceed": "ODP code is only received three times per day",
+    "err1": "Please enter your account",
+    "err2": "Please enter your amount",
+    "err3": "Please enter transfer reason. At least 5 character",
+    "err4": "Please enter verify code",
+    "err5": "Transfer total amount illegant",
+    "err6": "Account name invalid",
+    "err7": "Account name from 9 - 11 characters",
+    "err8": "Amount is invalid",
+    "err9": "Min amount is 10.000 VNĐ",
+    "err10": "Max amount is 10.000.000 VNĐ",
+    "OtpEmpty": "Enter OTP",
+    "btnClose": "Close"
+  }
+}

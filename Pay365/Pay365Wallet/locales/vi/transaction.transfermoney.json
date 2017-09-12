@@ -1,0 +1,19 @@
+﻿{
+  "error": {
+    "defaultErr": "Hệ thống đang bận, vui lòng thử lại sau",
+    "securecodeEmpty": "Vui lòng nhập mã xác thực",
+    "resendODPExceed": "Mã ODP chỉ được nhận lại tối đa 3 lần/ngày",
+    "err1": "Vui lòng nhập số tài khoản",
+    "err2": "Vui lòng nhập số tiền cần chuyển",
+    "err3": "Vui lòng nhập lý do chuyển tiền. Tối thiểu 5 ký tự.",
+    "err4": "Vui lòng nhập mã kiểm tra",
+    "err5": "Tổng số tiền chuyển không hợp lệ",
+    "err6": "Số tài khoản không hợp lệ",
+    "err7": "Số tài khoản phải từ 9 - 11 số",
+    "err8": "Số tiền chuyển không hợp lệ",
+    "err9": "Số tiền chuyển tối thiểu là 10.000 VNĐ",
+    "err10": "Số tiền chuyển không được quá 10.000.000 VNĐ",
+    "OtpEmpty": "Vui lòng nhập OTP",
+    "btnClose": "Đóng"
+  }
+}

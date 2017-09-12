@@ -1,0 +1,49 @@
+﻿{
+  "website_integrated": {
+    "common_err": "System is busy, please try again latter",
+    "err1": "Please enter website name",
+    "err2": "Please choose a logo for your website",
+    "err3": "Please enter website address",
+    "err4": "Please enter website address to recieve notification",
+    "err5": "Please enter securecode",
+    "err6": "Your securecode is illegal",
+    "err7": "Please choose a payment fee type",
+    "noti1": "Update integrated website success",
+    "noti2": "Create integrated website success",
+    "noti3": "Update integrated website unsuccess",
+    "noti4": "Create integrated website unsuccess"
+  },
+  "mobileapp_integrated": {
+    "common_err": "System is busy, please try again latter",
+    "err1": "Please enter application name",
+    "err2": "Please choose platform",
+    "err3": "Please choose language",
+    "err4": "Please enter connection password",
+    "err5": "Please choose a payment fee type",
+    "noti1": "Update integrated mobile success",
+    "noti2": "Create integrated mobile success",
+    "noti3": "Update integrated mobile unsuccess",
+    "noti4": "Create integrated mobile unsuccess"
+  },
+  "button_integrated": {
+    "common_err": "Hệ thống đang bận, vui lòng thử lại sau",
+    "err1": "Please enter product name",
+    "err2": "Please enter product price",
+    "err3": "Please enter product quantity",
+    "err4": "Please enter content text button",
+    "err5": "Please enter description",
+    "err6": "Please choose a payment fee type",
+    "err7": "Please choose language",
+    "err8": "Please choose currency type",
+    "err9": "Please choose a payment type",
+    "err10": "Vui lòng nhập tên tổ chức, người phát động",
+    "err11": "Vui lòng nhập số điện thoại",
+    "err12": "Vui lòng nhập địa chỉ",
+    "err13": "Vui lòng nhập mã hoàn cảnh",
+    "err14": "Please choose a file to upload",
+    "noti1": "Update integrated button success",
+    "noti2": "Create integrated button success",
+    "noti3": "Update integrated button unsuccess",
+    "noti4": "Create integrated button unsuccess"
+  }
+}

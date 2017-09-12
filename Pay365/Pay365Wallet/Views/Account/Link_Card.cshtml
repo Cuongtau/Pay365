@@ -1,0 +1,394 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<main class="main">
+<section class="main-top">
+    <div class="content">
+        <p class="page-title">Quản lý thẻ gắn kết</p>
+        <div class="pay-breadcrumbs">
+            <a href="#!" class="breadcrumb waves-effect waves-light">Trang chủ</a>
+            <a href="#!" class="breadcrumb waves-effect waves-light">Quản lý tài khoản</a>
+            <a href="#!" class="breadcrumb waves-effect waves-light">Quản lý thẻ gắn kết</a>
+        </div>
+    </div>
+</section>
+<div class="dashboard">
+<section class="page-section">
+						
+<div class="row">
+<div class="col-md-8">
+<div class="card">
+    <div class="card-title">
+        Bạn có 3 thẻ gắn kết
+    </div>
+    <div class="card-content">
+        <ul class="linked-cards">
+            <li>
+                <div class="link-card credit">
+                    <div class="subfix">4251</div>
+                    <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/visa.jpg" alt=""></div>
+                    <div class="name">PHAM MANH TUONG</div>
+                    <div class="date">12/20</div>
+                </div>
+                <div class="action">
+                    <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xem chi tiết">search</i></a>
+                    <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xóa thẻ">clear</i></a>
+                </div>
+            </li>
+            <li>
+                <div class="link-card pay365">
+                    <div class="subfix">4166</div>
+                    <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/vietcombank.jpg" alt=""></div>
+                    <div class="name">PHAM MANH TUONG</div>
+                    <div class="date">12/20</div>
+                </div>
+                <div class="action">
+                    <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Thoát">search</i></a>
+                    <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xóa thẻ">clear</i></a>
+                </div>
+            </li>
+            <li>
+                <div class="link-card pay365">
+                    <div class="subfix">4166</div>
+                    <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/SacombankLogo.png" alt=""></div>
+                    <div class="name">PHAM MANH TUONG</div>
+                    <div class="date">12/20</div>
+                </div>
+                <div class="action">
+                    <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Thoát">search</i></a>
+                    <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xóa thẻ">clear</i></a>
+                </div>
+            </li>
+            <li><a href="#!" class="add">
+                <i class="material-icons">add</i>
+                <span>Thêm thẻ/tài khoản mới</span>
+            </a></li>
+        </ul>
+    </div>
+    <div class="card-button">
+        <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> Quay lại</a>
+    </div>
+</div>
+
+<br />
+
+<div class="card">
+<div class="card-title">Chi tiết thẻ VISA - 1234</div>
+<div class="card-content">
+<div class="row">
+    <div class="col-md-5">
+        <div class="link-card credit">
+            <div class="subfix">4251</div>
+            <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/visa.jpg" alt=""></div>
+            <div class="name">PHAM MANH TUONG</div>
+            <div class="date">12/20</div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <table class="table-data">
+            <tr>
+                <td align="left">Loại thẻ</td>
+                <td align="right"><strong>Thẻ VISA</strong></td>
+            </tr>
+            <tr>
+                <td align="left">Tên chủ thẻ</td>
+                <td align="right"><strong>PHAM MANH TUONG</strong></td>
+            </tr>
+            <tr>
+                <td align="left">Số thẻ</td>
+                <td align="right"><strong>4450 9300 0012 5698</strong></td>
+            </tr>
+            <tr>
+                <td align="left">Ngày hết hạn</td>
+                <td align="right"><strong>12/20</strong></td>
+            </tr>
+        </table>
+        <table class="table-data">
+            <tr>
+                <td align="left">Số tiền đã nạp</td>
+                <td align="right"><strong class="success">+100.000.000đ</strong></td>
+            </tr>
+            <tr>
+                <td align="left">Số tiền đã rút</td>
+                <td align="right"><strong class="danger">-100.000.000đ</strong></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+<ul class="collapsible popout" data-collapse-number="2" data-collapsible="accordion">
+<li>
+    <div class="collapsible-header">
+        <div class="trans-head">
+            <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/evn.jpg" alt=""></div>
+            <div class="info">
+                <p class="success"><strong>+1.000.000<sup>VNĐ</sup></strong></p>
+                <p>27/06/2017</p>
+            </div>
+            <div class="content">
+                <p><strong>Nạp tiền Ví điện tử</strong></p>
+                <p>Nguồn nạp: Ngân hàng Vietcombank</p>
+            </div>
+            <i class="material-icons up">keyboard_arrow_up</i>
+        </div>
+    </div>
+    <div class="collapsible-body">
+        <div class="trans-body-content">
+            <ul class="trans-detail-lists">
+                <li>
+                    <span class="label">Mã giao dịch :</span>
+                    <span class="data">123456</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+            </ul>
+            <ul class="trans-detail-lists">
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+            </ul>
+        </div>
+        <div class="trans-body-button">
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Hủy bỏ</a>
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Thực hiện lại</a>
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Tra soát</a>
+        </div>
+    </div>
+</li>
+<li>
+    <div class="collapsible-header">
+        <div class="trans-head">
+            <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/evn.jpg" alt=""></div>
+            <div class="info">
+                <p class="success"><strong>+1.000.000<sup>VNĐ</sup></strong></p>
+                <p>27/06/2017</p>
+            </div>
+            <div class="content">
+                <p><strong>Nạp tiền Ví điện tử</strong></p>
+                <p>Nguồn nạp: Ngân hàng Vietcombank</p>
+            </div>
+            <i class="material-icons up">keyboard_arrow_up</i>
+        </div>
+    </div>
+    <div class="collapsible-body">
+        <div class="trans-body-content">
+            <ul class="trans-detail-lists">
+                <li>
+                    <span class="label">Mã giao dịch :</span>
+                    <span class="data">123456</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+            </ul>
+            <ul class="trans-detail-lists">
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+            </ul>
+        </div>
+        <div class="trans-body-button">
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Hủy bỏ</a>
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Thực hiện lại</a>
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Tra soát</a>
+        </div>
+    </div>
+</li>
+<li>
+    <div class="collapsible-header">
+        <div class="trans-head">
+            <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/evn.jpg" alt=""></div>
+            <div class="info">
+                <p class="success"><strong>+1.000.000<sup>VNĐ</sup></strong></p>
+                <p>27/06/2017</p>
+            </div>
+            <div class="content">
+                <p><strong>Nạp tiền Ví điện tử</strong></p>
+                <p>Nguồn nạp: Ngân hàng Vietcombank</p>
+            </div>
+            <i class="material-icons up">keyboard_arrow_up</i>
+        </div>
+    </div>
+    <div class="collapsible-body">
+        <div class="trans-body-content">
+            <ul class="trans-detail-lists">
+                <li>
+                    <span class="label">Mã giao dịch :</span>
+                    <span class="data">123456</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+            </ul>
+            <ul class="trans-detail-lists">
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+            </ul>
+        </div>
+        <div class="trans-body-button">
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Hủy bỏ</a>
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Thực hiện lại</a>
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Tra soát</a>
+        </div>
+    </div>
+</li>
+<li>
+    <div class="collapsible-header">
+        <div class="trans-head">
+            <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/evn.jpg" alt=""></div>
+            <div class="info">
+                <p class="success"><strong>+1.000.000<sup>VNĐ</sup></strong></p>
+                <p>27/06/2017</p>
+            </div>
+            <div class="content">
+                <p><strong>Nạp tiền Ví điện tử</strong></p>
+                <p>Nguồn nạp: Ngân hàng Vietcombank</p>
+            </div>
+            <i class="material-icons up">keyboard_arrow_up</i>
+        </div>
+    </div>
+    <div class="collapsible-body">
+        <div class="trans-body-content">
+            <ul class="trans-detail-lists">
+                <li>
+                    <span class="label">Mã giao dịch :</span>
+                    <span class="data">123456</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+            </ul>
+            <ul class="trans-detail-lists">
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+                <li>
+                    <span class="label">Label</span>
+                    <span class="data">Data</span>
+                </li>
+            </ul>
+        </div>
+        <div class="trans-body-button">
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Hủy bỏ</a>
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Thực hiện lại</a>
+            <a href="#!" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Tra soát</a>
+        </div>
+    </div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+								
+</div>
+<div class="col-md-4">
+    <div class="card">
+        <div class="card-title">
+            Xem thêm
+        </div>
+        <div class="card-content">
+            <ul class="questions">
+                <li><a href="#">Hướng dẫn gắn kết thẻ</a></li>
+                <li><a href="#">Các loại thẻ cho phép gắn kết</a></li>
+                <li><a href="#">Nạp tiền qua thẻ gắn kết</a></li>
+                <li><a href="#">Thanh toán qua thẻ gắn kết</a></li>
+                <li><a href="#">Lợi ích khi gắn kết thẻ với Pay365</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+										
+</section>
+</div>
+</main>

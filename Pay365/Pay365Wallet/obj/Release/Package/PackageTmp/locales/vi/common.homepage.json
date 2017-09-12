@@ -1,0 +1,26 @@
+﻿{
+  "homepage": {
+    "contact": "Liên hệ",
+    "tut": "Hướng dẫn",
+    "application": "Ứng dụng",
+    "regPersionalTitle": "Persional register",
+    "btnLogin": "Đăng nhập",
+    "btnRegister": "Đăng ký"
+  },
+  "accountInfo": {
+    "fullnameEmpty": "Vui lòng nhập họ và tên",
+    "nationalEmpty": "Vui lòng chọn quốc tịch",
+    "passportEmpty": "Vui lòng nhập số CMND/ Hộ chiếu",
+    "passportIllegal": "Số CMND/Hộ chiếu không hợp lệ",
+    "coporationnameEmpty": "Vui lòng nhập tên doanh nghiệp",
+    "businesstypeEmpty": "Vui lòng chọn ngành nghề kinh doanh",
+    "businesscertificationEmpty": "Vui lòng nhập số đăng ký kinh doanh",
+    "phonenumberEmpty": "Vui lòng nhập số điện thoại liên hệ",
+    "phonenumberIllegal": "Số điện thoại không hợp lệ"
+  },
+  "utilities": {
+    "titleEmpty": "Vui lòng nhập tiêu đề",
+    "fullnameEmpty": "Vui lòng nhập họ tên",
+    "contentEmpty": "Vui lòng nhập nội dung"
+  }
+}

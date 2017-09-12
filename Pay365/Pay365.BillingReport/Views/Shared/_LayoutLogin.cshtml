@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Đăng Nhập Hệ Thống</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="~/Content/css/login.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME STYLES -->
+    <link href="~/Content/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/layout.css" rel="stylesheet" type="text/css" />
+    <link id="style_color" href="~/Content/css/themes/default.css" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/bundles/css")
+    
+    @Scripts.Render("~/bundles/jquery")
+
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="~/favicon.ico" />
+</head>
+<!-- BEGIN BODY -->
+    <body class="login">
+        
+        @RenderBody()
+        
+        <!-- END CORE PLUGINS -->
+        @Scripts.Render("~/bundles/JqueryJs")
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+
+    </body>
+
+<!-- END BODY -->
+</html>

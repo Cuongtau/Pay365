@@ -1,0 +1,29 @@
+﻿<div id="formVerifyEmail" class="card">
+    <div class="card-title">
+        <a href="#!" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+        Xác thực email
+    </div>
+
+    <div class="card-content">
+        <div class="card-form">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group input-field">
+                        <a href="javascript:;" class="btn btn-sm btn-secondary btn-input-right waves-effect waves-light">Gửi lại</a>
+                        <input id="otp_verify_email" type="text">
+                        @Html.Hidden("HiddenEmailVerify")
+                        <label for="otp">Mã xác thực</label>
+                        <span class="error-text"></span>
+                    </div>
+                    <p>
+                        Quý khách vui lòng bấm nút Nhận mã để nhận mã xác thực.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-button">
+        <a href="javascript:;" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Quay lại</a>
+        <a href="javascript:;" onclick="account_info.ConfirmVerifyEmail()" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">Xác thực</a>
+    </div>
+</div>

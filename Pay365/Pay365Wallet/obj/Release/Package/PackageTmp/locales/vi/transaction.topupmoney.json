@@ -1,0 +1,27 @@
+﻿{
+  "error": {
+    "system_busy": "Hệ thống đang bận, vui lòng thử lại sau",
+    "account_empty": "Vui lòng nhập tài khoản nạp tiền",
+    "amount_empty": "Vui lòng nhập số tiền nạp",
+    "bellow_min_amount": "Số tiền nạp tối thiểu là 10.000đ",
+    "bankcode_empty": "Không lấy được thông tin ngân hàng, vui lòng thử lại",
+    "captcha_empty": "Vui lòng nhập mã kiểm tra",
+    "captcha_token_empty": "Không lấy được thông tin mã xác thực",
+    "sign_data_empty": "Không lấy được thông tin xác thực, vui lòng thử lại",
+    "securecode_empty": "Vui lòng nhập mã xác thực",
+    "bank_account_holder_empty": "Vui lòng nhập tên chủ thẻ",
+    "bank_account_number_empty": "Vui lòng nhập số thẻ",
+    "opendate_empty": "Vui lòng nhập ngày mở thẻ định dạng MM/yy",
+    "opendate_invalid": "Thông tin ngày mở thẻ không hợp lệ",
+    "back_previous": "Quay lại bước trước",
+    "over_max": "Vượt quá hạn mức tối đa. Hạn mức nạp tối đa là ",
+    "below_min": "Số tiền nạp dưới hạn mức tối thiểu. Hạn mức tối thiểu là ",
+    "day_limit": " Vượt quá hạn mức nạp ngày. Hạn mức nạp ngày của bạn là ",
+    "month_limit": " Vượt quá hạn mức nạp tháng. Hạn mức nạp tháng của bạn là ",
+    "securetype_empty": "Vui lòng chọn phương thức xác thực",
+    "bank_account_number_empty2": "Vui lòng nhập số tài khoản",
+    "bank_account_number_empty3": "Vui lòng nhập mã khách hàng",
+    "passport_empty": "Vui lòng nhập số CMND/ Hộ chiếu",
+    "bank_account_number_invalid": "Số thẻ ngân hàng không hợp lệ"
+  }
+}

@@ -1,0 +1,150 @@
+﻿
+@{
+    var isAuthenticated = HttpContext.Current.User.Identity.IsAuthenticated;
+    if (!isAuthenticated)
+    {
+        Layout = "~/Views/Shared/_LayoutOut.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_MainLayout.cshtml";
+    }
+    var newID = ViewBag.id;
+    var cateId = ViewBag.cateId;
+}
+
+<script type="text/javascript">
+    var newid = '@newID';
+    var cateId = '@cateId';
+    $(document).ready(function() {
+        news.Load_NewDetail(newid, cateId);
+        news.Load_Slide_Detail();
+        news.Load_ListNews_ByCateID(cateId);
+    });
+</script>
+
+<main class="main">
+    <section class="main-top">
+        <div class="content">
+            <p class="page-title" id="New_Title">Title</p>
+
+            <div class="pay-breadcrumbs">
+                @if (isAuthenticated)
+                {
+                    <a href="/thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                }
+                else
+                {
+                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                }
+                <a href="/news" class="breadcrumb waves-effect waves-light">@Resources.Common.btn_news</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="dashboard">
+        <section class="page-section">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="article">
+                                <div class="article-content" id="newDetail_t">
+
+                                </div>
+
+                                <script id="newDetail_tmpl" type="text/x-jquery-tmpl">
+                                    {{if News.ImageUrl}}
+                                    <p style="text-align: center;">
+                                        <img src="${News.ImageUrl}" alt="">
+                                    </p>
+                                    {{else}}
+                                    <p style="text-align: center;">
+                                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/post.jpg" alt="">
+                                    </p>
+                                    {{/if}}
+                                    <br />
+                                    {{html News.Content}}
+
+                                </script>
+                                <div class="article-foot">
+                                    @*<div class="social">
+                                                <div class="social-content">Plugin</div>
+                                            </div>*@
+                                    <div class="tags right-align">
+                                        <div id="tag_t">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <script id="tag_tmpl" type="text/x-jquery-tmpl">
+                                    {{each Tag}}
+
+                                    <div class="chip"><a href="javascript:;" onclick="news.Btn_Tags('${$value}')">${ $value }</a></div>
+
+                                    {{/each}}
+                                </script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="card" id="slide_newDetail_t">
+                    </div>
+
+                    <script id="slide_newDetail_tmpl" type="text/x-jquery-tmpl">
+                        <div class="card-content">
+                            <div class="carousel carousel-slider news-widget-carousel">
+                                {{each Slide}}
+                                <a class="carousel-item" target="_blank" href="${$value.TargetUrl}">
+                                    {{if $value.ImageUrl}}
+                                    <img height="303" width="303" src="${$value.ImageUrl}">
+                                    {{else}}
+                                    <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/posts/2.jpg">
+                                    {{/if}}
+                                </a>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </script>
+
+                    <div class="card">
+                        <div class="card-title">@Resources.News.lbl_sameCate</div>
+                        <div class="card-content" id="listnews_sameCate_t">
+
+                        </div>
+                        <script id="listnews_sameCate_tmpl" type="text/x-jquery-tmpl">
+                            <ul class="post-links">
+                                {{each ListNews}}
+                                <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)tin-tuc/${$value.CategoryID}/${$value.Alias}-${$value.NewsID}">- ${$value.Title}</a></li>
+                                {{/each}}
+                            </ul>
+                        </script>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">@Resources.News.lbl_sameTag</div>
+                        <div class="card-content" id="listnews_sameTag_t">
+                        </div>
+                        <script id="listnews_sameTag_tmpl" type="text/x-jquery-tmpl">
+
+                            <ul class="post-links">
+                                {{each ListNews}}
+                                <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)tin-tuc/${$value.CategoryID}/${$value.Alias}-${$value.NewsID}">- ${$value.Title}</a></li>
+                                {{/each}}
+                            </ul>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+</script>

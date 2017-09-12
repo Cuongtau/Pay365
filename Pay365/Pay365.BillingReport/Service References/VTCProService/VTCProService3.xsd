@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DataAccess.VTCProAPI.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DataAccess.VTCProAPI.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfVTCProCard_UseCard_MerchantPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VTCProCard_UseCard_MerchantPayment" nillable="true" type="tns:VTCProCard_UseCard_MerchantPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVTCProCard_UseCard_MerchantPayment" nillable="true" type="tns:ArrayOfVTCProCard_UseCard_MerchantPayment" />
+  <xs:complexType name="VTCProCard_UseCard_MerchantPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="CardSerial" type="xs:long" />
+      <xs:element minOccurs="0" name="CreatedAccount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedFullname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GrandAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="MerchantAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="MerchantCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MerchantFee" type="xs:long" />
+      <xs:element minOccurs="0" name="MerchantTransactionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiveAccount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResponseDesc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResponseStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionID" type="xs:long" />
+      <xs:element minOccurs="0" name="UserTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VTCProCard_UseCard_MerchantPayment" nillable="true" type="tns:VTCProCard_UseCard_MerchantPayment" />
+  <xs:complexType name="ArrayOfVTCProCard_UseCard_History">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VTCProCard_UseCard_History" nillable="true" type="tns:VTCProCard_UseCard_History" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVTCProCard_UseCard_History" nillable="true" type="tns:ArrayOfVTCProCard_UseCard_History" />
+  <xs:complexType name="VTCProCard_UseCard_History">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="CardSerial" type="xs:long" />
+      <xs:element minOccurs="0" name="CreatedAccount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedFullname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MerchantCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiveAccount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResponseStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VTCProCard_UseCard_History" nillable="true" type="tns:VTCProCard_UseCard_History" />
+  <xs:complexType name="ArrayOfReportGeneral">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportGeneral" nillable="true" type="tns:ReportGeneral" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReportGeneral" nillable="true" type="tns:ArrayOfReportGeneral" />
+  <xs:complexType name="ReportGeneral">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReportDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TotalCreate" type="xs:long" />
+      <xs:element minOccurs="0" name="TotalCreateAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="TotalExpired" type="xs:long" />
+      <xs:element minOccurs="0" name="TotalMaintain" type="xs:long" />
+      <xs:element minOccurs="0" name="TotalMaintainAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="TotalPaymentAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="TotalUse" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportGeneral" nillable="true" type="tns:ReportGeneral" />
+  <xs:complexType name="ArrayOfReportCreate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportCreate" nillable="true" type="tns:ReportCreate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReportCreate" nillable="true" type="tns:ArrayOfReportCreate" />
+  <xs:complexType name="ReportCreate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="CardFee" type="xs:long" />
+      <xs:element minOccurs="0" name="CardSerial" type="xs:long" />
+      <xs:element minOccurs="0" name="CreatedAccount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreatedFullname" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportCreate" nillable="true" type="tns:ReportCreate" />
+  <xs:complexType name="VTCPro_UseCardInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="CardStatus" type="xs:int" />
+      <xs:element minOccurs="0" name="CardStatusName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardValue" type="xs:long" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExpiredDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExpiredDateCurent" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FeeAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="MerchantAccount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MerchantCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionID" type="xs:long" />
+      <xs:element minOccurs="0" name="UseTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VTCPro_UseCardInfo" nillable="true" type="tns:VTCPro_UseCardInfo" />
+  <xs:complexType name="ArrayOfMerchant">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Merchant" nillable="true" type="tns:Merchant" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMerchant" nillable="true" type="tns:ArrayOfMerchant" />
+  <xs:complexType name="Merchant">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MerchantAccount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MerchantAccountID" type="xs:int" />
+      <xs:element minOccurs="0" name="MerchantCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MerchantID" type="xs:int" />
+      <xs:element minOccurs="0" name="MerchantKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MerchantName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Merchant" nillable="true" type="tns:Merchant" />
+</xs:schema>

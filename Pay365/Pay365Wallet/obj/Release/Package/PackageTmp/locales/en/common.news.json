@@ -1,0 +1,11 @@
+﻿{
+  "Contact": {
+    "fullnameEmpty": "Please enter your full name",
+    "titleEmpty": "Please enter your title",
+    "emailEmpty": "Enter your email",
+    "emailIlegal": "Your email illegal",
+    "phoneEmpty": "Please enter your phone number",
+    "contentEmpty": "Please enter content detail",
+    "NoData":  "No Data" 
+  }
+}

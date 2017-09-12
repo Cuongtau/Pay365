@@ -1,0 +1,104 @@
+﻿@{
+    var isAuthenticated = HttpContext.Current.User.Identity.IsAuthenticated;
+    if (!isAuthenticated)
+    {
+        Layout = "~/Views/Shared/_LayoutOut.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_MainLayout.cshtml";
+    }
+}
+
+<script type="text/javascript">
+    var keyword = '@Html.Raw(ViewBag.keyword)';
+    $(document).ready(function () {
+        news.Search_news(keyword);
+    });
+</script>
+
+<main class="main">
+    <section class="main-top">
+        <div class="content">
+            <p class="page-title" id="search_title">@Resources.News.String4 @Html.Raw(ViewBag.keyword)</p>
+            <div class="pay-breadcrumbs">
+                @if (!isAuthenticated)
+                {
+                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                }
+                else
+                {
+                    <a href="/thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                }
+                <a href="/news" class="breadcrumb waves-effect waves-light">@Resources.Common.btn_news</a>
+            </div>
+        </div>
+    </section>
+    <div class="dashboard">
+        <section class="page-section">
+            <div class="news-grid news-grid-tags">
+                <div class="news-tags">
+                    <div class="card">
+
+                        <div class="card-content" id="listnew_search_t">
+                            <p align="center">Không có dữ liệu</p>
+                        </div>
+
+                        <script id="listnew_search_tmpl" type="text/x-jquery-tmpl">
+                            <div class="flex">
+                                {{each ListNews}}
+                                <div class="post-tag">
+                                    <div class="image">
+                                        {{if $value.ImageUrl}}
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)tin-tuc/${$value.CategoryID}/${$value.Alias}-${$value.NewsID}"><img src="${$value.ImageUrl}" alt=""></a>
+                                        {{else}}
+                                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)tin-tuc/${$value.CategoryID}/${$value.Alias}-${$value.NewsID}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/posts/1.jpg" alt=""></a>
+                                        {{/if}}
+
+                                    </div>
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)tin-tuc/${$value.CategoryID}/${$value.Alias}-${$value.NewsID}">
+                                        ${$value.Title}
+                                    </a>
+                                    <div class="info">
+                                        <span class="date">${GetDate($value.CreatedDate,1)}</span>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </script>
+
+                        <a href="javascript:;" onclick="news.btn_More_news();" id="btn_More" class="posts-more">Xem thêm <i class="material-icons">chevron_right</i></a>
+                        
+                        <div id="bot_page"></div>
+
+                    </div>
+                </div>
+                <div class="news-sidebar">
+                    <div class="card subscribe">
+                        <div class="card-title">@Resources.News.btn_follow</div>
+                        <div class="card-content">
+                            <div class="flex">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">email</i>
+                                    <input type="text" id="txtEmailSubcrible">
+                                    <label for="txtEmailSubcrible">@Resources.News.String3</label>
+                                    <span style="margin-left: 40px;" class="error-text" id="txterror_emailSubcrible"></span>
+                                </div>
+                                <div class="button">
+                                    <a href="javascript:;" onclick="news.RegisterSubscripber();" class="btn btn-primary waves-effect waves-light">@Resources.News.btn_follow</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card hotline">
+                        <div class="card-title">@Resources.News.lbl_hotline</div>
+                        <div class="card-content">
+                            <div class="line">Out team is 24/7 at yor service to help you with your booking issus or answer any related questions.</div>
+                            <div class="phone"><i class="material-icons">phone_in_talk</i> (84) 1900-6505</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

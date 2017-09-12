@@ -1,0 +1,224 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+        @*<!-- BEGIN PAGE HEADER-->
+            <h3 class="page-title">
+                Dashboard <small>dashboard & statistics</small>
+            </h3>
+
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="index-2.html">Home</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="#">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END PAGE HEADER-->
+
+
+            <!-- BEGIN DASHBOARD STATS -->
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat blue-madison">
+                        <div class="visual">
+                            <i class="fa fa-comments"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                1349
+                            </div>
+                            <div class="desc">
+                                New Feedbacks
+                            </div>
+                        </div>
+                        <a class="more" href="#">
+                            View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat red-intense">
+                        <div class="visual">
+                            <i class="fa fa-bar-chart-o"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                12,5M$
+                            </div>
+                            <div class="desc">
+                                Total Profit
+                            </div>
+                        </div>
+                        <a class="more" href="#">
+                            View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat green-haze">
+                        <div class="visual">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                549
+                            </div>
+                            <div class="desc">
+                                New Orders
+                            </div>
+                        </div>
+                        <a class="more" href="#">
+                            View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat purple-plum">
+                        <div class="visual">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                +89%
+                            </div>
+                            <div class="desc">
+                                Brand Popularity
+                            </div>
+                        </div>
+                        <a class="more" href="#">
+                            View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- END DASHBOARD STATS -->
+            <div class="clearfix">
+            </div>
+
+            <div class="row ">
+                <div class="col-md-6 col-sm-6">
+                    <div class="portlet box purple-wisteria">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-calendar"></i>General Stats
+                            </div>
+                            <div class="actions">
+                                <a href="javascript:;" class="btn btn-sm btn-default easy-pie-chart-reload">
+                                    <i class="fa fa-repeat"></i> Reload
+                                </a>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="easy-pie-chart">
+                                        <div class="number transactions" data-percent="55">
+                                            <span>
+                                                +55
+                                            </span>
+                                            %
+                                            <canvas height="75" width="75"></canvas>
+                                        </div>
+                                        <a class="title" href="#">
+                                            Transactions <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="margin-bottom-10 visible-sm">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="easy-pie-chart">
+                                        <div class="number visits" data-percent="85">
+                                            <span>
+                                                +85
+                                            </span>
+                                            %
+                                            <canvas height="75" width="75"></canvas>
+                                        </div>
+                                        <a class="title" href="#">
+                                            New Visits <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="margin-bottom-10 visible-sm">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="easy-pie-chart">
+                                        <div class="number bounce" data-percent="46">
+                                            <span>
+                                                -46
+                                            </span>
+                                            %
+                                            <canvas height="75" width="75"></canvas>
+                                        </div>
+                                        <a class="title" href="#">
+                                            Bounce <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="portlet box red-sunglo">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-calendar"></i>Server Stats
+                            </div>
+                            <div class="tools">
+                                <a href="#" class="collapse">
+                                </a>
+                                <a href="#portlet-config" data-toggle="modal" class="config">
+                                </a>
+                                <a href="#" class="reload">
+                                </a>
+                                <a href="#" class="remove">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="sparkline-chart">
+                                        <div class="number" id="sparkline_bar"><canvas width="113" height="55" style="display: inline-block; vertical-align: top; width: 113px; height: 55px;"></canvas></div>
+                                        <a class="title" href="#">
+                                            Network <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="margin-bottom-10 visible-sm">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="sparkline-chart">
+                                        <div class="number" id="sparkline_bar2"><canvas width="107" height="55" style="display: inline-block; vertical-align: top; width: 107px; height: 55px;"></canvas></div>
+                                        <a class="title" href="#">
+                                            CPU Load <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="margin-bottom-10 visible-sm">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="sparkline-chart">
+                                        <div class="number" id="sparkline_line"><canvas width="100" height="55" style="display: inline-block; vertical-align: top; width: 100px; height: 55px;"></canvas></div>
+                                        <a class="title" href="#">
+                                            Load Rate <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix">
+            </div>*@

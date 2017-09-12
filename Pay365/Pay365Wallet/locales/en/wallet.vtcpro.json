@@ -1,0 +1,11 @@
+﻿{
+  "vtcpro": {
+    "system_err": "System is busy, please try again later!",
+    "err1": "Please choose a VTC Pro package",
+    "err2": "Please enter quantity",
+    "err3": "Please enter verify code",
+    "err4": "Please enter serial number",
+    "err5": "Please enter card code",
+    "err6": "Please enter secure code"
+  } 
+}

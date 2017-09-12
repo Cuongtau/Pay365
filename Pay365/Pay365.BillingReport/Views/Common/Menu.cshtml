@@ -1,0 +1,63 @@
+﻿@using DataAccess.ReportAPI.DTO
+@using Pay365.Utils;
+@model List<Functions>
+
+<div class="hor-menu hidden-sm hidden-xs">
+
+        <!-- BEGIN SIDEBAR MENU -->
+    <ul class="nav navbar-nav" id="Menu">
+        
+        @if (Model != null && Model.Count > 0)
+        {
+            var fathers = Model.FindAll(f => f.ParentID == 0);
+            fathers.Sort((f1, f2) => f1.Order.CompareTo(f2.Order));
+
+            foreach (var father in fathers)
+            {
+                var listChild = Model.FindAll(f => f.ParentID == father.FunctionID && f.IsDisplay);
+                listChild.Sort((f1, f2) => f1.Order.CompareTo(f2.Order));
+                if (listChild.Count > 0)
+                {
+                    <li id="@father.ParentID" class="classic-menu-dropdown parent" data-action="@father.ActionName">
+                        <a data-toggle="dropdown" href="javascript:;" data-hover="dropdown" data-close-others="true">
+                            <i class="@father.CssIcon"></i>
+                            <span class="title">@father.FunctionName</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="dropdown-menu pull-left sub-menu">
+                            @foreach (var function in listChild)
+                            {
+                                @Html.Raw(Pay365.BillingReport.Controllers.CommonController.GetChildMenu(function, Model))
+                            }
+                        </ul>
+                    </li>
+                }
+            }
+        }
+
+
+    </ul>
+
+        <!-- END SIDEBAR MENU -->
+</div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var pathname = location.pathname;
+            var detectPath = pathname.split('/');
+            if (detectPath != null && detectPath.length > 0)
+            {
+                var actionName = detectPath[detectPath.length - 1];
+                if (actionName == "")
+                    return;
+                var $f_Active = $("[data-action='" + actionName + "']");
+                if ($f_Active.length <= 0)
+                    return;
+                $f_Active.addClass("active");
+                $f_Active.parent().closest('li.parent').addClass("active");
+                $f_Active.closest('li.classic-menu-dropdown').addClass("active");
+            }
+
+        });
+    </script>

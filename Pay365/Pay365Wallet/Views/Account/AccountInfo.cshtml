@@ -1,0 +1,907 @@
+﻿
+@{
+    //ViewBag.Title = Resources.Account_info.btn_account;
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<script src="@Html.Raw(Pay365.Utils.Config.Domain)Scripts/libs/date-time/moment.min.js"></script>
+<link href="@Html.Raw(Pay365.Utils.Config.Domain)Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="@Html.Raw(Pay365.Utils.Config.Domain)Scripts/libs/date-time/bootstrap-datetimepicker.js"></script>
+
+<main class="main">
+
+    <section class="main-top">
+        <div class="content">
+            <p class="page-title">@Resources.Account_info.btn_account</p>
+            <div class="pay-breadcrumbs">
+                <a href="/thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                <a href="/thong-tin-tai-khoan" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_account</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="dashboard">
+        <section class="profile-section">
+            <div class="profile-content">
+                <div class="user-info">
+                    <div class="card">
+
+                        @*thông tin avatar*@
+                        <div class="top-avatar" id="avatar_t">
+                            <div class="avatar">
+                                <img width="120" height="120" src="" alt="">
+                                <input id="input_upload_avatar" type="file" style="display:none;" />
+                                <a href="javascript:;" class="btn-change-avatar"><i class="material-icons">photo_camera</i></a>
+                            </div>
+                            <div class="info">
+                                <p class="name">...</p>
+                                <p class="phone">...</p>
+                            </div>
+                            <a href="javascript:;" onclick="login.Signout();" class="btn btn-float btn-third waves-effect waves-light" data-position="bottom" data-delay="0" data-tooltip="@Resources.Account_info.btn_Logout"><i class="material-icons">power_settings_new</i></a>
+                        </div>
+
+                        <script id="avatar_tmpl" type="text/x-jquery-tmpl">
+                            <div class="avatar">
+                                {{if Avatar}}
+                                <img src="//pay365.vn/upload/avatar/${ Avatar }" alt="">
+                                {{else}}
+                                <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/persons/no_avatar.jpg" alt="">
+                                {{/if}}
+                                <input id="input_upload_avatar" type="file" style="display:none;" />
+                                <a data-position="bottom" data-delay="1" data-tooltip="Upload avatar" href="javascript:;" onclick='$("#input_upload_avatar").click();' class="btn-change-avatar"><i class="material-icons">photo_camera</i></a>
+                            </div>
+                            <div class="info">
+                                <p class="name">${ Fullname }</p>
+                                <p class="phone">${ Username }</p>
+                            </div>
+                            <a href="javascript:;" onclick="login.Signout();" class="btn btn-float btn-third waves-effect waves-light" data-position="bottom" data-delay="0" data-tooltip="@Resources.Account_info.btn_Logout"><i class="material-icons">power_settings_new</i></a>
+                        </script>
+
+                        @*thông tin avatar*@
+
+                        @*thông tin số dư*@
+                        <div class="block-info" id="acc_balance_t">
+
+                        </div>
+
+                        <script id="acc_balance_tmpl" type="text/x-jquery-tmpl">
+                            <div class="block-title">@Resources.Account_info.lbl_InfoBalance</div>
+                            <ul class="list-info">
+                                <li>
+                                    <span class="label">@Resources.Account_info.lbl_balance: </span>
+                                    <span class="data secondary">${ utils.formatMoney(Balance + WaitBalance) }<sup>VNĐ</sup></span>
+                                </li>
+                                <li>
+                                    <span class="label">@Resources.Account_info.lbl_availableBalance: </span>
+                                    <span class="data secondary">${ utils.formatMoney(Balance) }<sup>VNĐ</sup></span>
+                                </li>
+                                <li>
+                                    <span class="label">@Resources.Account_info.lbl_frozenBalance: </span>
+                                    <span class="data secondary">${ utils.formatMoney(WaitBalance) }<sup>VNĐ</sup></span>
+                                </li>
+                            </ul>
+                        </script>
+                        @*thông tin số dư*@
+
+                        @*thông tin bảo mật*@
+                        <div class="block-info" id="acc_secure_t">
+
+                        </div>
+
+                        <script id="acc_secure_tmpl" type="text/x-jquery-tmpl">
+                            <div class="block-title">@Resources.Account_info.lbl_infoSecure</div>
+                            <ul class="list-info">
+                                <li>
+                                    <span class="label">@Resources.Account_info.lbl_secureType: </span>
+                                    <span class="data secondary">
+                                        {{if SecurityType == 1}}
+                                        OTP SMS
+                                        {{else SecurityType == 2}}
+                                        OTP Email
+                                        {{else SecurityType == 3}}
+                                        OTP Voice
+                                        {{else SecurityType == 4}}
+                                        OTP App
+                                        {{else}}
+                                        @Resources.Account_info.String6
+                                        {{/if}}
+                                    </span>
+                                </li>
+                                {{if SecurityType != 0}}
+                                <li>
+                                    <span class="label">@Resources.Account_info.lbl_minAmount: </span>
+                                    <span class="data secondary">${utils.formatMoney(MinAmount)}<sup>VNĐ</sup></span>
+                                </li>
+                                {{/if}}
+
+                            </ul>
+                            <div class="block-info-action">
+                                {{if SecurityType != 0}}
+                                <a href="/cai-dat-bao-mat" class="btn btn-flat btn-primary waves-effect waves-primary uppercase"><i class="material-icons">security</i> @Resources.Account_info.btn_ChangeSecure</a>
+                                <a href="/doi-han-muc-bao-mat" class="btn btn-flat btn-primary waves-effect waves-primary uppercase"><i class="material-icons">call_missed_outgoing</i> @Resources.Account_info.btn_ChangeMinAmount</a>
+                                {{else}}
+                                <a href="/cai-dat-bao-mat" class="btn btn-flat btn-primary waves-effect waves-primary uppercase"><i class="material-icons">security</i> @Resources.Common.registerOTP</a>
+                                {{/if}}
+                            </div>
+                        </script>
+                        @*thông tin bảo mật*@
+
+                        <div class="block-link-cards hidden">
+                            <ul class="list-link-card">
+                                <li>
+                                    <div class="link-card credit">
+                                        <div class="subfix">4251</div>
+                                        <div class="logo">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/visa.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="link-card pay365">
+                                        <div class="subfix">4166</div>
+                                        <div class="logo">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/vietcombank.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="action">
+                                <a href="#!" class="btn btn-flat btn-primary waves-effect waves-primary uppercase"><i class="material-icons">add</i> Thêm thẻ mới</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="wallet-info">
+
+                    <div class="tab-slides" id="ts-1">
+                        <div id="account_info" class="card div_slide div_active">
+                            <script id="account_info_tmpl" type="text/x-jquery-tmpl">
+                                <div class="card-title">
+                                    @Resources.Account_info.Acc_InfoWallet
+                                    @*<div class="profile-card-button">
+                                            <a onclick="account_changepass.Vw_ChangePassword();" class="btn btn-secondary waves-effect waves-light">@Resources.Account_info.Acc_btnChangePass</a>
+                                        </div>*@
+                                </div>
+                                <div class="card-content">
+
+                                    <ul class="lists">
+                                        <li>
+                                            <span class="label">@Resources.Account_info.lbl_numberWallet</span>
+                                            <span class="data">
+                                                ${Username}
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="label">@Resources.Account_info.lbl_email</span>
+                                            {{if EmailStatus == 0}}
+                                            <span class="data">
+                                                ${Email}
+                                                @*<i class="material-icons danger" data-position="bottom" data-delay="0" data-tooltip="@Resources.Account_info.String1">clear</i>*@
+                                                <a href="javascript:;" onclick="account_info.VerifyEmailView();" class="btn btn-icon btn-danger">
+                                                    <span class="txt">@Resources.Account_info.btn_Verify</span>
+                                                    <i class="material-icons">clear</i>
+                                                </a>
+                                            </span>
+                                            <input id="HiddenEmailVerify" type="hidden" value="${Email}" />
+                                            {{else}}
+                                            <span class="data">
+                                                ${Email} <i class="material-icons success" data-position="bottom" data-delay="0" data-tooltip="@Resources.Account_info.String2">done</i>
+                                            </span>
+                                            <input id="HiddenEmailVerify" type="hidden" value="" />
+                                            {{/if}}
+
+                                        </li>
+                                        <li>
+                                            <span class="label">@Resources.Account_info.lbl_accType</span>
+                                            {{if AccountType == 1}}
+                                            <span class="data"> @Resources.Account_info.lbl_accType1</span>
+                                            {{else AccountType == 2}}
+                                            <span class="data"> @Resources.Account_info.lbl_accType2</span>
+                                            {{else}}
+                                            <span class="data"> @Resources.Account_info.lbl_accType0</span>
+                                            {{/if}}
+                                        </li>
+                                        <li>
+                                            <span class="label">@Resources.Account_info.lbl_status</span>
+                                            {{if Status == 1}}
+                                            <span class="data">
+                                                @Resources.Account_info.String3
+                                                @*<i class="material-icons danger" data-position="bottom" data-delay="0" data-tooltip="@Resources.Account_info.String3">clear</i>*@
+                                                <a href="javascript:;" onclick="account_info.CertificateAccountView();" class="btn btn-icon btn-danger">
+                                                    <span class="txt">@Resources.Account_info.btn_Authenticate</span>
+                                                    <i class="material-icons">clear</i>
+                                                </a>
+                                            </span>
+                                            {{else Status == 2}}
+                                            <span class="data">
+                                                @Resources.Account_info.String4
+                                                <i class="material-icons warning" data-position="bottom" data-delay="0" data-tooltip="@Resources.Account_info.String4">priority_high</i>
+                                            </span>
+
+                                            {{else Status == 3}}
+                                            <span class="data">
+                                                @Resources.Account_info.String5
+                                                <i class="material-icons success">done</i>
+                                            </span>
+                                            {{else}}
+                                            XVCL
+                                            {{/if}}
+                                        </li>
+
+                                        <li>
+                                            <span class="label">@Resources.Account_info.lbl_secureType</span>
+                                            <span class="data">
+                                                {{if SecurityType == 1}}
+                                                OTP SMS
+                                                {{else SecurityType == 2}}
+                                                OTP Email
+                                                {{else SecurityType == 3}}
+                                                OTP Voice
+                                                {{else SecurityType == 4}}
+                                                OTP App
+                                                {{else}}
+                                                @Resources.Account_info.String6
+                                                {{/if}}
+
+                                                {{if SecurityType == 0}}
+                                                <a href="/cai-dat-bao-mat" class="btn btn-icon btn-danger">
+                                                    <span class="txt">@Resources.Common.registerOTP</span>
+                                                    <i class="material-icons">clear</i>
+                                                </a>
+                                                {{else}}
+                                                <i class="material-icons success" data-position="bottom" data-delay="0" data-tooltip="@Resources.Account_info.String8">done</i>
+                                                {{/if}}
+                                            </span>
+                                        </li>
+                                        {{if SecurityType != 0}}
+                                        <li>
+                                            <span class="label">@Resources.Account_info.lbl_minAmount</span>
+                                            <span class="data">${ utils.formatMoney(MinAmount)}<sup>VNĐ</sup></span>
+                                        </li>
+                                        {{/if}}
+                                    </ul>
+                                </div>
+                                <div class="card-button" style="padding-top: 0; padding-right: 20px;">
+
+                                    <a href="javascript:;" onclick="account_info.ChangeEmailView();" class="btn btn-primary btn-flat uppercase waves-effect waves-primary"><i class="material-icons">email</i> @Resources.Account_info.lbl_changeEmail</a>
+                                    <a href="javascript:;" onclick="account_changepass.Vw_ChangePassword();" class="btn btn-primary btn-flat uppercase waves-effect waves-primary"><i class="material-icons">lock</i>@Resources.Account_info.Acc_btnChangePass</a>
+                                </div>
+
+                            </script>
+                        </div>
+
+                        <form id="changePassword" class="card div_slide div_next" autocomplete="off" role="form" method="post" action="">
+                            <div class="card-title">
+                                <a href="javascript:;" onclick="account_changepass.backChangePass();" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+                                @Resources.Account_info.Acc_btnChangePass
+                            </div>
+                            <div class="card-content">
+                                <div class="card-form">
+                                    <div class="row" style="margin-bottom: 0px">
+                                        <div class="col-md-12">
+                                            <div class="form-group input-field">
+                                                <i class="material-icons eye"></i>
+                                                <input id="txtOldPass" type="password" class="input-password" maxlength="18" name="oldPass">
+                                                <label for="txtOldPass">@Resources.Account.OldPassword</label>
+                                                <span class="error-text help-block" id="errOldPass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group input-field" style="margin: 11px 0px 10px 0">
+                                                <i class="material-icons eye"></i>
+                                                <input id="txtNewPass" type="password" class="input-password" maxlength="18" name="newPass">
+                                                <label for="txtNewPass">@Resources.Account.NewPassword</label>
+                                                <span class="error-text help-block" id="errNewPass"></span>
+                                                <ul class="rule">
+                                                    <li><i class="material-icons">done</i> @Resources.Account.RulePassword1</li>
+                                                    <li><i class="material-icons">done</i> @Resources.Account.RulePassword2</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group input-field" style="margin: 0px">
+                                                <i class="material-icons eye"></i>
+                                                <input id="txtConfirmPass" type="password" class="input-password" maxlength="18" name="confirmPass">
+                                                <label for="txtConfirmPass">@Resources.Account.RenewPassword</label>
+                                                <span class="error-text help-block" id="errConfirmPass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-button">
+                                <button type="button" onclick="account_changepass.backChangePass();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnBack</button>
+                                <button type="submit" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnUpdate</button>
+                            </div>
+                        </form>
+
+                        <div id="formCertificateAccount" class="card div_slide div_next">
+                            <div class="card-title">
+                                <a href="javscript:;" onclick="account_info.BackToAccountInfo(3);" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+                                @Resources.Account_info.lbl_certificate
+                            </div>
+                            <div class="card-content">
+                                <div class="card-form">
+                                    <div class="note">
+                                        <p>@Resources.Account_info.lbl_note_cetificate</p>
+                                        <p><strong>@Resources.Account_info.lbl_warning: </strong></p>
+                                        <ul>
+                                            <li><strong>@Resources.Account_info.lbl_note_1</strong></li>
+                                            <li><strong>@Resources.Account_info.lbl_note_2</strong></li>
+                                        </ul>
+                                    </div>
+                                    <div class="verify-images" style="margin-bottom: 30px;">
+                                        <div class="upload">
+                                            <input type="file" id="file_upload_1" class="file_img" accept="image/x-png, image/gif, image/jpeg">
+                                            <label for="file_upload_1" class="waves-effect waves-light"><i class="material-icons">add</i></label>
+                                        </div>
+                                        <div id="selected_file_upload_1" class="selected" style="display: none;">
+                                            <div class="image">
+                                                <img src="" class="img-responsive" alt="">
+                                                <a href="javascript:;" class="btn-close" data-position="bottom" data-delay="0" data-tooltip="@Resources.Account_info.btn_delete"><i class="material-icons">clear</i></a>
+                                            </div>
+                                        </div>
+                                        <div class="upload">
+                                            <input type="file" id="file_upload_2" class="file_img" accept="image/x-png, image/gif, image/jpeg">
+                                            <label for="file_upload_2" class="waves-effect waves-light"><i class="material-icons">add</i></label>
+                                        </div>
+                                        <div id="selected_file_upload_2" class="selected" style="display: none;">
+                                            <div class="image" style="margin-left: 15px">
+                                                <img src="" class="img-responsive" alt="">
+                                                <a href="javascript:;" class="btn-close" data-position="bottom" data-delay="0" data-tooltip="@Resources.Account_info.btn_delete"><i class="material-icons">clear</i></a>
+                                            </div>
+                                        </div>
+                                        <div class="upload">
+                                            <input type="file" id="file_upload_3" class="file_img" accept="image/x-png, image/gif, image/jpeg">
+                                            <label for="file_upload_3" class="waves-effect waves-light"><i class="material-icons">add</i></label>
+                                        </div>
+                                        <div id="selected_file_upload_3" class="selected" style="display: none;">
+                                            <div class="image" style="margin-left: 15px">
+                                                <img src="" class="img-responsive" alt="">
+                                                <a href="javascript:;" class="btn-close" data-position="bottom" data-delay="0" data-tooltip="@Resources.Account_info.btn_delete"><i class="material-icons">clear</i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-button">
+                                        <a href="javascript:;" onclick="account_info.BackToAccountInfo(3); $('#formCertificateAccount .btn-close').click();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnBack</a>
+                                        <a href="javascript:;" onclick="account_info.ConfirmCertificate();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account_info.btn_SendRequest</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="formVerifyEmail" class="card div_slide div_next">
+                            <div class="card-title">
+                                <a href="javascript:;" onclick="account_info.BackToAccountInfo(4);" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+                                @Resources.Account_info.lbl_verifyEmail
+                            </div>
+
+                            <div class="card-content">
+                                <div class="card-form">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group input-field">
+                                                <a id="resend_verify_code" href="javascript:;" onclick="account_info.VerifyEmailView(1);" class="btn btn-sm btn-flat btn-secondary btn-input-right waves-effect waves-light">@Resources.Account.Resend</a>
+                                                <input id="otp_verify_email" type="text" onkeypress="utils.forceNumber(this, event);" class="otp-focus" maxlength="6">
+                                                <label for="otp">@Resources.Account_info.lbl_otp</label>
+                                                <span class="error-text"></span>
+                                            </div>
+                                            <p>
+                                                @Resources.Account_info.txt_sendOTP: <span class="secondary" id="txt_OTPsended"></span>
+                                            </p>
+                                            <p>
+                                                @Html.Raw(Resources.Account_info.lbl_note_3)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-button">
+                                <a href="javascript:;" onclick="account_info.BackToAccountInfo(4);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnBack</a>
+                                <a href="javascript:;" onclick="account_info.ConfirmVerifyEmail()" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account_info.btn_Verify</a>
+                            </div>
+                        </div>
+
+                        <div id="formChangeEmail" class="card div_slide div_next">
+                            <div class="card-title">
+                                <a href="javascript:;" onclick="account_info.BackToAccountInfo(5);" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+                                @Resources.Account_info.lbl_changeEmail
+                            </div>
+                            <div class="card-content">
+                                <div class="card-form">
+                                    <div class="row" style="margin-bottom: 0px">
+                                        <div class="col-md-12">
+                                            <div class="form-group input-field">
+                                                <input id="new_email" type="text" maxlength="50">
+                                                <label for="new_email">@Resources.Account_info.lbl_enterEmail</label>
+                                                <span class="error-text"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="div_otp_change_email" class="row" style="display: none;">
+                                        <div class="col-md-12">
+                                            <div class="form-group input-field">
+                                                <a id="change_email_resend_otp" href="javascript:;" onclick="transaction_history.ResendOTPEmail(this);" class="btn btn-sm btn-flat btn-secondary btn-input-right waves-effect waves-light">@Resources.Account.Resend</a>
+                                                <input id="otp_change_email" class="otp-focus" type="text" maxlength="6">
+                                                <label for="otp_change_email">@Resources.Account_info.lbl_otp</label>
+                                                <span class="error-text"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-button">
+                                <button type="button" onclick="account_info.BackToAccountInfo(5);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnBack</button>
+                                <button type="button" onclick="account_info.ConfirmChangeEmail();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnUpdate</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-slides" id="ts-2" style="overflow: visible; margin-bottom: 25px">
+                        <div id="account_change_info" class="card div_slide div_active" style="left: 0;">
+                            <div id="acc_info_update_t">
+
+                                <script id="acc_info_update_tmpl" type="text/x-jquery-tmpl">
+                                    <div class="card-title">
+                                        @Resources.Account_info.lbl_CustomerInfo
+                                    </div>
+                                    <div class="card-content" id="">
+                                        <ul class="lists">
+                                            <li>
+                                                <span class="label">@Resources.Account_info.lbl_fullname</span>
+                                                <span class="data" id="lbl_fullname">${Fullname}</span>
+                                            </li>
+                                            @*<li>
+                                                    <span class="label">Email</span>
+                                                    <span class="data" id="lbl_email">${Email}</span>
+                                                </li>*@
+                                            <li>
+                                                <span class="label">@Resources.Account_info.lbl_gender</span>
+                                                {{if Gender == true}}
+                                                <span class="data" id="lbl_gender">@Resources.Account_info.lbl_gender1</span>
+                                                {{else}}
+                                                <span class="data" id="lbl_gender">@Resources.Account_info.lbl_gender2</span>
+                                                {{/if}}
+                                            </li>
+                                            <li>
+                                                <span class="label">@Resources.Account_info.lbl_birthday</span>
+                                                <span class="data" id="lbl_birthday">${GetDate(Birthday)}</span>
+                                            </li>
+                                            <li>
+                                                <span class="label">@Resources.Account_info.lbl_passport</span>
+                                                <span class="data" id="lbl_passport">${Passport}</span>
+                                            </li>
+                                            <li>
+                                                <span class="label">@Resources.Account_info.lbl_address</span>
+                                                <span class="data" id="lbl_address">${PermanentAddress}</span>
+                                            </li>
+                                            <li>
+                                                <span class="label">@Resources.Account_info.lbl_job</span>
+                                                <span class="data" id="lbl_job">${Job}</span>
+                                            </li>
+                                            <li>
+                                                <span class="label">@Resources.Account_info.lbl_position</span>
+                                                <span class="data" id="lbl_pos">${Position}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="card-button" style="padding-top: 25px">
+                                        {{if Status != 3}}
+                                        <a href="javascript:;" onclick="account_info.Vw_ChangeAccountInfo();" class="btn btn-primary btn-flat uppercase waves-effect waves-primary"><i class="material-icons">person</i>@Resources.Account_info.btn_changeAccInfo</a>
+                                        {{/if}}
+                                    </div>
+                                </script>
+                            </div>
+
+                        </div>
+                        <div id="account_change_info_step" class="card div_slide div_next">
+                            <div id="acc_changeInfo_t">
+                                <script id="acc_changeInfo_tmpl" type="text/x-jquery-tmpl">
+                                    <div class="card-title">
+                                        <a href="javascript:;" onclick="account_info.backStep_ChangeAccountInfo();" class="card-back waves-effect waves-primary"><i class="material-icons">keyboard_backspace</i></a>
+                                        @Resources.Account_info.lbl_CustomerInfo
+                                    </div>
+                                    <div class="card-content" id="" style="padding-top: 21px;">
+                                        <div class="card-form">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group input-field">
+                                                        <input id="full_name" value="${Fullname}" type="text">
+                                                        {{if Fullname}}
+                                                        <label for="full_name" class="active">@Resources.Account_info.lbl_fullname</label>
+                                                        {{else}}
+                                                        <label for="full_name">@Resources.Account_info.lbl_fullname</label>
+                                                        {{/if}}
+                                                        <span class="error-text" id="txterror_Fullname"></span>
+                                                    </div>
+                                                </div>
+                                                @*<div class="col-md-6">
+                                                        <div class="form-group input-field">
+                                                            <input id="email" value="${Email}" type="text">
+                                                            {{if Email}}
+                                                            <label for="email" class="active">Email</label>
+                                                            {{else}}
+                                                            <label for="email" class="active">Email</label>
+                                                            {{/if}}
+                                                            <span clas="error-text" id="txterror_Email"></span>
+                                                        </div>
+                                                    </div>*@
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group input-field">
+                                                        {{if Gender}}
+                                                        <select id="ddlGender">
+                                                            <option selected="selected" value="1">@Resources.Account_info.lbl_gender1</option>
+                                                            <option value="2">@Resources.Account_info.lbl_gender2</option>
+                                                        </select>
+                                                        {{else}}
+                                                        <select id="ddlGender">
+                                                            <option value="1">@Resources.Account_info.lbl_gender1</option>
+                                                            <option selected="selected" value="2">@Resources.Account_info.lbl_gender2</option>
+                                                        </select>
+                                                        {{/if}}
+                                                        <label for="ddlnation">@Resources.Account_info.lbl_gender</label>
+                                                        <span class="error-text"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group input-field">
+                                                        <select onchange="account_info.onchange_Nation(this)" id="ddlnation">
+                                                            @*<option selected="selected" value="1">VietNam</option>
+                                                                <option value="2">USA</option>*@
+                                                        </select>
+                                                        <label for="ddlnation">@Resources.Account_info.lbl_nation</label>
+                                                        <span class="error-text" id="txterror_nation"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group input-field">
+                                                        <input id="passport" onkeypress="utils.checkOnlyNumber(this, event);" value="${Passport}" type="text">
+                                                        {{if Passport}}
+                                                        <label for="passport" class="active">CMND/Passport</label>
+                                                        {{else}}
+                                                        <label for="passport">CMND/Passport</label>
+                                                        {{/if}}
+                                                        <span class="error-text" id="txterror_Passport"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group input-field">
+                                                        <select onchange="account_info.onChange_Location(this)" id="ddllocation"></select>
+                                                        <label for="ddllocation">Location</label>
+                                                        <span class="error-text" id="txterror_location"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group input-field">
+                                                        <select id="ddldistrict"></select>
+                                                        <label for="ddldistrict">District</label>
+                                                        <span class="error-text" id="txterror_district"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group input-field">
+                                                        <input id="address" value="${PermanentAddress}" type="text">
+                                                        {{if PermanentAddress}}
+                                                        <label for="address" class="active">@Resources.Account_info.lbl_address</label>
+                                                        {{else}}
+                                                        <label for="address">@Resources.Account_info.lbl_address</label>
+                                                        {{/if}}
+                                                        <span class="error-text" id="txterror_PermanentAddress"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group input-field date dtp">
+                                                        <input id="dob" type="text" onkeypress="utils.checkOnlyNumber(this, event);" data-date-format="DD/MM/YYYY" value="${GetDate(Birthday)}" class="form-control">
+                                                        {{if Birthday}}
+                                                        <label for="dob" class="active">@Resources.Account_info.lbl_birthday</label>
+                                                        {{else}}
+                                                        <label for="dob">@Resources.Account_info.lbl_birthday</label>
+                                                        {{/if}}
+                                                        <span class="error-text" id="txterror_Birthday"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group input-field">
+                                                        <input id="job" value="${Job}" type="text">
+                                                        {{if Job}}
+                                                        <label for="job" class="active">@Resources.Account_info.lbl_job</label>
+                                                        {{else}}
+                                                        <label for="job">@Resources.Account_info.lbl_job</label>
+                                                        {{/if}}
+                                                        <span class="error-text" id="txterror_Job"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group input-field">
+                                                        <input id="pos" value="${Position}" type="text">
+                                                        {{if Position}}
+                                                        <label for="pos" class="active">@Resources.Account_info.lbl_position</label>
+                                                        {{else}}
+                                                        <label for="pos">@Resources.Account_info.lbl_position</label>
+                                                        {{/if}}
+                                                        <span class="error-text" id="txterror_Position"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-button" style="padding-top: 0px">
+                                        <a href="javascript:;" onclick="account_info.backStep_ChangeAccountInfo();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account.BtnBack</a>
+                                        <a href="javascript:;" onclick="account_info.changeAccountInfo();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Account_info.btn_change</a>
+                                    </div>
+                                </script>
+                            </div>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="wizards" id="mission_t">
+                <script id="mission_tmpl" type="text/x-jquery-tmpl">
+                    <div class="step">
+                        {{if EmailStatus == 1}}
+                        <i class="material-icons success">done</i>
+                        <p class="label">
+                            @Resources.Account_info.btn_Verify email
+                        </p>
+                        {{else}}
+                        <i class="material-icons danger">clear</i>
+                        <p class="label">
+                            @Resources.Account_info.btn_Verify email
+                        </p>
+                        <p class="text">
+                            <a href="javascript:;" onclick="account_info.VerifyEmailView();" class="btn btn-sm btn-primary waves-effect waves-light">@Resources.Account_info.lbl_verifyEmail</a>
+                        </p>
+                        {{/if}}
+
+                    </div>
+                    <div class="step">
+                        {{if Status == 1}}
+                        <i class="material-icons danger">clear</i>
+                        <p class="label">
+                            @Resources.Account_info.btn_Authenticate @Resources.Account_info.lbl_account
+                        </p>
+                        <p class="text">
+                            <a href="javascript:;" onclick="account_info.CertificateAccountView();" class="btn btn-sm btn-primary waves-effect waves-light">@Resources.Account_info.lbl_certificate</a>
+                        </p>
+                        {{else Status == 2}}
+                        <i class="material-icons warning">priority_high</i>
+                        <p class="label">
+                            @Resources.Account_info.btn_Authenticate @Resources.Account_info.lbl_account
+                        </p>
+                        <p class="text danger">@Resources.Account_info.lbl_sendVerifyAccount</p>
+                        {{else}}
+                        <i class="material-icons success">done</i>
+                        <p class="label">
+                            @Resources.Account_info.btn_Authenticate @Resources.Account_info.lbl_account
+                        </p>
+                        {{/if}}
+                    </div>
+                    <div class="step hidden">
+                        <i class="material-icons success">done</i>
+                        <p class="label">Gắn kết thẻ</p>
+                    </div>
+                    <div class="step hidden">
+                        <i class="material-icons success">done</i>
+                        <p class="label">
+                            @Resources.Account_info.String10 @Resources.Account_info.String12
+                        </p>
+                    </div>
+                    <div class="step">
+                        {{if SecurityType > 0}}
+                        <i class="material-icons success">done</i>
+                        <p class="label">
+                            @Resources.Account_info.String10
+                        </p>
+                        {{else}}
+                        <i class="material-icons danger">clear</i>
+                        <p class="label">
+                            @Resources.Account_info.String10
+                        </p>
+                        <p class="text">
+                            <a href="/cai-dat-bao-mat" class="btn btn-sm btn-primary waves-effect waves-light">@Resources.Common.registerOTP</a>
+                        </p>
+                        {{/if}}
+                    </div>
+                </script>
+            </div>
+        </section>
+    </div>
+
+    <div id="modal-avatar" class="modal">
+        <div class="modal-content">
+            <h4 class="title-sm">@Resources.Account_info.String9</h4>
+            <div class="avatar">
+                <img id="popup_img_avatar" src="" width="33%" alt="">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="javascript:;" id="confirmCrop" class="modal-action  waves-effect waves-light btn btn-primary">@Resources.Account_info.btn_update</a>
+        </div>
+    </div>
+
+    <div id="popup_success" class="modal" style="overflow-y:inherit">
+        <div class="modal-content">
+            <h4><i class="material-icons icon-success">check</i></h4>
+            <p>@Html.Raw(Resources.Account.ResetPasswordSuccess)</p>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-sm-12 center"><a href="javascript:;" onclick="common.logOut();" class="modal-action modal-close waves-effect waves-primary btn btn-success">Đăng nhập</a></div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<style>
+    #modal-avatar {
+        height: 530px;
+        max-height: initial;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        confirmCrop = document.querySelector('#confirmCrop');
+    });
+
+    $(document).on("change", '.file_img', function () {
+        var that = this;
+        var id = that.id;
+        if (typeof (FileReader) != "undefined") {
+            $($(that)[0].files).each(function () {
+                var that2 = this;
+                var file = $(that2);
+                //Ảnh lớn hơn 5MB thì return lỗi;
+                var type = file[0].type;
+                if (type != 'image/jpeg' && type != 'image/gif' && type != 'image/png') {
+                    $('#modal-alert #modal_content').text('Ảnh không đúng định dạng');
+                    $('#modal-alert').modal('open');
+                    return;
+                }
+                if (file[0].size > 5120000) {
+                    $('#modal-alert #modal_content').text('Dung lượng ảnh không được vượt quá 5MB');
+                    $('#modal-alert').modal('open');
+                    return;
+                }
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#" + id).parent('.upload').hide();
+                    $('#selected_' + id).find('img').attr('src', e.target.result);
+                    $('#selected_' + id).show();
+                };
+                reader.readAsDataURL(file[0]);
+            });
+        } else {
+            alert("Trình duyệt không hỗ trợ HTML5 upload");
+        }
+    });
+
+    $(document).on('click', '.btn-close', function () {
+        var $that = $(this).parents('.selected');
+        var update = $that.prev(".upload");
+        update.show();
+        update.find("input").val('');
+        $that.hide();
+    });
+
+    $(document).on("change", '#input_upload_avatar', function () {
+        var that = this;
+        if (typeof (FileReader) != "undefined") {
+            $($(that)[0].files).each(function () {
+                var that2 = this;
+                var file = $(that2);
+                var reader = new FileReader();
+                var type = file[0].type;
+                if (type != 'image/jpeg' && type != 'image/gif' && type != 'image/png') {
+                    var des = "Ảnh không đúng định dạng";
+                    if (header.AccountInfo.CurrentLang == "en") {
+                        des = "Image is not correct format";
+                    }
+                    $('#modal-alert #modal_content').text(des);
+                    $('#modal-alert').modal('open');
+                    return;
+                }
+                //Ảnh lớn hơn 5MB thì return lỗi;
+                if (file[0].size > 5120000) {
+                    //Thông báo dung lượng ảnh < 5mb
+                    $('#modal-alert #modal_content').text('Dung lượng ảnh không được vượt quá 5MB');
+                    $('#modal-alert').modal('open');
+                    return;
+                }
+                reader.onload = function (e) {
+                    $("#modal-avatar #popup_img_avatar").attr("src", e.target.result);
+                    //$("#modal-avatar #popup_img_avatar").attr("src", srcResize);
+                    $('#modal-avatar').modal({
+                        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                        //ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                        //},
+                        complete: function () {
+                            $('#popup_img_avatar').croppie('destroy');
+                            $('#popup_img_avatar').attr('src', '');
+                        } // Callback for Modal close
+                    }
+                    );
+                    $('#modal-avatar').modal('open');
+                    var Cropper = window.Cropper;
+                    var $image = $('#popup_img_avatar')[0];
+                    var options = {
+                        aspectRatio: 1 / 1,
+                        minContainerHeight: 350,
+                    };
+
+                    var cropper = new Cropper($image, options);
+                    var uploadedImageType = 'image/jpeg';
+                    confirmCrop.addEventListener('click', function () {
+                        var result = cropper['getCroppedCanvas']({ fillColor: "#fff" }, null);
+                        var base64 = result.toDataURL(uploadedImageType);
+
+                        var param = {
+                            base64String: base64.split(',')[1],
+                            imgName: 'base64.jpg'
+                        };
+
+                        var callback = function (data) {
+                            utils.unLoading();
+                            $('#modal-avatar').modal('close');
+                            if (typeof data === "object") {
+                                window.location.href = utils.rootUrl() + 'thong-tin-tai-khoan';
+                                return;
+                            }
+                            else if (utils.checkResponseIsValid(data)) {
+                                var responseCode = JSON.parse(data).c;
+                                $('#modal-alert #modal_content').text(common.getDescription(responseCode));
+                                $('#modal-alert').modal('open');
+                                return;
+                            }
+                            $('#modal-alert #modal_content').text(common.getDescription(-999999));
+                            $('#modal-alert').modal('open');
+                        };
+                        utils.loading();
+                        utils.postData(utils.linkIdApi() + 'Account/UpdateAvatar', param, callback, callback);
+                    });
+                };
+                reader.readAsDataURL(file[0]);
+            });
+        } else {
+            alert("Trình duyệt không hỗ trợ HTML5 upload");
+        }
+    });
+
+    $(document).on('keyup', '#acc_changeInfo_t input, #formCertificateAccount input, #formVerifyEmail input, #formChangeEmail input', function () {
+        $(this).removeClass('error success');
+        $(this).parent().find('.error-text').text('');
+    });
+    $(document).on('change', '#dob', function () {
+        $(this).removeClass('error success');
+        $(this).parent().find('.error-text').text('');
+    });
+</script>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 68.2 62" style="enable-background:new 0 0 68.2 62;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	
+		.st1{display:inline;fill:#B29FF7;stroke:#343537;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	
+		.st2{display:inline;fill:#FFFFFF;stroke:#343537;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st3{display:inline;fill:#FFAB7D;stroke:#343537;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+	.st4{display:inline;}
+	.st5{fill:#B29FF7;}
+	.st6{display:inline;fill:none;stroke:#343537;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st7{fill:#FFFFFF;}
+	.st8{fill:#FFAB7D;}
+	.st9{fill:none;stroke:#343537;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<g id="Layer_1" class="st0">
+	<path class="st1" d="M60.9,47.9H9.5c-3.3,0-6-2.7-6-6V11.3c0-2.8,2.2-5,5-5h47.4c2.8,0,5,2.2,5,5V47.9z"/>
+	<path class="st2" d="M60.9,16.3H8.5c-2.8,0-5-2.2-5-5v0c0-2.8,2.2-5,5-5h47.4c2.8,0,5,2.2,5,5V16.3z"/>
+	<path class="st3" d="M66.7,36.7H54.1c-3.3,0-6-2.7-6-6v0c0-3.3,2.7-6,6-6h12.6V36.7z"/>
+	<line class="st2" x1="9.3" y1="11.3" x2="37.7" y2="11.3"/>
+	<line class="st2" x1="46.5" y1="11.3" x2="53.5" y2="11.3"/>
+	<circle class="st2" cx="54.2" cy="30.7" r="2.1"/>
+</g>
+<g id="Layer_2" class="st0">
+	<g class="st4">
+		<polygon class="st5" points="60,15.5 56,33.8 25.8,33.8 23,15.5 		"/>
+	</g>
+	<polyline class="st6" points="1.1,7 17.7,7 22.6,37.1 58.9,37.1 64.5,12.1 30.8,12.1 	"/>
+	<circle class="st6" cx="31.1" cy="44.8" r="3.5"/>
+	<circle class="st6" cx="51.9" cy="44.8" r="3.5"/>
+	<g class="st4">
+		<path class="st7" d="M45.9,27.5c0,0.9-0.3,1.7-1,2.5c-0.7,0.7-1.6,1.1-2.8,1.2v1.5h-1v-1.5c-1.1-0.1-2-0.4-2.7-1s-1.1-1.4-1.1-2.3
+			H39c0,0.5,0.2,0.9,0.5,1.3c0.3,0.3,0.8,0.6,1.4,0.6v-4.5c-1.3-0.3-2.1-0.6-2.6-1c-0.6-0.4-0.9-0.9-1-1.4c-0.1-0.3-0.1-0.7-0.1-1.1
+			c0-1,0.3-1.8,1-2.5s1.6-1,2.8-1.1v-1.5h1v1.5c1,0.1,1.9,0.4,2.5,1c0.6,0.6,1,1.3,1.1,2.3h-1.9c0-0.4-0.2-0.8-0.5-1.1
+			c-0.3-0.3-0.7-0.6-1.3-0.7V24c1.5,0.3,2.6,0.7,3,1.3C45.6,25.8,45.9,26.6,45.9,27.5z M39.4,20.2c-0.4,0.4-0.6,0.8-0.6,1.5
+			c0,0.6,0.2,1.1,0.5,1.4c0.4,0.3,0.9,0.6,1.6,0.8v-4.2C40.3,19.6,39.8,19.8,39.4,20.2z M43.6,29.1c0.4-0.4,0.6-0.9,0.6-1.5
+			c0-0.6-0.2-1-0.6-1.3c-0.4-0.3-0.9-0.5-1.6-0.7v4.3C42.7,29.7,43.2,29.5,43.6,29.1z"/>
+	</g>
+	<line class="st3" x1="16.1" y1="21.6" x2="5.6" y2="21.6"/>
+	<line class="st3" x1="13.1" y1="28.6" x2="2.6" y2="28.6"/>
+</g>
+<g id="Layer_3">
+	<g id="screen-24h_1_">
+		<path class="st7" d="M63.6,42.9c0,1.8-1.4,3.2-3.2,3.2H8.8c-1.8,0-3.2-1.4-3.2-3.2V8.9c0-1.8,1.4-3.2,3.2-3.2h51.6
+			c1.8,0,3.2,1.4,3.2,3.2V42.9z"/>
+		<rect x="9.8" y="9.9" class="st8" width="49.6" height="24.6"/>
+		<rect x="28.4" y="47.1" class="st5" width="12.9" height="5.7"/>
+		<path class="st9" d="M63.6,42.9c0,1.8-1.4,3.2-3.2,3.2H8.8c-1.8,0-3.2-1.4-3.2-3.2V8.9c0-1.8,1.4-3.2,3.2-3.2h51.6
+			c1.8,0,3.2,1.4,3.2,3.2V42.9z"/>
+		<line class="st9" x1="62.4" y1="38.7" x2="6.9" y2="38.7"/>
+		<line class="st9" x1="27.4" y1="53.8" x2="27.4" y2="47.1"/>
+		<line class="st9" x1="42.4" y1="47.1" x2="42.4" y2="53.8"/>
+		<line class="st9" x1="24.5" y1="53.8" x2="44.7" y2="53.8"/>
+		<line class="st9" x1="34.6" y1="42.6" x2="34.6" y2="42.6"/>
+	</g>
+	<line class="st9" x1="34.9" y1="15" x2="53.1" y2="15"/>
+	<line class="st9" x1="34.6" y1="20.6" x2="53.1" y2="20.6"/>
+	<line class="st9" x1="34.6" y1="25.5" x2="53.1" y2="25.5"/>
+	<line class="st9" x1="14.6" y1="30.4" x2="53.1" y2="30.4"/>
+	<rect x="14.6" y="12.7" class="st9" width="12.8" height="12.8"/>
+	<polyline class="st9" points="18.7,19.6 20.6,21.2 24.5,17 	"/>
+</g>
+</svg>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ReportService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/ReportService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/ReportService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/ReportService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataAccess.OrdersAPI.DTO" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IReportService_GetListBankForCashOut_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListBankForCashOut" />
+  </wsdl:message>
+  <wsdl:message name="IReportService_GetListBankForCashOut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListBankForCashOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReportService_GetListBankTopup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListBankTopup" />
+  </wsdl:message>
+  <wsdl:message name="IReportService_GetListBankTopup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListBankTopupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReportService_BankInfo_GetByCondition_InputMessage">
+    <wsdl:part name="parameters" element="tns:BankInfo_GetByCondition" />
+  </wsdl:message>
+  <wsdl:message name="IReportService_BankInfo_GetByCondition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BankInfo_GetByConditionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReportService_WebsitePayment_GetList_InputMessage">
+    <wsdl:part name="parameters" element="tns:WebsitePayment_GetList" />
+  </wsdl:message>
+  <wsdl:message name="IReportService_WebsitePayment_GetList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WebsitePayment_GetListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IReportService">
+    <wsdl:operation name="GetListBankForCashOut">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportService/GetListBankForCashOut" message="tns:IReportService_GetListBankForCashOut_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportService/GetListBankForCashOutResponse" message="tns:IReportService_GetListBankForCashOut_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListBankTopup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportService/GetListBankTopup" message="tns:IReportService_GetListBankTopup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportService/GetListBankTopupResponse" message="tns:IReportService_GetListBankTopup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BankInfo_GetByCondition">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportService/BankInfo_GetByCondition" message="tns:IReportService_BankInfo_GetByCondition_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportService/BankInfo_GetByConditionResponse" message="tns:IReportService_BankInfo_GetByCondition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WebsitePayment_GetList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportService/WebsitePayment_GetList" message="tns:IReportService_WebsitePayment_GetList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportService/WebsitePayment_GetListResponse" message="tns:IReportService_WebsitePayment_GetList_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IReportService" type="tns:IReportService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetListBankForCashOut">
+      <soap:operation soapAction="http://tempuri.org/IReportService/GetListBankForCashOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListBankTopup">
+      <soap:operation soapAction="http://tempuri.org/IReportService/GetListBankTopup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BankInfo_GetByCondition">
+      <soap:operation soapAction="http://tempuri.org/IReportService/BankInfo_GetByCondition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebsitePayment_GetList">
+      <soap:operation soapAction="http://tempuri.org/IReportService/WebsitePayment_GetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ReportService">
+    <wsdl:port name="BasicHttpBinding_IReportService" binding="tns:BasicHttpBinding_IReportService">
+      <soap:address location="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/ReportService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

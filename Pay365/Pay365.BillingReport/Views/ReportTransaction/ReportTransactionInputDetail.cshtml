@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "Báo cáo chi tiết giao dịch nạp";
+}
+@model List<Pay365.BillingReport.ReportService.BankInfo>
+<div class="portlet box blue-primary">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-pie-chart"></i>BÁO CÁO CHI TIẾT GIAO DỊCH NẠP
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+            <a href="javascript:;" class="reload">
+            </a>
+            <a href="javascript:;" class="remove">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row" id="Rp_TransactionInputDetails">
+            <div class="col-md-12">
+                <div class="clear">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-times"></i>Kênh nạp</label>
+                        <select class="form-control" id="ddlPayType">
+                            <option value="0">Tất cả</option>
+                            <option value="1">Nạp Online Bank</option>
+                            <option value="2">Nạp thẻ quốc tế</option>
+                            <option value="3">Nạp chuyển khoản</option>
+                            <option value="4">Nạp từ thẻ cào</option>
+                            <option value="5">Nạp từ VNPOST</option>
+                            <option value="6">Phương thức khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-times"></i>Ngân hàng</label>
+                        <select class="form-control" id="ddlListBank" multiple="multiple">
+                            @*<option value="0">Tất cả</option>*@
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                var ListBankDonestic = Model.FindAll(b => b.BankType == 1);
+                                var ListBankInternation = Model.FindAll(b => b.BankType == 2);
+                                <optgroup label="Thẻ quốc tế">
+                                    @foreach (var b in ListBankInternation)
+                                    {
+                                        <option value="@b.BankID">@Html.Raw(b.BankCode)</option>
+                                    }
+                                </optgroup>
+
+                                <optgroup label="thẻ nội địa">
+                                    @foreach (var b in ListBankDonestic)
+                                    {
+                                        <option value="@b.BankID">@Html.Raw(b.BankCode)</option>
+                                    }
+                                </optgroup>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-group"></i>Loại TK</label>
+                        <div class="selectBox">
+                            <select id="ddlAccountType" class="form-control">
+                                <option value="0">Tất cả</option>
+                                <option value="1">Cá nhân</option>
+                                <option value="2">Doanh nghiệp</option>
+                                <option value="3">Nghiệp vụ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-user"></i>Số tài khoản</label>
+                        <div class="col-lg-7 col-md-7"><input class="form-control" id="txtAccountName" /></div>
+                    </div>
+                </div>
+
+                <div class="clear">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divFromDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i><span id="txtFromDate">Từ Ngày</span></label>
+                        <div class="date" id="datetimeFromDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="fromDate" class="form-control" name="datetimeFromDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divToDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i>Đến Ngày</label>
+                        <div class="date" id="datetimeToDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="toDate" class="form-control" name="datetimeToDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-user"></i>Người thực hiện</label>
+                        <div class="col-lg-7 col-md-7"><input class="form-control" id="txtCreatedUser" /></div>
+                    </div>
+                    <div class="form-group col-md-2 col-sm-12 col-xs-12" style="text-align:center">
+                        <button id="btnSearch" class="btn blue-primary" value="Tìm Kiếm">
+                            <span class="glyphicon glyphicon-hand-right"></span>Tìm Kiếm
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="dgrid" class="dataTables_wrapper form-inline" role="grid">
+            <div id="ReportPartial"></div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datetimeFromDate').datetimepicker({
+            pickTime: false
+        });
+        $('#datetimeToDate').datetimepicker({
+            pickTime: false
+        });
+        $("#ddlListBank").multiselect({
+            enableClickableOptGroups: true,
+            enableCollapsibleOptGroups: true,
+            includeSelectAllOption: true,
+            maxHeight: 200,
+            buttonWidth: '200px',
+        });
+
+        var fromdate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.fromDate)';
+        var todate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.toDate)';
+        $('#datetimeFromDate').data("DateTimePicker").setDate(fromdate);
+        $('#datetimeToDate').data("DateTimePicker").setDate(todate);
+
+        $("#datetimeFromDate").on("dp.change dp.show", function (e) {
+            $('#datetimeToDate').data("DateTimePicker").setMinDate(e.date);
+        });
+        $("#datetimeToDate").on("dp.change dp.show", function (e) {
+            $('#datetimeFromDate').data("DateTimePicker").setMaxDate(e.date);
+        });
+
+        $("#btnSearch").click(function () {
+            ReportTranssactionTopupDetail();
+        });
+        $("#Rp_TransactionInputDetails").keypress(function (event) {
+            if (event.which == 13) {
+                ReportTranssactionTopupDetail();
+            }
+        });
+
+        ReportTranssactionTopupDetail();
+
+    });
+
+    
+</script>

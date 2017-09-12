@@ -1,0 +1,11 @@
+﻿{
+  "Contact": {
+    "fullnameEmpty": "Vui lòng nhập họ và tên",
+    "titleEmpty": "Vui lòng nhập tiêu đề",
+    "emailEmpty": "Vui lòng nhập email",
+    "emailIlegal": "Email không đúng định dạng",
+    "phoneEmpty": "Vui lòng nhập số điện thoại",
+    "contentEmpty": "Vui lòng nhập nội dung",
+    "NoData": "Không có dữ liệu"
+  }
+}

@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "Báo cáo rút tiền";
+}
+@model List<Pay365.BillingReport.ReportService.BankInfo>
+<div class="portlet green-seagreen box">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-pie-chart"></i>BÁO CÁO RÚT TIỀN
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+            <a href="javascript:;" class="reload">
+            </a>
+            <a href="javascript:;" class="remove">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row" id="Rp_TransactionCashout">
+            <div class="col-md-12">
+                <div class="clear">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-bank"></i>Ngân hàng</label>
+                        <select class="form-control" id="ddlListBank">
+                            <option value="0">Tất cả</option>
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                foreach (var b in Model)
+                                {
+                                    <option value="@b.BankID">@Html.Raw(b.BankCode)</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-id-card"></i>TK Pay</label>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding:0">
+                            <input class="form-control" id="txtAccountName" maxlength="20" />
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-credit-card"></i>TK Ngân hàng</label>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding:0">
+                            <input class="form-control" id="txtBankAccount" maxlength="20" />
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-question-circle"></i>phương thức</label>
+                        <select class="form-control" id="ddlPayType">
+                            <option value="0">Tất cả</option>
+                            <option value="11">Trực tiếp</option>
+                            <option value="12">Gián tiếp</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="clear">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divFromDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i><span id="txtFromDate">Từ Ngày</span></label>
+                        <div class="date" id="datetimeFromDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="fromDate" class="form-control" name="datetimeFromDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divToDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i>Đến Ngày</label>
+                        <div class="date" id="datetimeToDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="toDate" class="form-control" name="datetimeToDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-balance-scale"></i>Mã đối soát</label>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding:0">
+                            <input class="form-control" id="txtBankRefTransID" maxlength="20" />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-6 col-xs-12 col-lg-3" style="">
+                        <label class="control-label text-info" style="width:120px;"><i class="fa fa-line-chart"></i>Loại biểu đồ</label>
+                        <div class="selectBox" id="chooseChart">
+                            <select id="ddlSelectChart" class="form-control">
+                                <option value="0">Không hiển thị</option>
+                                <option value="1">Biểu đồ Line</option>
+                                <option value="2">Biểu đồ Pie</option>
+                                <option value="3">Biểu đồ Area</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear">
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12" style="text-align:center">
+                        <button id="btnSearch" class="btn green-seagreen" value="Tìm Kiếm">
+                            <span class="glyphicon glyphicon-hand-right"></span>Tìm Kiếm
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="dgrid" class="dataTables_wrapper form-inline" role="grid">
+            <div id="ReportChart"></div>
+            <div id="ReportPartial"></div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#datetimeFromDate').datetimepicker({
+            pickTime: false
+        });
+        $('#datetimeToDate').datetimepicker({
+            pickTime: false
+        });
+
+        var fromdate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.fromDate)';
+        var todate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.toDate)';
+        $('#datetimeFromDate').data("DateTimePicker").setDate(fromdate);
+        $('#datetimeToDate').data("DateTimePicker").setDate(todate);
+
+        $("#datetimeFromDate").on("dp.change dp.show", function (e) {
+            $('#datetimeToDate').data("DateTimePicker").setMinDate(e.date);
+        });
+        $("#datetimeToDate").on("dp.change dp.show", function (e) {
+            $('#datetimeFromDate').data("DateTimePicker").setMaxDate(e.date);
+        });
+
+        $("#btnSearch").click(function () {
+            GeneralReportCastout();
+        });
+        $("#Rp_TransactionCashout").keypress(function (event) {
+            if (event.which == 13) {
+                GeneralReportCastout();
+            }
+        });
+        GeneralReportCastout();
+        $("#ddlSelectChart").change(function () {
+            ChartCashout();
+        });
+    });
+
+</script>

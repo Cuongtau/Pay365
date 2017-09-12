@@ -1,0 +1,169 @@
+﻿@{
+    ViewBag.Title = "Báo cáo tổng hợp giao dịch nạp";
+}
+@using Pay365.Utils
+@model List<Pay365.BillingReport.ReportService.BankInfo>
+<div class="portlet blue-steel box">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-pie-chart"></i>BÁO CÁO TỔNG HỢP GIAO DỊCH NẠP
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+            <a href="javascript:;" class="reload">
+            </a>
+            <a href="javascript:;" class="remove">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row" id="Rp_TransactionInput">
+            <div class="col-md-12">
+                <div class="clear">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divFromDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i><span id="txtFromDate">Từ Ngày</span></label>
+                        <div class="date" id="datetimeFromDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="fromDate" class="form-control" name="datetimeFromDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-times"></i>Phương thức</label>
+                        <select class="form-control" id="ddlPayType">
+                            <option value="0">Tất cả</option>
+                            <option value="@((byte)Enums.PayType.TopupByBank)">Nạp Online Bank</option>
+                            <option value="@((byte)Enums.PayType.TopupByInternationalCard)">Nạp thẻ quốc tế</option>
+                            <option value="@((byte)Enums.PayType.TopupByOffice)">Nạp chuyển khoản</option>
+                            <option value="@((byte)Enums.PayType.TopupByCard)">Nạp từ thẻ cào</option>
+                            <option value="@((byte)Enums.PayType.TopupByVnPost)">Nạp từ VNPOST</option>
+                            <option value="@((byte)Enums.PayType.TopupByLinkedBank)">Nạp qua thẻ gắn kết</option>
+                            <option value="@((byte)Enums.PayType.TopupeOther)">Phương thức khác</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-times"></i>Đối tác</label>
+                        <select class="form-control" id="ddlListBank" multiple="multiple">
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                var ListBankDonestic = Model.FindAll(b=>b.BankType == 1);
+                                var ListBankInternation = Model.FindAll(b => b.BankType == 2);
+                                <optgroup label="Thẻ quốc tế">
+                                    @foreach (var b in ListBankInternation)
+                                    {
+                                        <option value="@b.BankID">@Html.Raw(b.BankCode)</option>
+                                    }
+                                </optgroup>
+
+                                <optgroup label="Thẻ nội địa">
+                                    @foreach (var b in ListBankDonestic)
+                                    {
+                                        <option value="@b.BankID">@Html.Raw(b.BankCode)</option>
+                                    }
+                                </optgroup>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="clear">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divToDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i>Đến Ngày</label>
+                        <div class="date" id="datetimeToDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="toDate" class="form-control" name="datetimeToDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                        <label class="control-label text-info"><i class="fa fa-times"></i>Kiểu dữ liệu</label>
+                        <select class="form-control" id="ddlTypeData">
+                            <option value="0">Chọn kiểu dữ liệu</option>
+                            <option value="1">Số tài khoản</option>
+                            <option value="2">Số giao dịch</option>
+                            <option value="3">Tổng nạp</option>
+                            <option value="4">Tổng phí</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-clock-o"></i>Biểu đồ</label>
+                        <div class="selectBox">
+                            <select id="ddlSelectChart" class="form-control">
+                                <option value="0">Không hiển thị</option>
+                                <option value="1">Biểu đồ Line</option>
+                                <option value="2">Biểu đồ Pie</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-12 col-xs-12" style="text-align:center">
+                        <button id="btnSearch" class="btn blue-steel" value="Tìm Kiếm">
+                            <span class="glyphicon glyphicon-hand-right"></span>Tìm Kiếm
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="dgrid" class="dataTables_wrapper form-inline" role="grid">
+            <div id="ReportChart"></div>
+            <div id="ReportPartial"></div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datetimeFromDate').datetimepicker({
+            pickTime: false
+        });
+        $('#datetimeToDate').datetimepicker({
+            pickTime: false
+        });
+        $("#ddlListBank").multiselect({
+            enableClickableOptGroups: true,
+            enableCollapsibleOptGroups: true,
+            includeSelectAllOption: true,
+            maxHeight: 200,
+            buttonWidth: '180px',
+        });
+
+        var fromdate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.fromDate)';
+        var todate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.toDate)';
+        $('#datetimeFromDate').data("DateTimePicker").setDate(fromdate);
+        $('#datetimeToDate').data("DateTimePicker").setDate(todate);
+
+        $("#datetimeFromDate").on("dp.change dp.show", function (e) {
+            $('#datetimeToDate').data("DateTimePicker").setMinDate(e.date);
+        });
+        $("#datetimeToDate").on("dp.change dp.show", function (e) {
+            $('#datetimeFromDate').data("DateTimePicker").setMaxDate(e.date);
+        });
+
+        $("#btnSearch").click(function () {
+            GeneralTransactionTopup();
+        });
+        $("#Rp_TransactionInput").keypress(function (event) {
+            if (event.which == 13) {
+                GeneralTransactionTopup();
+            }
+        });
+
+        GeneralTransactionTopup();
+
+        $("#ddlSelectChart").change(function () {
+            ChartTransactionInput();
+        });
+
+        $("#ddlTypeData").change(function () {
+            var type = parseInt($(this).val());
+            changeChartType(type);
+        });
+    });
+
+   
+</script>

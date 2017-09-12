@@ -1,0 +1,56 @@
+﻿
+<div class="head">
+    <div class="icon">
+        <i class="material-icons">person</i>
+    </div>
+    <div class="title">@Resources.Register.String16</div>
+</div>
+
+<div id="form_active_account" class="content">
+    <div class="lost">
+        <div class="content-title">@Resources.Register.String17</div>
+        <div class="form-group">
+            <p id="active_notify">@Resources.Register.String18: <span class="secondary">@ViewBag.AccountName</span> <br />@Resources.Register.String24: <span class="secondary">@ViewBag.Email</span></p>
+            <div class="form-data input-field">
+                <a id="resend_active_code" onclick="register.ResendActiveCode('@ViewBag.Email')" href="javascript:;" class="btn-input-right waves-effect waves-light secondary" style="top: 18px;">Gửi lại</a>
+                <input maxlength="6" type="text" id="active_code" autofocus autocomplete="off" onkeypress="utils.forceNumber(this, event);">
+                <label for="active_code">@Resources.Register.String19</label>
+                <span class="error-text"></span>
+            </div>
+        </div>
+        <div class="form-group submit">
+            <div class="row">
+                <div class="col-sm-12"><a id="btActiveAccount" href="javascript:;" onclick="register.ConfirmActiveAccount();" class="btn btn-primary waves-effect waves-light">Xác nhận</a></div>
+            </div>
+        </div>
+        <p>
+            @Resources.Register.String20 <strong class="secondary">PAY365 KH</strong> @Resources.Register.String21 <strong class="secondary">8095</strong> (1.000<sup>VNĐ</sup>/SMS)
+        </p>
+    </div>
+</div>
+
+<div class="foot">
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="@Html.Raw(Pay365.Utils.Config.Domain)register" class="btn btn-flat btn-primary uppercase"><i class="material-icons">chevron_left</i> @Resources.Register.String22</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var callback = function (data) {
+            if (data.d && data.d.IsPhoneInNetwork) {
+                $('#form_active_account #resend_active_code').hide();
+            }
+        }
+        common.phoneNumberNetwork('@ViewBag.AccountName', callback);
+    });
+    $('#form_active_account input').keyup(function (event) {
+        if ($("#btActiveAccount").hasClass("disabled")) return;
+        var keyCode = event.keyCode || event.which;
+        if (keyCode === 13) {
+            register.ConfirmActiveAccount();
+        }
+    });
+</script>

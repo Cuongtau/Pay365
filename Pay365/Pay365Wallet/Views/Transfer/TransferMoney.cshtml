@@ -1,0 +1,334 @@
+﻿@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<main id="main_transfer" class="main">
+    <section class="main-top">
+        <div class="content">
+            <p class="page-title">@Resources.Transfer.lbl_transferMoney</p>
+            <div class="pay-breadcrumbs">
+                <a href="@Html.Raw(Pay365.Utils.Config.Domain)thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                <a href="javascript:;" class="breadcrumb waves-effect waves-light">@Resources.Transfer.lbl_transferMoney</a>
+            </div>
+        </div>
+    </section>
+    <div class="dashboard">
+        <section class="page-section">
+          
+                <div class="tab-slides" id="ts-1">
+
+                    <div class="div_slide div_active" id="transferMoney_step1">
+                        <div class="col-md-7">
+                            <div class="card">
+                                <div class="card-title">
+                                    @Resources.Transfer.Info
+                                </div>
+                                <div class="card-content" id="div_transferMoney">
+
+                                    <div class="input-field input-dropdown">
+                                        <i class="material-icons prefix">phone_iphone</i>
+                                        <div class="input-dropdown-content">
+                                            <a class='dropdown-button dropdown-input' href='javascript:;' data-activates='ddr-input-phone'><i class="material-icons">keyboard_arrow_down</i></a>
+                                            <ul id='ddr-input-phone' class='dropdown-content'>
+                                                
+                                            </ul>
+                                        </div>
+                                        <input maxlength="13" id="txtUsername" onblur="transfer.GetTransferAccount(this);" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.formatPhoneInput(this, event);" type="text" value="">
+                                        <label for="txtUsername">@Resources.Transfer.ReceivedAcc</label>
+                                        <span style="padding-left: 45px; padding-top: 3px" class="error-text"></span>
+                                        <span class="success-text"></span>
+                                        <span id="transfer_account_name" class="charge-name"></span>
+                                    </div>
+
+                                    <div class="form-group input-field">
+                                        <i class="material-icons prefix">monetization_on</i>
+                                        <input maxlength="10" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.formatCurrency(this, event);utils.ChangeText(event);" id="txtAmount" type="text" class="autocomplete">
+                                        <label for="txtAmount">@Resources.Transfer.Amount</label>
+                                        <span style="padding-left: 45px; padding-top: 3px" class="error-text"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="prices" id="choose_amount">
+                                            <a href="javascript:;" id="choose_amount_1" data="100.000" class="price-flat">100.000 VNĐ</a>
+                                            <a href="javascript:;" id="choose_amount_2" data="200.000" class="price-flat">200.000 VNĐ</a>
+                                            <a href="javascript:;" id="choose_amount_3" data="500.000" class="price-flat">500.000 VNĐ</a>
+                                            <a href="javascript:;" id="choose_amount_4" data="1.000.000" class="price-flat">1.000.000 VNĐ</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group input-field">
+                                        <i class="material-icons prefix">comment</i>
+                                        <textarea maxlength="100" id="txtReason" class="materialize-textarea"></textarea>
+                                        <label for="txtReason">@Resources.Transfer.TransferReason</label>
+                                        <span style="padding-left: 45px; padding-top: 3px" class="error-text"></span>
+                                    </div>
+
+                                    <div class="form-group input-field captcha" id="form_captcha">
+                                        <i class="material-icons prefix"></i>
+                                        <input class="custom-captcha captcha-focus" maxlength="4" id="txtTransfer_captcha" type="text">
+                                        <label for="txtTransfer_captcha">@Resources.Register.String4</label>
+                                        <input id="inputToken" type="hidden" />
+                                        <div class="captcha-image">
+                                            <img id="imgCaptcha" width="100" height="35">
+                                            <i onclick="utils.refreshCaptcha('form_captcha', 'payment');" class="btn-reload material-icons">refresh</i>
+                                        </div>
+                                        <span class="error-text" style="float: left;"></span>
+                                    </div>
+
+                                    <span style="padding-left: 45px; padding-top: 3px; font-size: 11px; color: #ff7373;" id="txt_errorCaptcha" class="error-text"></span>
+
+                                    @*<div class="form-group input-field">
+                                            <div class="row padding-left-row">
+                                                <div class="col-sm-6 left-align">@Resources.Transfer.TransFee: <strong class="secondary" id="Transfee">0%</strong></div>
+                                                <div class="col-sm-6 right-align">@Resources.Transfer.Total: <strong class="primary" id="totalPayment">0 VNĐ</strong></div>
+                                            </div>
+                                        </div>*@
+
+                                    <div class="input-field">
+                                        <div class="row padding-left-row">
+                                            <span class="label label-danger">@Resources.Transfer.TransFee: <span id="Transfee">0 VNĐ</span></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field">
+                                        <div class="row padding-left-row">
+                                            <div class="col-sm-6">
+                                                @Resources.Transfer.Total: <strong class="primary" id="totalPayment">0 VNĐ</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="card-button">
+                                    <a href="javascript:;" onclick="transfer.Transfer_Money();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next <i class="material-icons">chevron_right</i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="card" id="list_recent_t">
+
+                            </div>
+                            <script id="list_recent_tmpl" type="text/x-jquery-tmpl">
+                                <div class="card-title">
+                                    @Resources.Transfer.RecentlyTrans
+                                    <a href="/history" class="more waves-effect waves-primary"><i class="material-icons">keyboard_arrow_right</i></a>
+                                </div>
+                                <ul class="collapsible popout success" data-collapse-number="1" data-collapsible="accordion">
+                                    {{each List}}
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <div class="trans-head">
+                                                <div class="icon">
+                                                    <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/thanh-toan.svg" alt="">
+                                                </div>
+                                                <div class="info">
+                                                    {{if $value.Amount > 0}}
+                                                    <p class="success">
+                                                        <strong>
+                                                            ${utils.formatMoney($value.Amount)}
+                                                            <sup>VNĐ</sup>
+                                                        </strong>
+                                                    </p>
+                                                    {{else}}
+                                                    <p class="danger">
+                                                        <strong>
+                                                            ${utils.formatMoney($value.Amount)}
+                                                            <sup>VNĐ</sup>
+                                                        </strong>
+                                                    </p>
+                                                    {{/if}}
+                                                    <p>${utils.formDateTime($value.CreatedTime, true)}</p>
+                                                </div>
+                                                <div class="content">
+                                                    <p>${$value.ServiceName}</p>
+                                                    {{if $value.ServiceID == 200001}}
+                                                    <p>@Resources.Payment.String11: ${Math.abs($value.Amount/$value.ProductValue)}</p>
+                                                    {{/if}}
+                                                    <p>@Resources.Transfer.ReceiveAcc: ${$value.RelatedUsername}</p>
+                                                </div>
+                                                <i class="material-icons up">keyboard_arrow_up</i>
+                                            </div>
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <div class="trans-body-content">
+                                                <ul class="trans-detail-lists">
+                                                    <li>
+                                                        <span class="label">@Resources.Common.TransactionID:</span>
+                                                        <span class="data">${$value.TransID}</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="label">@Resources.Common.TransTime:</span>
+                                                        <span class="data">${utils.formDateTime($value.CreatedTime)}</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="label">@Resources.Common.String16:</span>
+                                                        <span class="data">${$value.ServiceName}</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="label">@Resources.Payment.value12:</span>
+                                                        {{if $value.Status == 1}}
+                                                        <span class="data">@Resources.Payment.status1</span>
+                                                        {{else}}
+                                                        <span class="data">@Resources.Payment.status0</span>
+                                                        {{/if}}
+                                                    </li>
+                                                </ul>
+                                                <ul class="trans-detail-lists">
+                                                    <li>
+                                                        <span class="label">@Resources.Payment.value7:</span>
+                                                        <span class="data">${utils.formatMoney($value.Amount)}<sup>VNĐ</sup></span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="label">@Resources.Payment.value9:</span>
+                                                        <span class="data"> ${utils.formatMoney($value.Fee)}<sup>VNĐ</sup></span>
+                                                    </li>
+                                                    {{if $value.ServiceID > 200000}}
+                                                    <li>
+                                                        <span class="label">@Resources.Payment.value10:</span>
+                                                        <span class="data">${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="label">@Resources.Common.String16:</span>
+                                                        <span class="data">@Resources.Common.wallet_title</span>
+                                                    </li>
+                                                    {{else}}
+                                                    <li>
+                                                        <span class="label">@Resources.Payment.value10:</span>
+                                                        <span class="data">${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></span>
+                                                    </li>
+                                                    {{/if}}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="card card-single div_slide div_next" id="transferMoney_step2">
+                            <div id="card">
+                                <div class="card-title">
+                                    @Resources.Transfer.lbl_confirmTransaction
+                                </div>
+                                <div class="card-content">
+                                    <div class="form-group input-field">
+                                        <table class="table-data table-sm">
+                                            <tbody>
+                                            <tr>
+                                                <td width="40%">@Resources.Transfer.TransferredAcc:</td>
+                                                <td id="lbl_transferAcc"></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="40%">@Resources.Transfer.TransferredAccName:</td>
+                                                <td id="lbl_transferAccfullname"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="table-data table-sm">
+                                            <tbody>
+                                            <tr>
+                                                <td width="40%">@Resources.Transfer.ReceivedAcc:</td>
+                                                <td id="lbl_receiveAcc"></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="40%">@Resources.Transfer.ReceivedAccname:</td>
+                                                <td id="lbl_receiveAccname"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="table-data table-sm">
+                                            <tbody>
+                                            <tr>
+                                                <td width="40%">@Resources.Transfer.Amount:</td>
+                                                <td><span class="" id="lbl_amount">0<sup>VNĐ</sup></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="40%">@Resources.Transfer.TransFee:</td>
+                                                <td><span class="" id="lbl_fee">0 <sup>VNĐ</sup></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="40%">@Resources.Transfer.Total:</td>
+                                                <td><span class="" id="lbl_totalAmount">0</span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="form-group input-field">
+                                        <p id="txt_typeOtp"></p>
+                                    </div>
+                                    <div class="form-group input-field" id="div_Otp">
+                                        <i class="material-icons prefix">lock</i>
+                                        <a href="javascript:;" id="btnResendOTP" onclick="payment.Resend_OTP();" class="btn btn-sm btn-flat btn-secondary btn-input-right waves-effect waves-light">@Resources.Account.Resend</a>
+                                        <input id="txt_secureCode" maxlength="6" data-length="6" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.ChangeText(event);" type="text">
+                                        <label for="txt_secureCode" class="">@Resources.Transfer.OTP</label>
+                                        <span style="padding-left: 45px; padding-top: 3px" class="error-text"></span>
+                                    </div>
+
+                                </div>
+                                <div class="card-button">
+                                    <a href="javascript:;" onclick="transfer.Btn_Back();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i>@Resources.Payment.btn_back</a>
+                                    <a href="javascript:;" onclick="transfer.ConfirmTransfer();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Transfer.Confirm</a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+        </section>
+    </div>
+</main>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        transfer.GetListTransferRecent();
+
+        $('#txtUsername').focus();
+
+        utils.getCaptcha('form_captcha', 'payment');
+
+        $('#choose_amount a').click(function () {
+            $('.error-text').text('');
+            var amount = this.getAttribute('data');
+            $('#txtAmount').val(amount);
+            $('#txtAmount').focus();
+            transfer.GetTransfer_TotalAmount(amount);
+        });
+
+        $('#txtAmount').change(function () {
+            var amount = this.value;
+            transfer.GetTransfer_TotalAmount(amount);
+        });
+    });
+
+    $(document).on('keyup', '#div_transferMoney input,textarea', function () {
+        $('#txt_errorCaptcha').text('');
+        $(this).removeClass('error success');
+        $(this).parent().find('.error-text').text('');
+    });
+
+    $('#div_transferMoney input').keyup(function (event) {
+        var keyCode = event.keyCode || event.which;
+        if (keyCode == 13) {
+            transfer.Transfer_Money();
+        }
+    });
+
+    $('#txt_secureCode').keyup(function (event) {
+        var keyCode = event.keyCode || event.which;
+        if (keyCode == 13) {
+            transfer.ConfirmTransfer();
+        }
+    });
+
+    $('#txtUsername').click(function (e) {
+        let dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
+        setTimeout(function () {
+            dropdown.dropdown('open');
+        }, 100);
+    });
+
+</script>

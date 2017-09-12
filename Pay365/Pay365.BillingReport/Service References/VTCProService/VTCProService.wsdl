@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="VTCProService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataAccess.VTCProAPI.DTO" />
+      <xsd:import schemaLocation="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/VTCApp.AdminService.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IVTCProService_VTCPro_UseCard_MerchantPayment_GetList_InputMessage">
+    <wsdl:part name="parameters" element="tns:VTCPro_UseCard_MerchantPayment_GetList" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_VTCPro_UseCard_MerchantPayment_GetList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VTCPro_UseCard_MerchantPayment_GetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_VTCPro_UseCard_History_GetList_InputMessage">
+    <wsdl:part name="parameters" element="tns:VTCPro_UseCard_History_GetList" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_VTCPro_UseCard_History_GetList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VTCPro_UseCard_History_GetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_VTCPro_ReportGeneral_InputMessage">
+    <wsdl:part name="parameters" element="tns:VTCPro_ReportGeneral" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_VTCPro_ReportGeneral_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VTCPro_ReportGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_VTCPro_ReportCreate_InputMessage">
+    <wsdl:part name="parameters" element="tns:VTCPro_ReportCreate" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_VTCPro_ReportCreate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VTCPro_ReportCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_VTCPro_UseCard_GetInfoBySerial_InputMessage">
+    <wsdl:part name="parameters" element="tns:VTCPro_UseCard_GetInfoBySerial" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_VTCPro_UseCard_GetInfoBySerial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VTCPro_UseCard_GetInfoBySerialResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_CardData_BlockUnblock_InputMessage">
+    <wsdl:part name="parameters" element="tns:CardData_BlockUnblock" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_CardData_BlockUnblock_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CardData_BlockUnblockResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_Merchant_Getlist_InputMessage">
+    <wsdl:part name="parameters" element="tns:Merchant_Getlist" />
+  </wsdl:message>
+  <wsdl:message name="IVTCProService_Merchant_Getlist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Merchant_GetlistResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IVTCProService">
+    <wsdl:operation name="VTCPro_UseCard_MerchantPayment_GetList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVTCProService/VTCPro_UseCard_MerchantPayment_GetList" message="tns:IVTCProService_VTCPro_UseCard_MerchantPayment_GetList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVTCProService/VTCPro_UseCard_MerchantPayment_GetListResponse" message="tns:IVTCProService_VTCPro_UseCard_MerchantPayment_GetList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VTCPro_UseCard_History_GetList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVTCProService/VTCPro_UseCard_History_GetList" message="tns:IVTCProService_VTCPro_UseCard_History_GetList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVTCProService/VTCPro_UseCard_History_GetListResponse" message="tns:IVTCProService_VTCPro_UseCard_History_GetList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VTCPro_ReportGeneral">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVTCProService/VTCPro_ReportGeneral" message="tns:IVTCProService_VTCPro_ReportGeneral_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVTCProService/VTCPro_ReportGeneralResponse" message="tns:IVTCProService_VTCPro_ReportGeneral_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VTCPro_ReportCreate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVTCProService/VTCPro_ReportCreate" message="tns:IVTCProService_VTCPro_ReportCreate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVTCProService/VTCPro_ReportCreateResponse" message="tns:IVTCProService_VTCPro_ReportCreate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VTCPro_UseCard_GetInfoBySerial">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVTCProService/VTCPro_UseCard_GetInfoBySerial" message="tns:IVTCProService_VTCPro_UseCard_GetInfoBySerial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVTCProService/VTCPro_UseCard_GetInfoBySerialResponse" message="tns:IVTCProService_VTCPro_UseCard_GetInfoBySerial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CardData_BlockUnblock">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVTCProService/CardData_BlockUnblock" message="tns:IVTCProService_CardData_BlockUnblock_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVTCProService/CardData_BlockUnblockResponse" message="tns:IVTCProService_CardData_BlockUnblock_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Merchant_Getlist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVTCProService/Merchant_Getlist" message="tns:IVTCProService_Merchant_Getlist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVTCProService/Merchant_GetlistResponse" message="tns:IVTCProService_Merchant_Getlist_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IVTCProService" type="tns:IVTCProService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VTCPro_UseCard_MerchantPayment_GetList">
+      <soap:operation soapAction="http://tempuri.org/IVTCProService/VTCPro_UseCard_MerchantPayment_GetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VTCPro_UseCard_History_GetList">
+      <soap:operation soapAction="http://tempuri.org/IVTCProService/VTCPro_UseCard_History_GetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VTCPro_ReportGeneral">
+      <soap:operation soapAction="http://tempuri.org/IVTCProService/VTCPro_ReportGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VTCPro_ReportCreate">
+      <soap:operation soapAction="http://tempuri.org/IVTCProService/VTCPro_ReportCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VTCPro_UseCard_GetInfoBySerial">
+      <soap:operation soapAction="http://tempuri.org/IVTCProService/VTCPro_UseCard_GetInfoBySerial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardData_BlockUnblock">
+      <soap:operation soapAction="http://tempuri.org/IVTCProService/CardData_BlockUnblock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Merchant_Getlist">
+      <soap:operation soapAction="http://tempuri.org/IVTCProService/Merchant_Getlist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VTCProService">
+    <wsdl:port name="BasicHttpBinding_IVTCProService" binding="tns:BasicHttpBinding_IVTCProService">
+      <soap:address location="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
