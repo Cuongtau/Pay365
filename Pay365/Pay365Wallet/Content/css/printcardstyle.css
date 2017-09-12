@@ -1,0 +1,109 @@
+body {
+    font-family: Arial;
+    font-size: 14pt;
+   
+}
+
+.mathe_bor {
+    background-color: #7852df;
+    border: 1px solid #7852df;
+    border-radius: 6px;
+    float: left;
+    margin: 1px 0px 10px 0;
+    padding: 0px;
+    width: 99%;
+    height: auto;
+}
+
+.mathe {
+    background-color: aliceblue;
+    border-radius: 6px 6px 6px 6px;
+    height: auto;
+    padding: 0 5px;
+    font-family: Arial;
+    color: #000;
+    text-align: center;
+}
+
+.mathe p {
+    color: #000000;
+    font: 12px/18px Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding-bottom: 2px;
+    text-align: center;
+}
+
+.mathe p a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.mathe .logo-365 {
+    width: 100%;
+    text-align: center;
+}
+.red {
+    color: #EE2932;
+}
+
+.macode {
+    color: #000;
+    font: bold 15px/30px Arial,Helvetica,sans-serif;
+    height: 30px;
+    text-align: center;
+}
+
+.macode_ifone {
+    color: #EE2932;
+    font: bold 14px/20px Arial,Helvetica,sans-serif;
+    padding: 3px 0;
+    text-align: center;
+}
+
+.thongtin {
+    font: 11px Arial,Helvetica,sans-serif;
+    text-align: left;
+    margin-top: 28px;
+    line-height: 16px;
+}
+
+.hoadon_bor {
+    background-color: #B5E3F6;
+    border: 1px solid #24AFE9;
+    border-radius: 7px;
+    float: left;
+    /*margin: 0 0 10px 0;
+    padding: 2px;*/
+    width: 90%;
+    min-height: 450px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.hoadon_info {
+    background-color: #FFFFFF;
+    border-radius: 6px 6px 6px 6px;
+    height: auto;
+    min-height: 425px;
+    padding: 0 5px;
+    font-family: Arial;
+    color: #000;
+}
+
+.hoadon_info p {
+    color: #000000;
+    font: 12px/18px Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding-bottom: 2px;
+    text-align: center;
+}
+
+.hoadon_info p a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.hoadon_info .logo-365 {
+    width: 100%;
+    text-align: center;
+}

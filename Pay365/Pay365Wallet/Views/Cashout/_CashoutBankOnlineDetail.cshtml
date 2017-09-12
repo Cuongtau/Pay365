@@ -1,0 +1,228 @@
+﻿<section class="page-section">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card">
+                <div id="cashout_bank_info" class="card-title">
+                    <span class="bank-icon">
+                        <img alt="">
+                    </span>
+                    <span id="cashout_bank_name"></span>
+                    <input type="hidden" id="cashout_bankcode" />
+                </div>
+                <input type="hidden" id="cashout_bank_serviceid" />
+
+                <div id="select_cashout_type" class="form-data" style="padding-left: 1.3rem; padding-top: 1rem;">
+                    <span class="input-radio">
+                        <input id="i_cashout_card" value="i_cashout_card" name="g_cashout_type" class="with-gap" type="radio" checked="checked">
+                        <label for="i_cashout_card">@Resources.Cashout.String7</label>
+                    </span>
+                    <span class="input-radio">
+                        <input id="i_cashout_account" value="i_cashout_account" name="g_cashout_type" class="with-gap" type="radio">
+                        <label for="i_cashout_account">@Resources.Cashout.String6</label>
+                    </span>
+
+                </div>
+
+                <div id="cashoutStep1">
+                    <div id="cashout_online_content" class="card-content">
+                        <div class="form-group input-field input-dropdown">
+                            <i class="material-icons prefix">credit_card</i>
+                            <div class="input-dropdown-content">
+                                <a class='dropdown-button dropdown-input' href='javascript:;' data-activates='dl_bank'><i class="material-icons">keyboard_arrow_down</i></a>
+                                <ul id='dl_bank' class='dropdown-content'></ul>
+                            </div>
+                            <input autocomplete="off" maxlength="20" id="bank_account" onblur="cashout.CheckBankAccount(this);" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);" type="text">
+                            <label for="bank_account">@Resources.Cashout.String17</label>
+                            <span class="error-text"></span>
+                        </div>
+                        <div class="form-group input-field">
+                            <i class="material-icons prefix">monetization_on</i>
+                            <input maxlength="20" onblur="cashout.CalculateTotalAmount('cashout_online_content');" id="cashout_amount" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.formatCurrency(this,event);" type="text" class="autocomplete">
+                            <label for="cashout_amount">@Resources.Cashout.String11</label>
+                            <span class="error-text"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <div id="fast_cashout" data-method="onl" class="prices">
+                                <a href="javascript:;" data-amount="50000" class="price-flat">50.000đ</a>
+                                <a href="javascript:;" data-amount="100000" class="price-flat">100.000đ</a>
+                                <a href="javascript:;" data-amount="200000" class="price-flat">200.000đ</a>
+                                <a href="javascript:;" data-amount="500000" class="price-flat">500.000đ</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group input-field">
+                            <i class="material-icons prefix">comment</i>
+                            <textarea maxlength="100" id="txt_reason" onblur="CharacterOnly(this);" class="materialize-textarea" style="height: 45px;"></textarea>
+                            <label for="txt_reason">@Resources.Cashout.String12</label>
+                            <span style="padding-top: 3px" class="error-text"></span>
+                        </div>
+
+                        <div class="form-group input-field captcha">
+                            <i class="material-icons prefix">sms</i>
+                            <input class="custom-captcha" maxlength="4" id="cashout_captcha" type="text">
+                            <label for="cashout_captcha">@Resources.Cashout.String13</label>
+                            <input id="inputToken" type="hidden" />
+                            <div class="captcha-image">
+                                <img id="imgCaptcha" width="100" height="35">
+                                <i onclick="utils.refreshCaptcha('cashout_online_content', 'payment');" class="btn-reload material-icons">refresh</i>
+                            </div>
+                            <span class="error-text" style="float: left;"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row padding-left-row">
+                                <input type="checkbox" id="save_bank">
+                                <label for="save_bank">@Resources.Cashout.String14</label>
+                            </div>
+                        </div>
+
+                        <div class="input-field">
+                            <div class="row padding-left-row">
+                                <span class="label label-danger">@Resources.Cashout.String15: <span id="cashout_fee_rate">0đ</span></span>
+                            </div>
+                        </div>
+
+                        <div class="input-field">
+                            <div class="row padding-left-row">
+                                <div class="col-sm-6">@Resources.Cashout.String16: <strong class="primary" id="cashout_total_amount">0đ</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-button">
+                        <a id="bt_cashout_confirm" onclick="cashout.ConfirmCashoutOnline();" href="javascript:;" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Cashout.String18<i class="material-icons">chevron_right</i></a>
+                    </div>
+                </div>
+
+                <div id="cashoutStep2" style="display: none;">
+                    <div class="card-content">
+                        <div class="form-group input-field">
+                            <table class="table-data">
+                                <tr>
+                                    <td width="40%">@Resources.Cashout.String19:</td>
+                                    <td id="bank_account_2"></td>
+                                </tr>
+                                <tr>
+                                    <td width="40%">@Resources.Cashout.String12:</td>
+                                    <td id="reason_2"></td>
+                                </tr>
+                                <tr>
+                                    <td width="40%">@Resources.Cashout.String22:</td>
+                                    <td><span id="amount_2" class="danger"></span></td>
+                                </tr>
+                                <tr>
+                                    <td width="40%">@Resources.Cashout.String23:</td>
+                                    <td><span id="fee_2" class="danger"></span></td>
+                                </tr>
+                                <tr>
+                                    <td width="40%">@Resources.Cashout.String24:</td>
+                                    <td><span id="total_amount_2" class="danger"></span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p id="p1_securecode" style="margin-left: 5px;"></p>
+                        <div class="form-group input-field">
+                            <i class="material-icons prefix">sms</i>
+                            <a id="resend_secure_code" onclick="transaction_history.ResendOTPEmail(this);" href="javascript:;" class="secondary btn-input-right waves-effect waves-light">@Resources.Cashout.String25</a>
+                            <input maxlength="6" id="otp_2" onkeypress="utils.forceNumber(this, event);" type="text">
+                            <label for="otp_2">@Resources.Transfer.OTP</label>
+                            <span class="error-text"></span>
+                        </div>
+                        <p id="p2_securecode" style="margin-left: 5px; display: none;">@Resources.Cashout.String26: <span class="secondary">PAY365 OTP @Resources.Cashout.String27 8095</span>&nbsp;@Resources.Cashout.String28</p>
+                    </div>
+
+                    <div class="card-button">
+                        <a href="javascript:;" onclick="cashout.BackStep(1);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Cashout.String29</a>
+                        <a href="javascript:;" id="btConfirmStep2" onclick="cashout.ConfirmCashoutStep2();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Cashout.String18<i class="material-icons">chevron_right</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-title" style="padding-bottom: 15px; padding-top: 35px">
+                    @Resources.Cashout.String30
+                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)history" class="more waves-effect waves-primary"><i class="material-icons">keyboard_arrow_right</i></a>
+                </div>
+                <ul id="cashout_log_recent_t" class="collapsible-custom popout warning" data-collapse-number="1" data-collapsible="accordion"></ul>
+
+                <script id="cashout_log_recent_tmpl" type="text/x-jquery-tmpl">
+                    {{each listBankRecent}}
+                    {{if ($value.JsonObject.ServiceID == 9)}}
+                    <li>
+                        <div class="collapsible-header">
+                            <div class="trans-head">
+                                <div class="icon" style="line-height: initial;"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/nap-tien.svg" alt=""></div>
+                                <div class="info">
+                                    <p class="success"><strong>${utils.formatMoney($value.JsonObject.Amount)}<sup>đ</sup></strong></p>
+                                    <p>${utils.formDateTime($value.JsonObject.CreateTime)}</p>
+                                </div>
+                                <div class="content">
+                                    <p>
+                                        <strong>
+                                            @Resources.Cashout.String35
+                                        </strong>
+                                    </p>
+                                    <p>@Resources.Cashout.String31: ${common.getbankName($value.JsonObject.BankCode)}</p>
+                                </div>
+                                <i class="material-icons up">keyboard_arrow_up</i>
+                            </div>
+                        </div>
+                    </li>
+                    {{/if}}
+                    {{/each}}
+                </script>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    $(function () {
+        cashout.GetListCashoutRecent(false, true, 'cashout_log_recent_t');
+        cashout.GetBankRemember(2, $('#cashout_bankcode').val());
+        $('#cashout_online_content #fast_cashout').on('click', 'a', function () {
+                var $formid = $('#cashout_online_content');
+                var value = $(this).attr('data-amount');
+                $formid.find('#cashout_amount').val(utils.formatMoney(value));
+                $formid.find('#cashout_amount').focus();
+                cashout.CalculateTotalAmount('cashout_online_content');
+        });
+
+        $(document).on('change', 'input[type=radio][name=g_cashout_type]', function () {
+            if (this.value === 'i_cashout_account')
+                $('#cashout_online_content').find('#bank_account').siblings('label').text('@Html.Raw(Resources.Cashout.String33)');
+            else
+                $('#cashout_online_content').find('#bank_account').siblings('label').text('@Html.Raw(Resources.Cashout.String17)'); 
+        });
+
+        $('#cashoutStep1').on('keyup', 'input', function (event) {
+            if (!$("#cashoutStep1").is(":visible")) {
+                return;
+            }
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                cashout.ConfirmCashout();
+            }
+            else
+                $(this).removeClass('error success').parent().find('.error-text').text('');
+        });
+
+        $('#cashoutStep2').on('keyup', 'input', function (event) {
+            if (!$("#cashoutStep2").is(":visible")) {
+                return;
+            }
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                cashout.ConfirmCashoutStep2();
+            }
+            else
+                $(this).removeClass('error success').parent().find('.error-text').text('');
+        });
+
+    });
+    function CharacterOnly(t) {
+        if (!t.value) return;
+        t.value = utils.convertUTFStr(t.value, ' ').trim();
+    }
+</script>

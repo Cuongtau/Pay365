@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8E6E866-6AC5-4722-B993-D6CF79EAE72B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess.ReportAPI</RootNamespace>
+    <AssemblyName>DataAccess.ReportAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DbHelpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DbHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAOImpl\ErrorLogDAOImpl.cs" />
+    <Compile Include="DAOImpl\FunctionsDAOImpl.cs" />
+    <Compile Include="DAOImpl\ReportDataDAOImpl.cs" />
+    <Compile Include="DAOImpl\ReportDBDAOImpl.cs" />
+    <Compile Include="DAOImpl\UserRoleDAOImpl.cs" />
+    <Compile Include="DAOImpl\UsersDAOImpl.cs" />
+    <Compile Include="DAOImpl\UsersLogDAOImpl.cs" />
+    <Compile Include="DAO\IErrorLogDAO.cs" />
+    <Compile Include="DAO\IFucntionsDAO.cs" />
+    <Compile Include="DAO\IReportDataDAO.cs" />
+    <Compile Include="DAO\IReportDBDAO.cs" />
+    <Compile Include="DAO\IUserRoleDAO.cs" />
+    <Compile Include="DAO\IUsersDAO.cs" />
+    <Compile Include="DAO\IUsersLogDAO.cs" />
+    <Compile Include="DTO\AccountLogData.cs" />
+    <Compile Include="DTO\AccountReport.cs" />
+    <Compile Include="DTO\EcomBanking.cs" />
+    <Compile Include="DTO\ErrorLog.cs" />
+    <Compile Include="DTO\Functions.cs" />
+    <Compile Include="DTO\MatchMoveReport.cs" />
+    <Compile Include="DTO\MerchantReport.cs" />
+    <Compile Include="DTO\SystemReport.cs" />
+    <Compile Include="DTO\TransactionLogData.cs" />
+    <Compile Include="DTO\TransactionReport.cs" />
+    <Compile Include="DTO\Users.cs" />
+    <Compile Include="DTO\UsersLog.cs" />
+    <Compile Include="Factory\AbstractDAOFactory.cs" />
+    <Compile Include="Factory\ADODAOFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pay365.Utils\Pay365.Utils.csproj">
+      <Project>{3b96f267-7c5b-41f6-933a-ef49f15f5076}</Project>
+      <Name>Pay365.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

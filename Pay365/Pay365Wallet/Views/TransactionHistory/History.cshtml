@@ -1,0 +1,875 @@
+﻿
+@{
+    //ViewBag.Title = "lịch sử giao dịch";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var fromDate = DateTime.Now.AddDays(-7);
+    var todate = DateTime.Now;
+}
+
+<script src="@Html.Raw(Pay365.Utils.Config.Domain)Scripts/libs/date-time/moment.min.js"></script>
+<link href="@Html.Raw(Pay365.Utils.Config.Domain)Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="@Html.Raw(Pay365.Utils.Config.Domain)Scripts/libs/date-time/bootstrap-datetimepicker.js"></script>
+
+<main class="main">
+    <section class="main-top">
+        <div class="content">
+            <p class="page-title">@Resources.Common.btn_history</p>
+            <div class="pay-breadcrumbs">
+                <a href="/thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
+                <a href="/lich-su-giao-dich" class="breadcrumb waves-effect waves-light">@Resources.Common.btn_history</a>
+            </div>
+        </div>
+    </section>
+    <div class="dashboard">
+        <section id="main_history" class="security-section">
+            <div class="page-head">
+                <div class="transaction-filter">
+                    <div class="form-group input-field">
+                        <input id="fromDate" value="@fromDate.ToString("dd/MM/yyyy")" type="text" class="datepicker">
+                        <label for="fromDate">@Resources.Common.String27</label>
+                        <span class="error-text"></span>
+                    </div>
+                    <div class="form-group input-field">
+                        <input id="toDate" value="@todate.ToString("dd/MM/yyyy")" type="text" class="datepicker">
+                        <label for="toDate">@Resources.Common.String28</label>
+                        <span class="error-text"></span>
+                    </div>
+                    <div id="multiple_select_service" class="form-group input-field" style="width: 250px">
+                        <select multiple id="ddlService"></select>
+                        <span class="error-text"></span>
+                    </div>
+                    <div class="form-group input-field">
+                        <a class="btn waves-effect waves-light" onclick="transaction_history.GetListHistory();">@Resources.Common.btn_SearchHistory</a>
+                    </div>
+                </div>
+                <div id="history_tag" class="chips">
+                </div>
+                <div class="pages-buttons">
+                    <a id="export_excel" onclick="transaction_history.ExportExcel();" href="javascript:;" class="btn btn-success waves-effect waves-light">@Resources.Common.String29</a>
+                    <div class="pages" id="divpager">
+                    </div>
+                </div>
+            </div>
+            <div id="content_data" class="page-content">
+                <div class="row">
+                    <div class="transaction-column">
+                        <div id="list_history_success_t">
+                        </div>
+                    </div>
+                    <script id="list_history_success_tmpl" type="text/x-jquery-tmpl">
+                        <p class="collapsible-block-title">@Resources.Home.lbl_success</p>
+                        <ul class="collapsible popout success" data-collapse-number="2" data-collapsible="accordion">
+                            {{each listSuccessInitPage}}
+                            {{if ($value.ServiceID == 100003)}}
+                            <li>
+                                <div class="collapsible-header">
+                                    <div class="trans-head">
+                                        <div class="icon">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/nap-tien.svg" alt="">
+                                        </div>
+                                        <div class="info">
+                                            <p class="success">
+                                                <strong>
+                                                    ${utils.formatMoney($value.GrandAmount)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+                                            <p>${utils.formDateTime($value.CreatedTime, true)}</p>
+                                        </div>
+                                        <div class="content">
+                                            <p>${$value.ServiceName}</p>
+                                        </div>
+                                        <i class="material-icons up">keyboard_arrow_up</i>
+                                    </div>
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="trans-body-content">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransactionID:</td>
+                                                            <td>${$value.TransID}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransTime:</td>
+                                                            <td>${utils.formDateTime($value.CreatedTime)}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.String16:</td>
+                                                            <td>${$value.ServiceName}</td>
+                                                        </tr>
+                                                        {{if $value.Description != null && $value.Description != ""}}
+                                                        <tr>
+                                                            <td>@Resources.Common.lbl_Description:</td>
+                                                            <td>${$value.Description}</td>
+                                                        </tr>
+                                                        {{/if}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value7:</td>
+                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>@Resources.Payment.value9:</td>
+                                                            <td>${utils.formatMoney($value.Fee)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value10:</td>
+                                                            <td>${utils.formatMoney($value.PartnerMoney)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value12:</td>
+                                                            <td>@Resources.Payment.status1</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {{else ($value.ServiceID == 240001 || $value.ServiceID == 140001) }}
+                            <li>
+                                <div class="collapsible-header">
+                                    <div class="trans-head">
+                                        <div class="icon">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/chuyen-tien.svg" alt="">
+                                        </div>
+                                        <div class="info">
+                                            {{if $value.Amount > 0}}
+                                            <p class="success">
+                                                {{else}}
+                                            <p class="danger">
+                                                {{/if}}
+                                                <strong>
+                                                    ${utils.formatMoney($value.Amount)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+                                            <p>${utils.formDateTime($value.CreatedTime, true)}</p>
+                                        </div>
+                                        <div class="content">
+                                            <p>${$value.ServiceName}</p>
+                                            {{if $value.ServiceID == 240001 }}
+                                            <p>@Resources.Common.lbl_ReceiveAcc: ${$value.RelatedUsername}</p>
+                                            {{else}}
+                                            <p>@Resources.Common.lbl_TransAcc: ${$value.RelatedUsername}</p>
+                                            {{/if}}
+                                        </div>
+                                        <i class="material-icons up">keyboard_arrow_up</i>
+                                    </div>
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="trans-body-content">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransactionID:</td>
+                                                            <td>${$value.TransID}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransTime:</td>
+                                                            <td>${utils.formDateTime($value.CreatedTime)}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.String16:</td>
+                                                            <td>${$value.ServiceName}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value7:</td>
+                                                            <td>${utils.formatMoney($value.PartnerMoney)}<sup>VNĐ</sup></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>@Resources.Payment.value9:</td>
+                                                            <td>${utils.formatMoney($value.Fee)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value10:</td>
+                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value12:</td>
+                                                            <td>@Resources.Payment.status1</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {{else ($value.ServiceID == 230001 || $value.ServiceID == 230002) }}
+                            <li>
+                                <div class="collapsible-header">
+                                    <div class="trans-head">
+                                        <div class="icon">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/rut-tien.svg" alt="">
+                                        </div>
+                                        <div class="info">
+                                            <p class="danger">
+                                                <strong>
+                                                    ${utils.formatMoney($value.GrandAmount*-1)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+                                            <p>${utils.formDateTime($value.CreatedTime, true)}</p>
+                                        </div>
+                                        <div class="content">
+                                            <p>${$value.ServiceName}</p>
+                                            {{if $value.BankCashout != null }}
+                                            <p>@Resources.Common.lbl_bank: ${$value.BankCashout}</p>
+                                            {{/if}}
+                                        </div>
+                                        <i class="material-icons up">keyboard_arrow_up</i>
+                                    </div>
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="trans-body-content">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransactionID:</td>
+                                                            <td>${$value.TransID}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransTime:</td>
+                                                            <td>${utils.formDateTime($value.CreatedTime)}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.String16:</td>
+                                                            <td>${$value.ServiceName}</td>
+                                                        </tr>
+                                                        {{if $value.BankCashout != null}}
+                                                        <tr>
+                                                            <td>@Resources.Common.lbl_bank:</td>
+                                                            <td>${$value.BankCashout}</td>
+                                                        </tr>
+                                                        {{/if}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value7:</td>
+                                                            <td>${utils.formatMoney($value.PartnerMoney)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value9:</td>
+                                                            <td>${utils.formatMoney($value.Fee)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value10:</td>
+                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value12:</td>
+                                                            <td>@Resources.Payment.status1</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {{else}}
+                            <li>
+                                <div class="collapsible-header">
+                                    <div class="trans-head">
+                                        <div class="icon">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/thanh-toan.svg" alt="">
+                                        </div>
+                                        <div class="info">
+                                            <p class="danger">
+                                                <strong>
+                                                    ${utils.formatMoney($value.GrandAmount*-1)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+                                            <p>${utils.formDateTime($value.CreatedTime, true)}</p>
+                                        </div>
+                                        <div class="content">
+                                            <p>${$value.ServiceName}</p>
+                                            {{if $value.ServiceID == 200001}}
+                                            <p>@Resources.Payment.String11: ${Math.abs($value.Amount/$value.ProductValue)}</p>
+                                            {{else ($value.ServiceID == 210001 || $value.ServiceID == 210002) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
+                                            <p>@Resources.Payment.value13: ${$value.PartnerUsername}</p>
+                                            {{else ($value.ServiceID == 220001 || $value.ServiceID == 220002 ||  $value.ServiceID == 220003) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
+                                            <p>@Resources.Payment.String8: ${$value.PartnerUsername}</p>
+                                            {{/if}}
+                                        </div>
+                                        <i class="material-icons up">keyboard_arrow_up</i>
+                                    </div>
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="trans-body-content">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransactionID:</td>
+                                                            <td>${$value.TransID}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransTime:</td>
+                                                            <td>${utils.formDateTime($value.CreatedTime)}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.String16:</td>
+                                                            <td>${$value.ServiceName}</td>
+                                                        </tr>
+                                                        {{if $value.Description != null && $value.Description != ""}}
+                                                        <tr>
+                                                            <td>@Resources.Common.lbl_Description:</td>
+                                                            <td>${$value.Description}</td>
+                                                        </tr>
+                                                        {{/if}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value7:</td>
+                                                            <td>${utils.formatMoney($value.PartnerMoney)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value8:</td>
+                                                            <td>${utils.formatMoney($value.Discount)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> @Resources.Payment.value10:</td>
+                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value11:</td>
+                                                            <td>@Resources.Common.wallet_title</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                        {{if $value.ServiceID == common.serviceConfig.BUYCARD}}
+                                        <div id="show_step1" class="trans-body-button">
+                                            <a href="javascript:;" data-orderid="${$value.ReferenceID}" data-transid="${$value.TransID}" onclick="transaction_history.ShowCardInfo(1, this);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Common.btn_ShowCard</a>
+                                        </div>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </li>
+                            {{/if}}
+                            {{/each}}
+                        </ul>
+                    </script>
+
+                    <div class="transaction-column">
+                        <div id="list_history_pending_t">
+                        </div>
+                    </div>
+                    <script id="list_history_pending_tmpl" type="text/x-jquery-tmpl">
+                        <p class="collapsible-block-title">@Resources.Common.String25</p>
+                        <ul class="collapsible popout warning" data-collapse-number="1" data-collapsible="accordion">
+                            {{each listPendingInitPage}}
+                            {{if ($value.ServiceID == 100003)}}
+                            <li>
+                                <div class="collapsible-header">
+                                    <div class="trans-head">
+                                        <div class="icon">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/nap-tien.svg" alt="">
+                                        </div>
+                                        <div class="info">
+                                            <p class="success">
+                                                <strong>
+                                                    ${utils.formatMoney($value.GrandAmount)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+                                            <p>${utils.formDateTime($value.CreatedTime, true)}</p>
+                                        </div>
+                                        <div class="content">
+                                            <p>${$value.ServiceName}</p>
+                                        </div>
+                                        <i class="material-icons up">keyboard_arrow_up</i>
+                                    </div>
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="trans-body-content">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransactionID:</td>
+                                                            <td>${$value.TransID}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransTime:</td>
+                                                            <td>${utils.formDateTime($value.CreatedTime)}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.String16:</td>
+                                                            <td>${$value.ServiceName}</td>
+                                                        </tr>
+                                                        {{if $value.Description != null && $value.Description != ""}}
+                                                        <tr>
+                                                            <td>@Resources.Common.lbl_Description:</td>
+                                                            <td>${$value.Description}</td>
+                                                        </tr>
+                                                        {{/if}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value7:</td>
+                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>@Resources.Payment.value9:</td>
+                                                            <td>${utils.formatMoney($value.Fee)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value10:</td>
+                                                            <td>${utils.formatMoney($value.PartnerMoney)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value12:</td>
+                                                            <td>@Resources.Payment.status1</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {{else ($value.ServiceID == 240001 || $value.ServiceID == 140001) }}
+                            <li>
+                                <div class="collapsible-header">
+                                    <div class="trans-head">
+                                        <div class="icon">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/chuyen-tien.svg" alt="">
+                                        </div>
+                                        <div class="info">
+                                            {{if $value.Amount > 0}}
+                                            <p class="success">
+                                                {{else}}
+                                            <p class="danger">
+                                                {{/if}}
+                                                <strong>
+                                                    ${utils.formatMoney($value.Amount)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+                                            <p>${utils.formDateTime($value.CreatedTime, true)}</p>
+                                        </div>
+                                        <div class="content">
+                                            <p>${$value.ServiceName}</p>
+                                            {{if $value.ServiceID == 240001 }}
+                                            <p>@Resources.Common.lbl_ReceiveAcc: ${$value.RelatedUsername}</p>
+                                            {{else}}
+                                            <p>@Resources.Common.lbl_TransAcc: ${$value.RelatedUsername}</p>
+                                            {{/if}}
+                                        </div>
+                                        <i class="material-icons up">keyboard_arrow_up</i>
+                                    </div>
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="trans-body-content">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransactionID:</td>
+                                                            <td>${$value.TransID}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransTime:</td>
+                                                            <td>${utils.formDateTime($value.CreatedTime)}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.String16:</td>
+                                                            <td>${$value.ServiceName}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value7:</td>
+                                                            <td>${utils.formatMoney($value.PartnerMoney)}<sup>VNĐ</sup></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>@Resources.Payment.value9:</td>
+                                                            <td>${utils.formatMoney($value.Fee)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value10:</td>
+                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value12:</td>
+                                                            <td>@Resources.Payment.status0</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {{else ($value.ServiceID == 230001 || $value.ServiceID == 230002) }}
+                            <li>
+                                <div class="collapsible-header">
+                                    <div class="trans-head">
+                                        <div class="icon">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/rut-tien.svg" alt="">
+                                        </div>
+                                        <div class="info">
+                                            <p class="danger">
+                                                <strong>
+                                                    ${utils.formatMoney($value.GrandAmount*-1)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+
+                                            <p>${utils.formDateTime($value.CreatedTime, true)}</p>
+                                        </div>
+                                        <div class="content">
+                                            <p>${$value.ServiceName}</p>
+                                            {{if $value.BankCashout != null }}
+                                            <p>@Resources.Common.lbl_bank: ${$value.BankCashout}</p>
+                                            {{/if}}
+                                        </div>
+                                        <i class="material-icons up">keyboard_arrow_up</i>
+                                    </div>
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="trans-body-content">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransactionID:</td>
+                                                            <td>${$value.TransID}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransTime:</td>
+                                                            <td>${utils.formDateTime($value.CreatedTime)}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.String16:</td>
+                                                            <td>${$value.ServiceName}</td>
+                                                        </tr>
+                                                        {{if $value.BankCashout != null}}
+                                                        <tr>
+                                                            <td>@Resources.Common.lbl_bank:</td>
+                                                            <td>${$value.BankCashout}</td>
+                                                        </tr>
+                                                        {{/if}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value7:</td>
+                                                            <td>${utils.formatMoney($value.PartnerMoney)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value9:</td>
+                                                            <td>${utils.formatMoney($value.Fee)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value10:</td>
+                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value12:</td>
+                                                            <td>@Resources.Payment.status1</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {{else}}
+                            <li>
+                                <div class="collapsible-header">
+                                    <div class="trans-head">
+                                        <div class="icon">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/thanh-toan.svg" alt="">
+                                        </div>
+                                        <div class="info">
+                                            <p class="danger">
+                                                <strong>
+                                                    ${utils.formatMoney($value.GrandAmount*-1)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+                                            <p>${utils.formDateTime($value.CreatedTime, true)}</p>
+                                        </div>
+                                        <div class="content">
+                                            <p>${$value.ServiceName}</p>
+                                            {{if $value.ServiceID == 200001}}
+                                            <p>@Resources.Payment.String11: ${Math.abs($value.Amount/$value.ProductValue)}</p>
+                                            {{else ($value.ServiceID == 210001 || $value.ServiceID == 210002) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
+                                            <p>@Resources.Payment.value13: ${$value.PartnerUsername}</p>
+                                            {{else ($value.ServiceID == 220001 || $value.ServiceID == 220002 ||  $value.ServiceID == 220003) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
+                                            <p>@Resources.Payment.String8: ${$value.PartnerUsername}</p>
+                                            {{/if}}
+                                        </div>
+                                        <i class="material-icons up">keyboard_arrow_up</i>
+                                    </div>
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="trans-body-content">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransactionID:</td>
+                                                            <td>${$value.TransID}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.TransTime:</td>
+                                                            <td>${utils.formDateTime($value.CreatedTime)}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Common.String16:</td>
+                                                            <td>${$value.ServiceName}</td>
+                                                        </tr>
+                                                        {{if $value.Description != null && $value.Description != ""}}
+                                                        <tr>
+                                                            <td>@Resources.Common.lbl_Description:</td>
+                                                            <td>${$value.Description}</td>
+                                                        </tr>
+                                                        {{/if}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <table class="table-data">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value7:</td>
+                                                            <td>${utils.formatMoney($value.PartnerMoney)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value8:</td>
+                                                            <td>${utils.formatMoney($value.Discount)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> @Resources.Payment.value10:</td>
+                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>@Resources.Payment.value11:</td>
+                                                            <td>@Resources.Common.wallet_title</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        {{if $value.ServiceID == common.serviceConfig.BUYCARD}}
+                                        <div id="show_step1" class="trans-body-button">
+                                            <a href="javascript:;" data-orderid="${$value.ReferenceID}" data-transid="${$value.TransID}" onclick="transaction_history.ShowCardInfo(1, this);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Common.btn_ShowCard</a>
+                                        </div>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </li>
+                            {{/if}}
+                            {{/each}}
+                        </ul>
+                    </script>
+                </div>
+            </div>
+            <div id="content_empty" class="page-content" style="display: none;">
+                <div class="empty">
+                    <i class="material-icons">access_time</i>
+                    <p>@Resources.Common.String30</p>
+                </div>
+            </div>
+        </section>
+
+        <div id="view_card_detail" class="card card-single" style="display: none;">
+            <div class="card-title">@Resources.Common.lbl_showNote <t></t></div>
+            <div class="card-content">
+                <div id="show_step2" class="row">
+                    <p class="view-card-2" style="margin-left: 5rem; color:#46404b; display: none;"></p>
+                    <div class="form-group input-field" style="margin: 10px 15px 10px 30px;">
+                        <i class="material-icons prefix">sms</i>
+                        <a href="javascript:;" id="btnResendOTP" onclick="transaction_history.Resend_OTP();" class="btn btn-sm btn-secondary btn-input-right waves-effect waves-light">@Resources.Account.Resend</a>
+                        <input type="text" id="input_otp" maxlength="6" class="otp-focus" data-length="6">
+                        <label for="input_otp">@Resources.Common.enterOTP</label>
+                        <span class="error-text" style="margin-left: 3rem;"></span>
+                    </div>
+                    <p class="view-card-sms-2" style="margin-left: 5rem; color:#46404b; display: none;">@Html.Raw(Resources.Common.Noti_1)</p>
+                    <div class="card-button">
+                        <a href="javascript:;" onclick="transaction_history.HideInfo();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
+                        <a href="javascript:;" id="bt_Confirm" data-orderid="" onclick="transaction_history.ShowCardInfo(2, this);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Common.btn_confirm <i class="material-icons">chevron_right</i></a>
+                    </div>
+                </div>
+                <div id="table_card" class="row" style="display: none;">
+                    <div class="row">
+                        <div class="pull-left">
+                            <div class="transaction-order">
+                                <span class="txt">@Resources.Common.lbl_showFrom</span>
+                                <input id="view_from" type="text" onkeyup="transaction_history.ShowCardBetween(this);" onkeypress="utils.forceNumber(this, event);" maxlength="2" placeholder="1">
+                                <span class="txt">@Resources.Common.lbl_showTo</span>
+                                <input id="view_to" type="text" onkeyup="transaction_history.ShowCardBetween(this);" onkeypress="utils.forceNumber(this, event);" maxlength="2" placeholder="99">
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <div class="transaction-print">
+                                <a href="javascript:;" onclick="transaction_history.ButtonPrint(1)" class="btn btn-primary">@Resources.Common.btn_print</a>
+                                <a href="javascript:;" onclick="transaction_history.ButtonPrint(2)" class="btn btn-primary">@Resources.Common.btn_print1</a>
+                                <a href="javascript:;" id="export_card_excel" onclick="transaction_history.ExportCardExcel();" class="btn btn-primary">@Resources.Common.btn_excel</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="table-card-transaction" class="table table-card table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th align="center">
+                                        <input type="checkbox" class="filled-in" id="take_all">
+                                        <label for="take_all" data-position="bottom" data-delay="0" data-tooltip="@Resources.Common.lbl_chooseAll">
+                                        </label>
+                                    </th>
+                                    <th align="center">@Resources.Payment.table1</th>
+                                    <th align="center">@Resources.Payment.table2</th>
+                                    <th align="center">@Resources.Payment.table3</th>
+                                    <th align="center">@Resources.Payment.table4</th>
+                                    <th align="center">@Resources.Payment.table5</th>
+                                    <th align="center">@Resources.Payment.table6</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="pull-left">
+                            <a href="javascript:;" data-action="view_selected" id="btShowCardSelected" onclick="transaction_history.ShowCardSelected(this);" class="modal-action modal-close waves-effect waves-light btn btn-default">@Resources.Common.SeeCard</a>
+                        </div>
+                        <div class="pull-right">
+                            <a href="javascript:;" data-action="view_selected" onclick="$('#table-card-transaction tbody, #divpager_2').html(''); $('#view_card_detail, #table_card').hide(); $('#main_history').show();" class="modal-action modal-close waves-effect waves-light btn btn-default">@Resources.Payment.btn_back</a>
+                        </div>
+                        <div id="divpager_2" class="pagination">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datepicker').pickadate({
+            selectMonths: true,
+            selectYears: 180,
+            closeOnSelect: true,
+            format: 'dd/mm/yyyy',
+            monthsFull: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+            monthsShort: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+            max: true
+        });
+
+        transaction_history.GetServices();
+        transaction_history.GetListHistory();
+
+        $('#ddlService').on('change', function () {
+            var service = $('#ddlService').val();
+            $('#history_tag').html('');
+            $.each(service, function (key, val) {
+                var tagName = $("#ddlService option[value='" + val + "']").text();
+                $('#history_tag').append('<div data-tagservice="' + val + '" class="chip">' + tagName + '<i class="close material-icons">close</i></div>');
+            });
+
+        });
+
+        $('#divpager').on('click', '.page-item', function () {
+            if ($(this).hasClass('active')) return;
+            $('.page-item').removeClass('active');
+            $(this).addClass('active');
+            var currentPage = parseInt($(this).text());
+            transaction_history.LoadPage(currentPage, this);
+        });
+
+        $('#divpager').on('click', '#previous', function () {
+            var activeIndex = $('#divpager .page-item.active').index();
+            //Neu la page 1 thi ko xu ly
+            if (activeIndex === 1) return;
+            $('#divpager .page-item').eq(activeIndex - 2).click();
+        });
+
+        $('#divpager').on('click', '#next', function () {
+            var activeIndex = $('#divpager .page-item.active').index();
+            //Neu la page cuoi cung thi ko xu ly
+            if (activeIndex === transaction_history.listHistory.totalPage) return;
+            $('#divpager .page-item').eq(activeIndex).click();
+        });
+
+        $('#history_tag').on('click', '.close', function () {
+            var tagServiceID = $(this).parent('.chip').data('tagservice');
+            var $select = $('#ddlService');
+            $select.find('option[value="' + tagServiceID + '"]').prop('selected', false);
+            $select.material_select();
+        });
+
+        $("#take_all").on('click', function () {
+            $('input.checkbox_i').prop('checked', this.checked);
+        });
+
+        $('#view_card_detail #show_step2').on('click',
+            'input',
+            function () {
+                if (!$('#show_step2').is(":visible")) return;
+                transaction_history.ShowCardInfo(2, $('#show_step2 #bt_Confirm'));
+            });
+
+    });
+</script>
+
+<style type="text/css">
+    #list_history_pending_t td:first-child, #list_history_success_t td:first-child {
+        width: 40%;
+    }
+</style>

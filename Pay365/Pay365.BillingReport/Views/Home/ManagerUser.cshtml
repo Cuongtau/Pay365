@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "ManagerUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model DataAccess.ReportAPI.DTO.UserFunction
+
+<input type="text" id="FunctionIDHiddent" value="@ViewBag.FunctionID" style="display: none"/>
+<div class="portlet box green-meadow">
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="glyphicon glyphicon-user"></span>Tìm Kiếm Danh Sách Người Dùng
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+            @*<a href="#portlet-config" data-toggle="modal" class="config">
+            </a>*@
+            <a href="javascript:;" class="reload">
+            </a>
+            <a href="javascript:;" class="remove">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body flip-scroll">
+        <div class="row" id="form">
+            <div class="col-md-12">
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="control-label"><i class="fa fa-flag"></i>Trạng thái</label>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <select class="form-control" id="ddlActive">
+                            <option value="-1">Lấy tất cả</option>
+                            <option value="1">Hoạt Động</option>
+                            <option value="0">Không Hoạt Động</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-4 submit" style="text-align:center">
+                    <button type="button" id="btnCreate" class="btn green-meadow"><i class="fa fa-user-plus"></i>Thêm User</button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <div id="dgrid" class="dataTables_wrapper form-inline" role="grid">
+                <div id="UsersPartial">
+                    @Html.Action("ManagerUserPartial", "Home")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#form").keypress(function (event) {
+            if (event.which == 13) {
+                //$("#btnSearch").click();
+            }
+        });
+        //$("#btnSearch").click(function () {
+        //    GetList();
+        //});
+        $("#ddlActive").change(function () {
+            GetList();
+        });
+        $("#btnCreate").click(function () {
+            ViewUserData(0);
+        });
+    });
+    function GetList() {
+        var parameters = {
+            isActive: $('#ddlActive :selected').val(),
+        };
+        Utils.Loading();
+        var urlRequestAns = Utils.UrlRoot + "Home/ManagerUserPartial";
+        $.ajax({
+            type: 'GET',
+            url: urlRequestAns,
+            data: parameters,
+            success: function (data) {
+                $("#UsersPartial").html(data);
+                Utils.UnLoading();
+            },
+            error: function () {
+                Utils.UnLoading();
+            }
+        });
+    };
+    function DeleteData(id) {
+        var isDelete = ('@ViewBag.IsAdmin').toLowerCase();
+        if (isDelete != "true") {
+            bootbox.alert("Bạn không có quyền xóa chức năng");
+            return;
+        }
+        bootbox.confirm("Bạn chắc chắn muốn xóa tài khoản này ??? ", function (result) {
+            if (result == true) {
+                Utils.Loading();
+                $.ajax({
+                    type: 'POST',
+                    url: Utils.UrlRoot + "Home/DeleteUser",
+                    data: {
+                        'id': id
+                    },
+                    success: function (data) {
+                        Utils.UnLoading();
+                        if (data.ResponseCode >= 0) {
+                            bootbox.alert(data.Description);
+                            GetList();
+                        }
+                        else {
+                            bootbox.alert(data.Description);
+                            return;
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+</script>

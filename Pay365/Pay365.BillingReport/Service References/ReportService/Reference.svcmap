@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="80f23656-81db-4db1-8ddf-7f366bcf2bd8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/ReportService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ReportService.xsd" MetadataType="Schema" ID="209c920d-86bf-4a5e-9969-50406d81cdc8" SourceId="1" SourceUrl="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/ReportService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ReportService1.xsd" MetadataType="Schema" ID="e6aabd44-4654-457f-a5d3-ff2fbad39025" SourceId="1" SourceUrl="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/ReportService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReportService.disco" MetadataType="Disco" ID="3a7335e0-85e5-460b-801a-3f6d6e3c77af" SourceId="1" SourceUrl="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/ReportService.svc?disco" />
+    <MetadataFile FileName="ReportService2.xsd" MetadataType="Schema" ID="3dc6b1be-c697-4644-b2be-0754b05bbe51" SourceId="1" SourceUrl="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/ReportService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ReportService.wsdl" MetadataType="Wsdl" ID="a8e180d0-6169-4887-b69b-943c24cb5cb5" SourceId="1" SourceUrl="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/ReportService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

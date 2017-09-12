@@ -1,0 +1,39 @@
+﻿{
+  "homepage": {
+    "contact": "Contact",
+    "tut": "Tutorial",
+    "application": "Application",
+    "regPersionalTitle": "Persional register",
+    "btnLogin": "Login",
+    "btnRegister": "Register"
+  },
+  "accountInfo": {
+    "fullnameEmpty": "Please enter your fullname",
+    "nationalEmpty": "Please choose your national",
+    "passportEmpty": "Please enter your passport",
+    "passportIllegal": "Your passport number is illegal",
+    "coporationnameEmpty": "Please enter your coporation name",
+    "businesstypeEmpty": "Please choose coporation's business type",
+    "businesscertificationEmpty": "Please enter coporation's business certification",
+    "phonenumberEmpty": "Please enter coporation's phone number",
+    "phonenumberIllegal": "Phone number is illegal"
+  },
+  "header": {
+    "dropdown1": "Persional<b class='caret'></b>",
+    "topup": "Topup money",
+    "cashout": "Cashout money",
+    "transfer": "Transfer money",
+    "other": "More",
+    "coporation": "Business",
+    "news": "News",
+    "prefer": "Promotion"
+  },
+  "footer": {
+
+  },
+  "utilities": {
+    "titleEmpty": "Please enter titile",
+    "fullnameEmpty": "Please enter fullname",
+    "contentEmpty": "Please enter email content"
+  }
+}

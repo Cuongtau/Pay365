@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NotFound</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:500,700|Roboto:300,400,500&amp;subset=latin,vietnamese" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/css/flag-icon.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/css/style.css">
+    @Styles.Render("~/Content/css")  
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body class="hideSidebar" style="    font-family: 'Roboto', sans-serif;
+                                      font-size: 0.875rem;
+                                      color: #3e3e3e;
+                                      background: #eef1f9;
+                                      overflow-x: hidden;">
+<div class="wrapper">
+    <aside class="content-wrapper">
+        <main class="main">
+        <div class="page-notfound">
+            <p class="head">Opps! Page not found</p>
+            <p class="content">We are sorry the page you are trying to reach does not exist :(</p>
+        </div>
+        </main>
+    </aside>
+</div>
+</body>
+</html>
+
+<script>
+    $(function () {
+        //demo
+        function resize() {
+            if ($(window).width() > 992) {
+                $('body').addClass('hideSidebar');
+            }
+            else {
+                $('body').removeClass('hideSidebar');
+            }
+        }
+        resize();
+        $(window).resize(function () {
+            resize();
+        });
+    })
+</script>

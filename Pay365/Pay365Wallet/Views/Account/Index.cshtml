@@ -1,0 +1,600 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<main class="main">
+    <section class="main-top">
+        <div class="content">
+            <div class="primary">
+                <div class="user-welcome" id="avatar_t_1">
+
+                    <script id="avatar_tmpl_1" type="text/x-jquery-tmpl">
+                        @*<div class="avatar">
+                            <a href="/thong-tin-tai-khoan">
+                                {{if Avatar}}
+                                <img src="http://alpha.pay365.vn/upload/avatar/${ Avatar }" alt="">
+                                {{else}}
+                                <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/persons/1.jpg" alt="">
+                                {{/if}}
+                            </a>
+                        </div>*@
+                        <div class="welcome">
+                            <p class="hello">@Resources.Common.String1,</p>
+                            <p class="name">${Fullname}</p>
+                        </div>
+                    </script>
+
+                </div>
+                <div class="pay-breadcrumbs">
+                    @*<a href="javascript:;" class="breadcrumb waves-effect waves-light">Home</a>*@
+                    @*<a href="#!" class="breadcrumb waves-effect waves-light">Menu</a>*@
+                </div>
+            </div>
+            <div class="secondary">
+                <a href="/nap-tien" class="btn btn-secondary waves-effect waves-light">@Resources.Common.String2</a>
+                <a href="/rut-tien" class="btn btn-secondary waves-effect waves-light">@Resources.Common.String3</a>
+            </div>
+        </div>
+    </section>
+    <div class="dashboard">
+        <div class="main-content col-lg-9">
+            <section class="card payment-features">
+                <div class="col-xs-3">
+                    <a href="/nap-dien-thoai" class="waves-effect waves-secondary">
+                        <span class="icon">
+                            <i class="material-icons">phone_iphone</i>
+                        </span>
+                        <span class="name">@Resources.Common.String4</span>
+                    </a>
+                </div>
+                <div class="col-xs-3">
+                    <a href="/mua-the-dien-thoai" class="waves-effect waves-secondary">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="payicon" style="background:transparent">
+                                <defs>
+                                    <filter id="mask-ic-phone-card2">
+                                        <feFlood flood-color="#f08946" result="flood" />
+                                        <feComposite in="SourceGraphic" in2="flood" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" />
+                                    </filter>
+                                </defs>
+                                <image width="100%" height="100%" xlink:href="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/payicon/phone-card.svg" filter="url(#mask-ic-phone-card2)" />
+                            </svg>
+                        </span>
+                        <span class="name">@Resources.Common.String5</span>
+                    </a>
+                </div>
+                <div class="col-xs-3">
+                    <a href="/nap-game" class="waves-effect waves-secondary">
+                        <span class="icon">
+                            <i class="material-icons">videogame_asset</i>
+                        </span>
+                        <span class="name">@Resources.Common.String6</span>
+                    </a>
+                </div>
+                <div class="col-xs-3">
+                    <a href="/mua-the-game" class="waves-effect waves-secondary">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="payicon" style="background:transparent">
+                                <defs>
+                                    <filter id="mask-ic-game-card2">
+                                        <feFlood flood-color="#f08946" result="flood" />
+                                        <feComposite in="SourceGraphic" in2="flood" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" />
+                                    </filter>
+                                </defs>
+                                <image width="100%" height="100%" xlink:href="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/payicon/game-card.svg" filter="url(#mask-ic-game-card2)" />
+                            </svg>
+                        </span>
+                        <span class="name">@Resources.Common.String7</span>
+                    </a>
+                </div>
+            </section>
+            <div class="transactions">
+                <div class="col-sm-6">
+                    <div class="card" id="payment_topupMobile">
+                        <div class="charge" id="payment_step1">
+                            <p class="card-title">@Resources.Common.String4</p>
+                            <div class="form-group">
+                                <div class="icon"></div>
+                                <div class="form-data border-line">
+                                    <span class="input-radio">
+                                        <input name="groupPhone" class="with-gap" onchange="payment.change_TopupMobile(event);" type="radio" id="tra-truoc" checked="checked" />
+                                        <label for="tra-truoc">@Resources.Payment.String5</label>
+                                    </span>
+                                    <span class="input-radio">
+                                        <input name="groupPhone" class="with-gap" onchange="payment.change_TopupMobile(event);" type="radio" id="tra-sau" />
+                                        <label for="tra-sau">@Resources.Payment.String6</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group input-field input-dropdown">
+                                <div class="icon"><i class="material-icons">phone_iphone</i></div>
+                                <div class="form-data">
+                                    <div class="input-dropdown-content">
+                                        <a class='dropdown-button dropdown-input' href='javascript:;' data-activates='ddr-input-phone' style="color: #333"><i class="material-icons" style="">keyboard_arrow_down</i></a>
+                                        <ul id='ddr-input-phone' class='dropdown-content'></ul>
+                                    </div>
+                                    <input type="text" placeholder="@Resources.Payment.String7" id="txtPhoneNumber" maxlength="13" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.formatPhoneInput(this, event); utils.ChangeText(event); payment.GetListAmount(this, 'ddr-select-amount');">
+                                    <span class="error-text"></span>
+                                    <span class="success-text"></span>
+                                </div>
+                            </div>
+                            <div class="form-group input-field" id="ddl_selectAmount">
+                                <div class="icon"><i class="material-icons">monetization_on</i></div>
+                                <div class="form-data">
+                                    <select id="ddr-select-amount" onchange="payment.changeSelectAmount();">
+                                        <option value="" disabled selected>@Resources.Payment.String9</option>
+                                    </select>
+
+                                    <input id="txtAmount" type="hidden" maxlength="10" onkeypress='utils.checkOnlyNumber(this, event);' placeholder="@Resources.Payment.String9" onkeyup="utils.ChangeText(event); utils.formatCurrency(this, event);payment.changeAmount();">
+                                    <span class="error-text"></span>
+                                    <span class="success-text"></span>
+                                </div>
+                            </div>
+                            <div class="form-group input-field">
+                                <div class="icon"><i class="material-icons"></i></div>
+                                <div class="form-data">
+                                    <div class="col-sm-6 left-align"><span class="label label-danger">@Resources.Payment.value8 <span id="discount">0%</span></span></div>
+                                    <div class="col-sm-6 right-align"><p><strong class="primary">@Resources.Payment.String13: <span id="totalAmount">0<sup>VNĐ</sup></span></strong></p></div>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger center" style="display:none"></div>
+                            <div class="action">
+                                <a href="javascript:;" id="btnPaymentCheckInput" onclick="payment.TopupMobileMain_CheckInput();" class="btn btn-primary btn-flat uppercase waves-effect waves-primary">@Resources.Payment.btn_next <i class="material-icons">keyboard_arrow_right</i></a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="charge" id="payment_topupGame">
+                            <p class="card-title">@Resources.Common.String6</p>
+                            <div class="form-group input-field">
+                                <div class="icon"><i class="material-icons">videogame_asset</i></div>
+                                <div class="form-data">
+                                    <select class="icons" id="ddr-select-game" onchange="payment.changeSelectGame(this);">
+                                        <option value="" disabled selected>@Resources.Payment.SelectGame</option>
+                                    </select>
+                                    <span class="error-text"></span>
+                                    <span class="success-text"></span>
+                                </div>
+                            </div>
+                            <div class="form-group input-field input-dropdown">
+                                <div class="icon"><i class="material-icons">account_circle</i></div>
+                                <div class="form-data">
+                                    <div class="input-dropdown-content">
+                                        <a class='dropdown-button dropdown-input' href='javascript:;' data-activates='ddr-input-nick' style="color: #333"><i class="material-icons" style="">keyboard_arrow_down</i></a>
+                                        <ul id='ddr-input-nick' class='dropdown-content'></ul>
+                                    </div>
+                                    <input type="text" id="txtNickname" maxlength="15" placeholder="@Resources.Payment.NickName" onkeyup="utils.ChangeText(event);">
+                                    <span class="error-text"></span>
+                                    <span class="success-text"></span>
+                                </div>
+                            </div>
+                            <div class="form-group input-field">
+                                <div class="icon"><i class="material-icons">monetization_on</i></div>
+                                <div class="form-data">
+                                    <select id="ddr-select-gameAmount" onchange="payment.changeSelectGameAmount();">
+                                        @*<option value="" disabled selected>@Resources.Payment.value6</option>*@
+
+                                        <option value="50000" selected data-content="50.000<sup>VNĐ</sup>">50.000</option>
+                                        <option value="100000" data-content="100.000<sup>VNĐ</sup>">100.000</option>
+                                        <option value="200000" data-content="200.000<sup>VNĐ</sup>">200.000</option>
+                                        <option value="500000" data-content="500.000<sup>VNĐ</sup>">500.000</option>
+                                        <option value="1000000" data-content="1.000.000<sup>VNĐ</sup>">1.000.000</option>
+                                        <option value="2000000" data-content="2.000.000<sup>VNĐ</sup>">2.000.000</option>
+                                        <option value="5000000" data-content="5.000.000<sup>VNĐ</sup>">5.000.000</option>
+                                        <option value="10000000" data-content="10.000.000<sup>VNĐ</sup>">10.000.000</option>
+                                        <option value="20000000" data-content="20.000.000<sup>VNĐ</sup>">20.000.000</option>
+                                    </select>
+                                    @*<span class="select-subfix">10.500 Rik</span>*@
+                                    <span class="error-text"></span>
+                                    <span class="success-text"></span>
+                                </div>
+                            </div>
+                            <div class="form-group input-field">
+                                <div class="icon"><i class="material-icons"></i></div>
+                                <div class="form-data">
+                                    <div class="col-sm-6 left-align"><span class="label label-danger">@Resources.Payment.value8 <span id="discountGame">0%</span></span></div>
+                                    <div class="col-sm-6 right-align"><p><strong class="primary">@Resources.Payment.String13: <span id="totalAmountGame">0<sup>VNĐ</sup></span></strong></p></div>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger center" style="display:none"></div>
+                            <div class="action">
+                                <a href="javascript:;" id="btnPaymentGameCheckInput" onclick="payment.TopupGameMain_CheckInput();" class="btn btn-primary btn-flat uppercase waves-effect waves-primary">@Resources.Payment.btn_next <i class="material-icons">keyboard_arrow_right</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="transactions hidden">
+
+                <div class="col-sm-6" id="history_pending_t">
+                </div>
+                <script id="history_pending_tmpl" type="text/x-jquery-tmpl">
+                    <div class="card transaction">
+                        <div class="card-title">
+                            <i class="material-icons">rounded_corner</i> @Resources.Common.String25 <a href="/history" class="more"><span>@Resources.Common.btn_showAll</span> <i class="material-icons">keyboard_arrow_right</i></a>
+                        </div>
+                        <ul class="list-transaction">
+                            {{each ListPending}}
+
+                            <li>
+                                <div class="col-first">
+                                    <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/evn.jpg" alt="">
+                                </div>
+                                <div class="col-last">
+                                    <div class="money danger">
+                                        ${utils.formatMoney($value.Amount)}
+                                        <sup>VNĐ</sup>
+                                    </div>
+                                    <p class="date">${GetDate($value.CreatedTime,1)}</p>
+                                    @*<ul class="buttons">
+                                            <li><a href="#!" data-position="bottom" data-delay="0" data-tooltip="Chi tiết"><i class="material-icons">speaker_notes</i></a></li>
+                                            <li><a href="#!" data-position="bottom" data-delay="0" data-tooltip="Tra soát"><i class="material-icons">insert_chart</i></a></li>
+                                            <li><a href="#!" data-position="bottom" data-delay="0" data-tooltip="Hủy giao dịch"><i class="material-icons">cancel</i></a></li>
+                                        </ul>*@
+                                </div>
+                                <div class="col-mid">
+                                    <p>
+                                        <strong>Nạp tiền ví điện tử</strong>
+                                    </p>
+                                    <p>${$value.ServiceName}</p>
+                                </div>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </script>
+
+                <div class="col-sm-6" id="history_success_t">
+                </div>
+                <script id="history_success_tmpl" type="text/x-jquery-tmpl">
+                    <div class="card transaction">
+                        <div class="card-title">
+                            <i class="material-icons">done</i> @Resources.Common.String24 <a href="/history" class="more"><span>@Resources.Common.btn_showAll</span> <i class="material-icons">keyboard_arrow_right</i></a>
+                        </div>
+                        <ul class="list-transaction">
+                            {{each ListSuccess}}
+
+                            <li>
+                                <div class="col-first">
+                                    <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/evn.jpg" alt="">
+                                </div>
+                                <div class="col-last">
+                                    <div class="money danger">
+                                        ${utils.formatMoney($value.Amount)}
+                                        <sup>VNĐ</sup>
+                                    </div>
+                                    <p class="date">${GetDate($value.CreatedTime,1)}</p>
+                                    @*<ul class="buttons">
+                                            <li><a href="#!" data-position="bottom" data-delay="0" data-tooltip="Chi tiết"><i class="material-icons">speaker_notes</i></a></li>
+                                            <li><a href="#!" data-position="bottom" data-delay="0" data-tooltip="Tra soát"><i class="material-icons">insert_chart</i></a></li>
+                                            <li><a href="#!" data-position="bottom" data-delay="0" data-tooltip="Hủy giao dịch"><i class="material-icons">cancel</i></a></li>
+                                        </ul>*@
+                                </div>
+                                <div class="col-mid">
+                                    <p>
+                                        <strong>Nạp tiền ví điện tử</strong>
+                                    </p>
+                                    <p>${$value.ServiceName}</p>
+                                </div>
+                            </li>
+
+                            {{/each}}
+                        </ul>
+                    </div>
+                </script>
+
+            </section>
+
+            <div class="home-news" id="home_listNews_t">
+            </div>
+
+            <script id="home_listNews_tmpl" type="text/x-jquery-tmpl">
+                {{each ListNews}}
+                <div class="col-sm-3">
+                    <div class="card">
+                        <a title="${$value.Title}" href="@(Html.Raw(Pay365.Utils.Config.Domain) + "tin-tuc")/${$value.CategoryID}/${$value.Alias}-${$value.NewsID}">
+                            <span class="image image_shine_bf">
+                                {{if $value.ImageUrl}}
+                                <img width="275" height="188" src="${$value.ImageUrl}" alt="">
+                                {{else}}
+                                <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/posts/1.jpg" alt="">
+                                {{/if}}
+                            </span>
+                            <div style="height: auto">
+                                <p class="title" title="${$value.Title}">${Substring_textnews($value.Title, 60)}</p>
+                            </div>
+                            <span class="date">${GetDate($value.CreatedDate,1)}</span>
+                        </a>
+                    </div>
+                </div>
+                {{/each}}
+            </script>
+
+        </div>
+        <div class="widgets col-lg-3">
+            <div class="widget-column">
+                <div class="card">
+                    <p class="card-title">@Resources.Common.String8</p>
+                    <div class="security">
+
+                        <div id="secure_info_t">
+
+
+                        </div>
+
+                        <script id="secure_info_tmpl" type="text/x-jquery-tmpl">
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="image">
+                                        {{if SecurityType == 1}}
+                                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-sms.svg" alt="">
+                                        {{else SecurityType == 2}}
+                                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-email.svg" alt="">
+                                        {{else SecurityType == 3}}
+                                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-voice.svg" alt="">
+                                        {{else SecurityType == 4}}
+                                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-app.svg" alt="">
+                                        {{else}}
+                                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/security-sms.svg" alt="">
+                                        {{/if}}
+                                    </div>
+                                    <div class="content">
+                                        <p>
+                                            @Resources.Common.String9:
+                                            <span>
+                                                {{if SecurityType == 1}}
+                                                OTP SMS
+                                                {{else SecurityType == 2}}
+                                                OTP Email
+                                                {{else SecurityType == 3}}
+                                                OTP Voice
+                                                {{else SecurityType == 4}}
+                                                OTP App
+                                                {{else}}
+                                                @Resources.Common.String11
+                                                {{/if}}
+                                            </span>
+                                        </p>
+
+                                        {{if SecurityType != 0}}
+                                        <p>
+                                            @Resources.Common.String10: <span>${utils.formatMoney(MinAmount)}<sup>VNĐ</sup></span>
+                                        </p>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-button flat">
+                                {{if SecurityType != 0}}
+                                <a href="/doi-han-muc-bao-mat" class="btn btn-flat btn-primary waves-effect waves-primary uppercase">
+                                    <i class="material-icons">call_missed_outgoing</i>
+                                    @Resources.Common.String12
+                                </a>
+                                {{else}}
+                                <a href="/cai-dat-bao-mat" class="btn btn-flat btn-primary waves-effect waves-primary uppercase">
+                                    <i class="material-icons">call_missed_outgoing</i>
+                                    @Resources.Common.registerOTP
+                                </a>
+                                {{/if}}
+
+                            </div>
+                        </script>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <p class="card-title">@Resources.Common.link_card</p>
+                    <div class="card-content">
+                        <ul class="list-link-cards">
+                            <li>
+                                <div class="link-card credit image_shine_bf">
+                                    <div class="subfix">4251</div>
+                                    <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/visa.jpg" alt=""></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="link-card pay365 image_shine_af">
+                                    <div class="subfix">4166</div>
+                                    <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/Logo-OCB.jpg" alt=""></div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="coming-soon">
+                            <div class="ribbon">
+                                <span>Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-button flat">
+                        <a href="/link-card" class="btn btn-flat btn-primary waves-effect waves-primary uppercase">
+                            <i class="material-icons">credit_card</i>
+                            @Resources.Common.addCard
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-column">
+                <div class="card hidden">
+                    <p class="card-title">Nhắc nhở</p>
+                    <ul class="reminder">
+                        <li>
+                            <div class="row">
+                                <div class="image">
+                                    <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/evn.jpg" alt="">
+                                </div>
+                                <div class="reminder-content">
+                                    <p>Hóa đơn EVN Hà Nội đã đến hạn thanh toán</p>
+                                    <p>Mã hóa đơn: PE12110000183081</p>
+                                    <p>Kỳ thanh toán: 06/2017</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="money danger">
+                                    -1.485.000<sup>VNĐ</sup>
+                                </div>
+                                <div class="buttons">
+                                    <a href="#!" class="waves-effect waves-light btn btn-primary">Thanh toán</a>
+                                    <a href="#!" class="waves-effect waves-light btn btn-secondary">Để sau</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="image">
+                                    <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/persons/2.jpg" alt="">
+                                </div>
+                                <div class="reminder-content">
+                                    <p>Hóa đơn EVN Hà Nội đã đến hạn thanh toán</p>
+                                    <p>Mã hóa đơn: PE12110000183081</p>
+                                    <p>Kỳ thanh toán: 06/2017</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="money danger">
+                                    -1.485.000<sup>VNĐ</sup>
+                                </div>
+                                <div class="buttons">
+                                    <a href="#!" class="waves-effect waves-light btn btn-primary">Thanh toán</a>
+                                    <a href="#!" class="waves-effect waves-light btn btn-secondary">Để sau</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="coming-soon">
+                        <div class="ribbon">
+                            <span>Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <p class="card-title">@Resources.Common.String13 <a href="@Html.Raw(Pay365.Utils.Config.Domain + "huong-dan")" class="more waves-effect waves-primary"><i class="material-icons">keyboard_arrow_right</i></a></p>
+                    <div class="card-content">
+                        <ul class="questions">
+                            <li><a href=@Html.Raw(Pay365.Utils.Config.Domain + $"huong-dan/chi-tiet?category=faq&amp;detail=thoi-gian-cho-xu-ly-khieu-nai-la-bao-lau-14")">Thời gian chờ xử lý khiếu nại là bao lâu?</a></li>
+                            <li><a href="@Html.Raw(Pay365.Utils.Config.Domain + $"huong-dan/chi-tiet?category=faq&amp;detail=vi-dien-tu-pay365-ho-tro-xu-ly-khieu-nai-khach-hang-bang-cach-nao-13")">Ví điện tử Pay365 hỗ trợ xử lý khiếu nại khách hàng bằng cách nào?</a></li>
+                            <li><a href="@Html.Raw(Pay365.Utils.Config.Domain + $"huong-dan/chi-tiet?category=faq&amp;detail=vi-dien-tu-pay365-hoat-dong-tren-moi-truong-nao-12")">Ví điện tử Pay365 hoạt động trên môi trường nào?</a></li>
+                            <li><a href="@Html.Raw(Pay365.Utils.Config.Domain + $"huong-dan/chi-tiet?category=faq&amp;detail=vi-dien-tu-pay365-cung-cap-cac-dich-vu-gi-11")">Ví điện tử Pay365 cung cấp các dịch vụ gì?</a></li>
+                        </ul>
+                    </div>
+                    @*<div class="coming-soon">
+                            <div class="ribbon"><span>Coming Soon</span></div>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div class="modal modal-large" id="View_PaymentConfirm" style="z-index:1000">
+    <div class="modal-content card card-single">
+        <div class="card-title">
+            @Resources.Payment.ConfirmTransaction
+        </div>
+        <div id="content" class="card-content">
+            <div class="alert alert-danger center" style="display:none"></div>
+            <table class="table-data">
+                <tr>
+                    <td width="40%">@Resources.Payment.value3:</td>
+                    <td id="TransType"></td>
+                </tr>
+                <tr>
+                    <td width="40%">@Resources.Payment.value4:</td>
+                    <td id="Product"></td>
+                </tr>
+                <tr id="info_account">
+                    <td width="40%">@Resources.Payment.value13:</td>
+                    <td id="PhoneTopup"></td>
+                </tr>
+                <tr id="info_quantity" style="display:none">
+                    <td width="40%">@Resources.Payment.String11:</td>
+                    <td id="Quantity"></td>
+                </tr>
+                <tr>
+                    <td width="40%">@Resources.Payment.String9:</td>
+                    <td id="AmountTopup"></td>
+                </tr>
+                <tr>
+                    <td width="40%">@Resources.Payment.value8:</td>
+                    <td id="DiscountRate"></td>
+                </tr>
+                <tr>
+                    <td width="40%">@Resources.Payment.TotalAmount:</td>
+                    <td id="TotalPayment"></td>
+                </tr>
+                <tr>
+                    <td width="40%">@Resources.Payment.value11:</td>
+                    <td id="PaymentType"></td>
+                </tr>
+            </table>
+
+            <p class="txtNoteSecure"></p>
+
+            <div class="form-group input-field" id="isCheckSecure">
+                <i class="material-icons prefix">phonelink_lock</i>
+                <a href="javascript:;" onclick="payment.Resend_OTP();" id="btnResendOTP" class="btn btn-sm btn-flat btn-secondary btn-input-right waves-effect waves-light">@Resources.Account.Resend</a>
+                <input id="txtVerifyCode" type="text" maxlength="6" data-length="6" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.ChangeText(event);">
+                <label for="txtVerifyCode">@Resources.Account.EnterVerifyCode</label>
+                <span class="error-text"></span>
+            </div>
+        </div>
+        <div class="card-button">
+            <a href="javascript:;" class="modal-action modal-close btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Account.BtnBack</a>
+            <a id="btnPaymentConfirm" href="javascript:;" class="modal-action btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btnPayment <i class="material-icons">chevron_right</i></a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        news.Load_ListNews_HomePage();
+        payment.Init(0);
+        //Notification
+
+        // History
+        //transaction_history.get_History_Home();
+
+    });
+    $(window).on("load", function () {
+        if (window.location.href.indexOf('?') !== -1) {
+            setTimeout(function () {
+                var type = utils.getParameterByName('type');
+                var status = utils.getParameterByName('status');
+                var amount = utils.getParameterByName('amount');
+                if (type === 'bank') {
+                    //Type = nap tien
+                    status = parseInt(status);
+                    var orderid = utils.getParameterByName('orderid') || utils.getParameterByName('OrderID');
+                    if (header.AccountInfo.CurrentLang === 'en') {
+                        if (status >= 0) {
+
+                            ModalNotificationResultInit(null, null, utils.renderModalContent({ _transid: orderid, _totalamount: (!amount ? '' : (utils.formatMoney(amount) + 'đ')), _balance: (utils.formatMoney(header.AccountInfo.Balance) + 'đ') }), 'Go home page', 'Continue cashin', function () { window.location.href = utils.rootUrl() + 'information'; }, function () { window.location.href = utils.rootUrl() + 'topup-bank'; });
+                            utils.postData(utils.trasactionApi() + "Cashin/BankTopupConfirm", { OrderId: orderid }, function (data) { console.log(data) }, function (err) { console.log(err) });
+                        }
+                        //That bai
+                        else
+                            ModalNotificationResultInit('danger', null, null, 'Go home page', 'Continue cashin', function () { window.location.href = utils.rootUrl() + 'information'; }, function () { window.location.href = utils.rootUrl() + 'topup-bank'; });
+                    } else {
+                        if (status >= 0) {
+                            ModalNotificationResultInit(null, null, utils.renderModalContent({ _transid: orderid, _totalamount: (!amount ? '' : (utils.formatMoney(amount) + 'đ')), _balance: (utils.formatMoney(header.AccountInfo.Balance) + 'đ') }), 'Về trang chủ', 'Tiếp tục nạp', function () { window.location.href = utils.rootUrl() + 'information'; }, function () { window.location.href = utils.rootUrl() + 'topup-bank'; });
+                            utils.postData(utils.trasactionApi() + "Cashin/BankTopupConfirm", { OrderId: orderid }, function (data) { console.log(data) }, function (err) { console.log(err) });
+                        }
+                        //That bai
+                        else
+                            ModalNotificationResultInit('danger', null, null, 'Về trang chủ', 'Tiếp tục nạp', function () { window.location.href = utils.rootUrl() + 'information'; }, function () { window.location.href = utils.rootUrl() + 'topup-bank'; });
+                    }
+
+                    setTimeout(function () {
+                        window.location.href = utils.rootUrl() + 'thong-tin';
+                    }, 10000);
+                }
+            }, 100);
+        }
+    });
+</script>

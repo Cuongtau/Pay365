@@ -1,0 +1,43 @@
+﻿{
+  "title": {
+    "regPersionalTitle": "Đăng ký ví điện tử cá nhân",
+    "usernamePlacehoder": "Số ví",
+    "passwordPlacehoder": "Mật khẩu",
+    "rules": "Bằng việc đăng ký, bạn đã đồng ý với <a href='javascript:;'>điều khoản sử dụng</a>"
+  },
+  "message": {
+    "usernameEmpty": "Vui lòng nhập số ví điện tử",
+    "usernameIllegal": "Tài khoản không hợp lệ",
+    "passwordEmpty": "Vui lòng nhập mật khẩu",
+    "passwordLengthInvalid": "Mật khẩu phải dài từ 6-18 ký tự",
+    "passwordContainInvalid": "Mật khẩu phải bao gồm cả số và chữ",
+    "repasswordEmpty": "Vui lòng nhập lại mật khẩu",
+    "repasswordIncorrect": "Mật khẩu nhập lại không chính xác",
+    "fullnameEmpty": "Vui lòng nhập họ và tên",
+    "emailEmpty": "Vui lòng nhập email",
+    "emailIllegal": "Email không hợp lệ",
+    "passportEmpty": "Vui lòng nhập số chứng minh thư",
+    "passportIllegal": "Số CMND/Hộ chiếu không hợp lệ!",
+    "nationalRequired": "Vui lòng chọn quốc gia",
+    "captchaEmpty": "Vui lòng nhập mã kiểm tra",
+    "representEmpty": "Vui lòng nhập người đại diện",
+    "organicnameEmpty": "Vui lòng chọn tên doanh nghiệp",
+    "businessTypeRequire": "Vui lòng chọn loại hình kinh doanh",
+    "businessnumberEmpty": "Vui lòng nhập số đăng ký kinh doanh",
+    "taxcodeEmpty": "Vui lòng nhập mã số thuế",
+    "contactnumberEmpty": "Vui lòng nhập số điện thoại liên hệ",
+    "activeDesc": "Một mã kích hoạt đã được gửi về số điện thoại và địa chỉ email đăng ký",
+    "activecodeEmpty": "Vui lòng nhập mã kích hoạt",
+    "activecodeIllegal": "Mã kích hoạt không hợp lệ",
+    "dobEmpty": "Vui lòng nhập ngày sinh",
+    "genderEmpty": "Vui lòng chọn giới tính",
+    "dobIllegal": "Ngày sinh không hợp lệ",
+    "otpEmpty": "Vui lòng nhập mã bảo mật",
+    "otpTokenEmpty": "Không lấy được thông tin chữ ký khi gửi mã bảo mật",
+    "termsUncheck": "Vui lòng đồng ý với điều khoản sử dụng"
+  },
+  "response": {
+    "default": "Hệ thống đang bận, vui lòng thử lại sau"
+  }
+
+}

@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "Báo cáo tổng hợp Merchant";
+}
+<div class="portlet blue-steel box">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-pie-chart"></i>BÁO CÁO TỔNG HỢP MERCHANT
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+            <a href="javascript:;" class="reload">
+            </a>
+            <a href="javascript:;" class="remove">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row" id="Rp_MerchantGeneral">
+            <div class="col-md-12">
+                <div class="clear">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-handshake-o"></i>Loại merchant</label>
+                        <select class="form-control" id="ddlMerchantType">
+                            <option value="0">Tất cả</option>
+                            <option value="1">Tích hợp website</option>
+                            <option value="2">Tích hợp Mobile App</option>
+                            <option value="3">Tích hợp nút</option>
+                            <option value="4">Tích hợp QRCode</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-address-book-o"></i>Tên Merchant</label>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding:0">
+                            <input class="form-control" id="txtMerchantName" maxlength="30" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divFromDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i><span id="txtFromDate">Từ Ngày</span></label>
+                        <div class="date" id="datetimeFromDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="fromDate" class="form-control" name="datetimeFromDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divToDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i>Đến Ngày</label>
+                        <div class="date" id="datetimeToDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="toDate" class="form-control" name="datetimeToDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="clear">
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-id-badge"></i>TK Merchant</label>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding:0">
+                            <input class="form-control" id="txtMerchantAccount" maxlength="20" />
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-bank"></i>Cổng</label>
+                        <select class="form-control" id="ddlBankType">
+                            <option value="-1">Tất cả</option>
+                            <option value="0">Ví điện tử</option>
+                            <option value="1">Nội địa</option>
+                            <option value="2">Quốc tế</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                        <label class="control-label text-info"><i class="fa fa-times"></i>Kiểu dữ liệu</label>
+                        <select class="form-control" id="ddlTypeData">
+                            <option value="0">Chọn kiểu dữ liệu</option>
+                            <option value="1">Giá trị giao dịch</option>
+                            <option value="2">Số giao dịch</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-6 col-xs-12 col-lg-3" style="">
+                        <label class="control-label text-info"><i class="fa fa-line-chart"></i>Chọn biểu đồ</label>
+                        <div class="selectBox" id="chooseChart">
+                            <select id="ddlSelectChart" class="form-control">
+                                <option value="0">Không hiển thị</option>
+                                <option value="1">Biểu đồ Line</option>
+                                <option value="2">Biểu đồ Pie</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="clear">
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12" style="text-align:center">
+                        <button id="btnSearch" class="btn blue-steel" value="Tìm Kiếm">
+                            <span class="glyphicon glyphicon-hand-right"></span>Tìm Kiếm
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="dgrid" class="dataTables_wrapper form-inline" role="grid">
+            <div id="ReportChart"></div>
+            <div id="ReportPartial"></div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datetimeFromDate').datetimepicker({
+            pickTime: false
+        });
+        $('#datetimeToDate').datetimepicker({
+            pickTime: false
+        });
+
+        var fromdate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.fromDate)';
+        var todate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.toDate)';
+        $('#datetimeFromDate').data("DateTimePicker").setDate(fromdate);
+        $('#datetimeToDate').data("DateTimePicker").setDate(todate);
+
+        $("#datetimeFromDate").on("dp.change dp.show", function (e) {
+            $('#datetimeToDate').data("DateTimePicker").setMinDate(e.date);
+        });
+        $("#datetimeToDate").on("dp.change dp.show", function (e) {
+            $('#datetimeFromDate').data("DateTimePicker").setMaxDate(e.date);
+        });
+
+        $("#btnSearch").click(function () {
+            GeneralReportMerchant();
+        });
+        $("#Rp_MerchantGeneral").keypress(function (event) {
+            if (event.which == 13) {
+                GeneralReportMerchant();
+            }
+        });
+
+        GeneralReportMerchant();
+        $("#ddlSelectChart").change(function () {
+            ChartMerchant();
+        });
+        $("#ddlTypeData").change(function () {
+            $("#ddlSelectChart").val(0);
+        });
+    });
+
+</script>

@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Báo cáo số dư hệ thống";
+}
+        <div class="panel panel-primary">
+            <div class="panel-heading"><i class="fa fa-pie-chart"></i>BÁO CÁO SỐ DƯ HỆ THỐNG</div>
+            <div class="panel-body">
+                <div class="row" id="Rp_SysBalance">
+                    <div class="col-md-12">
+                        <div class="clear">
+                            <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <label class="control-label text-info"><i class="fa fa-group"></i>Loại tài khoản</label>
+                                <select class="form-control" id="ddlAccountType">
+                                    <option value="0">Tất cả</option>
+                                    <option value="1">Tài khoản cá nhân</option>
+                                    <option value="2">Tài khoản doanh nghiệp</option>
+                                    <option value="3">Tài khoản nghiệp vụ</option>
+                                    <option value="4">Tài khoản nghiệp vụ hứng phí</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" id="divFromDate">
+                                <label class="textDate control-label text-info"><i class="fa fa-calendar"></i><span id="txtFromDate">Từ Ngày</span></label>
+                                <div class="date" id="datetimeFromDate">
+                                    <input type="text" data-date-format="DD/MM/YYYY" id="fromDate" class="form-control" name="datetimeFromDate" />
+                                    <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12" id="divToDate">
+                                <label class="textDate control-label text-info"><i class="fa fa-calendar"></i>Đến Ngày</label>
+                                <div class="date" id="datetimeToDate">
+                                    <input type="text" data-date-format="DD/MM/YYYY" id="toDate" class="form-control" name="datetimeToDate" />
+                                    <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="clear">
+                            <div class="form-group col-md-4 col-sm-6 col-xs-12 col-lg-4">
+                                <label class="control-label text-info"><i class="fa fa-times"></i>Kiểu dữ liệu</label>
+                                <select class="form-control" id="ddlTypeData">
+                                    <option value="0">Chọn kiểu dữ liệu</option>
+                                    <option value="1">Số lượng tài khoản</option>
+                                    <option value="2">Số dư tài khoản</option>
+                                    <option value="3">Nạp tiền</option>
+                                    <option value="4">Tiêu thụ</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4 col-lg-4 col-sm-6 col-xs-12">
+                                <label class="control-label text-info"><i class="fa fa-clock-o"></i>Biểu đồ</label>
+                                <div class="selectBox">
+                                    <select id="ddlSelectChart" class="form-control">
+                                        <option value="0">Không hiển thị</option>
+                                        <option value="1">Biểu đồ Line</option>
+                                        <option value="2">Biểu đồ Pie</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-12 col-xs-12" style="text-align:center">
+                                <button id="btnSearch" class="btn btn-primary" value="Tìm Kiếm">
+                                    <span class="glyphicon glyphicon-hand-right"></span>Tìm Kiếm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="dgrid" class="dataTables_wrapper form-inline" role="grid">
+                    <div id="ReportChart"></div>
+                    <div id="ReportPartial"></div>
+
+                </div>
+            </div>
+        </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datetimeFromDate').datetimepicker({
+            pickTime: false
+        });
+        $('#datetimeToDate').datetimepicker({
+            pickTime: false
+        });
+       
+        var fromdate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.fromDate)';
+        var todate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.toDate)';
+        $('#datetimeFromDate').data("DateTimePicker").setDate(fromdate);
+        $('#datetimeToDate').data("DateTimePicker").setDate(todate);
+
+        $("#datetimeFromDate").on("dp.change dp.show", function (e) {
+            $('#datetimeToDate').data("DateTimePicker").setMinDate(e.date);
+        });
+        $("#datetimeToDate").on("dp.change dp.show", function (e) {
+            $('#datetimeFromDate').data("DateTimePicker").setMaxDate(e.date);
+        });
+
+        $("#btnSearch").click(function () {
+            GeneralReportBalance();
+        });
+        $("#Rp_SysBalance").keypress(function (event) {
+            if (event.which == 13) {
+                GeneralReportBalance();
+            }
+        });
+
+        GeneralReportBalance();
+        $("#ddlSelectChart").change(function () {
+            ChartBalance();
+        });
+        $("#ddlTypeData").change(function () {
+            $("#ddlSelectChart").val(0);
+        });
+
+    });
+
+</script>

@@ -1,0 +1,11 @@
+﻿{
+  "vtcpro": {
+    "system_err": "Hệ thống đang bận, vui lòng thử lại sau",
+    "err1": "Vui lòng chọn gói VTC Pro",
+    "err2": "Vui lòng nhập số lượng",
+    "err3": "Vui lòng nhập mã kiểm tra",
+    "err4": "Vui lòng nhập số serial",
+    "err5": "Vui lòng nhập mã số",
+    "err6": "Vui lòng nhập mã xác thực"
+  } 
+}

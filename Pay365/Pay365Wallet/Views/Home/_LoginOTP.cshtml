@@ -1,0 +1,46 @@
+﻿<div class="head">
+    <div class="icon">
+        <i class="material-icons">person</i>
+    </div>
+    <div class="title">@Resources.Register.String1</div>
+</div>
+<div id="form_login_otp" class="content">.
+    @Html.Hidden("OTPLoginToken")
+    <div class="lost">
+        <div class="content-title">Nhập mã bảo mật để tiếp tục đăng nhập</div>
+        <div class="form-group">
+            <p>Một mã bảo mật đã được gửi đến số điện thoại của bạn: @ViewBag.AccountName</p>
+            <div class="form-data input-field">
+                <input maxlength="6" type="text" id="login_otp" autofocus autocomplete="off" onkeypress="utils.forceNumber(this, event);">
+                <label for="active_code">Mã bảo mật</label>
+                <span class="error-text"></span>
+            </div>
+        </div>
+        <div class="form-group submit">
+            <div class="row">
+                <div class="col-sm-12"><a id="btLoginOTp" href="javascript:;" onclick="login.ConfirmLoginOTP();" class="btn btn-primary waves-effect waves-light">Đăng nhập</a></div>
+            </div>
+        </div>
+        <p>
+            @Resources.Register.String20 <strong class="danger">PAY365 OTP</strong> @Resources.Register.String21 <strong class="danger">8100</strong> <span class="warning">(1.000VNĐ/SMS)</span>
+        </p>
+    </div>
+</div>
+
+<div class="foot">
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="@Html.Raw(Pay365.Utils.Config.Domain)register"><i class="material-icons">chevron_left</i>@Resources.Register.String22</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#form_login_otp input').keyup(function (event) {
+        if ($("#btLoginOTp").hasClass("disabled")) return;
+        var keyCode = event.keyCode || event.which;
+        if (keyCode == 13) {
+            register.ConfirmLoginOTP();
+        }
+    });
+</script>

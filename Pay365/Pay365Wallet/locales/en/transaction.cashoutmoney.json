@@ -1,0 +1,27 @@
+﻿{
+  "error": {
+    "defaultErr": "System is busy, please try again later",
+    "securecodeEmpty": "Please enter secure code",
+    "resendODPExceed": "ODP code only received maximum 3 times per day",
+    "bankaccount_empty": "Please enter your bank account number",
+    "bankaccount_empty2": "Please enter your card number",
+    "bankaccount_empty3": "Please enter phone number",
+    "bankaccountholder_empty": "Please enter bank account holder",
+    "bankbranch_empty": "Please enter bank brach",
+    "location_empty": "Please choose city",
+    "amount_empty": "Please enter amount to withdrawl",
+    "min_amount": "Min amount is 50.000đ",
+    "vrfcode_empty": "Please enter verify code",
+    "vrfcode_infomation_empty": "Can't get verify code infomation",
+    "account_unlink": "Your account dose not link to bank, link to bank now?",
+    "reason_empty": "Please enter your reason for withdrawal",
+    "bank_account_number_invalid": "The bank account number is invalid",
+    "bank_card_invalid": "Bank card number is invalid"
+  },
+  "form": {
+    "lbl1": "Card number",
+    "lbl2": "Account number",
+    "lbl3": "Card number",
+    "lbl4": "Bank account"
+  }
+}

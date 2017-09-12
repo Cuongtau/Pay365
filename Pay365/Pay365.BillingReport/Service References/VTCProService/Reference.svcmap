@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="06f3b5fc-f20d-4686-af2d-4280c017b69f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="VTCProService.xsd" MetadataType="Schema" ID="e0ebcec3-a38e-44af-8eb6-fb8cd33fc80b" SourceId="1" SourceUrl="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?xsd=xsd3" />
+    <MetadataFile FileName="VTCProService1.xsd" MetadataType="Schema" ID="8e221c7c-4abc-490b-9f85-e0327e722eab" SourceId="1" SourceUrl="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?xsd=xsd1" />
+    <MetadataFile FileName="VTCProService2.xsd" MetadataType="Schema" ID="61ae866d-30a4-42ce-8abc-f3f240ad5776" SourceId="1" SourceUrl="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?xsd=xsd0" />
+    <MetadataFile FileName="VTCProService.wsdl" MetadataType="Wsdl" ID="7e168c22-3fcd-4188-8cab-7a52da2d8ea8" SourceId="1" SourceUrl="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?wsdl" />
+    <MetadataFile FileName="VTCProService.disco" MetadataType="Disco" ID="dddeb352-ff88-4377-b573-1d1c7d6dfe9d" SourceId="1" SourceUrl="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?disco" />
+    <MetadataFile FileName="VTCProService3.xsd" MetadataType="Schema" ID="c419d858-6987-426b-830b-e33886238330" SourceId="1" SourceUrl="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,204 @@
+﻿@model List<DataAccess.ReportAPI.DTO.MatchMoveReportGeneral>
+<div>@ViewBag.listjson</div>
+@if (ViewBag.Role == -1)
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            window.location = UrlRoot + "Account/FormLogin";
+        });
+    </script>
+}
+else if (ViewBag.Role == -2)
+{
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-lg-12">
+                <div class="centering text-center error-container">
+                    <div class="text-center">
+                        <h2 class="without-margin">Don't worry. It's <span class="text-warning"><big>403</big></span> error only.</h2>
+                        <h4 class="text-warning">Access denied</h4>
+                    </div>
+                    <div class="text-center">
+                        <h3><small>Choose an option below</small></h3>
+                    </div>
+                    <hr>
+                    <ul class="pager">
+                        <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)">&larr; Home</a></li>
+                        <li><a href="@Html.Raw(ViewBag.UrlLogin)?act=out" style="color:#005bff; font-size:13px;text-decoration:underline">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+else
+{
+    long TotalFeeMaintain = ViewBag.FeeCardNew + ViewBag.FeeCardOld;
+    <div class="clearfix"></div>
+    <div class="table-responsive">
+        <b>Số dòng (@ViewBag.TotalRow)</b>
+        <table class="table table-striped table-hover dataTable no-footer" id="table-static" width="100%">
+            <thead>
+
+                <tr class="info">
+                    <th style="width:5%;">Thời gian</th>
+                    <th style="width:6%;">Số thẻ mở lần đầu</th>
+                    <th style="width:6%;">Số thẻ mở sau</th>
+                    <th style="width:6%;">Tổng thẻ đăng ký</th>
+                    <th style="width:6%;">Phí đăng ký thẻ</th>
+                    <th style="width:6%;">Số thẻ định danh</th>
+                    <th style="width:10%;">Số thẻ không định danh(lũy kế)</th>
+                    <th style="width:7%;">Phí duy trì thẻ mới</th>
+                    <th style="width:7%;">Phí duy trì thẻ cũ</th>
+                    <th style="width:7%;">Tổng phí duy trì</th>
+                    <th style="width:8%;">Số tiền nạp từ ví sang thẻ</th>
+                    <th style="width:8%;">Số tiền nạp từ thẻ sang thẻ</th>
+                    <th style="width:9%;">Số thẻ khóa do không đóng phí(lũy kế)</th>
+                    <th style="width:9%;">Số thẻ đóng do không đóng phí duy trì</th>
+                </tr>
+            </thead>
+
+            <tfoot>
+                <tr>
+                    <td align="right" style="text-align:right" valign="middle">
+                        <b>Tổng </b>
+                    </td>
+                    <td style="text-align:right"><b>@((ViewBag.TotalCardBefore == 0) ? ViewBag.TotalCardBefore : string.Format("{0:##,###}", ViewBag.TotalCardBefore).Replace(",", "."))</b></td>
+                    <td style="text-align:right"><b>@((ViewBag.TotalCardAfter == 0) ? ViewBag.TotalCardAfter : string.Format("{0:##,###}", ViewBag.TotalCardAfter).Replace(",", "."))</b></td>
+                    <td style="text-align:right"><b>@((ViewBag.TotalCardReg == 0) ? ViewBag.TotalCardReg : string.Format("{0:##,###}", ViewBag.TotalCardReg).Replace(",", "."))</b></td>
+                    <td style="text-align:right"><b>@((ViewBag.TotalFeeReg == 0) ? ViewBag.TotalFeeReg : string.Format("{0:##,###}", ViewBag.TotalFeeReg).Replace(",", "."))</b></td>
+                    <td style="text-align:right"><b>@((ViewBag.TotalCertCard == 0) ? ViewBag.TotalCertCard : string.Format("{0:##,###}", ViewBag.TotalCertCard).Replace(",", "."))</b></td>
+                    <td></td>
+                    <td style="text-align:right"><b>@((ViewBag.FeeCardNew == 0) ? ViewBag.FeeCardNew : string.Format("{0:##,###}", ViewBag.FeeCardNew).Replace(",", "."))</b></td>
+                    <td style="text-align:right"><b>@((ViewBag.FeeCardOld == 0) ? ViewBag.FeeCardOld : string.Format("{0:##,###}", ViewBag.FeeCardOld).Replace(",", "."))</b></td>
+                    <td style="text-align:right"><b>@((TotalFeeMaintain == 0) ? TotalFeeMaintain.ToString() : string.Format("{0:##,###}", TotalFeeMaintain).Replace(",", "."))</b></td>
+                    <td style="text-align:right"><b>@((ViewBag.TotalAmountWalletToCard == 0) ? ViewBag.TotalAmountWalletToCard : string.Format("{0:##,###}", ViewBag.TotalAmountWalletToCard).Replace(",", "."))</b></td>
+                    <td style="text-align:right"><b>@((ViewBag.TotalAmountCardToCard == 0) ? ViewBag.TotalAmountCardToCard : string.Format("{0:##,###}", ViewBag.TotalAmountCardToCard).Replace(",", "."))</b></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        var listjson = '@Html.Raw(ViewBag.listjson)';
+        var datajson = JSON.parse(listjson);
+
+        var table = $('#table-static').DataTable({
+            dom: 'Bf<"chooseChart">tp',
+            lengthMenu: [
+                    [25, 50, 100],
+                    ['25 rows', '50 rows', '100 rows']
+            ],
+            "data": datajson,
+            "columns": [
+                   { "data": "CreatedDate", "type": "date" },
+                   { "data": "TotalRegisterBefore"},
+                   { "data": "TotalRegisterAfter"},
+                   { "data": "TotalRegister" },
+                   { "data": "CardFee" },
+                   { "data": "TotalCertCard" },
+                   { "data": "TotalUnCertCard" },
+                   { "data": "MaintainFee" },
+                   { "data": "MaintanFeeOld" },
+                   { "data": "TotalMaintainFee" },
+                   { "data": "TotalAmount" },
+                   { "data": "CardtoAmount" },
+                   { "data": "TotalVTCLock" },
+                   { "data": "TotalCardLock" }
+            ],
+            buttons: [
+                    {
+                        extend: 'collection',
+                        text: "<i class='fa fa-cloud-download'></i>Xuất dữ liệu",
+                        buttons: [
+                            {
+                                extend: 'copy',
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                text: "<i class='fa fa-copy'></i>Copy",
+                                footer: true,
+                                title: "Báo Cáo Tổng Hợp VTC MasterCard"
+                            },
+                            {
+                                extend: 'csvHtml5',
+                                text: "<i class='fa fa-file-text-o'></i>Csv",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                footer: true,
+                                title: "Báo Cáo Tổng Hợp VTC MasterCard"
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: "<i class='fa fa-file-excel-o'></i>Excel",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                footer: true,
+                                title: "Báo Cáo Tổng Hợp VTC MasterCard",
+                                filename: "Báo Cáo Tổng Hợp VTC MasterCard",
+                                typeTime: 0
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: "<i class='fa fa-file-word-o'></i>Word",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                doctype: 'doc',
+                                footer: true,
+                                title: "Báo Cáo Tổng Hợp VTC MasterCard",
+                                filename: "Báo Cáo Tổng Hợp VTC MasterCard",
+                                typeTime: 0
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                text: "<i class='fa fa-file-pdf-o'></i>PDF",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                pageSize: 'A4',
+                                footer: true,
+                                title: "Báo Cáo Tổng Hợp VTC MasterCard",
+                                typeTime: 0
+                            },
+                            {
+                                extend: 'print',
+                                text: "<i class='fa fa-print'></i>Print",
+                                autoPrint: false,
+                                footer: true,
+                                title: "Báo Cáo Tổng Hợp VTC MasterCard",
+                                typeTime: 0
+                            }
+                        ]
+                    },
+
+                    'pageLength',
+                    {
+                        extend: "colvis",
+                        text: "<i class='fa fa-eye-slash'></i>Ẩn/hiện cột"
+                    }
+            ],
+            "bAutoWidth": true,
+            "aaSorting": [[0, 'desc']],
+            "bSort": true,
+            "fnDrawCallback": function (oSettings) {
+                rowspanDTable(oSettings, "table-static", '0');
+            },
+            searching: false,
+            pageLength: 25,
+            reponsive: true
+        });
+        table.buttons().container().appendTo('#example_wrapper .col-sm-6:eq(0)');
+        $('#table-static').on('page.dt', function () {
+            $("html,body").animate({ scrollTop: $('#table-static').offset().top - 100 }, 'fast');
+        });
+
+    </script>
+
+}

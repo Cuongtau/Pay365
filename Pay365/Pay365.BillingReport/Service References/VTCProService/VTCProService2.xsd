@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataAccess.VTCProAPI.DTO" />
+  <xs:import schemaLocation="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/VTCProService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/VTCApp.AdminService.Models" />
+  <xs:element name="VTCPro_UseCard_MerchantPayment_GetList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="merchantCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cardSerial" type="xs:long" />
+        <xs:element minOccurs="0" name="cardCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cardAmount" type="xs:long" />
+        <xs:element minOccurs="0" name="status" type="xs:int" />
+        <xs:element minOccurs="0" name="transactionID" type="xs:long" />
+        <xs:element minOccurs="0" name="fromDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="toDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VTCPro_UseCard_MerchantPayment_GetListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataAccess.VTCProAPI.DTO" minOccurs="0" name="VTCPro_UseCard_MerchantPayment_GetListResult" nillable="true" type="q1:ArrayOfVTCProCard_UseCard_MerchantPayment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VTCPro_UseCard_History_GetList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="createdAccount" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="merchantAccount" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cardSerial" type="xs:long" />
+        <xs:element minOccurs="0" name="fromDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="toDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VTCPro_UseCard_History_GetListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataAccess.VTCProAPI.DTO" minOccurs="0" name="VTCPro_UseCard_History_GetListResult" nillable="true" type="q2:ArrayOfVTCProCard_UseCard_History" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VTCPro_ReportGeneral">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fromDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="toDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VTCPro_ReportGeneralResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataAccess.VTCProAPI.DTO" minOccurs="0" name="VTCPro_ReportGeneralResult" nillable="true" type="q3:ArrayOfReportGeneral" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VTCPro_ReportCreate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fromDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="toDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VTCPro_ReportCreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DataAccess.VTCProAPI.DTO" minOccurs="0" name="VTCPro_ReportCreateResult" nillable="true" type="q4:ArrayOfReportCreate" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VTCPro_UseCard_GetInfoBySerial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cardSerial" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VTCPro_UseCard_GetInfoBySerialResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DataAccess.VTCProAPI.DTO" minOccurs="0" name="VTCPro_UseCard_GetInfoBySerialResult" nillable="true" type="q5:VTCPro_UseCardInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CardData_BlockUnblock">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/VTCApp.AdminService.Models" minOccurs="0" name="requestData" nillable="true" type="q6:Card_BlockUnblockRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CardData_BlockUnblockResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/VTCApp.AdminService.Models" minOccurs="0" name="CardData_BlockUnblockResult" nillable="true" type="q7:ResponseData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Merchant_Getlist">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Merchant_GetlistResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DataAccess.VTCProAPI.DTO" minOccurs="0" name="Merchant_GetlistResult" nillable="true" type="q8:ArrayOfMerchant" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <title>VTC Intecom | Admin Dashboard Template</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    @Styles.Render("~/bundles/css")
+
+    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+    @Styles.Render("~/pluginStyle/css")
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link href="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/css/themes/darkblue.css" rel="stylesheet" type="text/css" />
+    <link href="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/css/custom.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME STYLES -->
+
+
+    <link rel="shortcut icon" href="@Html.Raw(Pay365.Utils.Config.UrlRoot)favicon.ico" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body class="page-header-fixed page-quick-sidebar-over-content">
+
+    <!-- BEGIN HEADER -->
+    @Html.Action("Header", "Common")
+    <!-- END HEADER -->
+    <div class="clearfix">
+    </div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        @Html.Action("PageSideBar", "Common")
+        <!-- BEGIN SIDEBAR -->
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+
+                <div id="TemplateContent">
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+        <!-- END CONTENT -->
+
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner">
+            2016 &copy; VTC Intecom
+        </div>
+        <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    <!-- END CORE PLUGINS -->
+    @Scripts.Render("~/bundles/JqueryJs")
+
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/plugins/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
+
+    <!-- END PAGE LEVEL PLUGINS -->
+    @Scripts.Render("~/bundles/tableExport")
+
+    <script src="@Html.Raw(Pay365.Utils.Config.UrlRoot)Scripts/plugins/dataTables/pdfmake.min.js"></script>
+    <script src="@Html.Raw(Pay365.Utils.Config.UrlRoot)Scripts/plugins/dataTables/vfs_fonts.js"></script>
+
+    @Scripts.Render("~/bundles/hightchart")
+    @Scripts.Render("~/bundles/html5pdf")
+    @Scripts.Render("~/bundles/common")
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/global/plugins/metronic.js" type="text/javascript"></script>
+    <script src="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/global/plugins/layout.js" type="text/javascript"></script>
+    <script src="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/global/plugins/quick-sidebar.js" type="text/javascript"></script>
+    <script src="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/global/plugins/demo.js" type="text/javascript"></script>
+    <script src="@Html.Raw(Pay365.Utils.Config.UrlRoot)Content/global/plugins/index.js" type="text/javascript"></script>
+    <script>
+        if (screen && screen.width > 768) {
+            document.write('<script type="text/javascript" src="' + Utils.UrlRoot + '/Scripts/plugins/dropdown-hover/bootstrap-hover-dropdown.min.js"><\/script>');
+        }
+        if (screen && screen.width >= 768) {
+            document.write('<script type="text/javascript" src="' + Utils.UrlRoot + '/Scripts/plugins/dataTables/dataTables.fixedHeader.min.js"><\/script>');
+        }
+    </script>
+
+
+    @RenderSection("scripts", required: false)
+    <!-- END JAVASCRIPTS -->
+    <script>
+        $(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-top-right",
+                "onclick": null,
+                "showDuration": "500",
+                "hideDuration": "500",
+                "timeOut": "5000",
+                "extendedTimeOut": "500",
+                "showEasing": "swing",
+                "hideEasing": "swing",
+                "showMethod": "show",
+                "hideMethod": "hide"
+            };
+           Metronic.init(); // init metronic core componets
+           Layout.init(); // init layout
+           QuickSidebar.init(); // init quick sidebar
+           Demo.init(); // init demo features 
+           Index.init();
+        });
+    </script>
+
+</body>
+</html>

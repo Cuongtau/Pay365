@@ -1,0 +1,44 @@
+﻿{
+  "title": {
+    "regPersionalTitle": "Wallet persional register",
+    "usernamePlacehoder": "Wallet number",
+    "passwordPlacehoder": "Password",
+    "rules": "By registering, you agree to <a href='javascript:;'>the Terms of Use and Privacy Policy</a>",
+    "desPersonal": "For personal wish to use e-wallet",
+    "titPersonal": "REGISTER <span>Personal e-wallet</span>"
+  },
+  "message": {
+    "usernameEmpty": "Please enter username",
+    "usernameIllegal": "Your account name illegal",
+    "passwordEmpty": "Please enter your password",
+    "passwordLengthInvalid": "Password length between 6-18 characters",
+    "passwordContainInvalid": "Password must be contain letter and number",
+    "repasswordEmpty": "Please enter your password again",
+    "repasswordIncorrect": "Your repassword incorrect",
+    "fullnameEmpty": "Please enter your fullname",
+    "emailEmpty": "Please your email",
+    "emailIllegal": "Your email illegal",
+    "passportEmpty": "Please enter your passport",
+    "passportIllegal": "Your passport illegal",
+    "nationalRequired": "Please choose your national",
+    "captchaEmpty": "Please enter verify code",
+    "representEmpty": "Please enter organic's representative",
+    "organicnameEmpty": "Please enter organic name",
+    "businessTypeRequire": "Please choose organic's business type",
+    "businessnumberEmpty": "Please enter organic's business number",
+    "taxcodeEmpty": "Please enter organic's tax code",
+    "contactnumberEmpty": "Please enter organic's contact number",
+    "activeDesc": "An activation code has been sent to the registered phone number and email",
+    "activecodeEmpty": "Please enter your active code",
+    "activecodeIllegal": "Your active code illegal",
+    "dobEmpty": "Please enter your date of birth",
+    "genderEmpty": "Please select a gender",
+    "dobIllegal": "Your date of birth passport illegal",
+    "otpEmpty": "Please enter secure code",
+    "otpTokenEmpty": "Do not get security code signature",
+    "termsUncheck": "Please agree to the terms of use"
+  },
+  "response": {
+    "default": "The system is busy, please come back later"
+  }
+}

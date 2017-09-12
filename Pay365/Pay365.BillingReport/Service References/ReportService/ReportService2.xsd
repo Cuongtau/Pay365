@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://sandbox.vtcpay.vn/pay2.0/adminservice/Service/ReportService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataAccess.OrdersAPI.DTO" />
+  <xs:element name="GetListBankForCashOut">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bankType" type="xs:unsignedByte" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetListBankForCashOutResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DataAccess.OrdersAPI.DTO" minOccurs="0" name="GetListBankForCashOutResult" nillable="true" type="q1:ArrayOfBankInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetListBankTopup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bankType" type="xs:unsignedByte" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetListBankTopupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataAccess.OrdersAPI.DTO" minOccurs="0" name="GetListBankTopupResult" nillable="true" type="q2:ArrayOfBankInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BankInfo_GetByCondition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bankId" type="xs:int" />
+        <xs:element minOccurs="0" name="bankCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bankName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bankType" type="xs:unsignedByte" />
+        <xs:element minOccurs="0" name="status" type="xs:unsignedByte" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BankInfo_GetByConditionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataAccess.OrdersAPI.DTO" minOccurs="0" name="BankInfo_GetByConditionResult" nillable="true" type="q3:ArrayOfBankInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WebsitePayment_GetList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AccountID" type="xs:int" />
+        <xs:element minOccurs="0" name="WebsiteID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WebsitePayment_GetListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DataAccess.OrdersAPI.DTO" minOccurs="0" name="WebsitePayment_GetListResult" nillable="true" type="q4:ArrayOfWebsitePayment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,219 @@
+﻿@using Pay365Wallet.Helpers
+@if (ViewBag.CurrentLang == "en")
+{
+    <section class="page">
+        <div class="container">
+            <div id="why-use" class="why-use row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="image">
+                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icon-cash-in.svg" alt="">
+                        </div>
+                        <div class="description">@Resources.Home.String13</div>
+                        <div class="button">
+                            <a href="@Html.Raw(Pay365.Utils.Config.Domain)dang-nhap?return=topup" class="btn btn-primary uppercase" ripple="ripple">
+                                @Resources.Home.String14<i class="fa fa-angle-right"></i>
+                            <div class="ripple--container"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="image">
+                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icon-cash-out.svg" alt="">
+                    </div>
+                    <div class="description">@Resources.Home.String39</div>
+                    <div class="button">
+                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)dang-nhap?return=cashout" class="btn btn-primary uppercase" ripple="ripple">
+                            @Resources.Home.String15<i class="fa fa-angle-right"></i>
+                        <div class="ripple--container"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="image">
+                    <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icon-transfer.svg" alt="">
+                </div>
+                <div class="description">@Resources.Home.String40</div>
+                <div class="button">
+                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)dang-nhap?return=transfer" class="btn btn-primary uppercase" ripple="ripple">
+                        @Resources.Home.String16<i class="fa fa-angle-right"></i>
+                    <div class="ripple--container"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="payment row">
+    <div class="col-md-6">
+        <div class="imac">
+            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/tut.gif" class="over-lay" alt="">
+            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/imac.png" alt="">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <p class="page-title">@Resources.Home.String17</p>
+        <p class="page-description">@Resources.Home.String18</p>
+        <div class="btn-payment">
+            <a href="@Html.Raw(Pay365.Utils.Config.Domain)dang-nhap" class="btn btn-primary uppercase" ripple="ripple">@Resources.Home.String19<i class="fa fa-angle-right"></i></a>
+        </div>
+    </div>
+</div>
+
+</div>
+</section>
+    <section class="page">
+        <div class="stores">
+            <div class="bg-stores" data-parallax="scroll" data-image-src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/pattern-stores.jpg"></div>
+            <div class="container">
+                <p class="page-title">@Resources.Home.String20</p>
+                <p class="page-description">@Resources.Home.String21</p>
+                <div class="icons">
+                    <a href="javascript:;" class="disabled"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-appstore.png" alt=""></a>
+                    <a href="javascript:;" class="disabled"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-googleplay.png" alt=""></a>
+                </div>
+                <div class="countdown" id="countdown" data-time="1503973970"></div>
+            </div>
+        </div>
+    </section>
+    <section class="page">
+        <div class="container">
+            <div class="row transaction">
+                <div class="col-md-6">
+                    <p class="page-title">@Resources.Home.String22</p>
+                    <p class="page-description">@Resources.Home.String23</p>
+                    <div class="verified">
+                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/transaction-verified.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="devices">
+                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/iphone-macbook.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="page register" data-parallax="scroll" data-image-src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/bg-using-mobile.jpg">
+        <div class="container">
+            <p class="page-title">@Resources.Home.String27</p>
+            <p class="page-description">@Resources.Home.String28</p>
+            <p class="page-register-button">
+                <a href="@Html.Raw(Pay365.Utils.Config.Domain)register" class="btn btn-page-register" ripple="rippple">
+                    @Resources.Home.String29<i class="material-icons">person_add</i>
+                <div class="ripple--container"></div>
+            </a>
+        </p>
+    </div>
+</section>
+}
+else
+{
+    <section class="page">
+        <div class="container">
+            <div id="why-use" class="why-use row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="image">
+                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icon-cash-in.svg" alt="">
+                        </div>
+                        <div class="description">@Resources.Home.String13</div>
+                        <div class="button">
+                            <a href="@Html.Raw(Pay365.Utils.Config.Domain)dang-nhap?return=topup" class="btn btn-primary uppercase" ripple="ripple">@Resources.Home.String14<i class="fa fa-angle-right"></i><div class="ripple--container"></div></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="image">
+                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icon-cash-out.svg" alt="">
+                        </div>
+                        <div class="description">@Resources.Home.String39</div>
+                        <div class="button">
+                            <a href="@Html.Raw(Pay365.Utils.Config.Domain)dang-nhap?return=cashout" class="btn btn-primary uppercase" ripple="ripple">@Resources.Home.String15<i class="fa fa-angle-right"></i><div class="ripple--container"></div></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="image">
+                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icon-transfer.svg" alt="">
+                        </div>
+                        <div class="description">@Resources.Home.String40</div>
+                        <div class="button">
+                            <a href="@Html.Raw(Pay365.Utils.Config.Domain)dang-nhap?return=transfer" class="btn btn-primary uppercase" ripple="ripple">@Resources.Home.String16<i class="fa fa-angle-right"></i><div class="ripple--container"></div></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="payment row">
+                <div class="col-md-6">
+                    <div class="imac animated fadeInLeft">
+                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/tut.gif" class="over-lay" alt="">
+                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/imac.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p class="page-title animated fadeInDown">@Resources.Home.String17</p>
+                    <p class="page-description animated fadeInRight">@Resources.Home.String18</p>
+                    <div class="btn-payment animated fadeInUp">
+                        <a href="@Html.Raw(Pay365.Utils.Config.Domain)dang-nhap" class="btn btn-primary uppercase" ripple="ripple">@Resources.Home.String19<i class="fa fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="page">
+        <div class="stores">
+            <div class="bg-stores" data-parallax="scroll" data-image-src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/pattern-stores.jpg"></div>
+            <div class="container">
+                <p class="page-title">@Resources.Home.String20</p>
+                <p class="page-description">@Resources.Home.String21</p>
+                <div class="icons">
+                    <a href="javascript:;" class="disabled"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-appstore.png" alt=""></a>
+                    <a href="javascript:;" class="disabled"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-googleplay.png" alt=""></a>
+                </div>
+                <div class="countdown" id="countdown" data-time="1503973970"></div>
+            </div>
+        </div>
+    </section>
+    <section class="page">
+        <div class="container">
+            <div class="row transaction">
+                <div class="col-md-6">
+                    <p class="page-title animated fadeInLeft">@Resources.Home.String22</p>
+                    <p class="page-description animated fadeInLeft">@Resources.Home.String23</p>
+                    <div class="verified animated fadeInUp">
+                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/transaction-verified.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="devices animated fadeInRight">
+                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/iphone-macbook.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="page register" data-parallax="scroll" data-image-src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/bg-using-mobile.jpg">
+        <div class="container">
+            <p class="page-title">@Resources.Home.String27</p>
+            <p class="page-description">@Resources.Home.String28</p>
+            <p class="page-register-button">
+                <a href="@Html.Raw(Pay365.Utils.Config.Domain)dang-ky" class="btn btn-page-register" ripple="rippple">@Resources.Home.String29<i class="material-icons">person_add</i><div class="ripple--container"></div></a>
+            </p>
+        </div>
+    </section>
+}

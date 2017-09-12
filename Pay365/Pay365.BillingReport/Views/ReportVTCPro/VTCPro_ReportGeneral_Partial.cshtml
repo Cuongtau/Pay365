@@ -1,0 +1,201 @@
+﻿@model List<Pay365.BillingReport.VTCProService.ReportGeneral>
+
+@{
+    ViewBag.Title = "Bao_cao_tong_quan_ma_VTCPro_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
+}
+
+@if (ViewBag.Role == -1)
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            window.location = UrlRoot + "Account/FormLogin";
+        });
+    </script>
+}
+else if (ViewBag.Role == -2)
+{
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-lg-12">
+                <div class="centering text-center error-container">
+                    <div class="text-center">
+                        <h2 class="without-margin">
+                            Don't worry. It's <span class="text-warning"><big>403</big></span> error only.
+                        </h2>
+                        <h4 class="text-warning">Access denied</h4>
+                    </div>
+                    <div class="text-center">
+                        <h3>
+                            <small>Choose an option below</small>
+                        </h3>
+                    </div>
+                    <hr>
+                    <ul class="pager">
+                        <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)">&larr; Home</a></li>
+                        <li><a href="@Html.Raw(ViewBag.UrlLogin)?act=out" style="color: #005bff; font-size: 13px; text-decoration: underline">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="clearfix"></div>
+    <div class="table-responsive">
+        <b>Số dòng (@Model.Count)</b>
+        <table class="table table-striped table-hover dataTable no-footer" id="table-static" style="width: 100%">
+            <thead>
+                <tr class="info">
+                    <th width="10%">Thời gian</th>
+                    <th width="10%">Số mã tạo mới</th>
+                    <th width="10%">Số tiền tạo mã</th>
+                    <th width="10%">Số tiền thanh toán từ mã</th>
+                    <th width="10%">Số mã hết hạn</th>
+                    <th width="10%">Số mã được sử dụng</th>
+                    <th width="10%">Số tiền thu hồi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var obj in Model)
+                    {
+                        <tr>
+                            <td>@obj.ReportDate.ToString("dd/MM/yyyy")</td>
+                            <td>@(obj.TotalCreate >= 1000 ? string.Format("{0:##,###}", obj.TotalCreate) : obj.TotalCreate.ToString())</td>
+                            <td>@(obj.TotalCreateAmount >= 1000 ? string.Format("{0:##,###}", obj.TotalCreateAmount) : obj.TotalCreateAmount.ToString())</td>
+                            <td>@(obj.TotalPaymentAmount >= 1000 ? string.Format("{0:##,###}", obj.TotalPaymentAmount) : obj.TotalPaymentAmount.ToString())</td>
+                            <td>@(obj.TotalExpired >= 1000 ? string.Format("{0:##,###}", obj.TotalExpired) : obj.TotalExpired.ToString())</td>
+                            <td>@(obj.TotalUse >= 1000 ? string.Format("{0:##,###}", obj.TotalUse) : obj.TotalUse.ToString())</td>
+                            <td>@(obj.TotalMaintainAmount >= 1000 ? string.Format("{0:##,###}", obj.TotalMaintainAmount) : obj.TotalMaintainAmount.ToString())</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+
+            <tfoot>
+                @if (Model != null && Model.Count > 0)
+                {
+                    var totalCreate = Model.Sum(p => p.TotalCreate);
+                    var totalCreateAmount = Model.Sum(p => p.TotalCreateAmount);
+                    var totalPaymentAmount = Model.Sum(p => p.TotalPaymentAmount);
+                    var totalExpired = Model.Sum(p => p.TotalExpired);
+                    var totalUsed = Model.Sum(p => p.TotalUse);
+                    var totalMaintainAmount = Model.Sum(p => p.TotalMaintainAmount);
+
+                    <tr>
+                        <td><b>Tổng</b></td>
+                        <td><b>@(totalCreate >= 1000 ? string.Format("{0:##,###}", totalCreate) : totalCreate.ToString())</b></td>
+                        <td><b>@(totalCreateAmount >= 1000 ? string.Format("{0:##,###}", totalCreateAmount) : totalCreateAmount.ToString())</b></td>
+                        <td><b>@(totalPaymentAmount >= 1000 ? string.Format("{0:##,###}", totalPaymentAmount) : totalPaymentAmount.ToString())</b></td>
+                        <td><b>@(totalExpired >= 1000 ? string.Format("{0:##,###}", totalExpired) : totalExpired.ToString())</b></td>
+                        <td><b>@(totalUsed >= 1000 ? string.Format("{0:##,###}", totalUsed) : totalUsed.ToString())</b></td>
+                        <td><b>@(totalMaintainAmount >= 1000 ? string.Format("{0:##,###}", totalMaintainAmount) : totalMaintainAmount.ToString())</b></td>
+                    </tr>
+                }
+            </tfoot>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var table = $('#table-static').DataTable({
+                ordering: false,
+                dom: 'Bfrtip',
+                lengthMenu: [
+                    [10, 25, 50],
+                    ['10 rows', '25 rows', '50 rows']
+                ],
+                buttons: [
+             {
+                 extend: 'collection',
+                 text: "<i class='fa fa-cloud-download'></i>Xuất dữ liệu",
+                 buttons: [
+                         {
+                             extend: 'copy',
+                             exportOptions: {
+                                 columns: ':visible'
+                             },
+                             text: "<i class='fa fa-copy'></i>Copy",
+                             footer: true,
+                             title: "Báo cáo tổng quan mã VTCPRO"
+                         },
+                         {
+                             extend: 'csvHtml5',
+                             text: "<i class='fa fa-file-text-o'></i>Csv",
+                             exportOptions: {
+                                 columns: ':visible'
+                             },
+                             footer: true,
+                             title: "Báo cáo tổng quan mã VTCPRO"
+                         },
+                         {
+                             extend: 'excelHtml5',
+                             text: "<i class='fa fa-file-excel-o'></i>Excel",
+                             exportOptions: {
+                                 columns: ':visible'
+                             },
+                             footer: true,
+                             title: "Báo cáo tổng quan mã VTCPRO",
+                             filename: '@ViewBag.Title',
+                             typeTime: 0
+                         },
+                         {
+                             extend: 'excelHtml5',
+                             text: "<i class='fa fa-file-word-o'></i>Word",
+                             exportOptions: {
+                                 columns: ':visible'
+                             },
+                             doctype: 'doc',
+                             footer: true,
+                             title: 'Báo cáo tổng quan mã VTCPRO',
+                             filename: '@ViewBag.Title',
+                             typeTime: 0
+                         },
+                         {
+                             extend: 'pdfHtml5',
+                             text: "<i class='fa fa-file-pdf-o'></i>PDF",
+                             exportOptions: {
+                                 columns: ':visible'
+                             },
+                             footer: true,
+                             title: 'Báo cáo tổng quan mã VTCPRO',
+                             headerRows: 2,
+                             typeTime: 0,
+                             orientation: 'landscape'
+                         },
+                         {
+                             extend: 'print',
+                             text: "<i class='fa fa-print'></i>Print",
+                             autoPrint: false,
+                             footer: true,
+                             title: '@ViewBag.Title',
+                             typeTime: 0
+                         }
+                 ]
+             },
+                 'pageLength',
+                  {
+                      extend: "colvis",
+                      text: "<i class='fa fa-eye-slash'></i>Ẩn/hiện cột"
+                  }
+                ],
+                "bAutoWidth": true,
+                "aaSorting": [[0, 'desc']],
+                "bSort": true,
+                searching: true,
+                pageLength: 25,
+                reponsive: true
+            });
+            table.buttons().container().appendTo('#example_wrapper .col-sm-6:eq(0)');
+            $('#table-static').on('page.dt', function () {
+                $("html, body").animate({ scrollTop: $('#table-static').offset().top - 100 }, 'fast');
+            });
+        });
+
+    </script>
+}
+
+

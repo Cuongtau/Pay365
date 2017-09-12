@@ -1,0 +1,507 @@
+﻿@{
+    ViewBag.Title = "Báo cáo tổng hợp giao dịch nạp";
+}
+
+@model List<DataAccess.ReportAPI.DTO.TransactionInputGeneralReport>
+@{
+    int TotalAccounts_OnlineBank = Model.Sum(c => c.TotalAccounts_OnlineBank);
+    int TotalTrans_OnlineBank = Model.Sum(c => c.TotalTrans_OnlineBank);
+    long TotalAmount_OnlineBank = Model.Sum(c => c.TotalAmount_OnlineBank);
+    int TotalFee_OnlineBank = Model.Sum(c => c.TotalFee_OnlineBank);
+    int TotalAccounts_visa = Model.Sum(c => c.TotalAccounts_visa);
+    int TotalTrans_visa = Model.Sum(c => c.TotalTrans_visa);
+    long TotalAmount_visa = Model.Sum(c => c.TotalAmount_visa);
+    int TotalFee_visa = Model.Sum(c => c.TotalFee_visa);
+    int TotalAccounts_tranferBank = Model.Sum(c => c.TotalAccounts_tranferBank);
+    int TotalTrans_tranferBank = Model.Sum(c => c.TotalTrans_tranferBank);
+    long TotalAmount_tranferBank = Model.Sum(c => c.TotalAmount_tranferBank);
+    int TotalFee_tranferBank = Model.Sum(c => c.TotalFee_tranferBank);
+    int TotalAccounts_Card = Model.Sum(c => c.TotalAccounts_Card);
+    int TotalTrans_Card = Model.Sum(c => c.TotalTrans_Card);
+    long TotalAmount_Card = Model.Sum(c => c.TotalAmount_Card);
+    int TotalFee_Card = Model.Sum(c => c.TotalFee_Card);
+    int TotalAccounts_vnpost = Model.Sum(c => c.TotalAccounts_vnpost);
+    int TotalTrans_vnpost = Model.Sum(c => c.TotalTrans_vnpost);
+    long TotalAmount_vnpost = Model.Sum(c => c.TotalAmount_vnpost);
+    int TotalFee_vnpost = Model.Sum(c => c.TotalFee_vnpost);
+    int TotalAccounts_Other = Model.Sum(c => c.TotalAccounts_Other);
+    int TotalTrans_Other = Model.Sum(c => c.TotalTrans_Other);
+    long TotalAmount_Other = Model.Sum(c => c.TotalAmount_Other);
+    int TotalFee_Other = Model.Sum(c => c.TotalFee_Other);
+    int TotalAccounts = Model.Sum(c => c.TotalAccounts);
+    int TotalTrans = Model.Sum(c => c.TotalTrans);
+    long TotalAmount = Model.Sum(c => c.TotalAmount);
+    long TotalFee = Model.Sum(c => c.TotalFee);
+    int TotalAccounts_Link = Model.Sum(c => c.TotalAccounts_LinkBank);
+    int TotalTrans_Link = Model.Sum(c => c.TotalTrans_LinkBank);
+    long TotalAmount_Link = Model.Sum(c => c.TotalAmount_LinkBank);
+    long TotalFee_Link = Model.Sum(c => c.TotalFee_LinkBank);
+
+}
+<div class="clearfix"></div>
+<div class="table-responsive">
+    <table id="table-static" cellspacing="0" width="100%">
+        <thead>
+            <tr class="info">
+                <th rowspan="2" width="@(ViewBag.PayType <= 0 ? 4 : 20)%">Thời gian</th>
+                @Html.Raw(ViewBag.PayType <= 0 ? "<th colspan='4'  width='12%'>Nạp Online Ngân hàng</th>" : ViewBag.PayType == 1 ? "<th colspan='4'  width='80%'>Nạp Online Ngân hàng</th>" : "")
+                @Html.Raw(ViewBag.PayType <= 0 ? "<th colspan=\"4\" width='12%'>Thẻ quốc tế</th>" : ViewBag.PayType == 2 ? "<th colspan=\"4\" width='80%'>Thẻ quốc tế</th>" : "")
+                @Html.Raw(ViewBag.PayType <= 0 ? "<th colspan=\"4\" width='12%'>Nạp chuyển khoản Ngân hàng</th>" : ViewBag.PayType == 3 ? "<th colspan=\"4\" width='80%'>Nạp chuyển khoản Ngân hàng</th>" : "")
+                @Html.Raw(ViewBag.PayType <= 0 ? "<th colspan=\"4\" width='12%'>Nạp từ thẻ cào</th>" : ViewBag.PayType == 4 ? "<th colspan=\"4\" width='80%'>Nạp từ thẻ cào</th>" : "")
+                @Html.Raw(ViewBag.PayType <= 0 ? "<th colspan=\"4\" width='12%'>Nạp từ VnPost</th>" : ViewBag.PayType == 5 ? "<th colspan=\"4\" width='80%'>Nạp từ VnPost</th>" : "")
+                @Html.Raw(ViewBag.PayType <= 0 ? "<th colspan=\"4\" width='12%'>Nạp từ thẻ gắn kết</th>" : ViewBag.PayType == 19 ? "<th colspan=\"4\" width='80%'>Nạp từ thẻ gắn kết</th>" : "")
+                @Html.Raw(ViewBag.PayType <= 0 ? "<th colspan=\"4\" width='12%'>Khác</th>" : ViewBag.PayType == 6 ? "<th colspan=\"4\" width='80%'>Khác</th>" : "")
+                @Html.Raw(ViewBag.PayType <= 0 ? "<th colspan=\"4\" width='12%'>Tổng</th>" : "")
+            </tr>
+            <tr class="info">
+                @if (ViewBag.PayType <= 0)
+                {
+                    for (int i = 0; i <= 7; i++)
+                    {
+                        <th>Số Tài Khoản</th>
+                        <th>Số Giao Dịch</th>
+                        <th>Số Tiền</th>
+                        <th>Phí VTC Thu</th>
+                    }
+                }
+                else
+                {
+                    <th>Số Tài Khoản</th>
+                    <th>Số Giao Dịch</th>
+                    <th>Số Tiền</th>
+                    <th>Phí VTC Thu</th>
+                }
+            </tr>
+        </thead>
+
+        <tbody></tbody>
+        <tfoot>
+            @if (Model != null && Model.Count > 0)
+            {
+                <tr>
+                    <td align="center" valign="middle">
+                        <b>Tổng số</b>
+                    </td>
+                    @if (ViewBag.PayType <= 0 || ViewBag.PayType == (byte)Pay365.Utils.Enums.PayType.TopupByBank)
+                    {
+                        <td style="text-align:right"><b>@((TotalAccounts_OnlineBank == 0) ? "0" : string.Format("{0: ##,###}", TotalAccounts_OnlineBank).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalTrans_OnlineBank == 0) ? "0" : string.Format("{0: ##,###}", TotalTrans_OnlineBank).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalAmount_OnlineBank == 0) ? "0" : string.Format("{0: ##,###}", TotalAmount_OnlineBank).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalFee_OnlineBank == 0) ? "0" : string.Format("{0: ##,###}", TotalFee_OnlineBank).Replace(",", "."))</b></td>
+                    }
+                    @if (ViewBag.PayType <= 0 || ViewBag.PayType == (byte)Pay365.Utils.Enums.PayType.TopupByInternationalCard)
+                    {
+
+                        <td style="text-align:right"><b>@((TotalAccounts_visa == 0) ? "0" : string.Format("{0: ##,###}", TotalAccounts_visa).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalTrans_visa == 0) ? "0" : string.Format("{0: ##,###}", TotalTrans_visa).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalAmount_visa == 0) ? "0" : string.Format("{0: ##,###}", TotalAmount_visa).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalFee_visa == 0) ? "0" : string.Format("{0: ##,###}", TotalFee_visa).Replace(",", "."))</b></td>
+                    }
+                    @if (ViewBag.PayType <= 0 || ViewBag.PayType == (byte)Pay365.Utils.Enums.PayType.TopupByOffice)
+                    {
+
+                        <td style="text-align:right"><b>@((TotalAccounts_tranferBank == 0) ? "0" : string.Format("{0: ##,###}", TotalAccounts_tranferBank).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalTrans_tranferBank == 0) ? "0" : string.Format("{0: ##,###}", TotalTrans_tranferBank).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalAmount_tranferBank == 0) ? "0" : string.Format("{0: ##,###}", TotalAmount_tranferBank).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalFee_tranferBank == 0) ? "0" : string.Format("{0: ##,###}", TotalFee_tranferBank).Replace(",", "."))</b></td>
+                    }
+
+                    @if (ViewBag.PayType <= 0 || ViewBag.PayType == (byte)Pay365.Utils.Enums.PayType.TopupByCard)
+                    {
+
+                        <td style="text-align:right"><b>@((TotalAccounts_Card == 0) ? "0" : string.Format("{0: ##,###}", TotalAccounts_Card).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalTrans_Card == 0) ? "0" : string.Format("{0: ##,###}", TotalTrans_Card).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalAmount_Card == 0) ? "0" : string.Format("{0: ##,###}", TotalAmount_Card).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalFee_Card == 0) ? "0" : string.Format("{0: ##,###}", TotalFee_Card).Replace(",", "."))</b></td>
+                    }
+                    @if (ViewBag.PayType <= 0 || ViewBag.PayType == (byte)Pay365.Utils.Enums.PayType.TopupByVnPost)
+                    {
+
+                        <td style="text-align:right"><b>@((TotalAccounts_vnpost == 0) ? "0" : string.Format("{0: ##,###}", TotalAccounts_vnpost).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalTrans_vnpost == 0) ? "0" : string.Format("{0: ##,###}", TotalTrans_vnpost).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalAmount_vnpost == 0) ? "0" : string.Format("{0: ##,###}", TotalAmount_vnpost).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalFee_vnpost == 0) ? "0" : string.Format("{0: ##,###}", TotalFee_vnpost).Replace(",", "."))</b></td>
+                    }
+                    @if (ViewBag.PayType <= 0 || ViewBag.PayType == (byte)Pay365.Utils.Enums.PayType.TopupByLinkedBank)
+                    {
+
+                        <td style="text-align:right"><b>@((TotalAccounts_Link == 0) ? "0" : string.Format("{0: ##,###}", TotalAccounts_Link).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalTrans_Link == 0) ? "0" : string.Format("{0: ##,###}", TotalTrans_Link).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalAmount_Link == 0) ? "0" : string.Format("{0: ##,###}", TotalAmount_Link).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalFee_Link == 0) ? "0" : string.Format("{0: ##,###}", TotalFee_Link).Replace(",", "."))</b></td>
+                    }
+                    @if (ViewBag.PayType <= 0 || ViewBag.PayType == (byte)Pay365.Utils.Enums.PayType.TopupeOther)
+                    {
+
+                        <td style="text-align:right"><b>@((TotalAccounts_Other == 0) ? "0" : string.Format("{0: ##,###}", TotalAccounts_Other).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalTrans_Other == 0) ? "0" : string.Format("{0: ##,###}", TotalTrans_Other).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalAmount_Other == 0) ? "0" : string.Format("{0: ##,###}", TotalAmount_Other).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalFee_Other == 0) ? "0" : string.Format("{0: ##,###}", TotalFee_Other).Replace(",", "."))</b></td>
+                    }
+                    @if (ViewBag.PayType <= 0)
+                    {
+
+                        <td style="text-align:right"><b>@((TotalAccounts == 0) ? "0" : string.Format("{0: ##,###}", TotalAccounts).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalTrans == 0) ? "0" : string.Format("{0: ##,###}", TotalTrans).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalAmount == 0) ? "0" : string.Format("{0: ##,###}", TotalAmount).Replace(",", "."))</b></td>
+                        <td style="text-align:right"><b>@((TotalFee == 0) ? "0" : string.Format("{0: ##,###}", TotalFee).Replace(",", "."))</b></td>
+                    }
+                </tr>
+            }
+        </tfoot>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var listjson = '@Html.Raw(ViewBag.listjson)';
+        var payType = parseInt('@ViewBag.PayType');
+        var datajson = JSON.parse(listjson);
+        var datacolumns = "";
+        switch (payType) {
+            case 1: //Nạp online  qua ngân hàng tại VTCPay
+                datacolumns = [
+                    { "data": "ReportDate" },
+                    { "data": "TotalAccounts_OnlineBank" },
+                    { "data": "TotalTrans_OnlineBank" },
+                    { "data": "TotalAmount_OnlineBank" },
+                    { "data": "TotalFee_OnlineBank" }
+                ]; break;
+            case 2: //Nạp online qua thẻ quốc tế tại VTCPay
+                datacolumns = [
+                    { "data": "ReportDate" },
+                    { "data": "TotalAccounts_visa" },
+                    { "data": "TotalTrans_visa" },
+                    { "data": "TotalAmount_visa" },
+                    { "data": "TotalFee_visa" }
+                ]; break;
+            case 3: //Nạp chuyển khoản tại ngân hàng (ATM/Internet Banking..)
+                datacolumns = [
+                    { "data": "ReportDate" },
+                    { "data": "TotalAccounts_tranferBank" },
+                    { "data": "TotalTrans_tranferBank" },
+                    { "data": "TotalAmount_tranferBank" },
+                    { "data": "TotalFee_tranferBank" }
+                ]; break;
+            case 4: //Nạp từ thẻ cào
+                datacolumns = [
+                    { "data": "ReportDate" },
+                    { "data": "TotalAccounts_Card" },
+                    { "data": "TotalTrans_Card" },
+                    { "data": "TotalAmount_Card" },
+                    { "data": "TotalFee_Card" }
+                ]; break;
+            case 5: //Nạp từ VNPOST
+                datacolumns = [
+                    { "data": "ReportDate" },
+                    { "data": "TotalAccounts_vnpost" },
+                    { "data": "TotalTrans_vnpost" },
+                    { "data": "TotalAmount_vnpost" },
+                    { "data": "TotalFee_vnpost" }
+                ]; break;
+            case 19://Nạp từ thẻ gắn kết
+                datacolumns = [
+                    { "data": "ReportDate" },
+                    { "data": "TotalAccounts_LinkBank" },
+                    { "data": "TotalTrans_LinkBank" },
+                    { "data": "TotalAmount_LinkBank" },
+                    { "data": "TotalFee_LinkBank" }
+                ]; break;
+            case 6://Nạp từ KHÁC
+                datacolumns = [
+                    { "data": "ReportDate" },
+                    { "data": "TotalAccounts_Other" },
+                    { "data": "TotalTrans_Other" },
+                    { "data": "TotalAmount_Other" },
+                    { "data": "TotalFee_Other" }
+                ]; break;
+            default:
+                datacolumns = [
+                    { "data": "ReportDate" },
+                    { "data": "TotalAccounts_OnlineBank" },
+                    { "data": "TotalTrans_OnlineBank" },
+                    { "data": "TotalAmount_OnlineBank" },
+                    { "data": "TotalFee_OnlineBank" },
+                    { "data": "TotalAccounts_visa" },
+                    { "data": "TotalTrans_visa" },
+                    { "data": "TotalAmount_visa" },
+                    { "data": "TotalFee_visa" },
+                    { "data": "TotalAccounts_tranferBank" },
+                    { "data": "TotalTrans_tranferBank" },
+                    { "data": "TotalAmount_tranferBank" },
+                    { "data": "TotalFee_tranferBank" },
+                    { "data": "TotalAccounts_Card" },
+                    { "data": "TotalTrans_Card" },
+                    { "data": "TotalAmount_Card" },
+                    { "data": "TotalFee_Card" },
+                    { "data": "TotalAccounts_vnpost" },
+                    { "data": "TotalTrans_vnpost" },
+                    { "data": "TotalAmount_vnpost" },
+                    { "data": "TotalFee_vnpost" },
+                    { "data": "TotalAccounts_LinkBank" },
+                    { "data": "TotalTrans_LinkBank" },
+                    { "data": "TotalAmount_LinkBank" },
+                    { "data": "TotalFee_LinkBank" },
+                    { "data": "TotalAccounts_Other" },
+                    { "data": "TotalTrans_Other" },
+                    { "data": "TotalAmount_Other" },
+                    { "data": "TotalFee_Other" },
+                    { "data": "TotalAccounts" },
+                    { "data": "TotalTrans" },
+                    { "data": "TotalAmount" },
+                    { "data": "TotalFee" }
+                ]; break;
+        }
+        var table = $('#table-static').DataTable({
+            dom: 'Bfrtp',
+            lengthMenu: [
+                [25, 50, 100, -1],
+                ['25 rows', '50 rows', '100 rows', 'Show all']
+            ],
+            "data": datajson,
+            "columns": datacolumns,
+            buttons: [
+                {
+                    extend: 'collection',
+                    text: "<i class='fa fa-cloud-download'></i>Xuất dữ liệu",
+                    buttons: [
+                            {
+                                extend: 'copy',
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                text: "<i class='fa fa-copy'></i>Copy",
+                                footer: true,
+                                title: "Báo cáo tổng hợp giao dịch Nạp"
+                            },
+                            {
+                                extend: 'csvHtml5',
+                                text: "<i class='fa fa-file-text-o'></i>Csv",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                footer: true,
+                                title: "Báo cáo tổng hợp giao dịch Nạp"
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: "<i class='fa fa-file-excel-o'></i>Excel",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                footer: true,
+                                title: "Báo Cáo tổng hợp Giao Dịch Nạp",
+                                filename: 'Báo Cáo tổng hợp Giao Dịch Nạp',
+                                typeTime: 0
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: "<i class='fa fa-file-word-o'></i>Word",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                doctype: 'doc',
+                                footer: true,
+                                title: 'Báo Cáo tổng hợp Giao Dịch Nạp',
+                                filename: 'Báo Cáo tổng hợp Giao Dịch Nạp',
+                                typeTime: 0
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                text: "<i class='fa fa-file-pdf-o'></i>PDF",
+                                exportOptions: {
+                                    columns: ':visible'
+                                },
+                                footer: true,
+                                title: 'Báo Cáo tổng hợp Giao Dịch Nạp',
+                                headerRows: 2,
+                                typeTime: 0,
+                                orientation: 'landscape'
+                            },
+                            {
+                                extend: 'print',
+                                text: "<i class='fa fa-print'></i>Print",
+                                autoPrint: false,
+                                footer: true,
+                                title: 'Báo Cáo tổng hợp Giao Dịch Nạp',
+                                typeTime: 0
+                            }
+                    ]
+                },
+                'pageLength',
+                 {
+                     extend: "colvis",
+                     text: "<i class='fa fa-eye-slash'></i>Ẩn/hiện cột"
+                 }
+            ],
+            "aaSorting": [[0, 'desc']],
+            "bSort": true,
+            "fnDrawCallback": function (oSettings) {
+                rowspanDTable(oSettings, "table-static", 0);
+            },
+            searching: false,
+            pageLength: 25
+        });
+        table.buttons().container().appendTo('#example_wrapper .col-sm-6:eq(0)');
+        $('#table-static').on('page.dt', function () {
+            $("html,body").animate({ scrollTop: $('#table-static').offset().top - 100 }, 'fast');
+        });
+        var typeData = parseInt($("#ddlTypeData").val());
+        if (typeData > 0) {
+            switch (typeData) {
+                case 1: //Số tài khoản
+                    seriePie = [
+                        {
+                            name: "Số tài khoản",
+                            colorByPoint: true,
+                            data: [
+                               { name: "Ngân hàng", y: parseInt('@TotalAccounts_OnlineBank') },
+                               { name: "Thẻ quốc tế", y: parseInt('@TotalAccounts_visa') },
+                               { name: "Chuyển khoản NH", y: parseInt('@TotalAccounts_tranferBank') },
+                                { name: "Thẻ cào", y: parseInt('@TotalAccounts_Card') },
+                                { name: "VNPost", y: parseInt('@TotalAccounts_vnpost') },
+                                { name: "Thẻ gắn kết", y: parseInt('@TotalAccounts_Link') },
+                               { name: "Khác", y: parseInt('@TotalAccounts_Other') }
+                            ]
+                        }
+                    ];
+                    break;
+                case 2://số gd
+                    seriePie = [
+                        {
+                            name: "Số giao dịch",
+                            colorByPoint: true,
+                            data: [
+                               { name: "Ngân hàng", y: parseInt('@TotalTrans_OnlineBank') },
+                               { name: "Thẻ quốc tế", y: parseInt('@TotalTrans_visa') },
+                               { name: "Chuyển khoản NH", y: parseInt('@TotalTrans_tranferBank') },
+                                { name: "Thẻ cào", y: parseInt('@TotalTrans_Card') },
+                               { name: "VNPost", y: parseInt('@TotalTrans_vnpost') },
+                               { name: "Thẻ gắn kết", y: parseInt('@TotalTrans_Link') },
+                               { name: "Khác", y: parseInt('@TotalTrans_Other') }
+                            ]
+                        }
+                    ];
+                    break;
+                case 3: //tổng nạp
+                    seriePie = [
+                        {
+                            name: "Tổng tiền nạp",
+                            colorByPoint: true,
+                            data: [
+                               { name: "Ngân hàng", y: parseInt('@TotalAmount_OnlineBank') },
+                               { name: "Thẻ quốc tế", y: parseInt('@TotalAmount_visa') },
+                               { name: "Chuyển khoản NH", y: parseInt('@TotalAmount_tranferBank') },
+                                { name: "Thẻ cào", y: parseInt('@TotalAmount_Card') },
+                               { name: "VNPost", y: parseInt('@TotalAmount_vnpost') },
+                               { name: "Thẻ gắn kết", y: parseInt('@TotalAmount_Link') },
+                               { name: "Khác", y: parseInt('@TotalAmount_Other') }
+                            ]
+                        }
+                    ];
+                    break;
+                case 4://tổng phí
+                    seriePie = [
+                        {
+                            name: "Tổng phí",
+                            colorByPoint: true,
+                            data: [
+                               { name: "Ngân hàng", y: parseInt('@TotalFee_OnlineBank') },
+                               { name: "Thẻ quốc tế", y: parseInt('@TotalFee_visa') },
+                               { name: "Chuyển khoản NH", y: parseInt('@TotalFee_tranferBank') },
+                                { name: "Thẻ cào", y: parseInt('@TotalFee_Card') },
+                               { name: "VNPost", y: parseInt('@TotalFee_vnpost') },
+                               { name: "Thẻ gắn kết", y: parseInt('@TotalFee_Link') },
+                               { name: "Khác", y: parseInt('@TotalFee_Other') }
+                            ]
+                        }
+                    ];
+                    break;
+                default: break;
+            }
+        }
+
+        ChartTransactionInput();
+    });
+
+    function changeChartType(type) {
+        switch (type) {
+            case 1: //Số tài khoản
+                seriePie = [
+                    {
+                        name: "Số tài khoản",
+                        colorByPoint: true,
+                        data: [
+                           { name: "Ngân hàng", y: parseInt('@TotalAccounts_OnlineBank') },
+                           { name: "Thẻ quốc tế", y: parseInt('@TotalAccounts_visa') },
+                           { name: "Chuyển khoản NH", y: parseInt('@TotalAccounts_tranferBank') },
+                            { name: "Thẻ cào", y: parseInt('@TotalAccounts_Card') },
+                           { name: "VNPost", y: parseInt('@TotalAccounts_vnpost') },
+                           { name: "Thẻ gắn kết", y: parseInt('@TotalAccounts_Link') },
+                           { name: "Khác", y: parseInt('@TotalAccounts_Other') }
+                        ]
+                    }
+                ];
+                break;
+            case 2://số gd
+                seriePie = [
+                    {
+                        name: "Số giao dịch",
+                        colorByPoint: true,
+                        data: [
+                           { name: "Ngân hàng", y: parseInt('@TotalTrans_OnlineBank') },
+                           { name: "Thẻ quốc tế", y: parseInt('@TotalTrans_visa') },
+                           { name: "Chuyển khoản NH", y: parseInt('@TotalTrans_tranferBank') },
+                            { name: "Thẻ cào", y: parseInt('@TotalTrans_Card') },
+                           { name: "VNPost", y: parseInt('@TotalTrans_vnpost') },
+                            { name: "Thẻ gắn kết", y: parseInt('@TotalTrans_Link') },
+                           { name: "Khác", y: parseInt('@TotalTrans_Other') }
+                        ]
+                    }
+                ];
+                break;
+            case 3: //tổng nạp
+                seriePie = [
+                    {
+                        name: "Tổng tiền nạp",
+                        colorByPoint: true,
+                        data: [
+                           { name: "Ngân hàng", y: parseInt('@TotalAmount_OnlineBank') },
+                           { name: "Thẻ quốc tế", y: parseInt('@TotalAmount_visa') },
+                           { name: "Chuyển khoản NH", y: parseInt('@TotalAmount_tranferBank') },
+                            { name: "Thẻ cào", y: parseInt('@TotalAmount_Card') },
+                           { name: "VNPost", y: parseInt('@TotalAmount_vnpost') },
+                            { name: "Thẻ gắn kết", y: parseInt('@TotalAmount_Link') },
+                           { name: "Khác", y: parseInt('@TotalAmount_Other') }
+                        ]
+                    }
+                ];
+                break;
+            case 4://tổng phí
+                seriePie = [
+                    {
+                        name: "Tổng phí",
+                        colorByPoint: true,
+                        data: [
+                           { name: "Ngân hàng", y: parseInt('@TotalFee_OnlineBank') },
+                           { name: "Thẻ quốc tế", y: parseInt('@TotalFee_visa') },
+                           { name: "Chuyển khoản NH", y: parseInt('@TotalFee_tranferBank') },
+                            { name: "Thẻ cào", y: parseInt('@TotalFee_Card') },
+                           { name: "VNPost", y: parseInt('@TotalFee_vnpost') },
+                           { name: "Thẻ gắn kết", y: parseInt('@TotalFee_Link') },
+                           { name: "Khác", y: parseInt('@TotalFee_Other') }
+                        ]
+                    }
+                ];
+                break;
+            default: break;
+        }
+        $("#ddlSelectChart").val(0);
+        var typeChart = parseInt($("#ddlSelectChart").val());
+        if (typeChart == 0) {
+            $('#ReportChart').empty();
+            return;
+        }
+    };
+</script>

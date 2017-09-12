@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "VTCPro_MerchantPayment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="portlet blue box">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-pie-chart"></i>LỊCH SỬ THANH TOÁN BẰNG MÃ VTC PRO
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+            <a href="javascript:;" class="reload">
+            </a>
+            <a href="javascript:;" class="remove">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row" id="Rp_TransactionRefund">
+            <div class="col-md-12">
+                <div class="clear">
+                    <div class="form-group col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-clock-o"></i>Mã Đối Tác</label>
+                        <div class="selectBox">
+                            <select id="ddlMerchant" class="form-control" multiple="multiple">
+                                @if (ViewBag.listMerchant != null)
+                                {
+                                    foreach (var obj in (List<Pay365.BillingReport.VTCProService.Merchant>) ViewBag.listMerchant)
+                                    {
+                                        <option value="@obj.MerchantCode">@obj.MerchantName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-id-card"></i>Serial</label>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding:0">
+                            <input class="form-control" id="txtSerial" maxlength="20" />
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-id-card"></i>CardCode</label>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding: 0">
+                            <input class="form-control" id="txtCardCode" maxlength="20" />
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label class="control-label text-info"><i class="fa fa-id-card"></i>TransactionID</label>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding:0">
+                            <input class="form-control" id="txtTransactionID" maxlength="20" />
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                        <label class="control-label text-info"><i class="fa fa-times"></i>Trạng thái</label>
+                        <select class="form-control" id="ddlStatus">
+                            <option value="0">Nghi vấn</option>
+                            <option value="1" selected="selected">Thành công</option>
+                            <option value="-1">Thất bại</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                        <label class="control-label text-info"><i class="fa fa-times"></i>Gói VTC Pro</label>
+                        <select class="form-control" id="ddlCardAmount">
+                            <option value="0">Tất cả</option>
+                            <option value="500000">500.000 VNĐ</option>
+                            <option value="1000000">1.000.000 VNĐ</option>
+                            <option value="2000000">2.000.000 VNĐ</option>
+                            <option value="5000000">5.000.000 VNĐ</option>
+                            <option value="10000000">10.000.000 VNĐ</option>
+                            <option value="20000000">20.000.000 VNĐ</option>
+                            <option value="50000000">50.000.000 VNĐ</option>
+                        </select>
+                    </div>
+
+                  
+
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divFromDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i><span id="txtFromDate">Từ Ngày</span></label>
+                        <div class="date" id="datetimeFromDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="fromDate" class="form-control" name="datetimeFromDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" id="divToDate">
+                        <label class="textDate control-label text-info"><i class="fa fa-calendar"></i>Đến Ngày</label>
+                        <div class="date" id="datetimeToDate">
+                            <input type="text" data-date-format="DD/MM/YYYY" id="toDate" class="form-control" name="datetimeToDate" />
+                            <span class="input-group-addon"><span class="fa fa-fw fa-calendar"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-6 col-xs-12" style="text-align: center">
+                        <button id="btnSearch" class="btn blue" value="Tìm Kiếm">
+                            <span class="glyphicon glyphicon-hand-right"></span>Tìm Kiếm
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="dgrid" class="dataTables_wrapper form-inline" role="grid">
+            <div id="ReportPartial"></div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ddlMerchant').multiselect({
+            nonSelectedText: 'Tất Cả',
+            numberDisplayed: 1,
+            enableFiltering: true,
+            includeSelectAllOption: true,
+            enableCaseInsensitiveFiltering: true,
+            maxHeight: 250,
+            buttonWidth: 'auto'
+        });
+     
+        $('#datetimeFromDate').datetimepicker({
+            pickTime: false
+        });
+        $('#datetimeToDate').datetimepicker({
+            pickTime: false
+        });
+        var fromdate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.fromDate)';
+        var todate = '@string.Format("{0:dd/MM/yyyy}", ViewBag.toDate)';
+        $('#datetimeFromDate').data("DateTimePicker").setDate(fromdate);
+        $('#datetimeToDate').data("DateTimePicker").setDate(todate);
+
+        $("#datetimeFromDate").on("dp.change dp.show", function (e) {
+            $('#datetimeToDate').data("DateTimePicker").setMinDate(e.date);
+        });
+        $("#datetimeToDate").on("dp.change dp.show", function (e) {
+            $('#datetimeFromDate').data("DateTimePicker").setMaxDate(e.date);
+        });
+
+        GetList();
+        $("#btnSearch").click(function () {
+            GetList();
+        });
+    });
+
+    function GetList() {
+        var selectedOptionMerchant = $('#ddlMerchant option:selected');
+        var stringList = "";
+        $.each(selectedOptionMerchant, function (key, val) {
+            stringList += val.value + ',';
+        });
+        if (stringList.length > 0) {
+            stringList = stringList.substring(0, stringList.length - 1);
+        }
+
+        var carSerial = $("#txtSerial").val();
+        if (carSerial == "" || carSerial == null || carSerial == undefined) {
+            carSerial = 0;
+        }
+
+        var cardAmount = $("#ddlCardAmount option:selected").val();
+        if (cardAmount == "" || cardAmount == null || cardAmount == undefined) {
+            cardAmount = 0;
+        }
+
+        var transactionID = $("#txtTransactionID").val();
+        if (transactionID == "" || transactionID == null || transactionID == undefined) {
+            transactionID = 0;
+        }
+
+        var parameters = {
+            merchantCode: stringList,
+            cardSerial: carSerial,
+            cardCode: $("#txtCardCode").val(),
+            cardAmount: cardAmount,
+            status: $("#ddlStatus option:selected").val(),
+            transactionID: transactionID,
+            FromDate: $("#fromDate").val(),
+            ToDate: $("#toDate").val()
+        };
+
+        Utils.Loading();
+        var urlRequestAns = Utils.UrlRoot + "ReportVTCPro/VTCPro_MerchantPayment_Partial";
+        $.ajax({
+            type: 'POST',
+            url: urlRequestAns,
+            data: parameters,
+            success: function (data) {
+                $("#ReportPartial").html(data);
+                Utils.UnLoading();
+            },
+            error: function () {
+                Utils.UnLoading();
+                bootbox.alert("Hệ thống đang bận. Xin thử lại sau !");
+            }
+        });
+    }
+</script>
