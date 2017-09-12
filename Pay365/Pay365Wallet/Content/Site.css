@@ -359,25 +359,25 @@ p.txtNoteSecure {
 .showVisible.payment .imac {
     animation-name: fadeInLeft !important;
 }
-.payment .page-title, .transaction .page-title {
+.payment .page-title, .transaction .page-title, .register .page-title {
     animation-name: none;
     animation-delay: 0.3s;
 }
-.payment .page-description, .transaction .page-description {
+.payment .page-description, .transaction .page-description, .register .page-description {
     animation-name: none;
     animation-delay: 0.6s;
 }
-.payment .btn-payment, .transaction .verified {
+.payment .btn-payment, .transaction .verified, .register .page-register-button {
     animation-name: none;
     animation-delay: 1s
 }
-.showVisible.payment .page-title, .showVisible.transaction .page-title {
+.showVisible.payment .page-title, .showVisible.transaction .page-title, .showVisible.register .page-title {
     animation-name: fadeInDown !important;
 }
 .showVisible.payment .page-description {
     animation-name: fadeInRight !important;
 }
-.showVisible.payment .btn-payment, .showVisible.transaction .verified {
+.showVisible.payment .btn-payment, .showVisible.transaction .verified, .showVisible.register .page-register-button {
     animation-name: fadeInUp !important;
 }
 .showVisible.transaction .page-description {
@@ -385,6 +385,9 @@ p.txtNoteSecure {
 }
 .showVisible.transaction .devices {
     animation-name: fadeInRight !important;
+}
+.showVisible.register .page-description {
+    animation-name: fadeInUp !important;
 }
 .header .intro #explode {
     -webkit-animation: 1s ease fadeInUp forwards;
@@ -456,7 +459,22 @@ p.txtNoteSecure {
 .transactions .charge .input-field.input-dropdown {
     padding-right: 10px;
 }
+@media screen and (min-width: 992px){
+    #why-use .card {
+        animation-name: fadeInUp;
+    }
 
+    #why-use .col-md-4:nth-child(1) .card {
+        animation-delay: 0s;
+    }
+
+    #why-use .col-md-4:nth-child(2) .card {
+        animation-delay: 0.4s;
+    }
+    #why-use .col-md-4:nth-child(3) .card {
+        animation-delay: 0.8s;
+    }
+}
 @media screen and (min-width: 1366px) {
     .transactions .charge .input-field.input-dropdown {
         padding-right: 60px;

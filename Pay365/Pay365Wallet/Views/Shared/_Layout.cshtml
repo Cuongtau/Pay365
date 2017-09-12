@@ -365,17 +365,21 @@
         $(window).scroll(function () {
             topBar();
             var payView = isElementInView($('.payment'), false);
-            if (payView) {
-                if ($('.payment').hasClass('showVisible'))
-                    return;
+            if (payView)
                 $('.payment').addClass('showVisible');
-            }
-            var trans = isElementInView($('.transaction'), true);
-            if (trans) {
-                if ($('.transaction').hasClass('showVisible'))
-                    return;
+            else
+                $('.payment').removeClass('showVisible');
+            var trans = isElementInView($('.transaction'), false);
+            if (trans)
                 $('.transaction').addClass('showVisible');
-            }
+            else
+                $('.transaction').removeClass('showVisible');
+
+            var reg = isElementInView($('.register'), false);
+            if (reg)
+                $('.register').addClass('showVisible');
+            else
+                $('.register').removeClass('showVisible');
         });
         $(window).resize(function () {
             topBar();
@@ -456,18 +460,22 @@
             });
             topBar();
             countdown();
-            var payView = isElementInView($('.payment'), true);
-            if (payView) {
-                if ($('.payment').hasClass('showVisible'))
-                    return;
+            var payView = isElementInView($('.payment'), false);
+            if (payView)
                 $('.payment').addClass('showVisible');
-            }
-            var trans = isElementInView($('.transaction'), true);
-            if (trans) {
-                if ($('.transaction').hasClass('showVisible'))
-                    return;
+            else
+                $('.payment').removeClass('showVisible');
+            var trans = isElementInView($('.transaction'), false);
+            if (trans)
                 $('.transaction').addClass('showVisible');
-            }
+            else
+                $('.transaction').removeClass('showVisible');
+
+            var reg = isElementInView($('.register'), false);
+            if (reg)
+                $('.register').addClass('showVisible');
+            else
+                $('.register').removeClass('showVisible');
         });
         //$("#countdown1").attr('data-seconds', 59).kkcountdown({
         //    secondsText: 's',
