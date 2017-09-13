@@ -603,7 +603,7 @@
         if (l_category != null && l_category.length > 0) {
 
             $.each(l_category, function (k, v) {
-                var item = '<div class="box-bank-icon service"><a href="javascript:;" onclick="payment.Vw_BuyCard(this);" data-ccode="' + v.CategoryCode + '" data-cid="' + v.CategoryID + '" class="bank-icon"><img src="' + ((v.Logo == null || v.Logo == "") ? utils.rootUrl() + "/Content/assets/images/logo.jpg" : v.Logo) + '" alt="' + v.Description + '"><span class="badge">-' + (parseFloat(v.DiscountRate) > 0 ? v.DiscountRate + "%" : "") + '</span><span class="productName">' + v.Description + '</a></div>';
+                var item = '<div class="box-bank-icon service"><a href="javascript:;" onclick="payment.Vw_BuyCard(this);" data-ccode="' + v.CategoryCode + '" data-cid="' + v.CategoryID + '" class="bank-icon"><img src="' + ((v.Logo == null || v.Logo == "") ? utils.rootUrl() + "/Content/assets/images/logo.jpg" : v.Logo) + '" alt="' + v.Description + '"><span class="badge">' + (parseFloat(v.DiscountRate) > 0 ? "-" + v.DiscountRate + "%" : "") + '</span><span class="productName">' + v.Description + '</a></div>';
                 $("#list-item-payment").append(item);
             });
         }

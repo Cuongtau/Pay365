@@ -61,7 +61,9 @@
                                     <div class="box-bank-icon service">
                                         <a href="javascript:;" onclick="payment.Vw_BuyCard(this);" data-cid="${$value.CategoryID}" class="bank-icon" title="${$value.Description}">
                                             <img src="${$value.Logo}" alt="${$value.Description}">
-                                            <span class="badge">-${$value.DiscountRate}%</span>
+                                            {{if $value.DiscountRate > 0}}
+                                                <span class="badge">-${$value.DiscountRate}%</span>
+                                            {{/if}}
                                             <span>${$value.Description}</span>
                                         </a>
                                     </div>
