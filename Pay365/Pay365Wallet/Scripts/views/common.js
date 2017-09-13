@@ -549,10 +549,7 @@
     this.guideConfig = { FAQ: 11, ACCOUNT: 13, WALLET: 14, SHOPPING: 15, SEARCHGUIDE: '11,13,14,15' };
 
     this.NewsConfig = {
-        PROMOTION: 7,
-        EVENT: 8,
-        CATE_EVENT: 10,
-        ALL_CATE: "7,8,10"
+        ALL_CATE: "10"
     };
 
     this.transactionService = {

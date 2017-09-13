@@ -41,8 +41,12 @@
     this.curPage = 2;
 
     this.LoadPage_About = function () {
-        var param = { culture: cul };
-        utils.getData(utils.linkNewApi() + "Article/About", param, function (data) {
+        var param = {
+            culture: cul,
+            id: 21,
+            cateId: 12
+        };
+        utils.getData(utils.linkNewApi() + "Article/GetNews", param, function (data) {
             $("#about_t").html($("#about_tmpl").tmpl(data.d));  // About
         }, function (err) {
             utils.unLoading();
