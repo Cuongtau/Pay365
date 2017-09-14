@@ -265,7 +265,7 @@
     <value>Verify</value>
   </data>
   <data name="lbl_account" xml:space="preserve">
-    <value>account</value>
+    <value>Account</value>
   </data>
   <data name="lbl_certificate" xml:space="preserve">
     <value>Certificate</value>
