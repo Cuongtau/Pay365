@@ -589,14 +589,14 @@ ul.questions li a { font-size: 15px; line-height: 1; }
 
 .transactions { width: 100%; display: table; }
 .transactions .col-sm-12 { padding-right: 0; padding-left: 0; }
-.transactions .col-sm-6:first-child { padding-left: 0; padding-right: 0px; }
-.transactions .col-sm-6:last-child { padding-right: 0; padding-left: 0px; }
+.transactions .left-align { padding-left: 0; padding-right: 0px; }
+.transactions .right-align { padding-right: 0; padding-left: 0px; }
 
-@media screen and (min-width: 400px) { .transactions .col-sm-6:first-child { padding-right: 5px; } }
-@media screen and (min-width: 1700px) { .transactions .col-sm-6:first-child { padding-right: 15px; } }
-.transactions .col-sm-6:last-child { padding-right: 0; padding-left: 0px; }
-@media screen and (min-width: 400px) { .transactions .col-sm-6:last-child { padding-left: 5px; } }
-@media screen and (min-width: 1700px) { .transactions .col-sm-6:last-child { padding-left: 15px; } }
+@media screen and (min-width: 400px) { .transactions .left-align { padding-right: 5px; } }
+@media screen and (min-width: 1700px) { .transactions .left-align { padding-right: 15px; } }
+.transactions .right-align { padding-right: 0; padding-left: 0px; }
+@media screen and (min-width: 400px) { .transactions .right-align { padding-left: 5px; } }
+@media screen and (min-width: 1700px) { .transactions .right-align { padding-left: 15px; } }
 .transactions .transaction .card-title { height: 65px; background: #212130 url(../images/polygon-background.png) repeat; color: #fff; font-size: 1rem; font-weight: 500; letter-spacing: 0px; }
 .transactions .transaction .card-title > .material-icons { color: #fff; position: relative; top: 4px; margin-right: 20px; }
 .transactions .transaction .card-title .more { float: right; margin-top: 5px; color: #fff; font-size: 14px; text-transform: initial; text-decoration: none; font-weight: 400; }

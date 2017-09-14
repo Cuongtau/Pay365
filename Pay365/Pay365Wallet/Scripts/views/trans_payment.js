@@ -36,11 +36,10 @@
     //Từ đầu số điện thoại -> nhà mạng
     this.getTelco = function (val) {
         var obj = null;
-        if (val === null || val === "" || val.length < 3)
+        if (val === null || val === "" || val.length < 10)
             return;
 
         var prefix = val;
-        if (val.length >= 10)
             prefix = val.substring(0, val.length - 7);
 
         $(payment.configTelco).each(function (index, data) {
@@ -260,20 +259,21 @@
                 var heigh2 = $('#payment_topupGame').height();
                 if (heigh1 == heigh2)
                     return;
-                var totalHeight1 = 0;
-                var totalHeight2 = 0;
-                $('#payment_topupMobile #payment_step1').children().each(function () {
-                    if ($(this).is(":visible")) {
-                        var currHeight = $(this).outerHeight(true);
-                        totalHeight1 = totalHeight1 + currHeight;
-                    }
-                });
-                $('#payment_topupGame').children().each(function () {
-                    if ($(this).is(":visible")) {
-                        var currHeight = $(this).outerHeight(true);
-                        totalHeight2 = totalHeight2 + currHeight;
-                    }
-                });
+                var totalHeight1 = $('#payment_topupMobile #payment_step1').height();
+                var totalHeight2 = $('#payment_topupGame').height();
+
+                //$('#payment_topupMobile #payment_step1').children().each(function () {
+                //    if ($(this).is(":visible")) {
+                //        var currHeight = $(this).outerHeight(true);
+                //        totalHeight1 = totalHeight1 + currHeight;
+                //    }
+                //});
+                //$('#payment_topupGame').children().each(function () {
+                //    if ($(this).is(":visible")) {
+                //        var currHeight = $(this).outerHeight(true);
+                //        totalHeight2 = totalHeight2 + currHeight;
+                //    }
+                //});
                 if (totalHeight1 > totalHeight2)
                     $('#payment_topupGame').height(totalHeight1);
                 else
@@ -455,25 +455,26 @@
         }, "", asyn);
     };
     //Lấy ds mệnh giá
-    this.GetListAmount = function (target, id_selectAmount, alwayLoad, nextOpen) {
-
-        if (!id_selectAmount)
-            id_selectAmount = "ddr-input-amount";
-        if (!alwayLoad)
-            alwayLoad = false;
+    this.GetListAmount = function (target, nextOpen) {
+        
         var currChk = $("#payment_step1").find("input[type=radio]:checked");
         var typeChk = currChk.attr("id");
 
         var mobileValue = $(target).val();
-        if (mobileValue === "" || mobileValue.length < 3 || (!alwayLoad && mobileValue.length == 4 && mobileValue.indexOf('-') == 3))
-            return;
+        
         mobileValue = mobileValue.replace(/[-]/g, '');
-
-        if (!alwayLoad && mobileValue.length > 4)
-            return;
-
         var telco = payment.getTelco(mobileValue);
-        if (telco == null) return;
+        if (telco == null) {
+            $("#ddr-select-amount").html('');
+            var findVwMain = $("#payment_topupMobile");
+            if (findVwMain && findVwMain.length == 1)
+            {
+                var item = '<option value="" disabled selected>' + (utils.getCurrentLanguage() == 'en' ? 'Unit price' : 'Mệnh giá') + '</option>';
+                $("#ddr-select-amount").append(item);
+            }
+            $("#ddr-select-amount").material_select();
+            return;
+        }
         var telco_Code = telco.Code;
 
         if (typeChk == "tra-truoc")
@@ -494,24 +495,6 @@
                     $("#discount").text(payment.discount + "%");
                     return;
                 }
-                //else if (id_selectAmount == "ddr-input-amount") {
-                //    $("#" + id_selectAmount).html('');
-
-                //    $.each(data, function (k, v) {
-                //        var p_discount = parseFloat(v.DiscountRate);
-                //        var p_amount = parseInt(v.PartnerValue) - (parseInt(v.PartnerValue) * p_discount / 100);
-                //        var item = '<li><a data-pId="' + v.ProductID + '" data-pCode="' + v.ProductCode + '" data-value="' + v.PartnerValue + '"> ' + utils.formatMoney(v.PartnerValue) + ' <sup>VNĐ</sup><strong class=\'label secondary\' style=\'float:right;font-weight:400;margin-top:3px\'>' + utils.formatMoney(p_amount) + '<sup>VNĐ</sup></strong></a ></li > ';
-                //        $("#" + id_selectAmount).append(item);
-                //    });
-                //    if (nextOpen && !$("#txtPhoneNumber").hasClass("error") && $("#txtPhoneNumber").val().trim() != "") {
-                //        var dropdown = $("#" + id_selectAmount).parent().find('.dropdown-button');
-                //        dropdown.dropdown('open');
-                //    }
-                //    $("#" + id_selectAmount + " li").click(function (e) {
-                //        var target = e.currentTarget;
-                //        payment.selectInputValue(target, 1);
-                //    });
-                //}
                 else {
                     $("#ddr-select-amount").html('');
                     $("#ddr-select-amount").material_select();
@@ -733,18 +716,15 @@
             $("#ddl_selectAmount").addClass("input-dropdown");
             $("#ddl_selectAmount").find(".select-wrapper").show();
             $("#txtAmount").attr("type", "hidden");
-            //$("#ddl_selectAmount").find(".input-dropdown-content").show();
-            //$("#ddl_selectAmount").find(".dropdown-button").addClass("select-only");
-            payment.GetListAmount($("#txtPhoneNumber"), 'ddr-select-amount', true, true);
+            payment.GetListAmount($("#txtPhoneNumber"), true);
             $("#choose_amount").hide();
         }
         else {
             $("#ddl_selectAmount").removeClass("input-dropdown");
-            //$("#ddl_selectAmount").find(".input-dropdown-content").hide();
             $("#ddl_selectAmount").find(".select-wrapper").hide();
             $("#ddl_selectAmount").removeClass("focus");
             $("#txtAmount").attr("type", "text");
-            payment.GetListAmount($("#txtPhoneNumber"), 'ddr-select-amount', true, true);
+            //payment.GetListAmount($("#txtPhoneNumber"), true, true);
             $("#choose_amount").show();
         }
         if ($("#txtPhoneNumber").val().trim() === "" || $("#txtPhoneNumber").hasClass("error")) {
@@ -771,14 +751,14 @@
             $("#ddl_selectAmount").addClass("input-dropdown");
             $("#ddl_selectAmount").find(".select-wrapper").show();
             $("#txtAmount").attr("type", "hidden");
-            payment.GetListAmount($("#txtPhoneNumber"), 'ddr-select-amount', true, true);
+            payment.GetListAmount($("#txtPhoneNumber"), true);
         }
         else {
             $("#ddl_selectAmount").removeClass("input-dropdown");
             $("#ddl_selectAmount").removeClass("focus");
             $("#ddl_selectAmount").find(".select-wrapper").hide();
             $("#txtAmount").attr("type", "text");
-            payment.GetListAmount($("#txtPhoneNumber"), 'ddr-select-amount', true, true);
+            //payment.GetListAmount($("#txtPhoneNumber"), true);
         }
         if ($("#txtPhoneNumber").val().trim() == "" || $("#txtPhoneNumber").hasClass("error")) {
             $("#txtPhoneNumber").focus();
@@ -931,13 +911,9 @@
         }
         else if (typeFormat === 2)//phone
         {
-            var findElem = $("#ddr-select-amount");
-            var targetElem = "";
-            if (findElem.length == 1)
-                targetElem = "ddr-select-amount";
             value_select = utils.numberPhoneFormat(value_select);
             $_input.val(value_select);
-            payment.GetListAmount($_input, targetElem, true, true);
+            payment.GetListAmount($_input, true);
             if ($("#txtAmount").val().trim() == "" || $("#txtAmount").hasClass("error")) {
                 if ($("#tra-sau").prop("checked")) $("#txtAmount").focus();
             }

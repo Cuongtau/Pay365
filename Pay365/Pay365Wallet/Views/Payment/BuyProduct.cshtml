@@ -138,7 +138,7 @@
                                                 <a class='dropdown-button dropdown-input' href='javascript:;' data-activates='ddr-input-phone'><i class="material-icons">keyboard_arrow_down</i></a>
                                                 <ul id='ddr-input-phone' class='dropdown-content'></ul>
                                             </div>
-                                            <input id="txtPhoneNumber" type="text" maxlength="13" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.formatPhoneInput(this, event); utils.ChangeText(event); payment.GetListAmount(this,'ddr-select-amount');">
+                                            <input id="txtPhoneNumber" type="text" maxlength="13" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.formatPhoneInput(this, event); utils.ChangeText(event); payment.GetListAmount(this);">
                                             <label for="txtPhoneNumber">@Resources.Payment.String7</label>
                                         }
                                         else if (ViewBag.Id == 2)
