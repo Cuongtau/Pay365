@@ -20,13 +20,8 @@
         </div>
     </section>
     <script type="text/javascript">
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-        if (getParameterByName('source') === 'mobile') {
+        var ua = navigator.userAgent;
+        if (((ua.indexOf('Mozilla/5.0') > -1 && ua.indexOf('Android ') > -1 && ua.indexOf('AppleWebKit') > -1) && (ua.indexOf('Version') > -1))) {
             $('header.header, section.main-top').hide();
         }
     </script>
