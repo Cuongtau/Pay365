@@ -235,13 +235,13 @@
     <value>Một mã xác thực đã được gửi đến điện thoại</value>
   </data>
   <data name="StringMsg2" xml:space="preserve">
-    <value>Không nhận được mã, vui lòng soạn tin &lt;strong class="danger"&gt;PAY365 MK&lt;/strong&gt; gửi &lt;strong class="danger"&gt;8095&lt;/strong&gt; &lt;span class="warning"&gt;(1.000VNĐ/SMS)&lt;/span&gt;</value>
+    <value>Không nhận được mã, vui lòng soạn tin &lt;strong class="danger"&gt;P365 MK&lt;/strong&gt; gửi &lt;strong class="danger"&gt;8100&lt;/strong&gt; &lt;span class="warning"&gt;(1.000VNĐ/SMS)&lt;/span&gt;</value>
   </data>
   <data name="StringMsg3" xml:space="preserve">
     <value>Một mã xác thực đã được gửi đến địa chỉ email</value>
   </data>
   <data name="StringMsg4" xml:space="preserve">
-    <value>Quý khách vui lòng bấm nút Nhận mã để nhận mã xác thực. Nếu không nhận được mã, soạn tin &lt;strong class="danger"&gt;PAY365 MK&lt;/strong&gt; gửi &lt;strong class="danger"&gt;8095&lt;/strong&gt; (500đ/SMS)</value>
+    <value>Quý khách vui lòng bấm nút Nhận mã để nhận mã xác thực. Nếu không nhận được mã, soạn tin &lt;strong class="danger"&gt;P365 MK&lt;/strong&gt; gửi &lt;strong class="danger"&gt;8100&lt;/strong&gt; (500đ/SMS)</value>
   </data>
   <data name="TextSMS" xml:space="preserve">
     <value>Soạn tin</value>
@@ -268,7 +268,7 @@
     <value>Vui lòng nhập mã để xác thực đổi mật khẩu.</value>
   </data>
   <data name="NoteSecureOTPSMS" xml:space="preserve">
-    <value>Không nhận được mã, vui lòng soạn tin &lt;strong class="danger"&gt;PAY365 BM&lt;/strong&gt; gửi &lt;strong class="danger"&gt;8095&lt;/strong&gt; &lt;span class="warning"&gt;(1.000VNĐ/SMS)&lt;/span&gt;</value>
+    <value>Không nhận được mã, vui lòng soạn tin &lt;strong class="danger"&gt;P365 BM&lt;/strong&gt; gửi &lt;strong class="danger"&gt;8100&lt;/strong&gt; &lt;span class="warning"&gt;(1.000VNĐ/SMS)&lt;/span&gt;</value>
   </data>
   <data name="MobileReceiveSecure" xml:space="preserve">
     <value>Số điện thoại nhận OTP</value>

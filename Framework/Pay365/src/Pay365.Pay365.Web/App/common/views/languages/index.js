@@ -3,7 +3,7 @@
         '$scope', '$state', '$uibModal', 'abp.services.app.language', 'uiGridConstants',
         function ($scope, $state, $uibModal, languageService, uiGridConstants) {
             var vm = this;
-
+            console.log(vm);
             $scope.$on('$viewContentLoaded', function () {
                 App.initAjax();
             });

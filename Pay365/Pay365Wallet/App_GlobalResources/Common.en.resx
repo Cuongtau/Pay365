@@ -358,7 +358,7 @@
     <value>Choose all</value>
   </data>
   <data name="Noti_1" xml:space="preserve">
-    <value>You did not receive the authentication code? Please click "Resend OTP" or compose the message: PAY365 OTP DK send 8095 (1000 VNĐ/SMS)</value>
+    <value>You did not receive the authentication code? Please click "Resend OTP" or compose the message: P365 OTP DK send 8100 (1000 VNĐ/SMS)</value>
   </data>
   <data name="SeeCard" xml:space="preserve">
     <value>View selected</value>

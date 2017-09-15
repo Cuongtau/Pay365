@@ -37,7 +37,8 @@ namespace Pay365.Pay365.Web.App.Startup
                     icon: "icon-home",
                     requiredPermissionName: AppPermissions.Pages_Tenant_Dashboard
                     )
-                ).AddItem(new MenuItemDefinition(
+                )
+                .AddItem(new MenuItemDefinition(
                     PageNames.App.Common.Administration,
                     L("Administration"),
                     icon: "icon-wrench"
@@ -99,7 +100,8 @@ namespace Pay365.Pay365.Web.App.Startup
                         requiredPermissionName: AppPermissions.Pages_Administration_Tenant_Settings
                         )
                     )
-                ).AddItem(new MenuItemDefinition(
+                )
+                .AddItem(new MenuItemDefinition(
                     PageNames.App.Common.Transaction,
                     L("Transaction"),
                     icon: "icon-wrench"
@@ -107,7 +109,15 @@ namespace Pay365.Pay365.Web.App.Startup
                         PageNames.App.Transaction.Cashout,
                         L("Cashout"),
                         url: "cashout",
-                        icon: "icon-settings"
+                        icon: "icon-briefcase",
+                        requiredPermissionName: AppPermissions.Pages_Cashout
+                        )
+                    ).AddItem(new MenuItemDefinition(
+                        PageNames.App.Transaction.Transfer,
+                        L("Transfer"),
+                        url: "transfer",
+                        icon: "icon-briefcase",
+                        requiredPermissionName: AppPermissions.Pages_Transfer
                         )
                     )
                 );

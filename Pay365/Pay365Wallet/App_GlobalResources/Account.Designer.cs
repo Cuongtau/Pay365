@@ -19,7 +19,7 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option or rebuild the Visual Studio project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "14.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Account {
@@ -232,7 +232,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Với mỗi giao dịch có giá trị dưới hạn mức đã cài đặt bạn không phải nhập mã xác thực giao dịch.
+        ///   Looks up a localized string similar to Hạn mức OTP là số tiền tối thiểu cho một giao dịch mà bạn muốn sử dụng dịch vụ bảo mật OTP.
         /// </summary>
         internal static string NoteLimitSecure {
             get {
@@ -295,7 +295,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Với mỗi giao dịch, hệ thống sẽ gọi điện và gửi mã xác thực OTPđến số điện thoại.
+        ///   Looks up a localized string similar to Với mỗi giao dịch, hệ thống sẽ gọi điện và gửi mã xác thực OTP đến số điện thoại.
         /// </summary>
         internal static string NoteOTPVoice {
             get {
@@ -304,7 +304,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Không nhận được mã, vui lòng soạn tin &lt;strong class=&quot;danger&quot;&gt;PAY365 BM&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8095&lt;/strong&gt; &lt;span class=&quot;warning&quot;&gt;(1.000VNĐ/SMS)&lt;/span&gt;.
+        ///   Looks up a localized string similar to Không nhận được mã, vui lòng soạn tin &lt;strong class=&quot;danger&quot;&gt;P365 BM&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8100&lt;/strong&gt; &lt;span class=&quot;warning&quot;&gt;(1.000VNĐ/SMS)&lt;/span&gt;.
         /// </summary>
         internal static string NoteSecureOTPSMS {
             get {
@@ -466,7 +466,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Không nhận được mã, vui lòng soạn tin &lt;strong class=&quot;danger&quot;&gt;PAY365 MK&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8095&lt;/strong&gt; &lt;span class=&quot;warning&quot;&gt;(1.000VNĐ/SMS)&lt;/span&gt;.
+        ///   Looks up a localized string similar to Không nhận được mã, vui lòng soạn tin &lt;strong class=&quot;danger&quot;&gt;P365 MK&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8100&lt;/strong&gt; &lt;span class=&quot;warning&quot;&gt;(1.000VNĐ/SMS)&lt;/span&gt;.
         /// </summary>
         internal static string StringMsg2 {
             get {
@@ -484,7 +484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Quý khách vui lòng bấm nút Nhận mã để nhận mã xác thực. Nếu không nhận được mã, soạn tin &lt;strong class=&quot;danger&quot;&gt;PAY365 MK&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8095&lt;/strong&gt; (500đ/SMS).
+        ///   Looks up a localized string similar to Quý khách vui lòng bấm nút Nhận mã để nhận mã xác thực. Nếu không nhận được mã, soạn tin &lt;strong class=&quot;danger&quot;&gt;P365 MK&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8100&lt;/strong&gt; (500đ/SMS).
         /// </summary>
         internal static string StringMsg4 {
             get {

@@ -181,6 +181,10 @@ appModule.config([
             templateUrl: '~/App/common/views/transaction/cashout.cshtml'
         });
 
+        $stateProvider.state('transfer', {
+            url: '/chuyen-tien',
+            templateUrl: '~/App/common/views/transaction/transfer.cshtml'
+        });
         //$qProvider settings
         $qProvider.errorOnUnhandledRejections(false);
     }

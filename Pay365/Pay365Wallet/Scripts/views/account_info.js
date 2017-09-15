@@ -539,7 +539,7 @@ account_info = new function () {
                             $('#formChangeEmail #change_email_resend_otp').show();
                         } else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS || header.AccountInfo.SecurityType === 0) {
                             $('<p>An OTP has been sent to phone number <span class="secondary">' + header.AccountInfo.Username + '</span>.</p>').insertAfter($('#formChangeEmail #div_otp_change_email .form-group'));
-                            $('<p>Did not receive OTP ?. Please compose a message using the <span class="secondary">PAY365 BM </span>syntax sent to <span class="secondary">8095</span></p>')
+                            $('<p>Did not receive OTP ?. Please compose a message using the <span class="secondary">P365 BM </span>syntax sent to <span class="secondary">8100</span></p>')
                                 .insertAfter($('#formChangeEmail #div_otp_change_email .form-group'));
                             $('#formChangeEmail #change_email_resend_otp').hide();
                         }
@@ -551,7 +551,7 @@ account_info = new function () {
                         } else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS || header.AccountInfo.SecurityType === 0) {
                             $('<p>Mã xác thực OTP đã được gửi đến số điện thoại <span class="secondary">' + header.AccountInfo.Username + '</span>.</p>')
                                 .insertAfter($('#formChangeEmail #div_otp_change_email .form-group'));
-                            $('<p>Bạn không nhận được mã xác thực? Vui lòng soạn tin: <span class="secondary">PAY365 BM</span> gửi <span class="secondary">8095</span> để nhận mã xác thực</p>')
+                            $('<p>Bạn không nhận được mã xác thực? Vui lòng soạn tin: <span class="secondary">P365 BM</span> gửi <span class="secondary">8100</span> để nhận mã xác thực</p>')
                                 .insertAfter($('#formChangeEmail #div_otp_change_email .form-group'));
                             $('#formChangeEmail #change_email_resend_otp').hide();
                         }
@@ -743,7 +743,7 @@ transaction_history = new function () {
         utils.paragraphLoading('list_history_success_t');
         utils.paragraphLoading('list_history_pending_t');
         utils.postData(utils.trasactionApi() + "Payment/GetHistory", params, function (data) {
-            if (data.p.length > 0) {
+            if (data.p != null && data.p.length > 0) {
                 console.log(data.p);
                 transaction_history.listHistory.listAll = data.p;
                 $('#content_data, #export_excel').show(); $('#content_empty').hide();

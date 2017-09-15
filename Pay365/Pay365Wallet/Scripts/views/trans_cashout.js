@@ -431,13 +431,13 @@
                     if (header.AccountInfo.SecurityType === common.accountSecureConfig.EMAIL) {
                         $step2.find('#p1_securecode').html('The system has sent a secure code to email: <span class="secondary">' + header.AccountInfo.Email + '</span>');
                     } else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS || header.AccountInfo.SecurityType === 0) {
-                        $step2.find('#p1_securecode').html("The OTP verify code has been sent to the number " + header.AccountInfo.Username + " (Free 5 SMS/24h) . </br> If you do not receive the code, click " / "Resend OTP" / " or compose the message <span class='secondary'>PAY365 OTP</span> send <span class='secondary'>8095</span> (1000 VNĐ/SMS)");
+                        $step2.find('#p1_securecode').html("The OTP verify code has been sent to the number " + header.AccountInfo.Username + " (Free 5 SMS/24h) . </br> If you do not receive the code, click " / "Resend OTP" / " or compose the message <span class='secondary'>P365 OTP</span> send <span class='secondary'>8100</span> (1000 VNĐ/SMS)");
                     }
                 } else {
                     if (header.AccountInfo.SecurityType === common.accountSecureConfig.EMAIL) {
                         $step2.find('#p1_securecode').html('Hệ thống đã gửi 1 mã xác thực đến email: <span class="secondary">' + header.AccountInfo.Email + '</span>');
                     } else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS || header.AccountInfo.SecurityType === 0) {
-                        $step2.find('#p1_securecode').html("Mã xác thực đã được gửi về số điện thoại <span class='secondary'>" + header.AccountInfo.Username + "</span> (Miễn phí 5 SMS/24h) . </br> Không nhận được mã vui lòng click <span class='secondary'>Nhận lại OTP</span> hoặc soạn tin <span class='secondary'>PAY365 OTP</span> gửi <span class='secondary'>8095</span> (1000 VNĐ/SMS)");
+                        $step2.find('#p1_securecode').html("Mã xác thực đã được gửi về số điện thoại <span class='secondary'>" + header.AccountInfo.Username + "</span> (Miễn phí 5 SMS/24h) . </br> Không nhận được mã vui lòng click <span class='secondary'>Nhận lại OTP</span> hoặc soạn tin <span class='secondary'>P365 OTP</span> gửi <span class='secondary'>8100</span> (1000 VNĐ/SMS)");
                     }
                 }
                 $step2.data('action', 'offline');
@@ -566,7 +566,7 @@
                         $step2.find('#p1_securecode').html('The system has sent a secure code to email: <span class="secondary">' + header.AccountInfo.Email + '</span>');
                         $step2.find('#p2_securecode').hide();
                     } else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS || header.AccountInfo.SecurityType === 0) {
-                        var des = "An OTP has been sent to phone number <span class='secondary'>" + header.AccountInfo.Username + "</span> (Free 5 SMS/24h) . </br> Did not receive OTP ? Click <span class='secondary'>Resend OTP</span> or compose a message using the <span class='secondary'>PAY365 OTP</span> syntax sent to <span class='secondary'>8095</span> (1000VNĐ/SMS)";
+                        var des = "An OTP has been sent to phone number <span class='secondary'>" + header.AccountInfo.Username + "</span> (Free 5 SMS/24h) . </br> Did not receive OTP ? Click <span class='secondary'>Resend OTP</span> or compose a message using the <span class='secondary'>P365 OTP</span> syntax sent to <span class='secondary'>8100</span> (1000VNĐ/SMS)";
                         $step2.find('#p1_securecode').html(des);
                         $step2.find('#p2_securecode').show();
                     }
@@ -576,7 +576,7 @@
                         $step2.find('#p2_securecode').hide();
                     } else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS || header.AccountInfo.SecurityType === 0) {
                         var des = "Mã xác thực đã được gửi về số điện thoại <span class='secondary'>" + header.AccountInfo.Username +
-                            "</span> (Miễn phí 5 SMS/24h). </br> Không nhận được mã vui lòng click <span class='secondary'>Nhận lại OTP</span> hoặc soạn tin <span class='secondary'>PAY365 OTP</span> gửi <span class='secondary'>8095</span> (1000VNĐ/SMS)";
+                            "</span> (Miễn phí 5 SMS/24h). </br> Không nhận được mã vui lòng click <span class='secondary'>Nhận lại OTP</span> hoặc soạn tin <span class='secondary'>P365 OTP</span> gửi <span class='secondary'>8100</span> (1000VNĐ/SMS)";
                         $step2.find('#p1_securecode').html(des);
                         $step2.find('#p2_securecode').show();
                     }

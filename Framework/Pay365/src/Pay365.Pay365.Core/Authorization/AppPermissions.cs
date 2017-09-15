@@ -38,6 +38,10 @@
 
         public const string Pages_Administration_HangfireDashboard = "Pages.Administration.HangfireDashboard";
 
+        public const string Pages_Transaction = "Pages.Transaction";
+        public const string Pages_Cashout = "Pages.Tenant.Cashout";
+        public const string Pages_Transfer = "Pages.Tenant.Transfer";
+
         //TENANT-SPECIFIC PERMISSIONS
 
         public const string Pages_Tenant_Dashboard = "Pages.Tenant.Dashboard";
@@ -60,5 +64,8 @@
 
         public const string Pages_Administration_Host_Maintenance = "Pages.Administration.Host.Maintenance";
         public const string Pages_Administration_Host_Settings = "Pages.Administration.Host.Settings";
+
+      
+
     }
 }

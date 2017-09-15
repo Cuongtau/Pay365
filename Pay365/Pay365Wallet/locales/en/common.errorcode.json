@@ -79,7 +79,7 @@
     "TRANSFER_REASON_REQUIRED": "Please enter reason for transfer. At least 5 character",
     "TRANSFER_PRIZE_MIN": "Giá trị chuyển khoản tối thiểu là ",
     "AUTHEN_SOCIAL_FAILED": "Đăng nhập không thành công. Vui lòng thử lại",
-    "SEND_OTP_MAX": "Số lần gửi OTP vượt quá số lượng cho phép (tối đa 3 lần/ngày).<br/> Xin vui lòng gửi tin nhắn RIK OTP đến 8095 để nhận lại mã kích hoạt Số lần gửi OTP vượt quá số lượng cho phép (tối đa 3 lần/ngày)",
+    "SEND_OTP_MAX": "Số lần gửi OTP vượt quá số lượng cho phép (tối đa 3 lần/ngày).<br/> Xin vui lòng gửi tin nhắn RIK OTP đến 8100 để nhận lại mã kích hoạt Số lần gửi OTP vượt quá số lượng cho phép (tối đa 3 lần/ngày)",
     "OTPINVALID_OR_USED": "Activation code is invalid or already used",
     "BIRTH_DATE_INVALID ": "Birth day is invalid",
     "FULLNAME_INVALID": "Full name is invalid",

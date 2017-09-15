@@ -483,6 +483,7 @@
     <Content Include="App\common\views\profile\linkAccountModal.js" />
     <Content Include="App\common\views\profile\linkedAccountsModal.js" />
     <Content Include="App\common\views\notifications\settingsModal.js" />
+    <Content Include="App\common\views\transaction\transfer.js" />
     <Content Include="App\common\views\transaction\cashout.js" />
     <Content Include="App\common\views\users\createOrEditModal.css">
       <DependentUpon>createOrEditModal.less</DependentUpon>
@@ -2103,6 +2104,7 @@
     <Content Include="fonts\open-sans\open-sans-v14-greek_cyrillic-ext_cyrillic_latin_latin-ext_greek-ext_vietnamese-regular.woff" />
     <Content Include="fonts\open-sans\open-sans-v14-greek_cyrillic-ext_cyrillic_latin_latin-ext_greek-ext_vietnamese-regular.woff2" />
     <Content Include="App\common\views\transaction\cashout.cshtml" />
+    <Content Include="App\common\views\transaction\transfer.cshtml" />
     <None Include="Properties\PublishProfiles\aspnetzero - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />

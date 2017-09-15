@@ -19,7 +19,7 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option or rebuild the Visual Studio project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "14.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Common {
@@ -610,7 +610,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Không nhận được mã vui lòng click Nhận lại OTP hoặc soạn tin Pay365 OTP gửi 8095 (1.000 VNĐ/SMS).
+        ///   Looks up a localized string similar to Không nhận được mã vui lòng click Nhận lại OTP hoặc soạn tin P365 OTP gửi 8100 (1.000 VNĐ/SMS).
         /// </summary>
         internal static string Noti_1 {
             get {
