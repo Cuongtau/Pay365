@@ -124,6 +124,7 @@
         $('#topup_account').siblings('label').addClass('active');
         $('#topup_account_name').text(header.AccountInfo.Fullname);
         $('#topup_bank_serviceid').val($(t).data('serviceid'));
+        $('#topup_captcha, #cardContentStep1 #topup_amount').val('');
         utils.getCaptcha('main_topup_bank', 'payment');
         topup.GetListTopupRecent(false, true, 'topup_log_recent_t');
         payment.actionView("ts-parent", "next", "View_PaymentConfirm");
