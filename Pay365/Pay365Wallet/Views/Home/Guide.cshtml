@@ -20,7 +20,13 @@
         </div>
     </section>
     <script type="text/javascript">
-        if (utils.getParameterByName('source') === 'mobile') {
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        if (getParameterByName('source') === 'mobile') {
             $('header.header, section.main-top').hide();
         }
     </script>
@@ -69,7 +75,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="row">                         
+                                <div class="row">
                                     <a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=shopping" class="faq-link col-sm-6">
                                         <div class="faq-category">
                                             <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/flat-line/cart.svg" alt=""></div>
@@ -100,7 +106,7 @@
                             <script id="related_question_tmpl" type="text/x-jquery-tmpl">
                                 <ul class="questions">
                                     {{each RandomQuestion}}
-                                        <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=${category}&detail=${$value.Alias}${$value.NewsID}"><i class="material-icons">keyboard_arrow_right</i>${$value.Title}</a></li>
+                                    <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=${category}&detail=${$value.Alias}${$value.NewsID}"><i class="material-icons">keyboard_arrow_right</i>${$value.Title}</a></li>
                                     {{/each}}
                                 </ul>
                             </script>
@@ -130,7 +136,7 @@
         var keyword = $('#guide_keyword').val().trim();
         if (!keyword) {
             ModalNotificationInit(utils.getCurrentLanguage() === 'en' ? 'Please enter your keyword' : 'Vui lòng nhập từ khóa'); return;
-        }            
+        }
         window.location.href = utils.rootUrl() + 'huong-dan/chi-tiet' + '?category=search&keyword=' + encodeURIComponent(keyword);
     }
 

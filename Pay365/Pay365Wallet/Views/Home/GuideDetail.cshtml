@@ -20,6 +20,17 @@
             </div>
         </div>
     </section>
+    <script type="text/javascript">
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        if (getParameterByName('source') === 'mobile') {
+            $('header.header, section.main-top').hide();
+        }
+    </script>
     <div class="dashboard">
         <section class="page-section">
             <div class="page-head">
@@ -42,7 +53,7 @@
             <div class="page-content">
                 <div class="row faq">
                     <div class="col-lg-8">
-                        <div id="guide_detail_t" class="card">                           
+                        <div id="guide_detail_t" class="card">
                         </div>
                         <script id="guide_detail_tmpl" type="text/x-jquery-tmpl">
                             <div class="card-title">${title}</div>
@@ -61,20 +72,20 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-title">@Resources.Common.guide_10</div>
-                            <div id="related_question_t" class="card-content">                                                          
+                            <div id="related_question_t" class="card-content">
                             </div>
                             <script id="related_question_tmpl" type="text/x-jquery-tmpl">
                                 <ul class="questions">
                                     {{if IsSearch}}
-                                        {{each RandomQuestion}}
-                                            <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=${category}&detail=${$value.Alias}${$value.NewsID}"><i class="material-icons">keyboard_arrow_right</i>${$value.Title}</a></li>
-                                        {{/each}}
+                                    {{each RandomQuestion}}
+                                    <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)huong-dan/chi-tiet?category=${category}&detail=${$value.Alias}${$value.NewsID}"><i class="material-icons">keyboard_arrow_right</i>${$value.Title}</a></li>
+                                    {{/each}}
                                     {{else}}
-                                        {{each RandomQuestion}}
-                                            <li><a href="javascript:;" onclick="guide.GuideFocusDetail(this);" data-alias="${$value.Alias}${$value.NewsID}"><i class="material-icons">keyboard_arrow_right</i>${$value.Title}</a></li>
-                                        {{/each}}
+                                    {{each RandomQuestion}}
+                                    <li><a href="javascript:;" onclick="guide.GuideFocusDetail(this);" data-alias="${$value.Alias}${$value.NewsID}"><i class="material-icons">keyboard_arrow_right</i>${$value.Title}</a></li>
+                                    {{/each}}
                                     {{/if}}
-                                    
+
                                 </ul>
                             </script>
                         </div>
@@ -242,7 +253,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </section>
     </div>
@@ -256,7 +267,7 @@
         var category = utils.getParameterByName('category');
         if (category === 'search') {
             $('#guide_keyword').val(decodeURIComponent(utils.getParameterByName('keyword')));
-        }           
+        }
         guide.GetListGuideDetail(category, utils.getParameterByName('detail'));
     });
 
