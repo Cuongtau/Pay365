@@ -164,7 +164,7 @@
             var Msg = common.getDescription(-999999);
             if (typeof JSON.parse(dataErr) === "object") {
                 var objReturn = JSON.parse(dataErr);
-                if (objReturn.c == -10136) {
+                if (objReturn.c == -10136 || objReturn.c == -632) {
                     if (isEmail) {
                         $("#sendOTP_Email").text(email.val().trim());
                         $("#resendOTP").show();
