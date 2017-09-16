@@ -748,7 +748,7 @@ transaction_history = new function () {
                 transaction_history.listHistory.listAll = data.p;
                 $('#content_data, #export_excel').show(); $('#content_empty').hide();
                 $.each(data.p, function (key, val) {
-                    if ((val.ServiceID === 230002 || val.ServiceID === 230001) && val.Description) {
+                    if ((val.ServiceID === common.serviceConfig.CASHOUT_OFF || val.ServiceID === common.serviceConfig.CASHOUT_ONL) && val.Description) {
                         var bankCashout = transaction_history.GetBankInfoFromDesc(val.Description, 2);
                         var desc = transaction_history.GetBankInfoFromDesc(val.Description, 1);
                         val.BankCashout = bankCashout;
@@ -894,7 +894,8 @@ transaction_history = new function () {
         if (step === 1) {
             var param = {
                 TransID: $(t).data('transid'),
-                OrderID: $(t).data('orderid')
+                OrderID: $(t).data('orderid'),
+                culture: header.AccountInfo.CurrentLang
             }
             utils.loading();
             utils.postData(utils.trasactionApi() + "Payment/CheckGetCardValue", param, function (data) {
@@ -942,49 +943,36 @@ transaction_history = new function () {
                     var dataErr = JSON.parse(err);
                     //Quá hạn mức, gọi send otp
                     if (dataErr.c === -10153) {
-                        utils.postData(utils.trasactionApi() + "Payment/ResendOTP", { culture: header.AccountInfo.CurrentLang }, function (data) {
-                            utils.unLoading();
-                            if (data.c >= 0) {
+                        var detail = transaction_history.listHistory.listAll.filter(function (object) {
+                            return object.TransID == $(t).data('transid'); // Filter out the appropriate one
+                        })[0];
+                        var $formDetail = $('#view_card_detail');
+                        $formDetail.find('.card-title t').text('PG-' + detail.TransID);
+                        //Tk su dung bao mat otp email
+                        if (header.AccountInfo.SecurityType === common.accountSecureConfig.EMAIL) {
+                            if (header.AccountInfo.CurrentLang === 'en')
+                                $formDetail.find('#show_step2 p.view-card-2').html('The system has sent an email secure code to email: <br/><i style: color:"#42c34b">' + header.AccountInfo.Email + '</i>, please enter the code to confirm the request');
+                            else
+                                $formDetail.find('#show_step2 p.view-card-2').html('Hệ thống vừa gửi mã xác thực vào email: <br/><i style: color:"#42c34b">' + header.AccountInfo.Email + '</i>, vui lòng nhập mã để xác nhận yêu cầu');
 
-                                var detail = transaction_history.listHistory.listAll.filter(function (object) {
-                                    return object.TransID == $(t).data('transid'); // Filter out the appropriate one
-                                })[0];
-                                var $formDetail = $('#view_card_detail');
-                                $formDetail.find('.card-title t').text('PG-' + detail.TransID);
-                                //Tk su dung bao mat otp email
-                                if (header.AccountInfo.SecurityType === common.accountSecureConfig.EMAIL) {
-                                    if (header.AccountInfo.CurrentLang === 'en')
-                                        $formDetail.find('#show_step2 p.view-card-2').html('The system has sent an email secure code to email: <br/><i style: color:"#42c34b">' + header.AccountInfo.Email + '</i>, please enter the code to confirm the request');
-                                    else
-                                        $formDetail.find('#show_step2 p.view-card-2').html('Hệ thống vừa gửi mã xác thực vào email: <br/><i style: color:"#42c34b">' + header.AccountInfo.Email + '</i>, vui lòng nhập mã để xác nhận yêu cầu');
+                            $formDetail.find('#show_step2 p.view-card-sms-2').show();
+                            $formDetail.find('#resend_secure_code').show();
 
-                                    $formDetail.find('#show_step2 p.view-card-sms-2').show();
-                                    $formDetail.find('#resend_secure_code').show();
+                        }
+                        else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS) {
+                            if (header.AccountInfo.CurrentLang === 'en')
+                                $formDetail.find('#show_step2 p.view-card-2').html('The system has sent an email secure code to phone number: <br/><i style: color:"#42c34b">' + header.AccountInfo.Username + '</i>, please enter the code to confirm the request');
+                            else
+                                $formDetail.find('#show_step2 p.view-card-2').html('Hệ thống vừa gửi mã xác thực vào số điện thoại: <br/><span class="secondary">' + header.AccountInfo.Username + '</span>, vui lòng nhập mã để xác nhận yêu cầu');
 
-                                }
-                                else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS) {
-                                    if (header.AccountInfo.CurrentLang === 'en')
-                                        $formDetail.find('#show_step2 p.view-card-2').html('The system has sent an email secure code to phone number: <br/><i style: color:"#42c34b">' + header.AccountInfo.Username + '</i>, please enter the code to confirm the request');
-                                    else
-                                        $formDetail.find('#show_step2 p.view-card-2').html('Hệ thống vừa gửi mã xác thực vào số điện thoại: <br/><span class="secondary">' + header.AccountInfo.Username + '</span>, vui lòng nhập mã để xác nhận yêu cầu');
-
-                                    $formDetail.find('#resend_secure_code').show();
-                                    $formDetail.find('#show_step2 p.view-card-sms-2').show();
-                                }
-                                $formDetail.find('#show_step2 #bt_Confirm').data('orderid', $(t).data('orderid'));
-                                $formDetail.find('#show_step2 p.view-card-2').show();
-                                $('#main_history').hide();
-                                $formDetail.show();
-                                $formDetail.find('#show_step2').show();
-                            }
-                        }, function (err2) {
-                            utils.unLoading();
-                            console.log(err2);
-                            if (utils.checkResponseIsValid(err2)) {
-                                dataErr = JSON.parse(err2);
-                                ModalNotificationInit(common.getDescription(dataErr.c));
-                            }
-                        }, null);
+                            $formDetail.find('#resend_secure_code').show();
+                            $formDetail.find('#show_step2 p.view-card-sms-2').show();
+                        }
+                        $formDetail.find('#show_step2 #bt_Confirm').data('orderid', $(t).data('orderid'));
+                        $formDetail.find('#show_step2 p.view-card-2').show();
+                        $('#main_history').hide();
+                        $formDetail.show();
+                        $formDetail.find('#show_step2').show();
                     }
                     else
                         ModalNotificationInit(common.getDescription(dataErr.c));
