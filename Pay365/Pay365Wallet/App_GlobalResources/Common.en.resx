@@ -412,6 +412,6 @@
     <value>Link card</value>
   </data>
   <data name="lbl_linkCard_Title" xml:space="preserve">
-    <value>Manager link card</value>
+    <value>Linked card</value>
   </data>
 </root>
