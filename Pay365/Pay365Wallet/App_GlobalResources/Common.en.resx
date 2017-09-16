@@ -408,4 +408,10 @@
   <data name="btn_SearchHistory" xml:space="preserve">
     <value>Show</value>
   </data>
+  <data name="lbl_linkCard" xml:space="preserve">
+    <value>Link card</value>
+  </data>
+  <data name="lbl_linkCard_Title" xml:space="preserve">
+    <value>Manager link card</value>
+  </data>
 </root>

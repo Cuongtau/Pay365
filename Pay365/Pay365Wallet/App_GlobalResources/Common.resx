@@ -408,4 +408,10 @@
   <data name="lbl_TransAcc" xml:space="preserve">
     <value>Người chuyển</value>
   </data>
+  <data name="lbl_linkCard" xml:space="preserve">
+    <value>Thẻ liên kết</value>
+  </data>
+  <data name="lbl_linkCard_Title" xml:space="preserve">
+    <value>Quản lý thẻ liên kết</value>
+  </data>
 </root>
