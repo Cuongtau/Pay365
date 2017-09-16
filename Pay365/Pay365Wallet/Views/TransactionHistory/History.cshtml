@@ -60,7 +60,7 @@
                         <p class="collapsible-block-title">@Resources.Home.lbl_success</p>
                         <ul class="collapsible popout success" data-collapse-number="2" data-collapsible="accordion">
                             {{each listSuccessInitPage}}
-                            {{if ($value.ServiceID == 100003)}}
+                            {{if ($value.ServiceID == common.serviceConfig.TOPUPBANK)}}
                             <li>
                                 <div class="collapsible-header">
                                     <div class="trans-head">
@@ -392,7 +392,7 @@
                         <p class="collapsible-block-title">@Resources.Common.String25</p>
                         <ul class="collapsible popout warning" data-collapse-number="1" data-collapsible="accordion">
                             {{each listPendingInitPage}}
-                            {{if ($value.ServiceID == 100003)}}
+                            {{if ($value.ServiceID == common.serviceConfig.TOPUPBANK)}}
                             <li>
                                 <div class="collapsible-header">
                                     <div class="trans-head">
@@ -468,12 +468,12 @@
                                     </div>
                                 </div>
                             </li>
-                            {{else ($value.ServiceID == 240001 || $value.ServiceID == 140001) }}
+                            {{else ($value.ServiceID == common.serviceConfig.TRANSFER || $value.ServiceID == common.serviceConfig.RECEIVETRANSFER) }}
                             <li>
                                 <div class="collapsible-header">
                                     <div class="trans-head">
                                         <div class="icon">
-                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/chuyen-tien.svg" alt="">
+                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/chuyen-tien.svg">
                                         </div>
                                         <div class="info">
                                             {{if $value.Amount > 0}}
@@ -490,7 +490,7 @@
                                         </div>
                                         <div class="content">
                                             <p>${$value.ServiceName}</p>
-                                            {{if $value.ServiceID == 240001 }}
+                                            {{if $value.ServiceID == common.serviceConfig.TRANSFER }}
                                             <p>@Resources.Common.lbl_ReceiveAcc: ${$value.RelatedUsername}</p>
                                             {{else}}
                                             <p>@Resources.Common.lbl_TransAcc: ${$value.RelatedUsername}</p>
