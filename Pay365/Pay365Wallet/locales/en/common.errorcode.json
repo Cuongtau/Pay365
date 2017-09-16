@@ -115,7 +115,7 @@
     "OTP_EXPIRE": "Activation code is expires validity period",
     "OTP_INVALID": "Activation code is invalid",
     "CARDS_NOT_ENOUGH": "Number of cards is not enough",
-    "HISTORY_DATA_NOTEXIST": "Không tìm thấy thông tin lịch sử giao dịch",
+    "HISTORY_DATA_NOTEXIST": "Can't find transaction history",
     "MIN_AMOUNT_OVER_VALUE": "Transaction exceeds limit",
     "NOT_ENOUGH_MONEY": "Account not enough money",
     "PAYMENT_FAIL": "Payment not success. Please try again laters",
@@ -129,6 +129,7 @@
     "BANKACCOUNT_NOTEXISTED": "Card number / bank account number does not exist",
     "ACCOUNT_VERIFIED": "Account is verified",
     "TRANSACTION_PROCESSING": "Transaction is processing. ",
+    "ERRORCODE_SACOMBANK": "Activation code is invalid. Please try again later", 
     "DEFAULT": "System fail. Please come back later !"
   }
 }

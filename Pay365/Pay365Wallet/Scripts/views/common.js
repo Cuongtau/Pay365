@@ -378,6 +378,9 @@
             case -100300:
                 description = i18n.t('Error.PAYMENT_RECEIACCOUNT_NOT_SUPPORT');
                 break;
+            case -100029:
+                description = i18n.t('Error.ERRORCODE_SACOMBANK');
+                break;
             case -99:
                 description = i18n.t('Error.SYSTEM_ERROR');
                 break;

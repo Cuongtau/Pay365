@@ -296,8 +296,8 @@
                 transfer.Fee = data.d.Fee;
                 transfer.Amount = parseFloat(amount.replace(/[,.]/g, ''));
                 $('#Transfee').text(utils.formatMoney(transfer.Fee) + " VNĐ");
-                if (data.d.FeeType == 2) {
-                    data.d.GrandAmount = Amount;
+                if (data.d.FeeType == 2) { // 2 người nhận chịu , 1 người chuyển chịu
+                    data.d.GrandAmount = amount.replace(/[,.]/g, '');
                 }
                 $('#totalPayment').html(utils.formatMoney(data.d.GrandAmount) + " VNĐ");
             }

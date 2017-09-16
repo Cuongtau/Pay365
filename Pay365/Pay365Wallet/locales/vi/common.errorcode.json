@@ -129,6 +129,7 @@
     "BANKACCOUNT_NOTEXISTED": "Số thẻ/ Số tài khoản ngân hàng không tồn tại",
     "ACCOUNT_VERIFIED": "Tài khoản đã chứng thực",
     "TRANSACTION_PROCESSING": "Giao dịch đang được sử lý",
+    "ERRORCODE_SACOMBANK": "Mã xác thực không hợp lệ", 
     "DEFAULT": "Hệ thống đang bận. Vui lòng thử lại sau !"
   }
 }
