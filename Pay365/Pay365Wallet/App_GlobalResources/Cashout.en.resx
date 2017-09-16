@@ -204,6 +204,9 @@
   <data name="String35" xml:space="preserve">
     <value>24/7 fast withdrawing</value>
   </data>
+  <data name="String36" xml:space="preserve">
+    <value>Via linked card</value>
+  </data>
   <data name="String4" xml:space="preserve">
     <value>List of banks</value>
   </data>
