@@ -144,16 +144,22 @@
                                             <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/chuyen-tien.svg" alt="">
                                         </div>
                                         <div class="info">
-                                            {{if $value.Amount > 0}}
+                                            {{if $value.ServiceID == common.serviceConfig.RECEIVETRANSFER}}
                                             <p class="success">
-                                                {{else}}
-                                            <p class="danger">
-                                                {{/if}}
                                                 <strong>
-                                                    ${utils.formatMoney($value.Amount)}
+                                                    ${utils.formatMoney($value.GrandAmount)}
                                                     <sup>VNĐ</sup>
                                                 </strong>
                                             </p>
+                                            {{else}}
+                                            <p class="danger">
+                                                <strong>
+                                                    -${utils.formatMoney($value.GrandAmount)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+                                            {{/if}}
+
                                             <p>${utils.formDateTime($value.CreatedTime, true)}</p>
                                         </div>
                                         <div class="content">
@@ -193,7 +199,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>@Resources.Payment.value7:</td>
-                                                            <td>${utils.formatMoney($value.PartnerMoney)}<sup>VNĐ</sup></td>
+                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
                                                         </tr>
 
                                                         <tr>
@@ -202,7 +208,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>@Resources.Payment.value10:</td>
-                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
+                                                            <td>${utils.formatMoney($value.Amount)}<sup>VNĐ</sup></td>
                                                         </tr>
                                                         <tr>
                                                             <td>@Resources.Payment.value12:</td>
@@ -314,7 +320,7 @@
                                             {{if $value.ServiceID == common.serviceConfig.BUYCARD}}
                                             <p>@Resources.Payment.String11: ${Math.abs($value.Amount/$value.ProductValue)}</p>
                                             {{else ($value.ServiceID == common.serviceConfig.TOPUPTELCOBEFORE || $value.ServiceID == common.serviceConfig.TOPUPTELCOAFTER) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
-                                            <p>@Resources.Payment.value13: ${$value.PartnerUsername}</p>                                         
+                                            <p>@Resources.Payment.value13: ${$value.PartnerUsername}</p>
                                             {{/if}}
                                         </div>
                                         <i class="material-icons up">keyboard_arrow_up</i>
@@ -476,16 +482,22 @@
                                             <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/chuyen-tien.svg">
                                         </div>
                                         <div class="info">
-                                            {{if $value.Amount > 0}}
+                                            {{if $value.ServiceID == common.serviceConfig.RECEIVETRANSFER}}
                                             <p class="success">
-                                                {{else}}
-                                            <p class="danger">
-                                                {{/if}}
                                                 <strong>
-                                                    ${utils.formatMoney($value.Amount)}
+                                                    ${utils.formatMoney($value.GrandAmount)}
                                                     <sup>VNĐ</sup>
                                                 </strong>
                                             </p>
+                                            {{else}}
+                                            <p class="danger">
+                                                <strong>
+                                                    -${utils.formatMoney($value.GrandAmount)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+                                            {{/if}}
+
                                             <p>${utils.formDateTime($value.CreatedTime, true)}</p>
                                         </div>
                                         <div class="content">
@@ -525,7 +537,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>@Resources.Payment.value7:</td>
-                                                            <td>${utils.formatMoney($value.PartnerMoney)}<sup>VNĐ</sup></td>
+                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
                                                         </tr>
 
                                                         <tr>
@@ -534,11 +546,11 @@
                                                         </tr>
                                                         <tr>
                                                             <td>@Resources.Payment.value10:</td>
-                                                            <td>${utils.formatMoney($value.GrandAmount)}<sup>VNĐ</sup></td>
+                                                            <td>${utils.formatMoney($value.Amount)}<sup>VNĐ</sup></td>
                                                         </tr>
                                                         <tr>
                                                             <td>@Resources.Payment.value12:</td>
-                                                            <td>@Resources.Payment.status0</td>
+                                                            <td>@Resources.Payment.status1</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

@@ -234,7 +234,7 @@
                             <div class="card-button">
                                 @if (ViewBag.Id != 1)
                                 {
-                                    <a href="javascript:;" onclick="payment.actionView('ts-parent', 'prev', 'View_ListItem');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
+                                    <a href="javascript:;" tabindex="-1" onclick="payment.actionView('ts-parent', 'prev', 'View_ListItem');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
                                 }
                                 <a href="javascript:;" id="btnPaymentCheckInput" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
 
@@ -421,7 +421,7 @@
                         </div>
                     </div>
                     <div class="card-button">
-                        <a href="javascript:;" onclick="payment.actionView('ts-parent','prev','View_Payment');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Account.BtnBack</a>
+                        <a href="javascript:;" tabindex="-1" onclick="payment.actionView('ts-parent','prev','View_Payment');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Account.BtnBack</a>
                         <a href="javascript:;" id="btnPaymentConfirm" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btnPayment <i class="material-icons">chevron_right</i></a>
                     </div>
                 </div>
