@@ -25,7 +25,7 @@
        if (((ua.indexOf('Mozilla/5.0') > -1 && ua.indexOf('AppleWebKit') > -1) && (((ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1) && ua.indexOf('Version') === -1) || (ua.indexOf('Android') > -1 && ua.indexOf('Version') > -1)))) {
            $('header.header, section.main-top, aside.sidebar').hide();
            $('aside.content-wrapper').css('margin-left', '0');
-
+           $('body').css('-webkit-transform', 'translateZ(0px)');
        }
     </script>
     <div class="dashboard">

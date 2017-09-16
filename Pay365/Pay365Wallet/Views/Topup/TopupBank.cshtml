@@ -151,13 +151,13 @@
                             </div>
                             <div class="form-group input-field">
                                 <i class="material-icons prefix">credit_card</i>
-                                <input maxlength="19" id="card_number" type="text" onblur="CharacterOnly(this);" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
+                                <input maxlength="19" id="card_number" type="text" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
                                 <label for="card_number">@Resources.Topup.number_card</label>
                                 <span class="error-text"></span>
                             </div>
                             <div class="form-group input-field">
                                 <i class="material-icons prefix">person</i>
-                                <input maxlength="50" id="account_holder" class="custom-captcha" type="text" style="width: calc(100% - 3rem)!important">
+                                <input maxlength="50" id="account_holder" onblur="CharacterOnly(this);" class="custom-captcha" type="text" style="width: calc(100% - 3rem)!important">
                                 <label for="account_holder">@Resources.Topup.account_holder</label>
                                 <span class="error-text"></span>
                             </div>
@@ -374,13 +374,13 @@ else
                             </div>
                             <div class="form-group input-field">
                                 <i class="material-icons prefix">credit_card</i>
-                                <input maxlength="19" id="card_number" type="text" onblur="CharacterOnly(this);" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
+                                <input maxlength="19" id="card_number" type="text" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
                                 <label for="card_number">@Resources.Topup.number_card</label>
                                 <span class="error-text"></span>
                             </div>
                             <div class="form-group input-field">
                                 <i class="material-icons prefix">person</i>
-                                <input maxlength="50" id="account_holder" class="custom-captcha" type="text" style="width: calc(100% - 3rem)!important">
+                                <input maxlength="50" id="account_holder" onblur="CharacterOnly(this);" class="custom-captcha" type="text" style="width: calc(100% - 3rem)!important">
                                 <label for="account_holder">@Resources.Topup.account_holder</label>
                                 <span class="error-text"></span>
                             </div>
