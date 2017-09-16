@@ -136,7 +136,7 @@
                                     </div>
                                 </div>
                             </li>
-                            {{else ($value.ServiceID == 240001 || $value.ServiceID == 140001) }}
+                            {{else ($value.ServiceID == common.serviceConfig.TRANSFER || $value.ServiceID == common.serviceConfig.RECEIVETRANSFER) }}
                             <li>
                                 <div class="collapsible-header">
                                     <div class="trans-head">
@@ -158,7 +158,7 @@
                                         </div>
                                         <div class="content">
                                             <p>${$value.ServiceName}</p>
-                                            {{if $value.ServiceID == 240001 }}
+                                            {{if $value.ServiceID == common.serviceConfig.TRANSFER }}
                                             <p>@Resources.Common.lbl_ReceiveAcc: ${$value.RelatedUsername}</p>
                                             {{else}}
                                             <p>@Resources.Common.lbl_TransAcc: ${$value.RelatedUsername}</p>
@@ -215,7 +215,7 @@
                                     </div>
                                 </div>
                             </li>
-                            {{else ($value.ServiceID == 230001 || $value.ServiceID == 230002) }}
+                            {{else ($value.ServiceID == common.serviceConfig.CASHOUT_OFF || $value.ServiceID == common.serviceConfig.CASHOUT_ONL) }}
                             <li>
                                 <div class="collapsible-header">
                                     <div class="trans-head">
@@ -311,12 +311,10 @@
                                         </div>
                                         <div class="content">
                                             <p>${$value.ServiceName}</p>
-                                            {{if $value.ServiceID == 200001}}
+                                            {{if $value.ServiceID == common.serviceConfig.BUYCARD}}
                                             <p>@Resources.Payment.String11: ${Math.abs($value.Amount/$value.ProductValue)}</p>
-                                            {{else ($value.ServiceID == 210001 || $value.ServiceID == 210002) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
-                                            <p>@Resources.Payment.value13: ${$value.PartnerUsername}</p>
-                                            {{else ($value.ServiceID == 220001 || $value.ServiceID == 220002 ||  $value.ServiceID == 220003) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
-                                            <p>@Resources.Payment.String8: ${$value.PartnerUsername}</p>
+                                            {{else ($value.ServiceID == common.serviceConfig.TOPUPTELCOBEFORE || $value.ServiceID == common.serviceConfig.TOPUPTELCOAFTER) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
+                                            <p>@Resources.Payment.value13: ${$value.PartnerUsername}</p>                                         
                                             {{/if}}
                                         </div>
                                         <i class="material-icons up">keyboard_arrow_up</i>
@@ -549,7 +547,7 @@
                                     </div>
                                 </div>
                             </li>
-                            {{else ($value.ServiceID == 230001 || $value.ServiceID == 230002) }}
+                            {{else ($value.ServiceID == common.serviceConfig.CASHOUT_OFF || $value.ServiceID == common.serviceConfig.CASHOUT_ONL) }}
                             <li>
                                 <div class="collapsible-header">
                                     <div class="trans-head">
@@ -646,12 +644,10 @@
                                         </div>
                                         <div class="content">
                                             <p>${$value.ServiceName}</p>
-                                            {{if $value.ServiceID == 200001}}
+                                            {{if $value.ServiceID == common.serviceConfig.BUYCARD}}
                                             <p>@Resources.Payment.String11: ${Math.abs($value.Amount/$value.ProductValue)}</p>
-                                            {{else ($value.ServiceID == 210001 || $value.ServiceID == 210002) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
+                                            {{else ($value.ServiceID == common.serviceConfig.TOPUPTELCOBEFORE || $value.ServiceID == common.serviceConfig.TOPUPTELCOAFTER) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
                                             <p>@Resources.Payment.value13: ${$value.PartnerUsername}</p>
-                                            {{else ($value.ServiceID == 220001 || $value.ServiceID == 220002 ||  $value.ServiceID == 220003) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
-                                            <p>@Resources.Payment.String8: ${$value.PartnerUsername}</p>
                                             {{/if}}
                                         </div>
                                         <i class="material-icons up">keyboard_arrow_up</i>

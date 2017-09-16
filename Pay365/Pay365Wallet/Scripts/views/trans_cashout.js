@@ -639,9 +639,9 @@
                 if (data.c >= 0) {
                     //do sth
                     if (header.AccountInfo.CurrentLang === 'en') {
-                        ModalNotificationResultInit((action === 'offline' ? 'warning' : null), null, utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Go home page', 'Continue cashout', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'cashout'; });
+                        ModalNotificationResultInit(null, null, utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Go home page', 'Continue cashout', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'cashout'; });
                     } else {
-                        ModalNotificationResultInit((action === 'offline' ? 'warning' : null), null, utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Về trang chủ', 'Tiếp tục rút', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'cashout'; });
+                        ModalNotificationResultInit(null, null, utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Về trang chủ', 'Tiếp tục rút', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'cashout'; });
                     }
                     ga('send', 'event', 'Transaction_Cashout', cashout.actionTracking + '-StepConfirm', 'Success');
                     return;

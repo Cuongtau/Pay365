@@ -773,7 +773,7 @@
         }
         return bankCode;
     };
-    this.serviceConfig = { BUYCARD: 200001, CASHOUT_OFF: 230001, CASHOUT_ONL: 230002, TRANSFER: 240001 };
+    this.serviceConfig = { BUYCARD: 210001, CASHOUT_OFF: 200002, CASHOUT_ONL: 200003, TRANSFER: 230001, RECEIVETRANSFER: 130001, TOPUPTELCOBEFORE: 210002, TOPUPTELCOAFTER: 210003 };
     this.accountSecureConfig = { SMS: 1, EMAIL: 2, VOICE: 3, APP: 4 };
     this.accountStatus = { UNCER: 1, REQUEST: 2, CER: 3 }
 };
