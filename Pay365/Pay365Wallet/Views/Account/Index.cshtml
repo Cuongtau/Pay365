@@ -407,14 +407,14 @@
                                 </div>
                             </li>
                         </ul>
-                        <div class="coming-soon">
+                        @*<div class="coming-soon">
                             <div class="ribbon">
                                 <span>Coming Soon</span>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                     <div class="card-button flat">
-                        <a href="/link-card" class="btn btn-flat btn-primary waves-effect waves-primary uppercase">
+                        <a onclick="gotoLinkCard();" href="javascript:;" class="btn btn-flat btn-primary waves-effect waves-primary uppercase">
                             <i class="material-icons">credit_card</i>
                             @Resources.Common.addCard
                         </a>
@@ -561,6 +561,12 @@
         //transaction_history.get_History_Home();
 
     });
+
+    gotoLinkCard = function() {
+        utils.setCookie('LinkCard', false);
+        window.location.href = utils.rootUrl() + "link-card";
+    };
+
     $(window).on("load", function () {
         if (window.location.href.indexOf('?') !== -1) {
             setTimeout(function () {

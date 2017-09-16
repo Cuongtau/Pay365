@@ -173,11 +173,6 @@
                         $('#txtAmount').parent().find('.error-text').text(des);
                         $('#txtAmount').focus();
                         break;
-                    //case -10117:
-                    //    $('#txtReason').addClass('error');
-                    //    $('#txtReason').parent().find('.error-text').text(Msg);
-                    //    $('#txtReason').focus();
-                    //    break;
                     default:
                         ModalNotificationInit(Msg, "", "error", "", btnClose);
                         break;

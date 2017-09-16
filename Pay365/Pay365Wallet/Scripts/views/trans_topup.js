@@ -268,7 +268,7 @@
                     //$step2.show();
                     $('#formTopupRecent').hide();
                     $('#formTopupMain').addClass('col-center');
-                    payment.actionView("ts-child", "next", "cardContentStep2");            
+                    payment.actionView("ts-child", "next", "cardContentStep2");
                     return;
                 }
                 common.saveLog(data);
@@ -316,7 +316,7 @@
                 utils.unLoading();
                 common.getFormDescription(data.c, 'cardContentStep1');
                 $('#cardContentStep1').parent('#ts-child').height(450);
-                ga('send', 'event', 'Transaction_Cashin', topup.actionTracking + '-StepCheckBank', 'Fail');          
+                ga('send', 'event', 'Transaction_Cashin', topup.actionTracking + '-StepCheckBank', 'Fail');
             }, function (err) {
                 common.saveLog(err);
                 utils.getCaptcha('main_topup_bank', 'payment');
@@ -509,5 +509,19 @@
                     $(this).hide();
             }
         });
+    };
+
+    // Nạp qua thẻ gắn kết
+    this.TopupBank_ByLinkCard = function () {
+        utils.setCookie('LinkCard', false);
+        var msg = "Bạn chưa liên kết với ngân hàng này. Bạn có muốn thực hiện liên kết không";
+        ModalNotificationResultInit('danger', null, msg, 'Đóng', 'Liên kết',
+            function () {
+                window.location.href = utils.rootUrl() + 'nap-tien';
+            },
+            function () {
+                var setcookie = utils.setCookie('LinkCard', true); // set cookie
+                window.location.href = utils.rootUrl() + 'link-card';
+            });
     };
 };

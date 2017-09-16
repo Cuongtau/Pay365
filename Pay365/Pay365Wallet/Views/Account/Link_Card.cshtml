@@ -9,9 +9,7 @@
         <div class="content">
             <p class="page-title">Quản lý thẻ gắn kết</p>
             <div class="pay-breadcrumbs">
-                <a href="#!" class="breadcrumb waves-effect waves-light">Trang chủ</a>
-                <a href="#!" class="breadcrumb waves-effect waves-light">Quản lý tài khoản</a>
-                <a href="#!" class="breadcrumb waves-effect waves-light">Quản lý thẻ gắn kết</a>
+                <a href="/thong-tin" class="breadcrumb waves-effect waves-light">Trang chủ</a>
             </div>
         </div>
     </section>
@@ -509,6 +507,14 @@
 
 <script type="text/javascript">
     $(function () {
+        var cookie = utils.getCookie('LinkCard');
+        if (cookie == 'true') {
+            utils.loading();
+            setTimeout(function () {
+                utils.unLoading();
+                SlideToogle("ts-parent", "next", 'link_card_step2');
+            }, 1500);
+        }
         linkcard.GetListBank(0);
 
         $('#month_year').keypress(function (e) {
