@@ -110,7 +110,7 @@ namespace Pay365.Pay365.Web.App.Startup
                         L("Cashout"),
                         url: "cashout",
                         icon: "icon-briefcase",
-                        requiredPermissionName: AppPermissions.Pages_Cashout
+                        requiredPermissionName: AppPermissions.Pages_Cashout 
                         )
                     ).AddItem(new MenuItemDefinition(
                         PageNames.App.Transaction.Transfer,
