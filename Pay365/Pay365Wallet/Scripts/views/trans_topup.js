@@ -515,16 +515,16 @@
     this.TopupBank_ByLinkCard = function (type) {
         utils.setCookie('LinkCard', false);
         var msg = "Bạn chưa liên kết với ngân hàng này. Bạn có muốn thực hiện liên kết không";
-        var header = "Thất bại";
+        var headerContent = "Thất bại";
         var btnClose = "Đóng";
         var btnContinue = "Liên kết";
-        if (header.AccountInfo.CurrentLang == 'en') {
+        if (header.AccountInfo.CurrentLang === 'en') {
             msg = "Sacombank have not linked with your account yet. Do you want to link your account?";
-            header = "Fail";
+            headerContent = "Fail";
             btnClose = "Close";
             btnContinue = "Link Card";
         }
-        ModalNotificationResultInit('danger', header, msg, btnClose, btnContinue,
+        ModalNotificationResultInit('danger', headerContent, msg, btnClose, btnContinue,
             function () {
                 if (type === 'cashout')
                     window.location.href = utils.rootUrl() + 'rut-tien';
