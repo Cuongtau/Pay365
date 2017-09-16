@@ -42,6 +42,9 @@
                 });
 
                 $("#topup_bank_t").html($("#topup_bank_tmpl").tmpl({ listBank: data.p }));
+                //
+                $("#topup_bank_t_OnlySTB").html($("#topup_bank_tmpl_OnlySTB").tmpl({ listBank: data.p }));
+
                 topup.GetListTopupRecent(null, null, 'topup_bank_recent_t');
             }
         }, function (err) {

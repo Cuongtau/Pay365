@@ -4,447 +4,495 @@
 @if (ViewBag.CurrentLang == "en")
 {
     <main class="main" id="main_topup_bank">
-    <section class="main-top">
-        <div class="content">
-            <p class="page-title">@Resources.Common.Menu_Topup1</p>
-            <div class="pay-breadcrumbs">
-                <a href="@Html.Raw(Pay365.Utils.Config.Domain)thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Cashout.String2</a>
-                <a href="@Html.Raw(Pay365.Utils.Config.Domain)nap-tien" class="breadcrumb waves-effect waves-light">@Resources.Common.Menu_Topup1</a>
-            </div>
-        </div>
-    </section>
-    <div id="topup_content" class="dashboard">
-    <section class="page-section">
-
-    <div id="ts-parent" class="tab-slides">
-    <div class="div_slide div_active" id="listBankSelect">
-        <div id="formBankRecent" class="card">
-            <div class="card-title">@Resources.Cashout.String3</div>
-            <div class="card-content">
-                <div id="topup_bank_recent_t" class="row">
-
-                </div>
-                <script id="topup_bank_recent_tmpl" type="text/x-jquery-tmpl">
-                    {{each listBankRecent}}
-                    <div class="box-bank-icon">
-                        <a href="javascript:;" onclick="topup.TopupBankDetailRecent(this);" data-bankcode="${$value.JsonObject.BankCode}" class="bank-icon" title="${$value.JsonObject.BankCode}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.JsonObject.BankCode}.png" alt=""></a>
-                    </div>
-                    {{/each}}
-                </script>
-            </div>
-        </div>
-        <div class="page-content" style="padding-top: 0">
-            <div class="card">
-                <div class="card-title">
-                    @Resources.Cashout.String4
-                    <div class="form-group input-field">
-                        <i class="material-icons subfix btn-search">search</i>
-                        <input onkeyup="topup.SearchBank('topup_bank_t');" id="search_bank" type="text" placeholder="@Resources.Cashout.String5">
-                        <span class="error-text"></span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div id="topup_bank_t" class="row">
-
-                    </div>
-                    <script id="topup_bank_tmpl" type="text/x-jquery-tmpl">
-                        {{each listBank}}
-                        <div class="box-bank-icon">
-                            <a href="javascript:;" onclick="topup.TopupBankDetail(this);" data-serviceid="${$value.CushInServiceID}" data-bankname="${$value.BankName}" data-bankcode="${$value.BankCode}" data-bankinfo="${$value.BankID}#${$value.BankCode}#${$value.BankName}" class="bank-icon" title="${$value.BankCode}-${$value.BankName}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.BankCode}.png" alt=""></a>
-                        </div>
-                        {{/each}}
-                    </script>
-
+        <section class="main-top">
+            <div class="content">
+                <p class="page-title">@Resources.Common.Menu_Topup1</p>
+                <div class="pay-breadcrumbs">
+                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Cashout.String2</a>
+                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)nap-tien" class="breadcrumb waves-effect waves-light">@Resources.Common.Menu_Topup1</a>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="div_slide div_next" id="topupBankDetail">
-        <div id="formTopupMain" class="col-md-7">
-            <div class="card">
-                <div id="topup_bank_info" class="card-title">
-                    <span class="bank-icon">
-                        <img alt="">
-                    </span>
-                    <span id="topup_bank_name"></span>
-                    <input type="hidden" id="topup_bankcode" />
-                </div>
-                <input type="hidden" id="topup_bank_serviceid" />
-                <div id="ts-child" class="tab-slides">
-                    <div id="cardContentStep1" class="div_slide div_active">
-                        <div class="card-content">
-                            <div class="form-group input-field">
-                                <i class="material-icons prefix">phone_iphone</i>
-                                <input maxlength="20" id="topup_account" onblur="topup.GetTopupAccount(this);" onkeyup="utils.transactionAccountNumberFormat(this, event);" type="text">
-                                <label for="topup_account" class="active">@Resources.Cashout.String33</label>
-                                <span class="error-text"></span>
-                                <span class="success-text"></span>
-                                <span id="topup_account_name" class="charge-name" style="font-size: 0.85rem; right: 0"></span>
-                            </div>
-                            <div class="form-group input-field">
-                                <i class="material-icons prefix">monetization_on</i>
-                                <input maxlength="12" id="topup_amount" onblur="topup.CalculateTotalAmount();" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.formatCurrency(this,event);" type="text" class="autocomplete">
-                                <label for="topup_amount">@Resources.Payment.String13</label>
-                                <span class="error-text"></span>
+        </section>
+        <div id="topup_content" class="dashboard">
+            <section class="page-section">
 
-                            </div>
-                            <div class="form-group">
-                                <div id="fast_recharge" class="prices">
-                                    <a href="javascript:;" data-amount="100000" class="price-flat">100.000<sup>VNĐ</sup></a>
-                                    <a href="javascript:;" data-amount="200000" class="price-flat">200.000<sup>VNĐ</sup></a>
-                                    <a href="javascript:;" data-amount="500000" class="price-flat">500.000<sup>VNĐ</sup></a>
-                                    <a href="javascript:;" data-amount="1000000" class="price-flat">1.000.000<sup>VNĐ</sup></a>
-                                </div>
-                            </div>
+                <div id="ts-parent" class="tab-slides">
+                    <div class="div_slide div_active" id="listBankSelect">
+                        <div id="formBankRecent" class="card">
+                            <div class="card-title">@Resources.Cashout.String3</div>
+                            <div class="card-content">
+                                <div id="topup_bank_recent_t" class="row">
 
-                            <div class="form-group input-field captcha">
-                                <i class="material-icons prefix"></i>
-                                <input class="custom-captcha captcha-focus" maxlength="4" id="topup_captcha" type="text">
-                                <label for="topup_captcha">@Resources.Register.String4</label>
-                                <input id="inputToken" type="hidden" />
-                                <div class="captcha-image">
-                                    <img id="imgCaptcha" width="100" height="35">
-                                    <i onclick="utils.refreshCaptcha(null, 'payment');" class="btn-reload material-icons">refresh</i>
                                 </div>
-                                <span class="error-text" style="float: left;"></span>
+                                <script id="topup_bank_recent_tmpl" type="text/x-jquery-tmpl">
+                                    {{each listBankRecent}}
+                                    <div class="box-bank-icon">
+                                        <a href="javascript:;" onclick="topup.TopupBankDetailRecent(this);" data-bankcode="${$value.JsonObject.BankCode}" class="bank-icon" title="${$value.JsonObject.BankCode}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.JsonObject.BankCode}.png" alt=""></a>
+                                    </div>
+                                    {{/each}}
+                                </script>
                             </div>
-                                        
-                            <div class="input-field">
-                                <div class="row padding-left-row">
-                                    <span class="label label-danger">@Resources.Topup.topup_fee: <span id="topup_fee_rate">0đ</span></span>
+                        </div>
+                        
+                        @*Ngân hàng liên kết*@
+                        <div class="page-content" style="padding-top: 0">
+                            <div class="card">
+                                <div class="card-title">
+                                    Ngân hàng liên kết
                                 </div>
-                            </div>
-                                        
-                            <div class="input-field">
-                                <div class="row padding-left-row">
-                                    <div class="col-sm-6">@Resources.Topup.topup_totalAmount: <strong class="primary" id="topup_total_amount">0đ</strong></div>
+                                <div class="card-content">
+                                    <div id="topup_bank_t_OnlySTB" class="row">
+                                    </div>
+                                    <script id="topup_bank_tmpl_OnlySTB" type="text/x-jquery-tmpl">
+                                        {{each listBank}}
+                                        {{if BankCode == STB}}
+                                        <div class="box-bank-icon">
+                                            <a href="javascript:;" onclick="topup.TopupBankDetail(this);" data-serviceid="${$value.CushInServiceID}" data-bankname="${$value.BankName}" data-bankcode="${$value.BankCode}" data-bankinfo="${$value.BankID}#${$value.BankCode}#${$value.BankName}" class="bank-icon" title="${$value.BankCode}-${$value.BankName}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.BankCode}.png" alt=""></a>
+                                        </div>
+                                        {{/if}}
+                                        {{/each}}
+                                    </script>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-button">
-                            <a href="javascript:;" tabindex="-1" onclick="payment.actionView('ts-parent', 'prev', 'listBankSelect');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
-                            <a id="bt_topup_confirm" onclick="topup.ConfirmTopup();" href="javascript:;" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
+                        @*Ngân hàng liên kết*@
+
+                        <div class="page-content" style="padding-top: 0">
+                            <div class="card">
+                                <div class="card-title">
+                                    @Resources.Cashout.String4
+                                    <div class="form-group input-field">
+                                        <i class="material-icons subfix btn-search">search</i>
+                                        <input onkeyup="topup.SearchBank('topup_bank_t');" id="search_bank" type="text" placeholder="@Resources.Cashout.String5">
+                                        <span class="error-text"></span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div id="topup_bank_t" class="row">
+
+                                    </div>
+                                    <script id="topup_bank_tmpl" type="text/x-jquery-tmpl">
+                                        {{each listBank}}
+                                        <div class="box-bank-icon">
+                                            <a href="javascript:;" onclick="topup.TopupBankDetail(this);" data-serviceid="${$value.CushInServiceID}" data-bankname="${$value.BankName}" data-bankcode="${$value.BankCode}" data-bankinfo="${$value.BankID}#${$value.BankCode}#${$value.BankName}" class="bank-icon" title="${$value.BankCode}-${$value.BankName}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.BankCode}.png" alt=""></a>
+                                        </div>
+                                        {{/each}}
+                                    </script>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div_slide div_next" id="topupBankDetail">
+                        <div id="formTopupMain" class="col-md-7">
+                            <div class="card">
+                                <div id="topup_bank_info" class="card-title">
+                                    <span class="bank-icon">
+                                        <img alt="">
+                                    </span>
+                                    <span id="topup_bank_name"></span>
+                                    <input type="hidden" id="topup_bankcode" />
+                                </div>
+                                <input type="hidden" id="topup_bank_serviceid" />
+                                <div id="ts-child" class="tab-slides">
+                                    <div id="cardContentStep1" class="div_slide div_active">
+                                        <div class="card-content">
+                                            <div class="form-group input-field">
+                                                <i class="material-icons prefix">phone_iphone</i>
+                                                <input maxlength="20" id="topup_account" onblur="topup.GetTopupAccount(this);" onkeyup="utils.transactionAccountNumberFormat(this, event);" type="text">
+                                                <label for="topup_account" class="active">@Resources.Cashout.String33</label>
+                                                <span class="error-text"></span>
+                                                <span class="success-text"></span>
+                                                <span id="topup_account_name" class="charge-name" style="font-size: 0.85rem; right: 0"></span>
+                                            </div>
+                                            <div class="form-group input-field">
+                                                <i class="material-icons prefix">monetization_on</i>
+                                                <input maxlength="12" id="topup_amount" onblur="topup.CalculateTotalAmount();" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.formatCurrency(this,event);" type="text" class="autocomplete">
+                                                <label for="topup_amount">@Resources.Payment.String13</label>
+                                                <span class="error-text"></span>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <div id="fast_recharge" class="prices">
+                                                    <a href="javascript:;" data-amount="100000" class="price-flat">100.000<sup>VNĐ</sup></a>
+                                                    <a href="javascript:;" data-amount="200000" class="price-flat">200.000<sup>VNĐ</sup></a>
+                                                    <a href="javascript:;" data-amount="500000" class="price-flat">500.000<sup>VNĐ</sup></a>
+                                                    <a href="javascript:;" data-amount="1000000" class="price-flat">1.000.000<sup>VNĐ</sup></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group input-field captcha">
+                                                <i class="material-icons prefix"></i>
+                                                <input class="custom-captcha captcha-focus" maxlength="4" id="topup_captcha" type="text">
+                                                <label for="topup_captcha">@Resources.Register.String4</label>
+                                                <input id="inputToken" type="hidden" />
+                                                <div class="captcha-image">
+                                                    <img id="imgCaptcha" width="100" height="35">
+                                                    <i onclick="utils.refreshCaptcha(null, 'payment');" class="btn-reload material-icons">refresh</i>
+                                                </div>
+                                                <span class="error-text" style="float: left;"></span>
+                                            </div>
+
+                                            <div class="input-field">
+                                                <div class="row padding-left-row">
+                                                    <span class="label label-danger">@Resources.Topup.topup_fee: <span id="topup_fee_rate">0đ</span></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-field">
+                                                <div class="row padding-left-row">
+                                                    <div class="col-sm-6">@Resources.Topup.topup_totalAmount: <strong class="primary" id="topup_total_amount">0đ</strong></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-button">
+                                            <a href="javascript:;" tabindex="-1" onclick="payment.actionView('ts-parent', 'prev', 'listBankSelect');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
+                                            <a id="bt_topup_confirm" onclick="topup.ConfirmTopup();" href="javascript:;" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
+                                        </div>
+                                    </div>
+
+                                    <div id="cardContentStep2" class="div_slide div_next">
+                                        <div class="card-content">
+                                            <div class="form-group input-field">
+                                                <table class="table-data">
+                                                    <tr>
+                                                        <td width="40%">@Resources.Topup.deposit_account:</td>
+                                                        <td id="topup_account_2"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="40%">@Resources.Payment.value7:</td>
+                                                        <td id="amount_step2"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="40%">@Resources.Payment.value9:</td>
+                                                        <td><span id="fee_step2" class="danger"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="40%">@Resources.Payment.value10:</td>
+                                                        <td><span id="total_step2" class="danger"></span></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="form-group input-field">
+                                                <i class="material-icons prefix">credit_card</i>
+                                                <input maxlength="19" id="card_number" type="text" onblur="CharacterOnly(this);" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
+                                                <label for="card_number">@Resources.Topup.number_card</label>
+                                                <span class="error-text"></span>
+                                            </div>
+                                            <div class="form-group input-field">
+                                                <i class="material-icons prefix">person</i>
+                                                <input maxlength="50" id="account_holder" class="custom-captcha" type="text" style="width: calc(100% - 3rem)!important">
+                                                <label for="account_holder">@Resources.Topup.account_holder</label>
+                                                <span class="error-text"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-button">
+                                            <a href="javascript:;" onclick="topup.BackStep(1);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i>@Resources.Payment.btn_back</a>
+                                            <a href="javascript:;" id="btConfirmStep2" onclick="topup.ConfirmTopupStep2();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
+                                        </div>
+                                    </div>
+
+                                    <div id="cardContentStep3" class="div_slide div_next">
+                                        <div class="card-content">
+                                            <p>@Resources.Transfer.lbl_OTP</p>
+                                            <div class="form-group input-field">
+                                                <i class="material-icons prefix">sms</i>
+                                                <input maxlength="6" id="otp_3" type="text">
+                                                <label for="otp_3">@Resources.Transfer.OTP</label>
+                                                <span class="error-text"></span>
+                                            </div>
+                                        </div>
+                                        <div class="card-button">
+                                            <a href="javascript:;" tabindex="-1" onclick="topup.BackStep(2);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
+                                            <a href="javascript:;" id="btConfirmStep3" onclick="topup.ConfirmTopupStep3();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Topup.btn_Deposit<i class="material-icons">chevron_right</i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="formTopupRecent" class="col-md-5">
+                            <div class="card">
+                                <div class="card-title" style="padding-bottom: 15px; padding-top: 35px">
+                                    @Resources.Topup.lbl_recentlyDeposit
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)history" class="more waves-effect waves-primary"><i class="material-icons">keyboard_arrow_right</i></a>
+                                </div>
+                                <ul id="topup_log_recent_t" class="collapsible-custom popout warning" data-collapse-number="1" data-collapsible="accordion"></ul>
+
+                                <script id="topup_log_recent_tmpl" type="text/x-jquery-tmpl">
+                                    {{each listBankRecent}}
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <div class="trans-head">
+                                                <div class="icon" style="line-height: initial;"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/nap-tien.svg" alt=""></div>
+                                                <div class="info">
+                                                    <p class="success"><strong>${utils.formatMoney($value.JsonObject.Amount)}<sup> VNĐ</sup></strong></p>
+                                                    <p>${utils.formDateTime($value.JsonObject.CreateTime)}</p>
+                                                </div>
+                                                <div class="content">
+                                                    <p><strong>@Resources.Topup.lbl_depositWallet</strong></p>
+                                                    <p>${common.getbankName($value.JsonObject.BankCode)}</p>
+                                                </div>
+                                                <i class="material-icons up">keyboard_arrow_up</i>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {{/each}}
+                                </script>
+                            </div>
                         </div>
                     </div>
 
-                    <div id="cardContentStep2" class="div_slide div_next">
-                        <div class="card-content">
-                            <div class="form-group input-field">
-                                <table class="table-data">
-                                    <tr>
-                                        <td width="40%">@Resources.Topup.deposit_account:</td>
-                                        <td id="topup_account_2"></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40%">@Resources.Payment.value7:</td>
-                                        <td id="amount_step2"></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40%">@Resources.Payment.value9:</td>
-                                        <td><span id="fee_step2" class="danger"></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40%">@Resources.Payment.value10:</td>
-                                        <td><span id="total_step2" class="danger"></span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="form-group input-field">
-                                <i class="material-icons prefix">credit_card</i>
-                                <input maxlength="19" id="card_number" type="text" onblur="CharacterOnly(this);" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
-                                <label for="card_number">@Resources.Topup.number_card</label>
-                                <span class="error-text"></span>
-                            </div>
-                            <div class="form-group input-field">
-                                <i class="material-icons prefix">person</i>
-                                <input maxlength="50" id="account_holder" class="custom-captcha" type="text" style="width: calc(100% - 3rem)!important">
-                                <label for="account_holder">@Resources.Topup.account_holder</label>
-                                <span class="error-text"></span>
-                            </div>
-                        </div>
-
-                        <div class="card-button">
-                            <a href="javascript:;" onclick="topup.BackStep(1);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i>@Resources.Payment.btn_back</a>
-                            <a href="javascript:;" id="btConfirmStep2" onclick="topup.ConfirmTopupStep2();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
-                        </div>
-                    </div>
-
-                    <div id="cardContentStep3" class="div_slide div_next">
-                        <div class="card-content">
-                            <p>@Resources.Transfer.lbl_OTP</p>
-                            <div class="form-group input-field">
-                                <i class="material-icons prefix">sms</i>
-                                <input maxlength="6" id="otp_3" type="text">
-                                <label for="otp_3">@Resources.Transfer.OTP</label>
-                                <span class="error-text"></span>
-                            </div>
-                        </div>
-                        <div class="card-button">
-                            <a href="javascript:;" tabindex="-1" onclick="topup.BackStep(2);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
-                            <a href="javascript:;" id="btConfirmStep3" onclick="topup.ConfirmTopupStep3();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Topup.btn_Deposit<i class="material-icons">chevron_right</i></a>
-                        </div>
-                    </div>
                 </div>
-            </div>
+            </section>
         </div>
-        <div id="formTopupRecent" class="col-md-5">
-            <div class="card">
-                <div class="card-title" style="padding-bottom: 15px; padding-top: 35px">
-                    @Resources.Topup.lbl_recentlyDeposit
-                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)history" class="more waves-effect waves-primary"><i class="material-icons">keyboard_arrow_right</i></a>
-                </div>
-                <ul id="topup_log_recent_t" class="collapsible-custom popout warning" data-collapse-number="1" data-collapsible="accordion"></ul>
-
-                <script id="topup_log_recent_tmpl" type="text/x-jquery-tmpl">
-                    {{each listBankRecent}}
-                    <li>
-                        <div class="collapsible-header">
-                            <div class="trans-head">
-                                <div class="icon" style="line-height: initial;"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/nap-tien.svg" alt=""></div>
-                                <div class="info">
-                                    <p class="success"><strong>${utils.formatMoney($value.JsonObject.Amount)}<sup> VNĐ</sup></strong></p>
-                                    <p>${utils.formDateTime($value.JsonObject.CreateTime)}</p>
-                                </div>
-                                <div class="content">
-                                    <p><strong>@Resources.Topup.lbl_depositWallet</strong></p>
-                                    <p>${common.getbankName($value.JsonObject.BankCode)}</p>
-                                </div>
-                                <i class="material-icons up">keyboard_arrow_up</i>
-                            </div>
-                        </div>                                  
-                    </li>
-                    {{/each}}
-                </script>
-            </div>
-        </div>
-    </div>
-
-    </div>
-    </section>
-    </div>
     </main>
 }
 else
 {
     <main class="main" id="main_topup_bank">
-    <section class="main-top">
-        <div class="content">
-            <p class="page-title">@Resources.Common.Menu_Topup1</p>
-            <div class="pay-breadcrumbs">
-                <a href="@Html.Raw(Pay365.Utils.Config.Domain)thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Cashout.String2</a>
-                <a href="@Html.Raw(Pay365.Utils.Config.Domain)nap-tien" class="breadcrumb waves-effect waves-light">@Resources.Common.Menu_Topup1</a>
-            </div>
-        </div>
-    </section>
-    <div id="topup_content" class="dashboard">
-    <section class="page-section">
-
-    <div id="ts-parent" class="tab-slides">
-    <div class="div_slide div_active" id="listBankSelect">
-        <div id="formBankRecent" class="card">
-            <div class="card-title">@Resources.Cashout.String3</div>
-            <div class="card-content">
-                <div id="topup_bank_recent_t" class="row">
-
-                </div>
-                <script id="topup_bank_recent_tmpl" type="text/x-jquery-tmpl">
-                    {{each listBankRecent}}
-                    <div class="box-bank-icon">
-                        <a href="javascript:;" onclick="topup.TopupBankDetailRecent(this);" data-bankcode="${$value.JsonObject.BankCode}" class="bank-icon" title="${$value.JsonObject.BankCode}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.JsonObject.BankCode}.png" alt=""></a>
-                    </div>
-                    {{/each}}
-                </script>
-            </div>
-        </div>
-        <div class="page-content" style="padding-top: 0">
-            <div class="card">
-                <div class="card-title">
-                    @Resources.Cashout.String4
-                    <div class="form-group input-field">
-                        <i class="material-icons subfix btn-search">search</i>
-                        <input onkeyup="topup.SearchBank('topup_bank_t');" id="search_bank" type="text" placeholder="@Resources.Cashout.String5">
-                        <span class="error-text"></span>
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div id="topup_bank_t" class="row">
-
-                    </div>
-                    <script id="topup_bank_tmpl" type="text/x-jquery-tmpl">
-                        {{each listBank}}
-                        <div class="box-bank-icon">
-                            <a href="javascript:;" onclick="topup.TopupBankDetail(this);" data-serviceid="${$value.CushInServiceID}" data-bankname="${$value.BankName}" data-bankcode="${$value.BankCode}" data-bankinfo="${$value.BankID}#${$value.BankCode}#${$value.BankName}" class="bank-icon" title="${$value.BankCode}-${$value.BankName}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.BankCode}.png" alt=""></a>
-                        </div>
-                        {{/each}}
-                    </script>
-
+        <section class="main-top">
+            <div class="content">
+                <p class="page-title">@Resources.Common.Menu_Topup1</p>
+                <div class="pay-breadcrumbs">
+                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Cashout.String2</a>
+                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)nap-tien" class="breadcrumb waves-effect waves-light">@Resources.Common.Menu_Topup1</a>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="div_slide div_next" id="topupBankDetail">
-        <div id="formTopupMain" class="col-md-7">
-            <div class="card">
-                <div id="topup_bank_info" class="card-title">
-                    <span class="bank-icon">
-                        <img alt="">
-                    </span>
-                    <span id="topup_bank_name"></span>
-                    <input type="hidden" id="topup_bankcode" />
-                </div>
-                <input type="hidden" id="topup_bank_serviceid" />
-                <div id="ts-child" class="tab-slides">
-                    <div id="cardContentStep1" class="div_slide div_active">
-                        <div class="card-content">
-                            <div class="form-group input-field">
-                                <i class="material-icons prefix">phone_iphone</i>
-                                <input maxlength="20" id="topup_account" onblur="topup.GetTopupAccount(this);" onkeyup="utils.transactionAccountNumberFormat(this, event);" type="text">
-                                <label for="topup_account" class="active">@Resources.Cashout.String33</label>
-                                <span class="error-text"></span>
-                                <span class="success-text"></span>
-                                <span id="topup_account_name" class="charge-name" style="font-size: 0.85rem; right: 0"></span>
-                            </div>
-                            <div class="form-group input-field">
-                                <i class="material-icons prefix">monetization_on</i>
-                                <input maxlength="12" id="topup_amount" onblur="topup.CalculateTotalAmount();" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.formatCurrency(this,event);" type="text" class="autocomplete">
-                                <label for="topup_amount">@Resources.Payment.String13</label>
-                                <span class="error-text"></span>
+        </section>
+        <div id="topup_content" class="dashboard">
+            <section class="page-section">
 
-                            </div>
-                            <div class="form-group">
-                                <div id="fast_recharge" class="prices">
-                                    <a href="javascript:;" data-amount="100000" class="price-flat">100.000<sup>VNĐ</sup></a>
-                                    <a href="javascript:;" data-amount="200000" class="price-flat">200.000<sup>VNĐ</sup></a>
-                                    <a href="javascript:;" data-amount="500000" class="price-flat">500.000<sup>VNĐ</sup></a>
-                                    <a href="javascript:;" data-amount="1000000" class="price-flat">1.000.000<sup>VNĐ</sup></a>
-                                </div>
-                            </div>
+                <div id="ts-parent" class="tab-slides">
+                    <div class="div_slide div_active" id="listBankSelect">
+                        <div id="formBankRecent" class="card">
+                            <div class="card-title">@Resources.Cashout.String3</div>
+                            <div class="card-content">
+                                <div id="topup_bank_recent_t" class="row">
 
-                            <div class="form-group input-field captcha">
-                                <i class="material-icons prefix"></i>
-                                <input class="custom-captcha captcha-focus" maxlength="4" id="topup_captcha" type="text">
-                                <label for="topup_captcha">@Resources.Register.String4</label>
-                                <input id="inputToken" type="hidden" />
-                                <div class="captcha-image">
-                                    <img id="imgCaptcha" width="100" height="35">
-                                    <i onclick="utils.refreshCaptcha(null, 'payment');" class="btn-reload material-icons">refresh</i>
                                 </div>
-                                <span class="error-text" style="float: left;"></span>
+                                <script id="topup_bank_recent_tmpl" type="text/x-jquery-tmpl">
+                                    {{each listBankRecent}}
+                                    <div class="box-bank-icon">
+                                        <a href="javascript:;" onclick="topup.TopupBankDetailRecent(this);" data-bankcode="${$value.JsonObject.BankCode}" class="bank-icon" title="${$value.JsonObject.BankCode}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.JsonObject.BankCode}.png" alt=""></a>
+                                    </div>
+                                    {{/each}}
+                                </script>
                             </div>
-                                        
-                            <div class="input-field">
-                                <div class="row padding-left-row">
-                                    <span class="label label-danger">@Resources.Topup.topup_fee: <span id="topup_fee_rate">0đ</span></span>
+                        </div>
+                        
+                        @*Ngân hàng liên kết*@
+                        <div class="page-content" style="padding-top: 0">
+                            <div class="card">
+                                <div class="card-title">
+                                    Ngân hàng liên kết
                                 </div>
-                            </div>
-                                        
-                            <div class="input-field">
-                                <div class="row padding-left-row">
-                                    <div class="col-sm-6">@Resources.Topup.topup_totalAmount: <strong class="primary" id="topup_total_amount">0đ</strong></div>
+                                <div class="card-content">
+                                    <div id="topup_bank_t_OnlySTB" class="row">
+                                    </div>
+                                    <script id="topup_bank_tmpl_OnlySTB" type="text/x-jquery-tmpl">
+                                        {{each listBank}}
+                                        {{if BankCode == STB}}
+                                        <div class="box-bank-icon">
+                                            <a href="javascript:;" onclick="topup.TopupBankDetail(this);" data-serviceid="${$value.CushInServiceID}" data-bankname="${$value.BankName}" data-bankcode="${$value.BankCode}" data-bankinfo="${$value.BankID}#${$value.BankCode}#${$value.BankName}" class="bank-icon" title="${$value.BankCode}-${$value.BankName}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.BankCode}.png" alt=""></a>
+                                        </div>
+                                        {{/if}}
+                                        {{/each}}
+                                    </script>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-button">
-                            <a href="javascript:;" tabindex="-1" onclick="payment.actionView('ts-parent', 'prev', 'listBankSelect');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
-                            <a id="bt_topup_confirm" onclick="topup.ConfirmTopup();" href="javascript:;" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
+                        @*Ngân hàng liên kết*@
+
+                        <div class="page-content" style="padding-top: 0">
+                            <div class="card">
+                                <div class="card-title">
+                                    @Resources.Cashout.String4
+                                    <div class="form-group input-field">
+                                        <i class="material-icons subfix btn-search">search</i>
+                                        <input onkeyup="topup.SearchBank('topup_bank_t');" id="search_bank" type="text" placeholder="@Resources.Cashout.String5">
+                                        <span class="error-text"></span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div id="topup_bank_t" class="row">
+
+                                    </div>
+                                    <script id="topup_bank_tmpl" type="text/x-jquery-tmpl">
+                                        {{each listBank}}
+                                        <div class="box-bank-icon">
+                                            <a href="javascript:;" onclick="topup.TopupBankDetail(this);" data-serviceid="${$value.CushInServiceID}" data-bankname="${$value.BankName}" data-bankcode="${$value.BankCode}" data-bankinfo="${$value.BankID}#${$value.BankCode}#${$value.BankName}" class="bank-icon" title="${$value.BankCode}-${$value.BankName}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.BankCode}.png" alt=""></a>
+                                        </div>
+                                        {{/each}}
+                                    </script>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div_slide div_next" id="topupBankDetail">
+                        <div id="formTopupMain" class="col-md-7">
+                            <div class="card">
+                                <div id="topup_bank_info" class="card-title">
+                                    <span class="bank-icon">
+                                        <img alt="">
+                                    </span>
+                                    <span id="topup_bank_name"></span>
+                                    <input type="hidden" id="topup_bankcode" />
+                                </div>
+                                <input type="hidden" id="topup_bank_serviceid" />
+                                <div id="ts-child" class="tab-slides">
+                                    <div id="cardContentStep1" class="div_slide div_active">
+                                        <div class="card-content">
+                                            <div class="form-group input-field">
+                                                <i class="material-icons prefix">phone_iphone</i>
+                                                <input maxlength="20" id="topup_account" onblur="topup.GetTopupAccount(this);" onkeyup="utils.transactionAccountNumberFormat(this, event);" type="text">
+                                                <label for="topup_account" class="active">@Resources.Cashout.String33</label>
+                                                <span class="error-text"></span>
+                                                <span class="success-text"></span>
+                                                <span id="topup_account_name" class="charge-name" style="font-size: 0.85rem; right: 0"></span>
+                                            </div>
+                                            <div class="form-group input-field">
+                                                <i class="material-icons prefix">monetization_on</i>
+                                                <input maxlength="12" id="topup_amount" onblur="topup.CalculateTotalAmount();" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.formatCurrency(this,event);" type="text" class="autocomplete">
+                                                <label for="topup_amount">@Resources.Payment.String13</label>
+                                                <span class="error-text"></span>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <div id="fast_recharge" class="prices">
+                                                    <a href="javascript:;" data-amount="100000" class="price-flat">100.000<sup>VNĐ</sup></a>
+                                                    <a href="javascript:;" data-amount="200000" class="price-flat">200.000<sup>VNĐ</sup></a>
+                                                    <a href="javascript:;" data-amount="500000" class="price-flat">500.000<sup>VNĐ</sup></a>
+                                                    <a href="javascript:;" data-amount="1000000" class="price-flat">1.000.000<sup>VNĐ</sup></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group input-field captcha">
+                                                <i class="material-icons prefix"></i>
+                                                <input class="custom-captcha captcha-focus" maxlength="4" id="topup_captcha" type="text">
+                                                <label for="topup_captcha">@Resources.Register.String4</label>
+                                                <input id="inputToken" type="hidden" />
+                                                <div class="captcha-image">
+                                                    <img id="imgCaptcha" width="100" height="35">
+                                                    <i onclick="utils.refreshCaptcha(null, 'payment');" class="btn-reload material-icons">refresh</i>
+                                                </div>
+                                                <span class="error-text" style="float: left;"></span>
+                                            </div>
+
+                                            <div class="input-field">
+                                                <div class="row padding-left-row">
+                                                    <span class="label label-danger">@Resources.Topup.topup_fee: <span id="topup_fee_rate">0đ</span></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-field">
+                                                <div class="row padding-left-row">
+                                                    <div class="col-sm-6">@Resources.Topup.topup_totalAmount: <strong class="primary" id="topup_total_amount">0đ</strong></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-button">
+                                            <a href="javascript:;" tabindex="-1" onclick="payment.actionView('ts-parent', 'prev', 'listBankSelect');" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
+                                            <a id="bt_topup_confirm" onclick="topup.ConfirmTopup();" href="javascript:;" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
+                                        </div>
+                                    </div>
+
+                                    <div id="cardContentStep2" class="div_slide div_next">
+                                        <div class="card-content">
+                                            <div class="form-group input-field">
+                                                <table class="table-data">
+                                                    <tr>
+                                                        <td width="40%">@Resources.Topup.deposit_account:</td>
+                                                        <td id="topup_account_2"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="40%">@Resources.Payment.value7:</td>
+                                                        <td id="amount_step2"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="40%">@Resources.Payment.value9:</td>
+                                                        <td><span id="fee_step2" class="danger"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="40%">@Resources.Payment.value10:</td>
+                                                        <td><span id="total_step2" class="danger"></span></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="form-group input-field">
+                                                <i class="material-icons prefix">credit_card</i>
+                                                <input maxlength="19" id="card_number" type="text" onblur="CharacterOnly(this);" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
+                                                <label for="card_number">@Resources.Topup.number_card</label>
+                                                <span class="error-text"></span>
+                                            </div>
+                                            <div class="form-group input-field">
+                                                <i class="material-icons prefix">person</i>
+                                                <input maxlength="50" id="account_holder" class="custom-captcha" type="text" style="width: calc(100% - 3rem)!important">
+                                                <label for="account_holder">@Resources.Topup.account_holder</label>
+                                                <span class="error-text"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-button">
+                                            <a href="javascript:;" tabindex="-1" onclick="topup.BackStep(1);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i>@Resources.Payment.btn_back</a>
+                                            <a href="javascript:;" id="btConfirmStep2" onclick="topup.ConfirmTopupStep2();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
+                                        </div>
+                                    </div>
+
+                                    <div id="cardContentStep3" class="div_slide div_next">
+                                        <div class="card-content">
+                                            <p>@Resources.Transfer.lbl_OTP</p>
+                                            <div class="form-group input-field">
+                                                <i class="material-icons prefix">sms</i>
+                                                <input maxlength="6" id="otp_3" type="text">
+                                                <label for="otp_3">@Resources.Transfer.OTP</label>
+                                                <span class="error-text"></span>
+                                            </div>
+                                        </div>
+                                        <div class="card-button">
+                                            <a href="javascript:;" onclick="topup.BackStep(2);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
+                                            <a href="javascript:;" id="btConfirmStep3" onclick="topup.ConfirmTopupStep3();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Topup.btn_Deposit<i class="material-icons">chevron_right</i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="formTopupRecent" class="col-md-5">
+                            <div class="card">
+                                <div class="card-title" style="padding-bottom: 15px; padding-top: 35px">
+                                    @Resources.Topup.lbl_recentlyDeposit
+                                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)lich-su-giao-dich" class="more waves-effect waves-primary"><i class="material-icons">keyboard_arrow_right</i></a>
+                                </div>
+                                <ul id="topup_log_recent_t" class="collapsible-custom popout warning" data-collapse-number="1" data-collapsible="accordion"></ul>
+
+                                <script id="topup_log_recent_tmpl" type="text/x-jquery-tmpl">
+                                    {{each listBankRecent}}
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <div class="trans-head">
+                                                <div class="icon" style="line-height: initial;"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/nap-tien.svg" alt=""></div>
+                                                <div class="info">
+                                                    <p class="success"><strong>${utils.formatMoney($value.JsonObject.Amount)}<sup> VNĐ</sup></strong></p>
+                                                    <p>${utils.formDateTime($value.JsonObject.CreateTime)}</p>
+                                                </div>
+                                                <div class="content">
+                                                    <p><strong>@Resources.Topup.lbl_depositWallet</strong></p>
+                                                    <p>${common.getbankName($value.JsonObject.BankCode)}</p>
+                                                </div>
+                                                <i class="material-icons up">keyboard_arrow_up</i>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {{/each}}
+                                </script>
+                            </div>
                         </div>
                     </div>
 
-                    <div id="cardContentStep2" class="div_slide div_next">
-                        <div class="card-content">
-                            <div class="form-group input-field">
-                                <table class="table-data">
-                                    <tr>
-                                        <td width="40%">@Resources.Topup.deposit_account:</td>
-                                        <td id="topup_account_2"></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40%">@Resources.Payment.value7:</td>
-                                        <td id="amount_step2"></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40%">@Resources.Payment.value9:</td>
-                                        <td><span id="fee_step2" class="danger"></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40%">@Resources.Payment.value10:</td>
-                                        <td><span id="total_step2" class="danger"></span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="form-group input-field">
-                                <i class="material-icons prefix">credit_card</i>
-                                <input maxlength="19" id="card_number" type="text" onblur="CharacterOnly(this);" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
-                                <label for="card_number">@Resources.Topup.number_card</label>
-                                <span class="error-text"></span>
-                            </div>
-                            <div class="form-group input-field">
-                                <i class="material-icons prefix">person</i>
-                                <input maxlength="50" id="account_holder" class="custom-captcha" type="text" style="width: calc(100% - 3rem)!important">
-                                <label for="account_holder">@Resources.Topup.account_holder</label>
-                                <span class="error-text"></span>
-                            </div>
-                        </div>
-
-                        <div class="card-button">
-                            <a href="javascript:;" tabindex="-1" onclick="topup.BackStep(1);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i>@Resources.Payment.btn_back</a>
-                            <a href="javascript:;" id="btConfirmStep2" onclick="topup.ConfirmTopupStep2();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
-                        </div>
-                    </div>
-
-                    <div id="cardContentStep3" class="div_slide div_next">
-                        <div class="card-content">
-                            <p>@Resources.Transfer.lbl_OTP</p>
-                            <div class="form-group input-field">
-                                <i class="material-icons prefix">sms</i>
-                                <input maxlength="6" id="otp_3" type="text">
-                                <label for="otp_3">@Resources.Transfer.OTP</label>
-                                <span class="error-text"></span>
-                            </div>
-                        </div>
-                        <div class="card-button">
-                            <a href="javascript:;" onclick="topup.BackStep(2);" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
-                            <a href="javascript:;" id="btConfirmStep3" onclick="topup.ConfirmTopupStep3();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Topup.btn_Deposit<i class="material-icons">chevron_right</i></a>
-                        </div>
-                    </div>
                 </div>
-            </div>
+            </section>
         </div>
-        <div id="formTopupRecent" class="col-md-5">
-            <div class="card">
-                <div class="card-title" style="padding-bottom: 15px; padding-top: 35px">
-                    @Resources.Topup.lbl_recentlyDeposit
-                    <a href="@Html.Raw(Pay365.Utils.Config.Domain)lich-su-giao-dich" class="more waves-effect waves-primary"><i class="material-icons">keyboard_arrow_right</i></a>
-                </div>
-                <ul id="topup_log_recent_t" class="collapsible-custom popout warning" data-collapse-number="1" data-collapsible="accordion"></ul>
-
-                <script id="topup_log_recent_tmpl" type="text/x-jquery-tmpl">
-                    {{each listBankRecent}}
-                    <li>
-                        <div class="collapsible-header">
-                            <div class="trans-head">
-                                <div class="icon" style="line-height: initial;"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/nap-tien.svg" alt=""></div>
-                                <div class="info">
-                                    <p class="success"><strong>${utils.formatMoney($value.JsonObject.Amount)}<sup> VNĐ</sup></strong></p>
-                                    <p>${utils.formDateTime($value.JsonObject.CreateTime)}</p>
-                                </div>
-                                <div class="content">
-                                    <p><strong>@Resources.Topup.lbl_depositWallet</strong></p>
-                                    <p>${common.getbankName($value.JsonObject.BankCode)}</p>
-                                </div>
-                                <i class="material-icons up">keyboard_arrow_up</i>
-                            </div>
-                        </div>                                  
-                    </li>
-                    {{/each}}
-                </script>
-            </div>
-        </div>
-    </div>
-
-    </div>
-    </section>
-    </div>
     </main>
 }
 
@@ -474,7 +522,7 @@ else
                 $('.p-error-text').remove();
                 $(this).removeClass('error').parent().find('.error-text').text('');
             }
-               
+
         });
 
         $('#cardContentStep2').on('keyup', 'input', function (event) {
@@ -487,7 +535,7 @@ else
             } else {
                 $('.p-error-text').remove();
                 $(this).removeClass('error').parent().find('.error-text').text('');
-            }             
+            }
         });
 
         $('#cardContentStep3').on('keyup', 'input', function (event) {
@@ -500,7 +548,7 @@ else
             } else {
                 $('.p-error-text').remove();
                 $(this).removeClass('error').parent().find('.error-text').text('');
-            }               
+            }
         });
     });
 
