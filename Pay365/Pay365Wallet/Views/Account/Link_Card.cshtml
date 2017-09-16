@@ -9,7 +9,7 @@
         <div class="content">
             <p class="page-title">Quản lý thẻ gắn kết</p>
             <div class="pay-breadcrumbs">
-                <a href="/thong-tin" class="breadcrumb waves-effect waves-light">Trang chủ</a>
+                <a href="/thong-tin" class="breadcrumb waves-effect waves-light">@Resources.Account_info.btn_home</a>
             </div>
         </div>
     </section>
@@ -72,18 +72,17 @@
                                         <li>
                                             <a href="javascript:;" onclick="linkcard.createLinkCard(this)" class="add">
                                                 <i class="material-icons">add</i>
-                                                <span>Thêm thẻ/tài khoản mới</span>
+                                                <span>@Resources.Account_info.btn_addLinkCard</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="card-button">
-                                    <a href="/thong-tin" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> Quay lại</a>
+                                    <a href="/thong-tin" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
                                 </div>
                             </div>
 
                             <br />
-
                             <div class="card hidden">
                                 <div class="card-title">Chi tiết thẻ VISA - 1234</div>
                                 <div class="card-content">
@@ -513,6 +512,7 @@
             setTimeout(function () {
                 utils.unLoading();
                 SlideToogle("ts-parent", "next", 'link_card_step2');
+                utils.setCookie('LinkCard', false);
             }, 1500);
         }
         linkcard.GetListBank(0);

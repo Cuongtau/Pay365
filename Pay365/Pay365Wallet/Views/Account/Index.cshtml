@@ -394,7 +394,7 @@
                     <p class="card-title">@Resources.Common.link_card</p>
                     <div class="card-content">
                         <ul class="list-link-cards">
-                            <li>
+                            @*<li>
                                 <div class="link-card credit image_shine_bf">
                                     <div class="subfix">4251</div>
                                     <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/visa.jpg" alt=""></div>
@@ -405,7 +405,7 @@
                                     <div class="subfix">4166</div>
                                     <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/Logo-OCB.jpg" alt=""></div>
                                 </div>
-                            </li>
+                            </li>*@
                         </ul>
                         @*<div class="coming-soon">
                             <div class="ribbon">
@@ -563,7 +563,6 @@
     });
 
     gotoLinkCard = function() {
-        utils.setCookie('LinkCard', false);
         window.location.href = utils.rootUrl() + "link-card";
     };
 

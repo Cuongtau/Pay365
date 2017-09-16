@@ -126,10 +126,11 @@
                         </script>
                         @*thông tin bảo mật*@
 
-                        <div class="block-link-cards hidden">
+                        <div class="block-link-cards">
+                            <div class="block-title">@Resources.Account_info.lbl_linkCard</div>
                             <ul class="list-link-card">
-                                <li>
-                                    <div class="link-card credit">
+                                @*<li>
+                                    <div class="link-card credit"> 
                                         <div class="subfix">4251</div>
                                         <div class="logo">
                                             <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/visa.jpg" alt="">
@@ -143,10 +144,10 @@
                                             <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/vietcombank.jpg" alt="">
                                         </div>
                                     </div>
-                                </li>
+                                </li>*@
                             </ul>
                             <div class="action">
-                                <a href="#!" class="btn btn-flat btn-primary waves-effect waves-primary uppercase"><i class="material-icons">add</i> Thêm thẻ mới</a>
+                                <a href="/link-card" class="btn btn-flat btn-primary waves-effect waves-primary uppercase"><i class="material-icons">add</i>@Resources.Account_info.btn_addLinkCard</a>
                             </div>
                         </div>
 

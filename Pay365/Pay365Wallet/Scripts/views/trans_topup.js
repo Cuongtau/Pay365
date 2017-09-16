@@ -515,7 +515,16 @@
     this.TopupBank_ByLinkCard = function () {
         utils.setCookie('LinkCard', false);
         var msg = "Bạn chưa liên kết với ngân hàng này. Bạn có muốn thực hiện liên kết không";
-        ModalNotificationResultInit('danger', null, msg, 'Đóng', 'Liên kết',
+        var header = "Thất bại";
+        var btnClose = "Đóng";
+        var btnContinue = "Liên kết";
+        if (header.AccountInfo.CurrentLang == 'en') {
+            msg = "Sacombank have not linked with your account yet. Do you want to link your account?";
+            header = "Fail";
+            btnClose = "Close";
+            btnContinue = "Link Card";
+        }
+        ModalNotificationResultInit('danger', header, msg, btnClose, btnContinue,
             function () {
                 window.location.href = utils.rootUrl() + 'nap-tien';
             },
