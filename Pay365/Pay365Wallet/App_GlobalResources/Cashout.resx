@@ -204,6 +204,9 @@
   <data name="String35" xml:space="preserve">
     <value>Rút tiền nhanh 247</value>
   </data>
+  <data name="String36" xml:space="preserve">
+    <value>Rút tiền qua thẻ liên kết</value>
+  </data>
   <data name="String4" xml:space="preserve">
     <value>Danh sách các ngân hàng</value>
   </data>

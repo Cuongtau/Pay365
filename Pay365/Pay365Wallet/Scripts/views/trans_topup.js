@@ -512,12 +512,15 @@
     };
 
     // Nạp qua thẻ gắn kết
-    this.TopupBank_ByLinkCard = function () {
+    this.TopupBank_ByLinkCard = function (type) {
         utils.setCookie('LinkCard', false);
         var msg = "Bạn chưa liên kết với ngân hàng này. Bạn có muốn thực hiện liên kết không";
         ModalNotificationResultInit('danger', null, msg, 'Đóng', 'Liên kết',
             function () {
-                window.location.href = utils.rootUrl() + 'nap-tien';
+                if (type === 'cashout')
+                    window.location.href = utils.rootUrl() + 'rut-tien';
+                else
+                    window.location.href = utils.rootUrl() + 'nap-tien';
             },
             function () {
                 var setcookie = utils.setCookie('LinkCard', true); // set cookie

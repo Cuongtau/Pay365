@@ -90,7 +90,7 @@
                     listBankRecent = listBankRecent.filter(function (item) {
                         return (item.JsonObject.ServiceID === serviceID);
                     });
-               
+
                 const $formId = $('#' + formID);
                 if (listBankRecent.length !== 0) {
                     listBankRecent.sort(function (a, b) {
@@ -98,7 +98,7 @@
                     });
                     if (formID === 'cashout_log_recent_t') {
                         $formId.parents('#formCashoutRecent').show().siblings('#formCashoutMain').removeClass('col-center');
-                    }                  
+                    }
                     $formId.html($("#" + formID + 'mpl').tmpl({ listBankRecent: listBankRecent }));
                 }
 
@@ -109,7 +109,7 @@
                         $formId.parents('#formCashoutRecent').hide().siblings('#formCashoutMain').addClass('col-center');
                     }
                     else if (formID === 'cashout_bank_recent_t')
-                        $formId.parents('#formBankRecent').hide();                       
+                        $formId.parents('#formBankRecent').hide();
                 }
             }
         }, function (err) {
@@ -201,7 +201,7 @@
                                     .addClass('active');
                                 $formCashout.find('#bank_brand').removeClass('error').val(dataArray[2]).siblings('label')
                                     .addClass('active');
-                            }                          
+                            }
                         });
                     $formID.find('.input-dropdown input').css('width', 'calc(100% - 30px - 3rem)');
                     $formID.find('.input-dropdown-content').show();
@@ -431,7 +431,7 @@
                     if (header.AccountInfo.SecurityType === common.accountSecureConfig.EMAIL) {
                         $step2.find('#p1_securecode').html('The system has sent a secure code to email: <span class="secondary">' + header.AccountInfo.Email + '</span>');
                     } else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS || header.AccountInfo.SecurityType === 0) {
-                        $step2.find('#p1_securecode').html("The OTP verify code has been sent to the number " + header.AccountInfo.Username + " (Free 5 SMS/24h) . </br> If you do not receive the code, click " / "Resend OTP" / " or compose the message <span class='secondary'>P365 OTP</span> send <span class='secondary'>8100</span> (1000 VNĐ/SMS)");
+                        $step2.find('#p1_securecode').html("The OTP verify code has been sent to the number <span class='secondary'>" + header.AccountInfo.Username + "</span> (Free 5 SMS/24h) . </br> If you do not receive the code, click <span class='secondary'>Resend OTP</span> or compose the message <span class='secondary'>P365 OTP</span> send <span class='secondary'>8100</span> (1000 VNĐ/SMS)");
                     }
                 } else {
                     if (header.AccountInfo.SecurityType === common.accountSecureConfig.EMAIL) {
@@ -444,7 +444,7 @@
                 $('#formCashoutRecent').hide();
                 $('#formCashoutMain').addClass('col-center');
                 $('#ts-child').css("min-height", 'initial');
-                cashout.ActionView("ts-child", "next", "cashoutStep2");               
+                cashout.ActionView("ts-child", "next", "cashoutStep2");
                 return;
             }
             ga('send', 'event', 'Transaction_Cashout', cashout.actionTracking + '-StepCheckBank', 'Fail');
@@ -586,7 +586,7 @@
                 $('#formCashoutRecent').hide();
                 $('#formCashoutMain').addClass('col-center');
                 $('#ts-child').css("min-height", 'initial');
-                cashout.ActionView("ts-child", "next", "cashoutStep2");              
+                cashout.ActionView("ts-child", "next", "cashoutStep2");
                 return;
             }
             common.saveLog(data);
@@ -639,9 +639,9 @@
                 if (data.c >= 0) {
                     //do sth
                     if (header.AccountInfo.CurrentLang === 'en') {
-                        ModalNotificationResultInit(null, null, utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Go home page', 'Continue cashout', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'cashout'; });
+                        ModalNotificationResultInit(null, (action === 'online' ? null : 'Your withdrawal requests has been sent. We will inform you in 24h'), utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Go home page', 'Continue cashout', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'cashout'; });
                     } else {
-                        ModalNotificationResultInit(null, null, utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Về trang chủ', 'Tiếp tục rút', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'cashout'; });
+                        ModalNotificationResultInit(null, (action === 'online' ? null : 'Gửi yêu cầu rút tiền thành công. Hệ thống sẽ xử lý và thông báo trong vòng 24h'), utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Về trang chủ', 'Tiếp tục rút', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'cashout'; });
                     }
                     ga('send', 'event', 'Transaction_Cashout', cashout.actionTracking + '-StepConfirm', 'Success');
                     return;
@@ -680,7 +680,7 @@
                 $('#formCashoutRecent, #select_cashout_type').show();
                 $('#formCashoutMain').removeClass('col-center');
                 $('#ts-child').css("min-height", '550px');
-                cashout.ActionView('ts-child', 'prev', 'cashoutStep1');                
+                cashout.ActionView('ts-child', 'prev', 'cashoutStep1');
             } else {
                 $('#cashout_offline_content #cashout_captcha').val('');
                 $('#formCashoutRecent').show();
