@@ -177,12 +177,12 @@ appModule.config([
         }
 
         $stateProvider.state('cashout', {
-            url: '/rut-tien',
+            url: '/cashout',
             templateUrl: '~/App/common/views/transaction/cashout.cshtml'
         });
 
         $stateProvider.state('transfer', {
-            url: '/chuyen-tien',
+            url: '/transfer',
             templateUrl: '~/App/common/views/transaction/transfer.cshtml'
         });
         //$qProvider settings

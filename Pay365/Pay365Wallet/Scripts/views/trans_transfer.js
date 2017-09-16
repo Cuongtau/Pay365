@@ -295,7 +295,7 @@
             if (data.c >= 0 && data.d) {
                 transfer.Fee = data.d.Fee;
                 transfer.Amount = parseFloat(amount.replace(/[,.]/g, ''));
-                $('#Transfee').text(transfer.Fee + " VNĐ");
+                $('#Transfee').text(utils.formatMoney(transfer.Fee) + " VNĐ");
                 $('#totalPayment').html(utils.formatMoney(data.d.GrandAmount) + " VNĐ");
             }
         }, function (err) {
