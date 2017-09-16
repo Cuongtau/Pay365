@@ -355,4 +355,10 @@
   <data name="lbl_noteOTP_SMS" xml:space="preserve">
     <value>via SMS to authorize and complete selected transactions</value>
   </data>
+  <data name="btn_addLinkCard" xml:space="preserve">
+    <value>Add card</value>
+  </data>
+  <data name="lbl_linkCard" xml:space="preserve">
+    <value>Linked card</value>
+  </data>
 </root>

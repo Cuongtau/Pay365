@@ -354,4 +354,10 @@
   <data name="lbl_noteOTP_SMS" xml:space="preserve">
     <value>.</value>
   </data>
+  <data name="btn_addLinkCard" xml:space="preserve">
+    <value>Thêm thẻ mới</value>
+  </data>
+  <data name="lbl_linkCard" xml:space="preserve">
+    <value>Liên kết thẻ</value>
+  </data>
 </root>

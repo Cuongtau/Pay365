@@ -412,6 +412,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thẻ liên kết.
+        /// </summary>
+        internal static string lbl_linkCard {
+            get {
+                return ResourceManager.GetString("lbl_linkCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quản lý thẻ liên kết.
+        /// </summary>
+        internal static string lbl_linkCard_Title {
+            get {
+                return ResourceManager.GetString("lbl_linkCard_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chính sách bảo mật.
         /// </summary>
         internal static string lbl_privaryPolicy {
