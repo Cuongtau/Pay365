@@ -771,7 +771,7 @@ else
 
         $(document).on('change', 'input[type=radio][name=g_cashout_type]', function () {
             if (this.value === 'i_cashout_linkedbank') {
-                topup.TopupBank_ByLinkCard('cashout');
+                topup.CashoutLinkedBank('cashout');
             }
             else if (this.value === 'i_cashout_account')
                 $('#cashout_online_content').find('#bank_account').siblings('label').text('@Html.Raw(Resources.Cashout.String33)');
