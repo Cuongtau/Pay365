@@ -1595,7 +1595,13 @@ linkcard = new function () {
 
     // lấy thông tin thẻ liên kết
     this.CheckInfo_LinkCard = function () {
-        utils.getData(utils.trasactionApi() + "AccountAssociate/GetAccountAssociateInfo", { AssociateSystem: 11213 }, function (data) {
+        $('#getlinkCard_info').hide();
+        utils.getData(utils.trasactionApi() + "AccountAssociate/GetAccountAssociateInfo", { AssociateSystem: 19 }, function (data) {
+            if (data.d != null) {
+                var LinkCard = data.d;
+                $("#getlinkCard_info").html($("#getlinkCard_info_tmpl").tmpl(LinkCard));
+                $('#getlinkCard_info').show();
+            }
             console.log(data);
         }, function (err) {
             console.log(err);
@@ -1655,22 +1661,38 @@ linkcard = new function () {
         };
         utils.postData(utils.trasactionApi() + "AccountAssociate/SubscriptionConfirm", param,
             function (data) {
-
+                console.log(data);
+                var Msg = "Liên kết ngân hàng thành công";
+                ModalNotificationInit(Msg, "", "success", "", "Đóng");
+                setTimeout(function () {
+                    window.location.href = utils.rootUrl() + "link-card";
+                }, 5000);
+            }, function (err) {
+                console.log(err);
+                var Msg = "Có lỗi từ hệ thống. Vui lòng thử lại sau";
+                ModalNotificationInit(Msg, "", "error", "", "Đóng");
             });
     };
 
     // Huy gan ket
-    this.DeleteLinkCard = function () {
+    this.DeleteLinkCard = function (AssociateAccountID) {
         var param = {
-            BankCode: "",
-            SubscriptionID: ""
+            BankCode: 'STB',
+            SubscriptionID: AssociateAccountID
         };
 
         utils.postData(utils.trasactionApi() + "AccountAssociate/ClientSubscriptionDelete", param,
             function (data) {
                 console.log(data);
+                var Msg = "Hủy gắn kết thẻ thành công";
+                ModalNotificationInit(Msg, "", "success", "", "Đóng");
+                setTimeout(function () {
+                    window.location.href = utils.rootUrl() + "link-card";
+                }, 5000);
             }, function (err) {
                 console.log(err);
+                var Msg = "Hủy thẻ thất bại. Vui lòng thử lại sau";
+                ModalNotificationInit(Msg, "", "error", "", "Đóng");
             });
     };
 

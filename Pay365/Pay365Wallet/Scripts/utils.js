@@ -1336,6 +1336,23 @@ function Substring_textnews(str, lengsub) {
     return st + " ........";
 };
 
+function Substring_LinkCard(str) {
+    console.log(str);
+    if (str === null || str === "" || str === undefined) {
+        return;
+    }
+    var leng = str.length;
+    if (leng <= 4){
+        return str;
+        console.log(str);
+    }
+    else
+    {
+        return str.substring(leng - 4, leng);
+        console.log(str);
+    }
+};
+
 function topBar() {
     if ($(window).width() > 768) {
         $('.top-bar').css({
@@ -1939,7 +1956,6 @@ function ModalBuyCardSuccess(header, content, btClose, btContinue, callbackClose
     });
     $popup.modal('open');
 }
-
 
 
 var Base64 = {

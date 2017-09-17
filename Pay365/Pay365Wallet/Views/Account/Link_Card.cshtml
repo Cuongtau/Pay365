@@ -27,48 +27,25 @@
                                 </div>
                                 <div class="card-content">
                                     <ul class="linked-cards">
-                                        <li class="hidden">
+
+                                        <li id="getlinkCard_info">
+
+                                        </li>
+
+                                        @*<li class="">
                                             <div class="link-card credit">
                                                 <div class="subfix">4251</div>
                                                 <div class="logo">
-                                                    <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/visa.jpg" alt="">
+                                                    <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/STB.png" alt="">
                                                 </div>
                                                 <div class="name">PHAM MANH TUONG</div>
                                                 <div class="date">12/20</div>
                                             </div>
                                             <div class="action">
-                                                <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xem chi tiết">search</i></a>
-                                                <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xóa thẻ">clear</i></a>
+                                                <a href="javascript:;"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xem chi tiết">search</i></a>
+                                                <a href="javascript:;" onclick="linkcard.DeleteLinkCard();"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xóa thẻ">clear</i></a>
                                             </div>
-                                        </li>
-                                        <li class="hidden">
-                                            <div class="link-card pay365">
-                                                <div class="subfix">4166</div>
-                                                <div class="logo">
-                                                    <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/vietcombank.jpg" alt="">
-                                                </div>
-                                                <div class="name">PHAM MANH TUONG</div>
-                                                <div class="date">12/20</div>
-                                            </div>
-                                            <div class="action">
-                                                <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Thoát">search</i></a>
-                                                <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xóa thẻ">clear</i></a>
-                                            </div>
-                                        </li>
-                                        <li class="hidden">
-                                            <div class="link-card pay365">
-                                                <div class="subfix">4166</div>
-                                                <div class="logo">
-                                                    <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/SacombankLogo.png" alt="">
-                                                </div>
-                                                <div class="name">PHAM MANH TUONG</div>
-                                                <div class="date">12/20</div>
-                                            </div>
-                                            <div class="action">
-                                                <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Thoát">search</i></a>
-                                                <a href="#!"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xóa thẻ">clear</i></a>
-                                            </div>
-                                        </li>
+                                        </li>*@
                                         <li>
                                             <a href="javascript:;" onclick="linkcard.createLinkCard(this)" class="add">
                                                 <i class="material-icons">add</i>
@@ -77,6 +54,22 @@
                                         </li>
                                     </ul>
                                 </div>
+
+                                <script id="getlinkCard_info_tmpl" type="text/x-jquery-tmpl">
+                                        <div class="link-card credit">
+                                            <div class="subfix">${ Substring_LinkCard(AssociateUsername) }</div>
+                                            <div class="logo">
+                                                <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/STB.png" alt="">
+                                            </div>
+                                            <div class="name">${ AssociateFullname }</div>
+                                            @*<div class="date">12/20</div>*@
+                                        </div>
+                                        <div class="action">
+                                            <a href="javascript:;"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xem chi tiết">search</i></a>
+                                            <a href="javascript:;" onclick="linkcard.DeleteLinkCard('${ AssociateAccountID }')"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xóa thẻ">clear</i></a>
+                                        </div>
+                                </script>
+
                                 <div class="card-button">
                                     <a href="/thong-tin" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i> @Resources.Payment.btn_back</a>
                                 </div>
@@ -562,6 +555,7 @@
             }, 1500);
         }
         linkcard.GetListBank(0);
+        linkcard.CheckInfo_LinkCard();
 
         //$('#month_year').keypress(function (e) {
         //    $('#error_month_year').text("");
