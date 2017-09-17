@@ -211,7 +211,7 @@
     <value>Reset password</value>
   </data>
   <data name="ResetPasswordSuccess" xml:space="preserve">
-    <value>You have changed the password successfully, popup automatically close after &lt;span id="countdwn"&gt;5&lt;/span&gt; seconds, automatically return to the login page</value>
+    <value>Your password has been changed successfully, popup automatically close after &lt;span id="countdwn"&gt;5&lt;/span&gt; seconds, automatically return to the login page</value>
   </data>
   <data name="RulePassword1" xml:space="preserve">
     <value>6 to 18 characters</value>
@@ -235,13 +235,13 @@
     <value>An OTP has been sent to phone number: </value>
   </data>
   <data name="StringMsg2" xml:space="preserve">
-    <value>Did not receive OTP? Compose a message &lt;span class="secondary"&gt;P365 MK&lt;/span&gt; syntax sent to &lt;span class="secondary"&gt;8100&lt;/span &gt; (1.000VNĐ/SMS)</value>
+    <value>Do not receive OTP? Send &lt;span class="secondary"&gt;P365 MK&lt;/span&gt; to &lt;span class="secondary"&gt;8100&lt;/span &gt; (1.000VNĐ/SMS)</value>
   </data>
   <data name="StringMsg3" xml:space="preserve">
     <value>An verify code has been sent to the email</value>
   </data>
   <data name="StringMsg4" xml:space="preserve">
-    <value>Please click the resend button to receive the verify code. If you do not receive the code, compose the message &lt;strong class="danger"&gt;P365 MK&lt;/strong&gt; send &lt;strong class="danger"&gt;8100&lt;/strong&gt; (500đ/SMS)</value>
+    <value>Do not receive the code, please click &lt;span class="secondary"&gt;Resend OTP&lt;/span&gt; or send &lt;strong class="secondary"&gt;P365 MK&lt;/strong&gt; to &lt;strong class="secondary"&gt;8100&lt;/strong&gt; (1.000đ/SMS)</value>
   </data>
   <data name="TextSMS" xml:space="preserve">
     <value>Text</value>
@@ -250,7 +250,7 @@
     <value>Enter OTP</value>
   </data>
   <data name="ViaEmail" xml:space="preserve">
-    <value>Via Email</value>
+    <value>Via Email</value> 
   </data>
   <data name="ViaSms" xml:space="preserve">
     <value>Via SMS</value>
@@ -265,13 +265,13 @@
     <value>Update</value>
   </data>
   <data name="PleaseEnterCode" xml:space="preserve">
-    <value>Please enter your code to confirm.</value>
+    <value>Please enter to confirm.</value>
   </data>
   <data name="MobileReceiveSecure" xml:space="preserve">
     <value>Phone number to receive OTP</value>
   </data>
   <data name="NoteSecureOTPSMS" xml:space="preserve">
-    <value>Did not receive the code, please compose the message &lt;strong class="danger"&gt;P365 BM&lt;/strong&gt; send &lt;strong class="danger"&gt;8100&lt;/strong&gt; &lt;span class="warning"&gt;(1.000VNĐ/SMS)&lt;/span&gt;</value>
+    <value>Do not receive the code, please send &lt;strong class="secandary"&gt;P365 BM&lt;/strong&gt; to &lt;strong class="secandary"&gt;8100&lt;/strong&gt; &lt;span class=""&gt;(1.000VNĐ/SMS)&lt;/span&gt;</value>
   </data>
   <data name="NoteLimitSecure" xml:space="preserve">
     <value>The secure limit is the minimum value for a transaction of which you need to enter OTP to confirm your transaction</value>

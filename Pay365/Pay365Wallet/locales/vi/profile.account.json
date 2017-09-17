@@ -50,7 +50,7 @@
     "noteRegisterSMS": "Hệ thống vừa gửi mã xác thực đến số <span class='secondary'>{0}</span>, vui lòng nhập mã để xác nhận đăng ký bảo mật.",
     "noteRegisterEmail": "Hệ thống vừa gửi mã xác thực vào địa chỉ email <span class='secondary'>{0}</span>, vui lòng nhập mã để xác nhận đăng ký bảo mật.",
     "noteSecureApp": "Vui lòng mở app Pay365 để lấy mã giao dịch",
-    "noteSecureVoice": "Vui lòng nhận cuộc gọi từ tổng đài 1900-6505 để nhận mã xác thực OTP",
+    "noteSecureVoice": "Vui lòng nhận cuộc gọi từ tổng đài 093-4626-505 để nhận mã xác thực OTP",
     "resendChangeEmail": "Hệ thống đã gửi lại mã xác thực vào địa chỉ email <span class='secondary'>{0}</span>, vui lòng nhập mã để xác nhận đổi hạn mức thanh toán.",
     "resendRegisterEmail": "Hệ thống đã gửi lại mã xác thực vào địa chỉ email <span class='secondary'>{0}</span>, vui lòng nhập mã để xác nhận đăng ký bảo mật.",
     "titleResendOTP": "Đã gửi lại mã xác thực",

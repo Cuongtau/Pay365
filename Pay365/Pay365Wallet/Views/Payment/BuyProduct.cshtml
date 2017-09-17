@@ -8,19 +8,19 @@
     {
         case 1:
             TitlePayment = Resources.Payment.typeview1;
-            ViewBag.Title = Resources.Payment.typeview1;
+            ViewBag.Title = Resources.Common.viewbag_telcoTopup; // nạp tiền điện thoại
             break;
         case 2:
             TitlePayment = Resources.Payment.typeview2;
-            ViewBag.Title = Resources.Payment.typeview2;
+            ViewBag.Title = Resources.Common.viewbag_GameTopup; // nap tk game
             break;
         case 3:
             TitlePayment = Resources.Payment.typeview3;
-            ViewBag.Title = Resources.Payment.typeview3;
+            ViewBag.Title = Resources.Payment.typeview3; 
             break;
         case 4:
             TitlePayment = Resources.Payment.typeview4;
-            ViewBag.Title = Resources.Payment.typeview4;
+            ViewBag.Title = Resources.Common.viewbag_buyCard; // mua mã thẻ
             break;
     }
 
@@ -184,7 +184,7 @@
                                     </div>
                                     <div class="input-field form-group" id="choose_amount" style="display:none">
                                         <div class="prices">
-                                            <a href="javascript:;" id="choose_amount_3" class="price-flat">50.000 VNĐ</a>
+                                            @*<a href="javascript:;" id="choose_amount_3" class="price-flat">50.000 VNĐ</a>*@
                                             <a href="javascript:;" id="choose_amount_4" class="price-flat">100.000 VNĐ</a>
                                             <a href="javascript:;" id="choose_amount_5" class="price-flat">200.000 VNĐ</a>
                                             <a href="javascript:;" id="choose_amount_6" class="price-flat">500.000 VNĐ</a>

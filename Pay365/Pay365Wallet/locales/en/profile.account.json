@@ -50,7 +50,7 @@
     "noteRegisterSMS": "The system has sent the verification code to the number <span class='secondary'>{0}</span>, please enter the verification code to confirm register security.",
     "noteRegisterEmail": "The system has sent the verification code to the email <span class='secondary'>{0}</span>. Please enter the verification code to confirm register security",
     "noteSecureApp": "Please open the Pay365 app to get the verification code",
-    "noteSecureVoice": "Please pick up the call from the 1900-6505 switchboard to receive the OTP verification code",
+    "noteSecureVoice": "Please pick up the call from the 093-4626-505 switchboard to receive the OTP verification code",
     "resendChangeEmail": "The system has resent the verification code to the email <span class='secondary'>{0}</span>, please enter the verification code to confirm change limit payment",
     "resendRegisterEmail": "The system has resent the verification code to the email <span class='secondary'>{0}</span>, please enter the verification code to confirm register security.",
     "titleResendOTP": "Resend OTP success",

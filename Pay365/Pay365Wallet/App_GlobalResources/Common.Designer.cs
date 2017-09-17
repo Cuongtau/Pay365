@@ -943,6 +943,87 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thông tin tài khoản – Pay365.
+        /// </summary>
+        internal static string viewbag_accountInfo {
+            get {
+                return ResourceManager.GetString("viewbag_accountInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mua mã thẻ - Pay365.
+        /// </summary>
+        internal static string viewbag_buyCard {
+            get {
+                return ResourceManager.GetString("viewbag_buyCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rút tiền – Pay365.
+        /// </summary>
+        internal static string viewbag_cashout {
+            get {
+                return ResourceManager.GetString("viewbag_cashout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nạp game – Pay365.
+        /// </summary>
+        internal static string viewbag_GameTopup {
+            get {
+                return ResourceManager.GetString("viewbag_GameTopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ví điện tử- Cổng thanh toán điện tử Pay365.
+        /// </summary>
+        internal static string viewbag_layout_title {
+            get {
+                return ResourceManager.GetString("viewbag_layout_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tin tức – Pay365.
+        /// </summary>
+        internal static string viewbag_news {
+            get {
+                return ResourceManager.GetString("viewbag_news", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nạp tiền điện thoại – Pay365.
+        /// </summary>
+        internal static string viewbag_telcoTopup {
+            get {
+                return ResourceManager.GetString("viewbag_telcoTopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nạp tiền – Pay365.
+        /// </summary>
+        internal static string viewbag_topup {
+            get {
+                return ResourceManager.GetString("viewbag_topup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chuyển tiền – Pay365.
+        /// </summary>
+        internal static string viewbag_transfer {
+            get {
+                return ResourceManager.GetString("viewbag_transfer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ví điện tử Pay365.
         /// </summary>
         internal static string wallet_title {
