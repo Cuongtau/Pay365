@@ -700,7 +700,28 @@
             $step1.find('#dl_bank_off, #dl_bank_on').html('');
             cashout.ActionView('ts-parent', 'prev', 'listBankSelect');
         }
+    };
 
-
-    }
+    // Nạp qua thẻ gắn kết
+    this.CashoutLinkedBank = function (t) {
+        utils.setCookie('LinkCard', false);
+        var msg = "Bạn chưa liên kết với ngân hàng này. Bạn có muốn thực hiện liên kết không";
+        var headerContent = "Thất bại";
+        var btnClose = "Đóng";
+        var btnContinue = "Liên kết";
+        if (header.AccountInfo.CurrentLang === 'en') {
+            msg = "Sacombank have not linked with your account yet. Do you want to link your account?";
+            headerContent = "Fail";
+            btnClose = "Close";
+            btnContinue = "Link Card";
+        }
+        ModalNotificationResultInit('danger', headerContent, msg, btnClose, btnContinue,
+            function () {
+                window.location.href = utils.rootUrl() + 'rut-tien';
+            },
+            function () {
+                var setcookie = utils.setCookie('LinkCard', true); // set cookie
+                window.location.href = utils.rootUrl() + 'link-card';
+            });
+    };
 };

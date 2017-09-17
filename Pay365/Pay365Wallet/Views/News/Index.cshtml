@@ -39,8 +39,8 @@
                     <div class="carousel carousel-slider news-carousel" data-indicators="true">
                         <div class="carousel-fixed-item center">
                             <div class="carousel-nav">
-                                <a href="#" class="carousel-prev"><i class="material-icons">chevron_left</i></a>
-                                <a href="#" class="carousel-next"><i class="material-icons">chevron_right</i></a>
+                                <a href="javascript:;" class="carousel-prev"><i class="material-icons">chevron_left</i></a>
+                                <a href="javascript:;" class="carousel-next"><i class="material-icons">chevron_right</i></a>
                             </div>
                         </div>
                         {{each Slide}}
@@ -50,13 +50,10 @@
                             {{else}}
                             <img src="@Html.Raw(Pay365.Utils.Config.Domain)/Content/assets/images/posts/5.jpg">
                             {{/if}}
-
                             <div class="info">
                                 <span class="label label-secondary">Business</span>
                                 <div class="title">${$value.BannerName}</div>
                                 <span class="date">${GetDate($value.CreatedTime,1)}</span>
-                                @*<span><i class="fa fa-eye"></i>187</span>
-                                  <span><i class="fa fa-comment"></i> 5</span>*@
                             </div>
                         </a>
                         {{/each}}

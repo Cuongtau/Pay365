@@ -66,44 +66,53 @@
 
     // Get slide
     this.Load_Slide = function () {
-        var isMobile = {
-            Android: function () {
-                return navigator.userAgent.match(/Android/i);
-            },
-            BlackBerry: function () {
-                return navigator.userAgent.match(/BlackBerry/i);
-            },
-            iOS: function () {
-                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-            },
-            Opera: function () {
-                return navigator.userAgent.match(/Opera Mini/i);
-            },
-            Windows: function () {
-                return navigator.userAgent.match(/IEMobile/i);
-            },
-            any: function () {
-                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-            }
-        };
+        //var isMobile = {
+        //    Android: function () {
+        //        return navigator.userAgent.match(/Android/i);
+        //    },
+        //    BlackBerry: function () {
+        //        return navigator.userAgent.match(/BlackBerry/i);
+        //    },
+        //    iOS: function () {
+        //        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        //    },
+        //    Opera: function () {
+        //        return navigator.userAgent.match(/Opera Mini/i);
+        //    },
+        //    Windows: function () {
+        //        return navigator.userAgent.match(/IEMobile/i);
+        //    },
+        //    any: function () {
+        //        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        //    }
+        //};
 
         utils.getData(utils.linkNewApi() + "Article/GetListBanner", {}, function (data) {
             var list = {
                 Slide: data.p
             };
             $("#list_slide_t").html($("#list_slide_tmpl").tmpl(list));
-
             setTimeout(function () {
-                var init_news_carousel = new Pay365Carousel({
-                    target: '.news-carousel',
-                    sliderOptions: {
-                        fullWidth: true,
-                        autoplay: true,
-                        navPrev: '.carousel-prev',
-                        navNext: '.carousel-next',
-                        interval: 5000
-                    }
-                });
+                if (data.p.length > 1)
+                    var init_news_carousel = new Pay365Carousel({
+                        target: '.news-carousel',
+                        sliderOptions: {
+                            fullWidth: true,
+                            autoplay: true,
+                            navPrev: '.carousel-prev',
+                            navNext: '.carousel-next',
+                            interval: 5000
+                        }
+                    });
+                else
+                    var init_news_carousel = new Pay365Carousel({
+                        target: '.news-carousel',
+                        sliderOptions: {
+                            fullWidth: true,
+                            autoplay: false,
+                            interval: 5000
+                        }
+                    });
                 init_news_carousel.start();
             }, 500);
         }, function (err) {

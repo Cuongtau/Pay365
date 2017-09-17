@@ -130,7 +130,30 @@
         $('#topup_captcha, #cardContentStep1 #topup_amount').val('');
         utils.getCaptcha('main_topup_bank', 'payment');
         topup.GetListTopupRecent(false, true, 'topup_log_recent_t');
+        payment.actionView("ts-parent", "next", "View_PaymentConfirm");           
+        $('#topupByLinkedBank').hide();
+        //ts-child height: 418px
+        $('#topupByBank').show();
+    };
+
+    this.TopupLinkedBankDetail = function (t) {
+        var bankInfo = $(t).data('bankinfo');
+        bankInfo = bankInfo.split('#');
+        let $bankElm = $('#topup_bank_info');
+        $bankElm.find('img').attr('src', utils.rootUrl() + 'Content/assets/images/brands/logo-banks/' + bankInfo[1] + '.png');
+        $('#topup_bankcode').val(bankInfo[1]);
+        $bankElm.find('#topup_bank_name').text(common.getbankFullName(bankInfo[1]));
+        $('#topup_account').val(utils.transactionAccountNumberFormat(null, null, header.AccountInfo.Username));
+        $('#topup_account').siblings('label').addClass('active');
+        $('#topup_account_name').text(header.AccountInfo.Fullname);
+        $('#topup_bank_serviceid').val($(t).data('serviceid'));
+        $('#topup_captcha, #cardContentStep1 #topup_amount').val('');
+        utils.getCaptcha('main_topup_bank', 'payment');
+        topup.GetListTopupRecent(false, true, 'topup_log_recent_t');
         payment.actionView("ts-parent", "next", "View_PaymentConfirm");
+        $('#topupByBank').hide();
+        $('#topupByLinkedBank').show();
+
     };
 
     this.TopupBankDetailRecent = function (t) {
@@ -512,7 +535,9 @@
     };
 
     // Nạp qua thẻ gắn kết
-    this.TopupBank_ByLinkCard = function (type) {
+    this.TopupLinkedBank = function (t) {
+        //this.TopupLinkedBankDetail(t);
+        //return;
         utils.setCookie('LinkCard', false);
         var msg = "Bạn chưa liên kết với ngân hàng này. Bạn có muốn thực hiện liên kết không";
         var headerContent = "Thất bại";
@@ -526,9 +551,6 @@
         }
         ModalNotificationResultInit('danger', headerContent, msg, btnClose, btnContinue,
             function () {
-                if (type === 'cashout')
-                    window.location.href = utils.rootUrl() + 'rut-tien';
-                else
                     window.location.href = utils.rootUrl() + 'nap-tien';
             },
             function () {
