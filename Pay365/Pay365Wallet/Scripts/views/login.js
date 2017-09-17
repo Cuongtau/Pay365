@@ -127,11 +127,11 @@
                     var minutes = Math.floor(time / 60);
                     var seconds = time - minutes * 60;
                     if (utils.getCurrentLanguage() === 'en') {
-                        var contentTempLock = '<div class="strike"><div id="timer_countdown" class="time">' + (minutes + ':' + (seconds < 10 ? ('0' + seconds) : seconds)) + '</div><div class="strike-description"><p>Your account has temporarily been locked for 5 minutes due to 5 failed login attempts. Please try again later</p><strong class="secondary">Hotline: 1900-6505</strong></div></div>';
+                        var contentTempLock = '<div class="strike"><div id="timer_countdown" class="time">' + (minutes + ':' + (seconds < 10 ? ('0' + seconds) : seconds)) + '</div><div class="strike-description"><p>Your account has temporarily been locked for 5 minutes due to 5 failed login attempts. Please try again later</p><strong class="secondary">Hotline: 093-4626-505</strong></div></div>';
                         $('#content_login').html(contentTempLock);
                         $('#footer_login').html('<a href="' + utils.rootUrl() + 'dang-nhap" class="btn btn-flat btn-primary uppercase">Sign in to another account</a>');
                     } else {
-                        var contentTempLock = '<div class="strike"><div id="timer_countdown" class="time">' + (minutes + ':' + (seconds < 10 ? ('0' + seconds) : seconds)) + '</div><div class="strike-description"><p>Tài khoản của bạn bị khóa 5 phút do nhập sai quá 5 lần. Vui lòng chờ hết thời gian khóa và thực hiện đăng nhập lại.</p><strong class="secondary">Liên hệ CSKH 1900-6505</strong></div></div>';
+                        var contentTempLock = '<div class="strike"><div id="timer_countdown" class="time">' + (minutes + ':' + (seconds < 10 ? ('0' + seconds) : seconds)) + '</div><div class="strike-description"><p>Tài khoản của bạn bị khóa 5 phút do nhập sai quá 5 lần. Vui lòng chờ hết thời gian khóa và thực hiện đăng nhập lại.</p><strong class="secondary">Liên hệ CSKH 093-4626-505</strong></div></div>';
                         $('#content_login').html(contentTempLock);
                         $('#footer_login').html('<a href="' + utils.rootUrl() + 'dang-nhap" class="btn btn-flat btn-primary uppercase">Đăng nhập tài khoản khác</a>');
                     }

@@ -1,4 +1,5 @@
 ﻿@{
+    ViewBag.Title = Resources.Common.viewbag_news;
     var isAuthenticated = HttpContext.Current.User.Identity.IsAuthenticated;
     if (!isAuthenticated)
     {
@@ -208,7 +209,7 @@
                         <div class="card-content">
                             <div class="line">@Resources.News.lbl_hotlineTitle</div>
                             <div class="phone">
-                                <i class="material-icons">phone_in_talk</i> (84) 1900-6505
+                                <i class="material-icons">phone_in_talk</i> (+84) 93-4626-505
                             </div>
                         </div>
                     </div>

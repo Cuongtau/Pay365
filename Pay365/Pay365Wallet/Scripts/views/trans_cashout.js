@@ -431,7 +431,7 @@
                     if (header.AccountInfo.SecurityType === common.accountSecureConfig.EMAIL) {
                         $step2.find('#p1_securecode').html('The system has sent a secure code to email: <span class="secondary">' + header.AccountInfo.Email + '</span>');
                     } else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS || header.AccountInfo.SecurityType === 0) {
-                        $step2.find('#p1_securecode').html("The OTP verify code has been sent to the number <span class='secondary'>" + header.AccountInfo.Username + "</span> (Free 5 SMS/24h) . </br> If you do not receive the code, click <span class='secondary'>Resend OTP</span> or compose the message <span class='secondary'>P365 OTP</span> send <span class='secondary'>8100</span> (1000 VNĐ/SMS)");
+                        $step2.find('#p1_securecode').html("The OTP verify code has been sent to the number <span class='secondary'>" + header.AccountInfo.Username + "</span> (Free 5 SMS/24h) . </br> If you do not receive the code, click <span class='secondary'>Resend OTP</span> or send <span class='secondary'>P365 OTP</span> to <span class='secondary'>8100</span> (1000 VNĐ/SMS)");
                     }
                 } else {
                     if (header.AccountInfo.SecurityType === common.accountSecureConfig.EMAIL) {

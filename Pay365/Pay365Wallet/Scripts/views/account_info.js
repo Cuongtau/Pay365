@@ -375,7 +375,7 @@ account_info = new function () {
                     ModalNotificationInit(common.getDescription(-999999), null, 'danger', null, header.AccountInfo.CurrentLang === 'en' ? 'Close' : 'Đóng', true);
                     common.saveLog(data);
                     ga('send', 'event', 'Account_Information', 'Certificate_Account_StepConfirm', 'Fail');
-                }                   
+                }
             };
 
             var callbackFail = function (data) {
@@ -539,7 +539,7 @@ account_info = new function () {
                             $('#formChangeEmail #change_email_resend_otp').show();
                         } else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS || header.AccountInfo.SecurityType === 0) {
                             $('<p>An OTP has been sent to phone number <span class="secondary">' + header.AccountInfo.Username + '</span>.</p>').insertAfter($('#formChangeEmail #div_otp_change_email .form-group'));
-                            $('<p>Did not receive OTP ?. Please compose a message using the <span class="secondary">P365 BM </span>syntax sent to <span class="secondary">8100</span></p>')
+                            $('<p>Do not receive OTP ?. Please send <span class="secondary">P365 BM </span> to <span class="secondary">8100</span></p>')
                                 .insertAfter($('#formChangeEmail #div_otp_change_email .form-group'));
                             $('#formChangeEmail #change_email_resend_otp').hide();
                         }
@@ -1008,7 +1008,7 @@ transaction_history = new function () {
 
                     transaction_history.listCard.data = data.d;
                     var total = data.d.length;
-                    (total > 10) ? $('#btShowCardSelected').show(): $('#btShowCardSelected').hide();
+                    (total > 10) ? $('#btShowCardSelected').show() : $('#btShowCardSelected').hide();
                     var pageInit = function (currpage) {
                         var start = (currpage - 1) * transaction_history.listCard.paginationShow;
                         var end = start + transaction_history.listCard.paginationShow > total ? total : (start + transaction_history.listCard.paginationShow);
@@ -1466,7 +1466,7 @@ transaction_history = new function () {
             html += "Số seri: <strong id=\"Strong2\">" + item.Serial + "</strong><br>";
             html += "Hạn sử dụng: <b id=\"B1\">" + utils.formDateTime(item.ExpriredDate) + "</b><br>";
             html += "Ngày xuất: <b id=\"B1\">" + exportDate + "</b><br>";
-            html += "<label id=\"Label1\">Chăm sóc KH: <b>1900-6505</b></label><br>";
+            html += "<label id=\"Label1\">Chăm sóc KH: <b>093-4626-505</b></label><br>";
 
             //if (hiddenAccount != null && hiddenAccount != "") {
             //    html += "Đại lý: <b id=\"B3\">" + hiddenAccount + "</b>";
@@ -1542,102 +1542,142 @@ transaction_history = new function () {
 
 };
 
- linkcard = new function() {
-     this.GetListBank = function (bankType) {
-         //0: all
-         //1: nội địa
-         //2: quốc tế
-         utils.paragraphLoading('topup_bank_t');
-         utils.paragraphLoading('topup_bank_recent_t');
-         utils.getData(utils.trasactionApi() + "Cashin/GetListBank", { BankID: 0, Status: 1 }, function (data) {
-             if (data.c >= 0 && data.p && data.p.length > 0) {
-                 data.p.forEach(function (item) {
-                     switch (item.BankCode) {
-                     case 'STB':
-                         item.piority = 7;
-                         break;
-                     case 'VCB':
-                         item.piority = 6;
-                         break;
-                     case 'CTG':
-                         item.piority = 5;
-                         break;
-                     case 'BIDV':
-                         item.piority = 4;
-                         break;
-                     case 'VARB':
-                         item.piority = 3;
-                         break;
-                     case 'TCB':
-                         item.piority = 2;
-                         break;
-                     case 'MSB':
-                         item.piority = 1;
-                         break;
-                     default:
-                         item.piority = 0;
-                     }
-                 });
+linkcard = new function () {
+    this.GetListBank = function (bankType) {
+        //0: all
+        //1: nội địa
+        //2: quốc tế
+        utils.paragraphLoading('topup_bank_t');
+        utils.paragraphLoading('topup_bank_recent_t');
+        utils.getData(utils.trasactionApi() + "Cashin/GetListBank", { BankID: 0, Status: 1 }, function (data) {
+            if (data.c >= 0 && data.p && data.p.length > 0) {
+                data.p.forEach(function (item) {
+                    switch (item.BankCode) {
+                        case 'STB':
+                            item.piority = 7;
+                            break;
+                        case 'VCB':
+                            item.piority = 6;
+                            break;
+                        case 'CTG':
+                            item.piority = 5;
+                            break;
+                        case 'BIDV':
+                            item.piority = 4;
+                            break;
+                        case 'VARB':
+                            item.piority = 3;
+                            break;
+                        case 'TCB':
+                            item.piority = 2;
+                            break;
+                        case 'MSB':
+                            item.piority = 1;
+                            break;
+                        default:
+                            item.piority = 0;
+                    }
+                });
 
-                 data.p.sort(function (a, b) {
-                     return b.piority - a.piority;
-                 });
+                data.p.sort(function (a, b) {
+                    return b.piority - a.piority;
+                });
 
-                 $("#topup_bank_t").html($("#topup_bank_tmpl").tmpl({ listBank: data.p }));
-                 topup.GetListTopupRecent(null, null, 'topup_bank_recent_t');
-             }
-         }, function (err) {
-             console.log(err);
-             $("#topup_bank_t").html('');
-             $("#topup_bank_recent_t").html('');
-         });
-     };
+                $("#topup_bank_t").html($("#topup_bank_tmpl").tmpl({ listBank: data.p }));
+                topup.GetListTopupRecent(null, null, 'topup_bank_recent_t');
+            }
+        }, function (err) {
+            console.log(err);
+            $("#topup_bank_t").html('');
+            $("#topup_bank_recent_t").html('');
+        });
+    };
 
-     // lấy thông tin thẻ liên kết
-     this.CheckInfo_LinkCard = function () {
-         utils.getData(utils.trasactionApi() + "AccountAssociate/GetAccountAssociateInfo", { AssociateSystem: 11213 }, function (data) {
-             console.log(data);
-         }, function (err) {
-             console.log(err);
-         });
-     };
+    // lấy thông tin thẻ liên kết
+    this.CheckInfo_LinkCard = function () {
+        utils.getData(utils.trasactionApi() + "AccountAssociate/GetAccountAssociateInfo", { AssociateSystem: 11213 }, function (data) {
+            console.log(data);
+        }, function (err) {
+            console.log(err);
+        });
+    };
 
+    this.createLinkCard = function (t) {
+        SlideToogle("ts-parent", "next");
+    };
 
-     this.createLinkCard = function (t) {
-         SlideToogle("ts-parent", "next");
-     };
+    this.createLinkCard_Step1 = function () {
+        SlideToogle("ts-parent", "next");
+    };
 
-     this.createLinkCard_Step1 = function() {
-         SlideToogle("ts-parent", "next");
-     };
+    this.createLinkCard_Step2 = function () {
+        $('#error_linkcard').text("");
 
-     this.createLinkCard_Step2 = function () {
-         $('#error_linkcard').text("");
-         var card_number = $('#card_number').val();
-         if (!card_number) {
-             $('#error_linkcard').text("Vui lòng nhập số thẻ");
-             $('#card_number').focus();
-             return;
-         }
-         var account_holder = $('#account_holder').val();
-         if (!account_holder) {
-             $('#error_linkcard').text("Vui lòng nhập tên chủ thẻ");
-             $('#account_holder').focus();
-             return;
-         }
-         var date = $('#month_year').val();
+        var bankCard = $('#topup_bankcode').val();
 
-         utils.loading();
-         setTimeout(function() {
-             utils.unLoading();
-             $('#error_linkcard').text("Hệ thống đang bận. Vui lòng thử lại sau");
-         },5000);
-     };
+        var cardNumber = $('#card_number').val();
+        if (!cardNumber) {
+            $('#error_linkcard').text("Vui lòng nhập số thẻ");
+            $('#card_number').focus();
+            return;
+        }
+        var accountHolder = $('#account_holder').val();
+        if (!accountHolder) {
+            $('#error_linkcard').text("Vui lòng nhập tên chủ thẻ");
+            $('#account_holder').focus();
+            return;
+        }
+        var date = $('#month_year').val();
 
-     this.back = function() {
-         var currentDiv = $("#ts-parent").find(".div_slide.div_active");
-         var backDiv = currentDiv.prev();
-         SlideToogle("ts-parent", "prev");
-     };
- }
+        var param = {
+            BankCode: bankCard,
+            FullName: accountHolder,
+            CardNumber: cardNumber
+        };
+
+        utils.postData(utils.trasactionApi() + "AccountAssociate/SubscriptionCreation", param,
+            function (data) {
+                console.log(data);
+                if (data.c >= 0) {
+                    $('#lbl_cardnumber').text(cardNumber);
+                    $('#lbl_accountHolder').text(accountHolder);
+                    SlideToogle("ts-parent", "next", "link_card_step3");
+                }
+            }, function (err) {
+                $('#error_linkcard').text("Hệ thống đang bận. Vui lòng thử lại sau");
+                console.log(err);
+            });
+    };
+
+    this.createLinkCard_Step3 = function () {
+        var param = {
+            Otp: $('#txt_secureCode').val()
+        };
+        utils.postData(utils.trasactionApi() + "AccountAssociate/SubscriptionConfirm", param,
+            function (data) {
+
+            });
+    };
+
+    // Huy gan ket
+    this.DeleteLinkCard = function () {
+        var param = {
+            BankCode: "",
+            SubscriptionID: ""
+        };
+
+        utils.postData(utils.trasactionApi() + "AccountAssociate/ClientSubscriptionDelete", param,
+            function (data) {
+                console.log(data);
+            }, function (err) {
+                console.log(err);
+            });
+    };
+
+    this.back = function () {
+        var currentDiv = $("#ts-parent").find(".div_slide.div_active");
+        var backDiv = currentDiv.prev();
+        SlideToogle("ts-parent", "prev");
+    };
+}
 

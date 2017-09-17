@@ -414,4 +414,31 @@
   <data name="lbl_linkCard_Title" xml:space="preserve">
     <value>Quản lý thẻ liên kết</value>
   </data>
+  <data name="viewbag_accountInfo" xml:space="preserve">
+    <value>Thông tin tài khoản – Pay365</value>
+  </data>
+  <data name="viewbag_buyCard" xml:space="preserve">
+    <value>Mua mã thẻ - Pay365</value>
+  </data>
+  <data name="viewbag_cashout" xml:space="preserve">
+    <value>Rút tiền – Pay365</value>
+  </data>
+  <data name="viewbag_GameTopup" xml:space="preserve">
+    <value>Nạp game – Pay365</value>
+  </data>
+  <data name="viewbag_layout_title" xml:space="preserve">
+    <value>Ví điện tử- Cổng thanh toán điện tử Pay365</value>
+  </data>
+  <data name="viewbag_news" xml:space="preserve">
+    <value>Tin tức – Pay365</value>
+  </data>
+  <data name="viewbag_telcoTopup" xml:space="preserve">
+    <value>Nạp tiền điện thoại – Pay365</value>
+  </data>
+  <data name="viewbag_topup" xml:space="preserve">
+    <value>Nạp tiền – Pay365</value>
+  </data>
+  <data name="viewbag_transfer" xml:space="preserve">
+    <value>Chuyển tiền – Pay365</value>
+  </data>
 </root>

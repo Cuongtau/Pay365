@@ -154,7 +154,7 @@
     <value>Phone number</value>
   </data>
   <data name="String20" xml:space="preserve">
-    <value>Did not receive the code, please compose the message</value>
+    <value>Did not receive the code, please send</value>
   </data>
   <data name="String21" xml:space="preserve">
     <value>send</value>

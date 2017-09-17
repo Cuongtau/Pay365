@@ -223,7 +223,7 @@
     <value>Total price</value>
   </data>
   <data name="typeview1" xml:space="preserve">
-    <value>Phone recharge</value>
+    <value>Phone recharge - Pay365</value>
   </data>
   <data name="typeview2" xml:space="preserve">
     <value>Topup game </value>
@@ -262,7 +262,7 @@
     <value>Subjects</value>
   </data>
   <data name="value6" xml:space="preserve">
-    <value>Price</value>
+    <value>Unit price</value>
   </data>
   <data name="value7" xml:space="preserve">
     <value>Amount</value>

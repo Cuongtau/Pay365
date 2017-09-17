@@ -414,4 +414,31 @@
   <data name="lbl_linkCard_Title" xml:space="preserve">
     <value>Linked card</value>
   </data>
+  <data name="viewbag_accountInfo" xml:space="preserve">
+    <value>Account information – Pay365</value>
+  </data>
+  <data name="viewbag_buyCard" xml:space="preserve">
+    <value>Pin code - Pay365</value>
+  </data>
+  <data name="viewbag_cashout" xml:space="preserve">
+    <value>Withdraw money – Pay365</value>
+  </data>
+  <data name="viewbag_GameTopup" xml:space="preserve">
+    <value>Game account recharge – Pay365</value>
+  </data>
+  <data name="viewbag_layout_title" xml:space="preserve">
+    <value>E-wallet – Online payment gateway Pay365 in VietNam</value>
+  </data>
+  <data name="viewbag_news" xml:space="preserve">
+    <value>News – Pay365</value>
+  </data>
+  <data name="viewbag_telcoTopup" xml:space="preserve">
+    <value>Phone recharge – Pay365</value>
+  </data>
+  <data name="viewbag_topup" xml:space="preserve">
+    <value>Add money – Pay365</value>
+  </data>
+  <data name="viewbag_transfer" xml:space="preserve">
+    <value>Tranfer money – Pay365</value>
+  </data>
 </root>

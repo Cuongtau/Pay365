@@ -474,7 +474,7 @@
                                 <span id="error_linkcard" style="color: red"></span>
                                 <div class="form-group input-field">
                                     <i class="material-icons prefix">credit_card</i>
-                                    <input maxlength="19" id="card_number" type="text" onblur="CharacterOnly(this);" onkeypress="return utils.checkNumeric(event);">
+                                    <input maxlength="19" id="card_number" type="text" onkeypress="return utils.checkNumeric(event);">
                                     <label for="card_number">@Resources.Topup.number_card</label>
                                     <span class="error-text"></span>
                                 </div>
@@ -484,17 +484,63 @@
                                     <label for="account_holder">@Resources.Topup.account_holder</label>
                                     <span class="error-text"></span>
                                 </div>
-                                <div class="form-group input-field">
+                                @*<div class="form-group input-field">
                                     <i class="material-icons prefix">event</i>
                                     <input maxlength="5" id="month_year" id="month" class="custom-captcha" type="text" style="width: calc(100% - 3rem) !important">
                                     <label for="account_holder">MM/YY</label>
                                     <span class="error-text" id="error_month_year"></span>
-                                </div>
+                                </div>*@
                             </div>
 
                             <div class="card-button">
                                 <a href="javascript:;" onclick="linkcard.back();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i>@Resources.Payment.btn_back</a>
                                 <a href="javascript:;" id="" onclick="linkcard.createLinkCard_Step2();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="div_slide div_next" id="link_card_step3">
+                    <div class="col-md-7 col-center">
+                        <div class="card">
+                            <div class="card-title">
+                                Xác nhận liên kết
+                            </div>
+                            <div id="topup_bank_info" class="card-title">
+                                <span class="bank-icon">
+                                    <img alt="" src="//pay365.vn/Content/assets/images/brands/logo-banks/STB.png">
+                                </span>
+                                <span id="topup_bank_name">Ngân hàng TMCP Sài Gòn Thương Tín</span>
+                                <input type="hidden" id="topup_bankcode" value="STB">
+                            </div>
+                            <div class="card-content">
+                                
+                                <div class="form-group input-field">
+                                    <table class="table-data table-sm">
+                                        <tbody>
+                                        <tr>
+                                            <td width="40%">Số thẻ:</td>
+                                            <td id="lbl_cardnumber"></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="40%">Tên chủ thẻ</td>
+                                            <td id="lbl_accountHolder"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="form-group input-field" id="div_Otp">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input id="txt_secureCode" maxlength="6" data-length="6" onkeypress="utils.checkOnlyNumber(this, event);" onkeyup="utils.ChangeText(event);" type="text">
+                                    <label for="txt_secureCode" class="">@Resources.Transfer.OTP</label>
+                                    <span style="padding-left: 45px; padding-top: 3px" class="error-text"></span>
+                                </div>
+                            </div>
+
+                            <div class="card-button">
+                                <a href="javascript:;" onclick="linkcard.back();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary"><i class="material-icons">chevron_left</i>@Resources.Payment.btn_back</a>
+                                <a href="javascript:;" id="" onclick="linkcard.createLinkCard_Step3();" class="btn btn-flat btn-primary uppercase waves-effect waves-primary">@Resources.Payment.btn_next<i class="material-icons">chevron_right</i></a>
                             </div>
                         </div>
                     </div>
@@ -517,28 +563,28 @@
         }
         linkcard.GetListBank(0);
 
-        $('#month_year').keypress(function (e) {
-            $('#error_month_year').text("");
-            var keyCode = (window.event) ? e.keyCode : e.which;
-            if ((keyCode >= 48 && keyCode <= 57) || keyCode === 8) {
-            } else {
-                return;
-            }
-            var value = this.value;
-            if (value.length == 2) {
-                $('#month_year').val(value + "/");
-            } else if (value.length > 3) {
-                value = value.replace(/[/]/g, '');
-                var s1 = value.substring(0, 2);
-                if (s1 < 0 || s1 > 12) {
-                    $('#error_month_year').text("Tháng không hợp lệ");
-                }
-                var s2 = value.substring(2, 4);
-                var s = s1 + "/" + s2;
-                $('#month_year').val(s);
-            } else {
-                return;
-            }
-        });
+        //$('#month_year').keypress(function (e) {
+        //    $('#error_month_year').text("");
+        //    var keyCode = (window.event) ? e.keyCode : e.which;
+        //    if ((keyCode >= 48 && keyCode <= 57) || keyCode === 8) {
+        //    } else {
+        //        return;
+        //    }
+        //    var value = this.value;
+        //    if (value.length == 2) {
+        //        $('#month_year').val(value + "/");
+        //    } else if (value.length > 3) {
+        //        value = value.replace(/[/]/g, '');
+        //        var s1 = value.substring(0, 2);
+        //        if (s1 < 0 || s1 > 12) {
+        //            $('#error_month_year').text("Tháng không hợp lệ");
+        //        }
+        //        var s2 = value.substring(2, 4);
+        //        var s = s1 + "/" + s2;
+        //        $('#month_year').val(s);
+        //    } else {
+        //        return;
+        //    }
+        //});
     });
 </script>
