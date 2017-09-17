@@ -1593,6 +1593,16 @@ transaction_history = new function () {
          });
      };
 
+     // lấy thông tin thẻ liên kết
+     this.CheckInfo_LinkCard = function () {
+         utils.getData(utils.trasactionApi() + "AccountAssociate/GetAccountAssociateInfo", { AssociateSystem: 11213 }, function (data) {
+             console.log(data);
+         }, function (err) {
+             console.log(err);
+         });
+     };
+
+
      this.createLinkCard = function (t) {
          SlideToogle("ts-parent", "next");
      };

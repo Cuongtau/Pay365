@@ -472,7 +472,7 @@
                 var item = '<option value="" disabled selected>' + (utils.getCurrentLanguage() == 'en' ? 'Unit price' : 'Mệnh giá') + '</option>';
                 $("#ddr-select-amount").append(item);
             }
-            $("#ddr-select-amount").material_select();
+            //$("#ddr-select-amount").material_select();
             return;
         }
         var telco_Code = telco.Code;

@@ -363,6 +363,9 @@
             case -10157:
                 description = i18n.t('Error.ACCOUNT_UNVERIFY');//Tài khoản chưa chứng thực ko thể rút tiền
                 break;
+            case -10158:
+                description = i18n.t('Error.ACCOUNT_UNLINKED'); //
+                break;
             case -20016:
                 description = i18n.t('Error.NOT_ENOUGH_MONEY');
                 break;

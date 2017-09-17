@@ -126,6 +126,7 @@
     "C_EMAIL_NOT_VERIFY": "Email is not verify. Please verify email",
     "MAX_AMOUNT_OUTOF_RANGER": "The topup amount exceeds the limit {0}",
     "ACCOUNT_UNVERIFY": "An uncertificate account can not use this function",
+    "ACCOUNT_UNLINKED": "Account is not link card", 
     "BANKACCOUNT_NOTEXISTED": "Card number / bank account number does not exist",
     "ACCOUNT_VERIFIED": "Account is verified",
     "TRANSACTION_PROCESSING": "Transaction is processing. ",
