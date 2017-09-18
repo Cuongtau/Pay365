@@ -1543,6 +1543,10 @@ transaction_history = new function () {
 };
 
 linkcard = new function () {
+    this.BankInfo = {
+
+    };
+
     this.GetListBank = function (bankType) {
         //0: all
         //1: nội địa
@@ -1595,15 +1599,22 @@ linkcard = new function () {
 
     // lấy thông tin thẻ liên kết
     this.CheckInfo_LinkCard = function () {
+        utils.loading();
         $('#getlinkCard_info').hide();
         utils.getData(utils.trasactionApi() + "AccountAssociate/GetAccountAssociateInfo", { AssociateSystem: 19 }, function (data) {
             if (data.d != null) {
                 var LinkCard = data.d;
                 $("#getlinkCard_info").html($("#getlinkCard_info_tmpl").tmpl(LinkCard));
                 $('#getlinkCard_info').show();
+                $('#linkCard_btnAdd').hide();
+                setTimeout(function () {
+                    $('[data-tooltip]').tooltip();
+                }, 500);
+                utils.unLoading();
             }
             console.log(data);
         }, function (err) {
+            utils.unLoading();
             console.log(err);
         });
     };
@@ -1618,7 +1629,6 @@ linkcard = new function () {
 
     this.createLinkCard_Step2 = function () {
         $('#error_linkcard').text("");
-
         var bankCard = $('#topup_bankcode').val();
 
         var cardNumber = $('#card_number').val();
@@ -1634,66 +1644,85 @@ linkcard = new function () {
             return;
         }
         var date = $('#month_year').val();
-
         var param = {
             BankCode: bankCard,
             FullName: accountHolder,
             CardNumber: cardNumber
         };
-
+        utils.loading();
         utils.postData(utils.trasactionApi() + "AccountAssociate/SubscriptionCreation", param,
             function (data) {
                 console.log(data);
                 if (data.c >= 0) {
                     $('#lbl_cardnumber').text(cardNumber);
-                    $('#lbl_accountHolder').text(accountHolder);
+                    $('#lbl_accountHolder').text(accountHolder.toUpperCase());
                     SlideToogle("ts-parent", "next", "link_card_step3");
                 }
+                utils.unLoading();
             }, function (err) {
-                $('#error_linkcard').text("Hệ thống đang bận. Vui lòng thử lại sau");
+                var msg = common.getDescription(err.c);
+                $('#error_linkcard').text(msg);
                 console.log(err);
+                utils.unLoading();
             });
     };
 
     this.createLinkCard_Step3 = function () {
+        utils.loading();
+        utils.translateLang('transaction.transfermoney');
+        var otp = $('#txt_secureCode').val();
+        if (!otp) {
+            $('#txt_secureCode').addClass('error');
+            $('#txt_secureCode').parent().find('.error-text').text(i18n.t('error.OtpEmpty'));
+            $('#txt_secureCode').focus();
+            return;
+        }
         var param = {
-            Otp: $('#txt_secureCode').val()
+            Otp: otp
         };
         utils.postData(utils.trasactionApi() + "AccountAssociate/SubscriptionConfirm", param,
             function (data) {
+                utils.unLoading();
                 console.log(data);
                 var Msg = "Liên kết ngân hàng thành công";
                 ModalNotificationInit(Msg, "", "success", "", "Đóng");
                 setTimeout(function () {
                     window.location.href = utils.rootUrl() + "link-card";
-                }, 5000);
+                }, 3000);
             }, function (err) {
+                utils.unLoading();
                 console.log(err);
-                var Msg = "Có lỗi từ hệ thống. Vui lòng thử lại sau";
-                ModalNotificationInit(Msg, "", "error", "", "Đóng");
+                var msg = common.getDescription(err.c);
+                ModalNotificationInit(msg, "", "error", "", "Đóng");
             });
     };
 
     // Huy gan ket
-    this.DeleteLinkCard = function (AssociateAccountID) {
+    this.DeleteLinkCard = function (associateAccountID) {
         var param = {
             BankCode: 'STB',
-            SubscriptionID: AssociateAccountID
+            SubscriptionID: associateAccountID
         };
-
-        utils.postData(utils.trasactionApi() + "AccountAssociate/ClientSubscriptionDelete", param,
-            function (data) {
-                console.log(data);
-                var Msg = "Hủy gắn kết thẻ thành công";
-                ModalNotificationInit(Msg, "", "success", "", "Đóng");
-                setTimeout(function () {
-                    window.location.href = utils.rootUrl() + "link-card";
-                }, 5000);
-            }, function (err) {
-                console.log(err);
-                var Msg = "Hủy thẻ thất bại. Vui lòng thử lại sau";
-                ModalNotificationInit(Msg, "", "error", "", "Đóng");
-            });
+        var content = "Bạn có chắc muốn hủy gắn kết thẻ này này không ?";
+        var btnClose = "Đóng";
+        var btnContinue = "Hủy";
+        ModalNotificationResultInit("warning", "Thông báo", content, btnClose, btnContinue, function () {
+            return;
+        }, function () {
+            utils.postData(utils.trasactionApi() + "AccountAssociate/ClientSubscriptionDelete", param,
+                function (data) {
+                    console.log(data);
+                    var msg = "Hủy gắn kết thẻ thành công";
+                    ModalNotificationInit(msg, "", "success", "", "Đóng");
+                    setTimeout(function () {
+                        window.location.href = utils.rootUrl() + "link-card";
+                    }, 3000);
+                }, function (err) {
+                    console.log(err);
+                    var msg = common.getDescription(err.c);
+                    ModalNotificationInit(msg, "", "error", "", "Đóng");
+                });
+        });
     };
 
     this.back = function () {

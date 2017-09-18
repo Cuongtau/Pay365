@@ -32,7 +32,7 @@
 
                                         </li>
 
-                                        <li>
+                                        <li id="linkCard_btnAdd">
                                             <a href="javascript:;" onclick="linkcard.createLinkCard(this)" class="add">
                                                 <i class="material-icons">add</i>
                                                 <span>@Resources.Account_info.btn_addLinkCard</span>
@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="action">
                                             <a href="javascript:;"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xem chi tiết">search</i></a>
-                                            <a href="javascript:;" onclick="linkcard.DeleteLinkCard('${ AssociateAccountID }')"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Xóa thẻ">clear</i></a>
+                                            <a href="javascript:;" onclick="linkcard.DeleteLinkCard('${ AssociateAccountID }')"><i class="material-icons" data-position="bottom" data-delay="0" data-tooltip="Hủy thẻ">clear</i></a>
                                         </div>
                                 </script>
 
@@ -493,7 +493,6 @@
                                 <input type="hidden" id="topup_bankcode" value="STB">
                             </div>
                             <div class="card-content">
-                                
                                 <div class="form-group input-field">
                                     <table class="table-data table-sm">
                                         <tbody>
@@ -542,6 +541,26 @@
         }
         linkcard.GetListBank(0);
         linkcard.CheckInfo_LinkCard();
+
+        $('#txt_secureCode').keyup(function (event) {
+            var keyCode = event.keyCode || event.which;
+            if (keyCode == 13) {
+                linkcard.createLinkCard_Step3();
+            }
+        });
+
+        $('#card_number').keyup(function (event) {
+            var keyCode = event.keyCode || event.which;
+            if (keyCode == 13) {
+                linkcard.createLinkCard_Step2();
+            }
+        });
+        $('#account_holder').keyup(function (event) {
+            var keyCode = event.keyCode || event.which;
+            if (keyCode == 13) {
+                linkcard.createLinkCard_Step2();
+            }
+        });
 
         //$('#month_year').keypress(function (e) {
         //    $('#error_month_year').text("");
