@@ -1722,6 +1722,7 @@ linkcard = new function () {
         ModalNotificationResultInit("warning", headerTitle, content, btnClose, btnContinue, function () {
             return;
         }, function () {
+            utils.loading();
             utils.postData(utils.trasactionApi() + "AccountAssociate/ClientSubscriptionDelete", param,
                 function (data) {
                     console.log(data);
@@ -1732,13 +1733,12 @@ linkcard = new function () {
                     ModalNotificationInit(msg, "", "success", "", btnClose);
                     $('#getlinkCard_info').remove();
                     $('#linkCard_btnAdd').show();
-                    //setTimeout(function () {
-                    //    window.location.href = utils.rootUrl() + "link-card";
-                    //}, 3000);
+                    utils.unLoading();
                 }, function (err) {
                     console.log(err);
                     var msg = common.getDescription(err.c);
                     ModalNotificationInit(msg, "", "error", "", btnClose);
+                    utils.unLoading();
                 });
         });
     };
