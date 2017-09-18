@@ -441,4 +441,7 @@
   <data name="viewbag_transfer" xml:space="preserve">
     <value>Chuyển tiền – Pay365</value>
   </data>
+  <data name="btn_linkCard" xml:space="preserve">
+    <value>Liên kết thẻ</value>
+  </data>
 </root>

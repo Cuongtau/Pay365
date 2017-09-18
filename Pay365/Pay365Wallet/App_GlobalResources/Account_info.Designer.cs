@@ -241,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tên chủ thẻ.
+        /// </summary>
+        internal static string lbl_accountHolder {
+            get {
+                return ResourceManager.GetString("lbl_accountHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loại tài khoản.
         /// </summary>
         internal static string lbl_accType {
@@ -309,6 +318,15 @@ namespace Resources {
         internal static string lbl_birthday {
             get {
                 return ResourceManager.GetString("lbl_birthday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Số thẻ.
+        /// </summary>
+        internal static string lbl_cardnumber {
+            get {
+                return ResourceManager.GetString("lbl_cardnumber", resourceCulture);
             }
         }
         

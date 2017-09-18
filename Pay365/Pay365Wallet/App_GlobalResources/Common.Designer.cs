@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Liên kết thẻ.
+        /// </summary>
+        internal static string btn_linkCard {
+            get {
+                return ResourceManager.GetString("btn_linkCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tin tức.
         /// </summary>
         internal static string btn_news {
