@@ -10,6 +10,7 @@
     "resendOTP_Success": "Gửi lại mã bảo mật thành công !",
     "inputNickname": "Vui lòng nhập tài khoản nạp",
     "nickNameInvalid": "Tài khoản nạp không hợp lệ",
+    "nickNameNotExist": "Tài khoản không tồn tại",
     "gameSelect": "Vui lòng chọn game cần nạp",
     "gameInvalid": "Không xác định được game cần nạp",
     "amountMin": "Số tiền nạp tối thiểu là 6.000đ",

@@ -26,7 +26,8 @@
     this.topupGameAmount = [100000, 200000, 500000, 1000000, 2000000, 5000000, 10000000, 20000000];
     this.productPayment = null;
     this.listCard = [];
-    this.listGame = [];
+    this.listCateGame = [];
+    this.listProductGame = [];
     this.listCardSelected = [];
     this.listPaymentLogRecent = null;
     this.listTelcoRecent = null;
@@ -40,7 +41,7 @@
             return;
 
         var prefix = val;
-            prefix = val.substring(0, val.length - 7);
+        prefix = val.substring(0, val.length - 7);
 
         $(payment.configTelco).each(function (index, data) {
             if (prefix.length > 4)
@@ -324,7 +325,7 @@
                     data.p.sort(function (a, b) {
                         if (a.IsHot === b.IsHot && a.DisplayOrder === b.DisplayOrder)
                             return 0;
-                        else if (a.IsHot === b.IsHot) 
+                        else if (a.IsHot === b.IsHot)
                             return a.DisplayOrder > b.DisplayOrder ? 1 : -1;
                         else if (!a.IsHot && b.IsHot)
                             return 1;
@@ -357,7 +358,7 @@
                     else
                         return -1;
                 });
-                payment.listGame = data.p;
+                payment.listCateGame = data.p;
                 $("#ddr-select-game option").each(function (key, val) {
                     if (key > 0) {
                         var x = document.getElementById("ddr-select-game");
@@ -365,7 +366,7 @@
                     }
                 });
                 $("#ddr-select-game").material_select();
-                $.each(payment.listGame, function (k, v) {
+                $.each(payment.listCateGame, function (k, v) {
                     var item = '<option value="' + v.CategoryID + '" data-icon="' + v.Logo + '" class="left circle">' + v.CategoryName + '</option >';
                     $("#ddr-select-game").append(item);
                 });
@@ -446,6 +447,8 @@
             if (data.c >= 0) {
                 if (data.p != null && data.p.length > 0)
                     data.p = data.p.filter(function (x) { return x.IsWeb === true; });
+
+                payment.listProductGame = data.p;
                 if (typeof callback === "function")
                     callback(data.p);
             }
@@ -456,19 +459,18 @@
     };
     //Lấy ds mệnh giá
     this.GetListAmount = function (target, nextOpen) {
-        
+
         var currChk = $("#payment_step1").find("input[type=radio]:checked");
         var typeChk = currChk.attr("id");
 
         var mobileValue = $(target).val();
-        
+
         mobileValue = mobileValue.replace(/[-]/g, '');
         var telco = payment.getTelco(mobileValue);
         if (telco == null) {
             $("#ddr-select-amount").html('');
             var findVwMain = $("#payment_topupMobile");
-            if (findVwMain && findVwMain.length == 1)
-            {
+            if (findVwMain && findVwMain.length == 1) {
                 var item = '<option value="" disabled selected>' + (utils.getCurrentLanguage() == 'en' ? 'Unit price' : 'Mệnh giá') + '</option>';
                 $("#ddr-select-amount").append(item);
             }
@@ -1071,9 +1073,9 @@
                 Culture: utils.getCurrentLanguage()
             };
 
-            var urlAccountApi = utils.trasactionApi() + "Payment/TopupTelco";
+            var urlPaymentApi = utils.trasactionApi() + "Payment/TopupTelco";
             utils.loading();
-            utils.postData(urlAccountApi, paramValid, function (data) {
+            utils.postData(urlPaymentApi, paramValid, function (data) {
                 utils.unLoading();
 
                 if (data.c >= 0) {
@@ -1300,10 +1302,10 @@
                 Culture: utils.getCurrentLanguage()
             };
 
-            var urlAccountApi = utils.trasactionApi() + "Payment/TopupTelco";
+            var urlPaymentApi = utils.trasactionApi() + "Payment/TopupTelco";
             $("#btnPaymentCheckInput").addClass("disabled");
             utils.loading();
-            utils.postData(urlAccountApi, paramValid, function (data) {
+            utils.postData(urlPaymentApi, paramValid, function (data) {
                 utils.unLoading();
 
                 if (data.c >= 0) {
@@ -1379,7 +1381,7 @@
                     ModalNotificationInit(Msg, "", "error", "", btnClose);
                 }
                 $("#btnPaymentCheckInput").removeClass("disabled");
-                
+
                 if (typeof ga != 'undefined')
                     ga('send', 'event', 'Transaction_Payment', payment.actionTracking + "_StepCheck", 'Fail', parseInt(AmountValue));
                 return;
@@ -1427,10 +1429,10 @@
         var callBackContinue = function () {
             location.href = utils.rootUrl() + 'lich-su-giao-dich';
         };
-        var urlAccountApi = utils.trasactionApi() + "Payment/TopupTelcoConfirm";
+        var urlPaymentApi = utils.trasactionApi() + "Payment/TopupTelcoConfirm";
         $("#btnPaymentConfirm").addClass('disabled');
         utils.loading();
-        utils.postData(urlAccountApi, { Otp: Otp }, function (data) {
+        utils.postData(urlPaymentApi, { Otp: Otp }, function (data) {
             utils.unLoading();
             if (data.c >= 0) {
                 var contentMsg = utils.formatString($.t('payment.topupMobileSuccess'), $("#AmountTopup").html() + "," + $("#PhoneTopup").text());
@@ -1464,7 +1466,7 @@
                         var contentMsg = utils.formatString($.t('payment.topupMobilePending'), $("#AmountTopup").html() + "," + $("#PhoneTopup").text());
                         ModalNotificationResultInit('warning', '', contentMsg, $.t('payment.btnGoHome'), $.t('payment.btnViewHistory'), callbackClose, callBackContinue);
                         break;
-                    case -102: case -103: case -10056: case -10134: 
+                    case -102: case -103: case -10056: case -10134:
                         var contentMsg = utils.formatString($.t('payment.topupMobileFail'), $("#AmountTopup").html() + "," + $("#PhoneTopup").text());
                         ModalNotificationResultInit('danger', '', contentMsg, $.t('payment.btnGoHome'), $.t('payment.btnViewHistory'), callbackClose, callBackContinue);
                         break;
@@ -1482,11 +1484,100 @@
         });
     }
 
+    this.CheckNicknameExist = function () {
+        utils.translateLang('transaction.payment');
+        $("#payment_topupGame").find(".alert-danger").html('').hide();
+        $("#payment_topupGame").trigger('heightChange');
+        var ddr_selectGame = $("#ddr-select-game");
+        if ((!payment.cid || payment.cid <= 0) && ddr_selectGame.length > 0)
+        {
+            var gameid = ddr_selectGame.find("option:selected").val();
+            if (gameid == '') {
+                ddr_selectGame.parent().siblings('.error-text').html($.t("error.gameSelect"));
+                ddr_selectGame.parent().siblings('.error-text').show();
+                ddr_selectGame.siblings("input.select-dropdown").addClass('error');
+                $("#payment_topupGame").trigger('heightChange');
+                return;
+            }
+        }
+        var nickname = $("#txtNickname");
+        var nicknameValue = nickname.val();
+        if (nicknameValue === '') {
+            nickname.focus();
+            nickname.siblings('.error-text').html(i18n.t('error.inputNickname'));
+            nickname.siblings('.error-text').show();
+            nickname.addClass('error');
+            $("#payment_topupGame").trigger('heightChange');
+            return;
+        }
+
+        if (!utils.validateLetter(nicknameValue) || nicknameValue.length < 4 || nicknameValue.length > 13) {
+            nickname.focus();
+            nickname.siblings('.error-text').html($.t('error.nickNameInvalid'));
+            nickname.siblings('.error-text').show();
+            nickname.addClass('error');
+            $("#payment_topupGame").trigger('heightChange');
+            return;
+        }
+        if (payment.listCateGame == null || payment.listCateGame.length <= 0)
+            payment.listCateGame = payment.listCateProduct;
+        var m_cate = payment.listCateGame.find(function (c) { return c.CategoryID === payment.cid; });
+        
+        var paramValid = {
+            PartnerCode: m_cate.CategoryCode,
+            ProductCode: payment.pcode,
+            AccountName: nicknameValue
+        };
+        $("#selectServerGame").hide();
+        var urlPaymentApi = utils.trasactionApi() + "Payment/CheckSocialGamesAccount";
+        $("#btnPaymentCheckInput").addClass('disabled');
+        utils.loading();
+        utils.postData(urlPaymentApi, paramValid, function (data) {
+            utils.unLoading();
+            if (data.responseCode >= 0) {
+                nickname.siblings('.error-text').html('');
+                nickname.siblings('.error-text').hide();
+                nickname.removeClass('error');
+                nickname.siblings('.error-text').html('<i class="fa fa-check"></i>Tài khoản hợp lệ').show();
+                if (data.description != '' && data.description.length > 0) {
+                    var listServer = data.description.split(',');
+                    if (listServer.length > 0) {
+                        $("#ddr-select-server").html('');
+                        $("#ddr-select-server").material_select();
+                        $.each(listServer, function (k, v) {
+                            var item = '<option value="' + v + '">' + v + '</option>';
+                            $("#ddr-select-server").append(item);
+                        });
+                        $("#ddr-select-server").material_select();
+                        $("#selectServerGame").show();
+                    }
+                }
+                
+                $("#btnPaymentCheckInput").removeClass('disabled');
+            }
+            else {
+                nickname.focus();
+                nickname.siblings('.error-text').html('<i class="fa fa-warning"></i>' + $.t('error.nickNameNotExist'));
+                nickname.siblings('.error-text').show();
+                nickname.addClass('error');
+                if (!$("#btnPaymentCheckInput").hasClass("disabled")) 
+                    $("#btnPaymentCheckInput").addClass('disabled');
+            }
+            $("#payment_topupGame").trigger('heightChange');
+        }, function (dataErr) {
+            utils.unLoading();
+            nickname.focus();
+            nickname.siblings('.error-text').html('<i class="fa fa-warning"></i>' + $.t('error.nickNameNotExist'));
+            nickname.siblings('.error-text').show();
+            nickname.addClass('error');
+            if (!$("#btnPaymentCheckInput").hasClass("disabled"))
+                $("#btnPaymentCheckInput").addClass('disabled');
+            $("#payment_topupGame").trigger('heightChange');
+            return;
+        });
+    }
     this.TopupGame_checkInput = function () {
         utils.translateLang('transaction.payment');
-        if ($("#btnPaymentCheckInput").hasClass('disabled'))
-            return;
-
         $("#payment_step1").find(".alert-danger").html('').hide();
         var nickname = $("#txtNickname");
         var nicknameValue = nickname.val();
@@ -1505,7 +1596,11 @@
             nickname.addClass('error');
             return;
         }
-
+        if ($("#btnPaymentCheckInput").hasClass('disabled'))
+        {
+            payment.CheckNicknameExist();
+            return;
+        }
         var ddr_selectAmount = $("#ddr-select-gameAmount");
         var AmountValue = ddr_selectAmount.find("option:selected").val().replace(/[,.]/g, '');
         if (AmountValue == '') {
@@ -1528,20 +1623,28 @@
             ddr_selectAmount.addClass('error');
             return;
         }
+        var ServerGame = "";
+        if ($("#selectServerGame").is(":visible") && $("#selectServerGame option").length > 0 && $("#ddr-select-server").val() != "") {
+            ServerGame = $("#ddr-select-server").val();
+        }
         payment.actionTracking = 'Topup-Game-' + payment.pcode + '-' + AmountValue + '-' + 'Pay365Wallet';
-
+        var m_cate = payment.listCateProduct.find(function (c) { return c.CategoryID === payment.cid; });
         if (isAuthenticate) {
             var paramValid = {
-                sid: payment.cid,
+                CategoryID: payment.cid,
+                ProductID: payment.pid,
+                PartnerCode: m_cate.CategoryCode,
+                ProductCode: payment.pcode,
                 Amount: AmountValue,
+                ServerGame: ServerGame,
                 Culture: utils.getCurrentLanguage(),
-                nickname: nicknameValue
+                AccountName: nicknameValue
             };
 
-            var urlAccountApi = utils.trasactionApi() + "Payment/TopupGame";
+            var urlPaymentApi = utils.trasactionApi() + "Payment/TopupSocialGames";
             $("#btnPaymentCheckInput").addClass('disabled');
             utils.loading();
-            utils.postData(urlAccountApi, paramValid, function (data) {
+            utils.postData(urlPaymentApi, paramValid, function (data) {
                 utils.unLoading();
 
                 if (data.c >= 0) {
@@ -1657,7 +1760,7 @@
             $("#payment_topupGame").trigger('heightChange');
             return;
         }
-        var m_cate = payment.listGame.find(function (c) { return c.CategoryID === parseInt(gameid); });
+        var m_cate = payment.listCateGame.find(function (c) { return c.CategoryID === parseInt(gameid); });
         if (m_cate == undefined || m_cate == null) {
             ddr_selectGame.parent().siblings('.error-text').html($.t("error.gameInvalid"));
             ddr_selectGame.parent().siblings('.error-text').show();
@@ -1665,7 +1768,8 @@
             $("#payment_topupGame").trigger('heightChange');
             return;
         }
-        payment.pcode = m_cate.CategoryCode;
+        payment.pcode = payment.listProductGame[0].ProductCode;
+        payment.pid = payment.listProductGame[0].ProductID;
         payment.cid = m_cate.CategoryID;
         var nickname = $("#txtNickname");
         var nicknameValue = nickname.val();
@@ -1711,19 +1815,27 @@
             $("#payment_topupGame").trigger('heightChange');
             return;
         }
+        var ServerGame = "";
+        if ($("#selectServerGame").is(":visible") && $("#selectServerGame option").length > 0 && $("#ddr-select-server").val() != "") {
+            ServerGame = $("#ddr-select-server").val();
+        }
         payment.actionTracking = 'Topup-Game-' + payment.pcode + '-' + AmountValue + '-' + 'Pay365Wallet';
         if (isAuthenticate) {
             var paramValid = {
-                sid: payment.cid,
+                CategoryID: payment.cid,
+                ProductID: payment.pid,
+                PartnerCode: m_cate.CategoryCode,
+                ProductCode: payment.pcode,
                 Amount: AmountValue,
+                ServerGame: ServerGame,
                 Culture: utils.getCurrentLanguage(),
-                nickname: nicknameValue
+                AccountName: nicknameValue
             };
 
-            var urlAccountApi = utils.trasactionApi() + "Payment/TopupGame";
+            var urlPaymentApi = utils.trasactionApi() + "Payment/TopupSocialGames";
             $("#btnPaymentGameCheckInput").addClass('disabled');
             utils.loading();
-            utils.postData(urlAccountApi, paramValid, function (data) {
+            utils.postData(urlPaymentApi, paramValid, function (data) {
                 utils.unLoading();
                 if (data.c >= 0) {
                     var productname = m_cate.Description;
@@ -1800,7 +1912,7 @@
                 }
                 $("#btnPaymentGameCheckInput").addClass('disabled');
 
-                
+
                 if (typeof ga != 'undefined')
                     ga('send', 'event', 'Transaction_Payment', payment.actionTracking + '_StepCheck', 'Fail', AmountValue);
                 return;
@@ -1836,7 +1948,7 @@
             Otp = confirmCode.val().trim();
         }
         var topupAmount = $("#ddr-select-gameAmount").find("option:selected").val().replace(/[,.]/g, '');
-        var urlAccountApi = utils.trasactionApi() + "Payment/TopupGameConfirm";
+        var urlPaymentApi = utils.trasactionApi() + "Payment/TopupSocialGamesConfirm";
         $("#btnPaymentConfirm").addClass('disabled');
 
         var callbackClose = function () {
@@ -1846,7 +1958,7 @@
             location.href = utils.rootUrl() + 'lich-su-giao-dich';
         };
         utils.loading();
-        utils.postData(urlAccountApi, { Otp: Otp }, function (data) {
+        utils.postData(urlPaymentApi, { Otp: Otp }, function (data) {
             utils.unLoading();
             if (data.c >= 0) {
                 var AmountValue = $("#AmountTopup").html();
@@ -1905,6 +2017,10 @@
         payment.cid = parseInt($(target).attr("data-cid"));
         var m_cate = payment.listCateProduct.find(function (c) { return c.CategoryID === payment.cid; });
         if (m_cate != null && m_cate != undefined) {
+            if (m_cate.ParentCategoryID === payment.ConfigCateId.topupGame)
+                $("#btnPaymentCheckInput").addClass('disabled');
+            else
+                $("#btnPaymentCheckInput").removeClass('disabled');
             $("#payment_step1 .bank-icon").find("img").attr("src", (m_cate.Logo == "" || m_cate.Logo == null ? utils.rootUrl() + "/Content/assets/images/logo.jpg" : m_cate.Logo));
             $("#payment_step1 .bank-icon").show();
             $("#payment_step1 .title").text(m_cate.Description);
@@ -1916,6 +2032,7 @@
         payment.GetListProducts(payment.cid, 0, header.AccountInfo.Username, function (data) {
             if (data != null && data.length > 0) {
                 if (m_cate.ParentCategoryID === payment.ConfigCateId.topupGame) {
+                    
                     payment.discountGame = parseFloat(data[0].DiscountRate);
                     payment.pcode = data[0].ProductCode;
                     $("#ddr-select-gameAmount").html('');
@@ -2006,10 +2123,10 @@
                 ServiceID: payment.serviceId
             };
 
-            var urlAccountApi = utils.trasactionApi() + "Payment/BuyCard";
+            var urlPaymentApi = utils.trasactionApi() + "Payment/BuyCard";
             $("#btnPaymentCheckInput").addClass('disabled');
             utils.loading();
-            utils.postData(urlAccountApi, paramValid, function (data) {
+            utils.postData(urlPaymentApi, paramValid, function (data) {
                 utils.unLoading();
                 if (data.c >= 0) {
                     var productname = "";
@@ -2136,7 +2253,7 @@
         var quantity = $("#Quantity").text();
         var Product = $("#Product").text();
         var topupAmount = $("#ddr-select-amount option:selected").val().replace(/[,.]/g, '');
-        var urlAccountApi = utils.trasactionApi() + "Payment/BuyCardConfirm";
+        var urlPaymentApi = utils.trasactionApi() + "Payment/BuyCardConfirm";
         var callbackClose = function () {
             location.href = utils.rootUrl() + 'thong-tin';
         };
@@ -2147,7 +2264,7 @@
         payment.actionTracking = 'Buy-Card-' + payment.pcode + '-' + topupAmount + '-' + 'SL' + quantity + '-' + "Pay365Wallet" + "_StepConfirm";
         $("#btnPaymentConfirm").addClass('disabled');
         utils.loading();
-        utils.postData(urlAccountApi, { Otp: Otp }, function (data) {
+        utils.postData(urlPaymentApi, { Otp: Otp }, function (data) {
             utils.unLoading();
             if (data.c >= 0) {
                 var contentMsg = utils.formatString($.t('payment.buyCardSuccess'), quantity + "," + Product + "," + AmountValue);

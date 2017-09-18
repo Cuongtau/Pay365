@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kiểm tra.
+        /// </summary>
+        internal static string btnCheck {
+            get {
+                return ResourceManager.GetString("btnCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thanh toán.
         /// </summary>
         internal static string btnPayment {
@@ -115,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tên tài khoản game.
+        ///   Looks up a localized string similar to Tài khoản.
         /// </summary>
         internal static string NickName {
             get {

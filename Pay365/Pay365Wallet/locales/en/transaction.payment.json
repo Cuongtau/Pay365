@@ -10,6 +10,7 @@
     "resendOTP_Success": "Resend security code successfully !",
     "inputNickname": "Please enter your account name",
     "nickNameInvalid": "Account name invalid",
+    "nickNameNotExist": "Account not exist",
     "gameSelect": "Please select game topup",
     "gameInvalid": "Unknown game topup",
     "amountMin": "The minimum amount is 6.000 VND",

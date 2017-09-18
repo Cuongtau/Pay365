@@ -300,4 +300,7 @@
   <data name="btnPayment" xml:space="preserve">
     <value>Payment</value>
   </data>
+  <data name="btnCheck" xml:space="preserve">
+    <value>Check</value>
+  </data>
 </root>

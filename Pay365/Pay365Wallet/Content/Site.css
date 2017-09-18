@@ -425,6 +425,14 @@ p.txtNoteSecure {
     opacity: 0;
 }
 
+.transactions .left-align {
+    padding-left: 0;
+    padding-right: 0px;
+}
+.transactions .right-align {
+    padding-right: 0;
+    padding-left: 0px;
+}
 @media screen and (max-width: 1366px) {
     .trans-body-content .trans-detail-lists li .label {
         width: 40%;

@@ -127,7 +127,7 @@
     <value>Xác nhận giao dịch</value>
   </data>
   <data name="NickName" xml:space="preserve">
-    <value>Tên tài khoản game</value>
+    <value>Tài khoản</value>
   </data>
   <data name="SelectGame" xml:space="preserve">
     <value>Chọn game</value>
@@ -299,5 +299,8 @@
   </data>
   <data name="btnPayment" xml:space="preserve">
     <value>Thanh toán</value>
+  </data>
+  <data name="btnCheck" xml:space="preserve">
+    <value>Kiểm tra</value>
   </data>
 </root>
