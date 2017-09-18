@@ -395,7 +395,7 @@
     };
 
     //ThangNN: hien thi desc va focus vao elm theo formID, input class
-    this.getFormDescription = function (c, formID) {
+    this.getFormDescription = function (c, formID, p) {
         var description = this.getDescription(c);
         var hasElement = true;
         formID = formID.indexOf('#') !== -1 ? formID : ('#' + formID);
@@ -491,8 +491,10 @@
                 $amount.addClass('error');
                 if (formID.indexOf('cashout') !== -1)
                     $amount.parent().find('.error-text').text(utils.formatString(description, '10.000.000 VNĐ'));
-                else
-                    $amount.parent().find('.error-text').text(utils.formatString(description, ''));
+                else {
+                    $amount.parent().find('.error-text').text(utils.formatString(description, utils.formatMoney(p)));
+                    description = utils.formatString(description, utils.formatMoney(p) + " VNĐ");
+                }
                 $amount.focus();
                 break;
             default:

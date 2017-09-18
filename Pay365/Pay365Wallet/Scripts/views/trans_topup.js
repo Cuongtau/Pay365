@@ -251,6 +251,12 @@
                 $formID.find('#topup_amount').parent().find('.error-text').text(i18n.t('error.bellow_min_amount'));
                 return;
             }
+
+            if (parseInt(amount.replace(/[,.]/g, '')) > 5000000){
+                $formID.find('#topup_amount').addClass('error');
+                $formID.find('#topup_amount').parent().find('.error-text').text(i18n.t('error.upper_max_amount'));
+                return;
+            }
             var bankCode = $('#topup_bankcode').val();
 
             topup.actionTracking = 'CashinViaLinkedBank - ' + bankCode + '-' + amount;
@@ -288,14 +294,13 @@
                 console.log(err);
                 if (utils.checkResponseIsValid(err)) {
                     var dataErr = JSON.parse(err);
-                    common.getFormDescription(dataErr.c, '#cardContentStep1 #topupByLinkedBank');
+                    common.getFormDescription(dataErr.c, '#cardContentStep1 #topupByLinkedBank', dataErr.p);
                     ga('send', 'event', 'Transaction_Cashin', topup.actionTracking + '-StepCheckBank', 'Fail');
                     return;
                 }
                 common.getFormDescription(-9999999, '#cardContentStep1 #topupByLinkedBank');
                 ga('send', 'event', 'Transaction_Cashin', topup.actionTracking, 'Fail');
             });
-
             return;
         }
 
