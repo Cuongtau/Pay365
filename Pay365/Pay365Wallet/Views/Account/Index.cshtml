@@ -393,19 +393,8 @@
                 <div class="card">
                     <p class="card-title">@Resources.Common.link_card</p>
                     <div class="card-content">
-                        <ul class="list-link-cards">
-                            @*<li>
-                                <div class="link-card credit image_shine_bf">
-                                    <div class="subfix">4251</div>
-                                    <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/visa.jpg" alt=""></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="link-card pay365 image_shine_af">
-                                    <div class="subfix">4166</div>
-                                    <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/Logo-OCB.jpg" alt=""></div>
-                                </div>
-                            </li>*@
+                        <ul class="list-link-cards" id="getlinkCard_info">
+                           
                         </ul>
                         @*<div class="coming-soon">
                             <div class="ribbon">
@@ -413,6 +402,17 @@
                             </div>
                         </div>*@
                     </div>
+                    
+                    <script id="getlinkCard_info_tmpl" type="text/x-jquery-tmpl">
+                        <li>
+                            <div class="link-card pay365 image_shine_af">
+                                <div class="subfix">${ Substring_LinkCard(AssociateUsername) }</div>
+                                <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/STB.png" alt=""></div>
+                            </div>
+                        </li>
+                    </script>
+
+
                     <div class="card-button flat">
                         <a onclick="gotoLinkCard();" href="javascript:;" class="btn btn-flat btn-primary waves-effect waves-primary uppercase">
                             <i class="material-icons">credit_card</i>
@@ -555,6 +555,7 @@
     $(document).ready(function () {
         news.Load_ListNews_HomePage();
         payment.Init(0);
+        linkcard.CheckInfo_LinkCard();
         //Notification
 
         // History
