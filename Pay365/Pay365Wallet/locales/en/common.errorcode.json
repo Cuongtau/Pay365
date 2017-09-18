@@ -126,11 +126,17 @@
     "C_EMAIL_NOT_VERIFY": "Email is not verify. Please verify email",
     "MAX_AMOUNT_OUTOF_RANGER": "The topup amount exceeds the limit {0}",
     "ACCOUNT_UNVERIFY": "An uncertificate account can not use this function",
-    "ACCOUNT_UNLINKED": "Account is not link card", 
+    "ACCOUNT_UNLINKED": "Account is not link card",
     "BANKACCOUNT_NOTEXISTED": "Card number / bank account number does not exist",
     "ACCOUNT_VERIFIED": "Account is verified",
     "TRANSACTION_PROCESSING": "Transaction is processing. ",
-    "ERRORCODE_SACOMBANK": "Activation code is invalid. Please try again later", 
+    "ERRORCODE_SACOMBANK": "Activation code is invalid. Please try again later",
+    "NICKNAME_NOTEXISTS": "Account is not exists",
+    "AMOUNT_NOTVALID": "Amount is invalid",
+    "BANK_NOTSUPPORT": "This bank is not support",
+    "NOT_ENOUGHT_BALANCE": "You not enough balance",
+    "LINKCARD_EXISTS": "This card is already link to another account",
+    "CARDNUMBER_NOTACTIVE_ONLINE": "Card has not registered online transaction service",
     "DEFAULT": "System fail. Please come back later !"
   }
 }

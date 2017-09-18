@@ -243,6 +243,7 @@
         if (type === 'online') {
             $('#cashout_online_content, #select_cashout_type').show();
             $('#cashout_offline_content').hide();
+            $('#select_cashout_type #i_cashout_linkedbank').data('bankid', bankInfo[0]);
             cashout.GetListCashoutRecent(false, true, 'cashout_log_recent_t', 9);
             cashout.GetBankRemember(2, $('#cashout_bankcode').val());
             //reset height()
@@ -477,6 +478,7 @@
         $('input').removeClass('error success');
         utils.translateLang('transaction.cashoutmoney');
         var cashoutType = $('input[type=radio][name=g_cashout_type]:checked').val();
+
         var bankAccount = $step1.find('#bank_account').val();
         if (!bankAccount) {
             var $thisElement = $step1.find('#bank_account');
@@ -486,7 +488,7 @@
             return;
         }
 
-        if (!(/^\d+$/.test(bankAccount.replace(/[ ]/g, '')))) {
+        if (cashoutType !== 'i_cashout_linkedbank' && !(/^\d+$/.test(bankAccount.replace(/[ ]/g, '')))) {
             var $thisElement = $step1.find('#bank_account');
             $thisElement.addClass('error');
             $thisElement.siblings('.error-text').text(cashoutType === 'i_cashout_card' ? i18n.t('error.bank_card_invalid') : i18n.t('error.bank_account_number_invalid'));
@@ -527,6 +529,90 @@
         }
         var cashoutOnlineBankAccount = $step1.find('#cashout_bankaccount_name').text();
         var bankCode = $('#cashout_bankcode').val();
+
+        //Rut tien the lien ket
+        if (cashoutType === 'i_cashout_linkedbank') {
+            cashout.actionTracking = 'CashoutLinkedBank-' + bankCode + '-' + amount;
+            $(t).addClass('disabled');
+            var param = {
+                BankCode: bankCode,
+                Amount: amount.replace(/[,.]/g, ''),
+                SubscriptionID: $step1.find('#bank_account').data('subscriptionid'),
+                culture: header.AccountInfo.CurrentLang,
+                Captcha: captcha,
+                verifyCaptcha: $step1.find('#inputToken').val()
+            }
+
+            utils.loading();
+            utils.postData(utils.trasactionApi() + "CashOut/PaymentTransferToBank", param, function (data) {
+                utils.unLoading();
+                if (data.c >= 0) {
+                    //do sth
+                    var $step2 = $('#cashoutStep2');
+                    $step2.find('#bank_account_2').text(bankAccount);
+                    $step2.find('#bank_account_holder_2').text($('#cashout_bankaccount_name').text());
+                    if (header.AccountInfo.CurrentLang === 'en') {
+                        $step2.find('#bank_account_2').siblings('td').text('Card number');
+                    } else {
+                        $step2.find('#bank_account_2').siblings('td').text('Số thẻ');
+                        $step2.find('#bank_account_holder_2').siblings('td').text('Chủ thẻ');
+                    }
+
+                    $step2.find('#reason_2').text(reason);
+                    $step2.find('#amount_2').text(amount + 'VNĐ');
+                    $step2.find('#bank_brand_2').parent('tr').hide();
+                    $step2.find('#fee_2').text($('#cashout_online_content #cashout_fee_rate').text());
+                    $step2.find('#total_amount_2').text($('#cashout_online_content #cashout_total_amount').text());
+
+                    if (header.AccountInfo.CurrentLang === 'en') {
+                        if (header.AccountInfo.SecurityType === common.accountSecureConfig.EMAIL) {
+                            $step2.find('#p1_securecode').html('The system has sent a secure code to email: <span class="secondary">' + header.AccountInfo.Email + '</span>');
+                            $step2.find('#p2_securecode').hide();
+                        } else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS || header.AccountInfo.SecurityType === 0) {
+                            var des = "An OTP has been sent to phone number <span class='secondary'>" + header.AccountInfo.Username + "</span> (Free 5 SMS/24h) . </br> Did not receive OTP ? Click <span class='secondary'>Resend OTP</span> or compose a message using the <span class='secondary'>P365 OTP</span> syntax sent to <span class='secondary'>8100</span> (1000VNĐ/SMS)";
+                            $step2.find('#p1_securecode').html(des);
+                            $step2.find('#p2_securecode').show();
+                        }
+                    } else {
+                        if (header.AccountInfo.SecurityType === common.accountSecureConfig.EMAIL) {
+                            $step2.find('#p1_securecode').html('Hệ thống đã gửi 1 mã xác thực đến email: <span class="secondary">' + header.AccountInfo.Email + '</span>');
+                            $step2.find('#p2_securecode').hide();
+                        } else if (header.AccountInfo.SecurityType === common.accountSecureConfig.SMS || header.AccountInfo.SecurityType === 0) {
+                            var des = "Mã xác thực đã được gửi về số điện thoại <span class='secondary'>" + header.AccountInfo.Username +
+                                "</span> (Miễn phí 5 SMS/24h). </br> Không nhận được mã vui lòng click <span class='secondary'>Nhận lại OTP</span> hoặc soạn tin <span class='secondary'>P365 OTP</span> gửi <span class='secondary'>8100</span> (1000VNĐ/SMS)";
+                            $step2.find('#p1_securecode').html(des);
+                            $step2.find('#p2_securecode').show();
+                        }
+                    }
+                    $step2.data('action', 'linked');
+                    $('#select_cashout_type').hide();
+                    $('#formCashoutRecent').hide();
+                    $('#formCashoutMain').addClass('col-center');
+                    $('#ts-child').css("min-height", 'initial');
+                    cashout.ActionView("ts-child", "next", "cashoutStep2");
+                    return;
+                }
+                common.saveLog(data);
+                common.getFormDescription(data.c, '#cashoutStep1 #cashout_online_content');
+                ga('send', 'event', 'Transaction_Cashout', cashout.actionTracking + '-StepCheckBank', 'Fail');
+            }, function (err) {
+                common.saveLog(err);
+                $(t).removeClass('disabled');
+                utils.getCaptcha('cashout_online_content', 'payment');
+                $('#cashout_online_content #cashout_captcha').val('');
+                utils.unLoading();
+                console.log(err);
+                ga('send', 'event', 'Transaction_Cashout', cashout.actionTracking + '-StepCheckBank', 'Fail');
+                if (utils.checkResponseIsValid(err)) {
+                    var dataErr = JSON.parse(err);
+                    common.getFormDescription(dataErr.c, '#cashoutStep1 #cashout_online_content');
+                    return;
+                }
+                common.getFormDescription(-999999, '#cashoutStep1 #cashout_online_content');
+            });
+            return;
+        }
+
         cashout.actionTracking = 'CashoutOnline-' + bankCode + '-' + amount;
         $(t).addClass('disabled');
         var param = {
@@ -616,7 +702,7 @@
         }
         var $step2 = $('#cashoutStep2');
         var action = $step2.data('action');
-        if (action !== 'online' && action !== 'offline') {
+        if (action !== 'online' && action !== 'offline' && action !== 'linked') {
             ModalNotificationInit(common.getDescription(-999999));
         }
         $('.error-text, .success-text').text('');
@@ -632,16 +718,16 @@
         }
         $(t).addClass('disabled');
         utils.loading();
-        var api = action === 'online' ? (utils.trasactionApi() + "CashOut/WithdrawalOnlineConfirm") : (utils.trasactionApi() + "CashOut/WithdrawalOfflineConfirm");
+        var api = action === 'online' ? (utils.trasactionApi() + "CashOut/WithdrawalOnlineConfirm") : action === 'linked' ? (utils.trasactionApi() + "CashOut/PaymentTransferToBankConfirm") : (utils.trasactionApi() + "CashOut/WithdrawalOfflineConfirm");
         utils.postData(api,
             { Otp: otp }, function (data) {
                 utils.unLoading();
                 if (data.c >= 0) {
                     //do sth
                     if (header.AccountInfo.CurrentLang === 'en') {
-                        ModalNotificationResultInit(null, (action === 'online' ? null : 'Your withdrawal requests has been sent. We will inform you in 24h'), utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Go home page', 'Continue cashout', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'cashout'; });
+                        ModalNotificationResultInit(null, (action !== 'offline' ? null : 'Your withdrawal requests has been sent. We will inform you in 24h'), utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Go home page', 'Continue cashout', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'rut-tien'; });
                     } else {
-                        ModalNotificationResultInit(null, (action === 'online' ? null : 'Gửi yêu cầu rút tiền thành công. Hệ thống sẽ xử lý và thông báo trong vòng 24h'), utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Về trang chủ', 'Tiếp tục rút', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'cashout'; });
+                        ModalNotificationResultInit(null, (action !== 'offline' ? null : 'Gửi yêu cầu rút tiền thành công. Hệ thống sẽ xử lý và thông báo trong vòng 24h'), utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'VNĐ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'VNĐ')) }, 'cashout'), 'Về trang chủ', 'Tiếp tục rút', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'rut-tien'; });
                     }
                     ga('send', 'event', 'Transaction_Cashout', cashout.actionTracking + '-StepConfirm', 'Success');
                     return;
@@ -704,24 +790,35 @@
 
     // Nạp qua thẻ gắn kết
     this.CashoutLinkedBank = function (t) {
-        utils.setCookie('LinkCard', false);
-        var msg = "Bạn chưa liên kết với ngân hàng này. Bạn có muốn thực hiện liên kết không";
-        var headerContent = "Thất bại";
-        var btnClose = "Đóng";
-        var btnContinue = "Liên kết";
-        if (header.AccountInfo.CurrentLang === 'en') {
-            msg = "Sacombank have not linked with your account yet. Do you want to link your account?";
-            headerContent = "Fail";
-            btnClose = "Close";
-            btnContinue = "Link Card";
-        }
-        ModalNotificationResultInit('danger', headerContent, msg, btnClose, btnContinue,
-            function () {
-                window.location.href = utils.rootUrl() + 'rut-tien';
-            },
-            function () {
-                var setcookie = utils.setCookie('LinkCard', true); // set cookie
-                window.location.href = utils.rootUrl() + 'link-card';
-            });
+        var bankid = $(t).data('bankid');
+        var callbackSuccess = function (bankData) {
+            //Filldata
+            var $formID = $('#cashout_online_content');
+            $formID.find('#bank_account').prop("disabled", true).val(bankData.AssociateUsername).data('subscriptionid', bankData.AssociateAccountID).siblings('label').addClass('active');
+            $formID.find('#cashout_bankaccount_name').text(bankData.AssociateFullname);
+        };
+
+        var callbackFail = function () {
+            utils.setCookie('LinkCard', false);
+            var msg = "Bạn chưa liên kết với ngân hàng này. Bạn có muốn thực hiện liên kết không";
+            var headerContent = "Thất bại";
+            var btnClose = "Đóng";
+            var btnContinue = "Liên kết";
+            if (header.AccountInfo.CurrentLang === 'en') {
+                msg = "Bank have not linked with your account yet. Do you want to link your account?";
+                headerContent = "Fail";
+                btnClose = "Close";
+                btnContinue = "Link Card";
+            }
+            ModalNotificationResultInit('danger', headerContent, msg, btnClose, btnContinue,
+                function () {
+                    window.location.href = utils.rootUrl() + 'rut-tien';
+                },
+                function () {
+                    var setcookie = utils.setCookie('LinkCard', true); // set cookie
+                    window.location.href = utils.rootUrl() + 'link-card';
+                });
+        };
+        topup.GetLinkedBanks(bankid, callbackSuccess, callbackFail);
     };
 };

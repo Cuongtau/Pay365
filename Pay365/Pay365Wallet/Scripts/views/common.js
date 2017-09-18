@@ -369,8 +369,26 @@
             case -20016:
                 description = i18n.t('Error.NOT_ENOUGH_MONEY');
                 break;
+            case -100017:
+                description = i18n.t('Error.NICKNAME_NOTEXISTS'); // Tài khoản không tồn tại
+                break;
+            case -100025:
+                description = i18n.t('Error.AMOUNT_NOTVALID'); // số tiền không hợp lệ
+                break;
+            case -100026:
+                description = i18n.t('Error.BANK_NOTSUPPORT'); // Bank không hỗ trợ
+                break;
             case -100027:
-                description = i18n.t('Error.BANKACCOUNT_NOTEXISTED');
+                description = i18n.t('Error.BANKACCOUNT_NOTEXISTED'); // 
+                break;
+            case -100028:
+                description = i18n.t('Error.NOT_ENOUGHT_BALANCE'); // ko đủ số dư thanh toán
+                break;
+            case -100030:
+                description = i18n.t('Error.LINKCARD_EXISTS'); //thẻ liên kết dã tồn tại
+                break;
+            case -100031:
+                description = i18n.t('Error.CARDNUMBER_NOTACTIVE_ONLINE'); //"Thẻ chưa đăng ký dịch vụ giao dịch trực tuyến.";
                 break;
             case -100101:
                 description = i18n.t('Error.PAYMENT_FAIL');
@@ -395,7 +413,7 @@
     };
 
     //ThangNN: hien thi desc va focus vao elm theo formID, input class
-    this.getFormDescription = function (c, formID) {
+    this.getFormDescription = function (c, formID, p) {
         var description = this.getDescription(c);
         var hasElement = true;
         formID = formID.indexOf('#') !== -1 ? formID : ('#' + formID);
@@ -491,8 +509,10 @@
                 $amount.addClass('error');
                 if (formID.indexOf('cashout') !== -1)
                     $amount.parent().find('.error-text').text(utils.formatString(description, '10.000.000 VNĐ'));
-                else
-                    $amount.parent().find('.error-text').text(utils.formatString(description, ''));
+                else {
+                    $amount.parent().find('.error-text').text(utils.formatString(description, utils.formatMoney(p)));
+                    description = utils.formatString(description, utils.formatMoney(p) + " VNĐ");
+                }
                 $amount.focus();
                 break;
             default:
@@ -536,12 +556,12 @@
         return utils.postData(utils.linkIdApi() + 'Account/CheckPhoneInNetwork', { PhoneNumber: phoneNumber }, callback, callback, null, !isAsynch ? false : true);
     };
 
-    this.saveLog = function(error, userName) {
+    this.saveLog = function (error, userName) {
         if (!userName && (!header || !header.AccountInfo || header.AccountInfo.AccountID <= 0)) return;
         if (typeof error === "object")
             error = JSON.stringify(error);
         var logInfo = (!userName ? header.AccountInfo.Username : userName) + '|error: ' + error + '|function: ' + window.location.href;
-        $.get(utils.rootUrl() + 'Common/SaveClientLog', { log: logInfo}).done(function () {});
+        $.get(utils.rootUrl() + 'Common/SaveClientLog', { log: logInfo }).done(function () { });
     };
 
     this.logOut = function () {
@@ -575,188 +595,188 @@
     };
 
     this.bankTopupConfig =
-    [
-        {
-            "BankCode": "VCB",
-            "BankName": "Vietcombank",
-            "BankFullName": "Ngân hàng TMCP Ngoại Thương Việt Nam",
-            "BankFullNameEN": "Bank for Foreign Trade of Vietnam"
-        },
-        {
-            "BankCode": "TCB",
-            "BankName": "Techcombank",
-            "BankFullName": "Ngân hàng TMCP Kỹ thương Việt Nam",
-            "BankFullNameEN": "Vietnam Technological and Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "VIB",
-            "BankName": "VIB Bank",
-            "BankFullName": "Ngân hàng TMCP Quốc tế",
-            "BankFullNameEN": "Vietnam International Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "ABB",
-            "BankName": "ABBank",
-            "BankFullName": "Ngân hàng TMCP An Bình",
-            "BankFullNameEN": "An Binh Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "STB",
-            "BankName": "Sacombank",
-            "BankFullName": "Ngân hàng TMCP Sài Gòn Thương Tín",
-            "BankFullNameEN": "Saigon Thuong Tin Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "NVB",
-            "BankName": "Navibank",
-            "BankFullName": "Ngân hàng TMCP Quốc dân",
-            "BankFullNameEN": "National Citizen Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "CTG",
-            "BankName": "Vietinbank",
-            "BankFullName": "Ngân hàng TMCP Công thương Việt Nam",
-            "BankFullNameEN": "Vietnam Joint Stock Commercial Bank for Industry and Trade"
-        },
-        {
-            "BankCode": "DAB",
-            "BankName": "DongABank",
-            "BankFullName": "Ngân hàng TMCP Đông Á",
-            "BankFullNameEN": "DongA Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "HDB",
-            "BankName": "HDBank",
-            "BankFullName": "Ngân hàng TMCP Phát triển Nhà TP.HCM",
-            "BankFullNameEN": "Ho Chi Minh Development Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "VAB",
-            "BankName": "VietABank",
-            "BankFullName": "Ngân hàng TMCP Việt Á",
-            "BankFullNameEN": "Viet A Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "VPB",
-            "BankName": "VPBank",
-            "BankFullName": "Ngân hàng TMCP Việt Nam Thịnh Vượng",
-            "BankFullNameEN": "Vietnam Prosperity Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "ACB",
-            "BankName": "ACB",
-            "BankFullName": "Ngân hàng TMCP Á Châu",
-            "BankFullNameEN": "Asia Commercial Bank"
-        },
-        {
-            "BankCode": "GPB",
-            "BankName": "GPBank",
-            "BankFullName": "Ngân hàng TMCP Dầu Khí Toàn Cầu",
-            "BankFullNameEN": "Saigon Bank For Industry and Trade"
-        },
-        {
-            "BankCode": "EIB",
-            "BankName": "Eximbank",
-            "BankFullName": "Ngân hàng TMCP Xuất Nhập Khẩu Việt Nam",
-            "BankFullNameEN": "Vietnam Commercial Joint Stock Export Import Bank"
-        },
-        {
-            "BankCode": "OJB",
-            "BankName": "OceanBank",
-            "BankFullName": "Ngân hàng TM TNHH MTV Đại Dương",
-            "BankFullNameEN": "Ocean Commercial One Member Limited Liability Bank"
-        },
-        {
-            "BankCode": "NASB",
-            "BankName": "BacABank",
-            "BankFullName": "Ngân hàng TMCP Bắc Á",
-            "BankFullNameEN": "Bac A  Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "OCB",
-            "BankName": "OricomBank",
-            "BankFullName": "Ngân hàng TMCP Phương Đông",
-            "BankFullNameEN": "Orient Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "TPB",
-            "BankName": "TPBank",
-            "BankFullName": "Ngân hàng TMCP Tiên Phong",
-            "BankFullNameEN": "Tien Phong Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "LPB",
-            "BankName": "LienVietPostBank",
-            "BankFullName": "Ngân hàng TMCP Bưu Điện Liên Việt",
-            "BankFullNameEN": "LienViet Post Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "SEAB",
-            "BankName": "Seabank",
-            "BankFullName": "Ngân hàng TMCP Đông Nam Á",
-            "BankFullNameEN": "Southeast Asia  Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "BIDV",
-            "BankName": "BIDV",
-            "BankFullName": "Ngân hàng TMCP Đầu tư và phát triển Việt Nam",
-            "BankFullNameEN": "Bank for Investment and Development of Vietnam JSC"
-        },
-        {
-            "BankCode": "VARB",
-            "BankName": "AgriBank",
-            "BankFullName": "Ngân hàng Nông nghiệp & Phát triển Nông thôn",
-            "BankFullNameEN": "Vietnam Bank for Agriculture and Rural Development"
-        },
-        {
-            "BankCode": "BVB",
-            "BankName": "BaoVietBank",
-            "BankFullName": "Ngân hàng TMCP Bảo Việt",
-            "BankFullNameEN": "Bao Viet Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "SHB",
-            "BankName": "SHB",
-            "BankFullName": "Ngân hàng TMCP Sài Gòn - Hà Nội",
-            "BankFullNameEN": "Saigon – Hanoi Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "KLB",
-            "BankName": "KienLongBank",
-            "BankFullName": "Ngân hàng TMCP Kiên Long",
-            "BankFullNameEN": "Kien Long Joint Stock Commercial Bank"
-        },
-        {
-            "BankCode": "SCB",
-            "BankName": "SCB",
-            "BankFullName": "Ngân hàng TMCP Sài Gòn",
-            "BankFullNameEN": "Saigon Bank For Industry and Trade"
-        },
-        {
-            "BankCode": "Visa",
-            "BankName": "Visa Card",
-            "BankFullName": "Visa Card",
-            "BankFullNameEN": "Visa Card"
-        },
-        {
-            "BankCode": "Mastercard",
-            "BankName": "Master Card",
-            "BankFullName": "Master Card",
-            "BankFullNameEN": "Master Card"
-        },
-        {
-            "BankCode": "Amex",
-            "BankName": "American Express",
-            "BankFullName": "American Express",
-            "BankFullNameEN": "American Express"
-        },
-        {
-            "BankCode": "JCB",
-            "BankName": "JCB",
-            "BankFullName": "JCB",
-            "BankFullNameEN": "JCB"
-        }
-    ];
+        [
+            {
+                "BankCode": "VCB",
+                "BankName": "Vietcombank",
+                "BankFullName": "Ngân hàng TMCP Ngoại Thương Việt Nam",
+                "BankFullNameEN": "Bank for Foreign Trade of Vietnam"
+            },
+            {
+                "BankCode": "TCB",
+                "BankName": "Techcombank",
+                "BankFullName": "Ngân hàng TMCP Kỹ thương Việt Nam",
+                "BankFullNameEN": "Vietnam Technological and Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "VIB",
+                "BankName": "VIB Bank",
+                "BankFullName": "Ngân hàng TMCP Quốc tế",
+                "BankFullNameEN": "Vietnam International Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "ABB",
+                "BankName": "ABBank",
+                "BankFullName": "Ngân hàng TMCP An Bình",
+                "BankFullNameEN": "An Binh Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "STB",
+                "BankName": "Sacombank",
+                "BankFullName": "Ngân hàng TMCP Sài Gòn Thương Tín",
+                "BankFullNameEN": "Saigon Thuong Tin Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "NVB",
+                "BankName": "Navibank",
+                "BankFullName": "Ngân hàng TMCP Quốc dân",
+                "BankFullNameEN": "National Citizen Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "CTG",
+                "BankName": "Vietinbank",
+                "BankFullName": "Ngân hàng TMCP Công thương Việt Nam",
+                "BankFullNameEN": "Vietnam Joint Stock Commercial Bank for Industry and Trade"
+            },
+            {
+                "BankCode": "DAB",
+                "BankName": "DongABank",
+                "BankFullName": "Ngân hàng TMCP Đông Á",
+                "BankFullNameEN": "DongA Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "HDB",
+                "BankName": "HDBank",
+                "BankFullName": "Ngân hàng TMCP Phát triển Nhà TP.HCM",
+                "BankFullNameEN": "Ho Chi Minh Development Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "VAB",
+                "BankName": "VietABank",
+                "BankFullName": "Ngân hàng TMCP Việt Á",
+                "BankFullNameEN": "Viet A Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "VPB",
+                "BankName": "VPBank",
+                "BankFullName": "Ngân hàng TMCP Việt Nam Thịnh Vượng",
+                "BankFullNameEN": "Vietnam Prosperity Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "ACB",
+                "BankName": "ACB",
+                "BankFullName": "Ngân hàng TMCP Á Châu",
+                "BankFullNameEN": "Asia Commercial Bank"
+            },
+            {
+                "BankCode": "GPB",
+                "BankName": "GPBank",
+                "BankFullName": "Ngân hàng TMCP Dầu Khí Toàn Cầu",
+                "BankFullNameEN": "Saigon Bank For Industry and Trade"
+            },
+            {
+                "BankCode": "EIB",
+                "BankName": "Eximbank",
+                "BankFullName": "Ngân hàng TMCP Xuất Nhập Khẩu Việt Nam",
+                "BankFullNameEN": "Vietnam Commercial Joint Stock Export Import Bank"
+            },
+            {
+                "BankCode": "OJB",
+                "BankName": "OceanBank",
+                "BankFullName": "Ngân hàng TM TNHH MTV Đại Dương",
+                "BankFullNameEN": "Ocean Commercial One Member Limited Liability Bank"
+            },
+            {
+                "BankCode": "NASB",
+                "BankName": "BacABank",
+                "BankFullName": "Ngân hàng TMCP Bắc Á",
+                "BankFullNameEN": "Bac A  Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "OCB",
+                "BankName": "OricomBank",
+                "BankFullName": "Ngân hàng TMCP Phương Đông",
+                "BankFullNameEN": "Orient Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "TPB",
+                "BankName": "TPBank",
+                "BankFullName": "Ngân hàng TMCP Tiên Phong",
+                "BankFullNameEN": "Tien Phong Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "LPB",
+                "BankName": "LienVietPostBank",
+                "BankFullName": "Ngân hàng TMCP Bưu Điện Liên Việt",
+                "BankFullNameEN": "LienViet Post Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "SEAB",
+                "BankName": "Seabank",
+                "BankFullName": "Ngân hàng TMCP Đông Nam Á",
+                "BankFullNameEN": "Southeast Asia  Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "BIDV",
+                "BankName": "BIDV",
+                "BankFullName": "Ngân hàng TMCP Đầu tư và phát triển Việt Nam",
+                "BankFullNameEN": "Bank for Investment and Development of Vietnam JSC"
+            },
+            {
+                "BankCode": "VARB",
+                "BankName": "AgriBank",
+                "BankFullName": "Ngân hàng Nông nghiệp & Phát triển Nông thôn",
+                "BankFullNameEN": "Vietnam Bank for Agriculture and Rural Development"
+            },
+            {
+                "BankCode": "BVB",
+                "BankName": "BaoVietBank",
+                "BankFullName": "Ngân hàng TMCP Bảo Việt",
+                "BankFullNameEN": "Bao Viet Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "SHB",
+                "BankName": "SHB",
+                "BankFullName": "Ngân hàng TMCP Sài Gòn - Hà Nội",
+                "BankFullNameEN": "Saigon – Hanoi Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "KLB",
+                "BankName": "KienLongBank",
+                "BankFullName": "Ngân hàng TMCP Kiên Long",
+                "BankFullNameEN": "Kien Long Joint Stock Commercial Bank"
+            },
+            {
+                "BankCode": "SCB",
+                "BankName": "SCB",
+                "BankFullName": "Ngân hàng TMCP Sài Gòn",
+                "BankFullNameEN": "Saigon Bank For Industry and Trade"
+            },
+            {
+                "BankCode": "Visa",
+                "BankName": "Visa Card",
+                "BankFullName": "Visa Card",
+                "BankFullNameEN": "Visa Card"
+            },
+            {
+                "BankCode": "Mastercard",
+                "BankName": "Master Card",
+                "BankFullName": "Master Card",
+                "BankFullNameEN": "Master Card"
+            },
+            {
+                "BankCode": "Amex",
+                "BankName": "American Express",
+                "BankFullName": "American Express",
+                "BankFullNameEN": "American Express"
+            },
+            {
+                "BankCode": "JCB",
+                "BankName": "JCB",
+                "BankFullName": "JCB",
+                "BankFullNameEN": "JCB"
+            }
+        ];
 
     this.getbankName = function (bankCode) {
         var arrayBank = this.bankTopupConfig;

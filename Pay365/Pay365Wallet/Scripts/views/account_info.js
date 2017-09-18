@@ -723,7 +723,7 @@ transaction_history = new function () {
             $('#modal-alert').modal('open');
             return;
         }
-        if (moment(fromDate, "DD/MM/YYYY", true)._d >= moment(toDate, "DD/MM/YYYY", true)._d) {
+        if (moment(fromDate, "DD/MM/YYYY", true)._d > moment(toDate, "DD/MM/YYYY", true)._d) {
             $('#modal-alert #modal_content').text(i18n.t('history.error3'));
             $('#modal-alert').modal('open');
             return;
@@ -1599,7 +1599,6 @@ linkcard = new function () {
 
     // lấy thông tin thẻ liên kết
     this.CheckInfo_LinkCard = function () {
-        utils.loading();
         $('#getlinkCard_info').hide();
         utils.getData(utils.trasactionApi() + "AccountAssociate/GetAccountAssociateInfo", { AssociateSystem: 19 }, function (data) {
             if (data.d != null) {
@@ -1610,11 +1609,9 @@ linkcard = new function () {
                 setTimeout(function () {
                     $('[data-tooltip]').tooltip();
                 }, 500);
-                utils.unLoading();
             }
             console.log(data);
         }, function (err) {
-            utils.unLoading();
             console.log(err);
         });
     };
@@ -1714,7 +1711,7 @@ linkcard = new function () {
         var btnContinue = "Hủy";
         var headerTitle = "Thông báo";
         if (header.AccountInfo.CurrentLang == 'en') {
-            content = "Are you sure you want to unlink card?";
+            content = "Do you want to disconnect this card from your account ?";
             btnClose = "Close";
             btnContinue = "Cancel";
             headerTitle = "Notification";

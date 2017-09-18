@@ -126,11 +126,17 @@
     "C_EMAIL_NOT_VERIFY": "Email chưa được xác thực. Vui lòng xác thực email",
     "MAX_AMOUNT_OUTOF_RANGER": "Giao dịch vượt quá hạn mức {0}",
     "ACCOUNT_UNVERIFY": "Tài khoản chưa chứng thực không thể sử dụng chức năng này",
-    "ACCOUNT_UNLINKED": "Tài khoản chưa gắn kết", 
+    "ACCOUNT_UNLINKED": "Tài khoản chưa gắn kết",
     "BANKACCOUNT_NOTEXISTED": "Số thẻ/ Số tài khoản ngân hàng không tồn tại",
     "ACCOUNT_VERIFIED": "Tài khoản đã chứng thực",
     "TRANSACTION_PROCESSING": "Giao dịch đang được sử lý",
-    "ERRORCODE_SACOMBANK": "Mã xác thực không hợp lệ", 
+    "ERRORCODE_SACOMBANK": "Mã xác thực không hợp lệ",
+    "NICKNAME_NOTEXISTS": "Tài khoản không tồn tại",
+    "AMOUNT_NOTVALID": "Số tiền không hợp lệ",
+    "BANK_NOTSUPPORT": "Ngân hàng không được hỗ trợ",
+    "NOT_ENOUGHT_BALANCE": "Không đủ số dư để thanh toán",
+    "LINKCARD_EXISTS": "Thẻ này đã được liên kết với một tài khoản khác",
+    "CARDNUMBER_NOTACTIVE_ONLINE": "Thẻ chưa đăng ký dịch vụ giao dịch trực tuyến",
     "DEFAULT": "Hệ thống đang bận. Vui lòng thử lại sau !"
   }
 }

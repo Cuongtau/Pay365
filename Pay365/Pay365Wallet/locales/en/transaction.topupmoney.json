@@ -4,6 +4,7 @@
     "account_empty": "Please enter your account number",
     "amount_empty": "Please enter your amount",
     "bellow_min_amount": "Min topup amount is 10.000đ",
+    "upper_max_amount":  "Max topup amount is 5.000.000đ",
     "bankcode_empty": "Can't get bank infomation, please try again",
     "captcha_empty": "Please enter your verify code",
     "captcha_token_empty": "Can't get infomation verify code",
