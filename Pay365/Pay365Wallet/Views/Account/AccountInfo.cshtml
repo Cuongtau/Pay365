@@ -128,28 +128,40 @@
 
                         <div class="block-link-cards">
                             <div class="block-title">@Resources.Account_info.lbl_linkCard</div>
-                            <ul class="list-link-card">
+                            <ul class="list-link-card" id="getlinkCard_info">
                                 @*<li>
-                                    <div class="link-card credit"> 
-                                        <div class="subfix">4251</div>
-                                        <div class="logo">
-                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/visa.jpg" alt="">
+                                        <div class="link-card credit">
+                                            <div class="subfix">4251</div>
+                                            <div class="logo">
+                                                <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/visa.jpg" alt="">
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="link-card pay365">
-                                        <div class="subfix">4166</div>
-                                        <div class="logo">
-                                            <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/vietcombank.jpg" alt="">
+                                    </li>
+                                    <li>
+                                        <div class="link-card pay365">
+                                            <div class="subfix">4166</div>
+                                            <div class="logo">
+                                                <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/banks/vietcombank.jpg" alt="">
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>*@
+                                    </li>*@
                             </ul>
-                            <div class="action">
+                            <div class="action" id="">
                                 <a href="/link-card" class="btn btn-flat btn-primary waves-effect waves-primary uppercase"><i class="material-icons">add</i>@Resources.Account_info.btn_addLinkCard</a>
                             </div>
                         </div>
+
+                        <script id="getlinkCard_info_tmpl" type="text/x-jquery-tmpl">
+                            <li>
+                                <div class="link-card pay365">
+                                    <div class="subfix">${ Substring_LinkCard(AssociateUsername) }</div>
+                                    <div class="logo" style="max-width: 40%;">
+                                        <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/STB.png" alt="">
+                                    </div>
+                                    <div class="name">${ AssociateFullname }</div>
+                                </div>
+                            </li>
+                        </script>
 
                     </div>
                 </div>
@@ -771,6 +783,7 @@
 </style>
 <script type="text/javascript">
     $(document).ready(function () {
+        linkcard.CheckInfo_LinkCard();
         confirmCrop = document.querySelector('#confirmCrop');
     });
 
