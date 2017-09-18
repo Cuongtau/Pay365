@@ -1487,6 +1487,7 @@
     this.CheckNicknameExist = function () {
         utils.translateLang('transaction.payment');
         $("#payment_topupGame").find(".alert-danger").html('').hide();
+        
         $("#payment_topupGame").trigger('heightChange');
         var ddr_selectGame = $("#ddr-select-game");
         if ((!payment.cid || payment.cid <= 0) && ddr_selectGame.length > 0)
@@ -1502,6 +1503,8 @@
         }
         var nickname = $("#txtNickname");
         var nicknameValue = nickname.val();
+        nickname.siblings('.success-text').hide();
+        nickname.siblings('.error-text').hide();
         if (nicknameValue === '') {
             nickname.focus();
             nickname.siblings('.error-text').html(i18n.t('error.inputNickname'));
@@ -1534,13 +1537,13 @@
         utils.loading();
         utils.postData(urlPaymentApi, paramValid, function (data) {
             utils.unLoading();
-            if (data.responseCode >= 0) {
+            if (data.c >= 0 && data.d.responseCode > 0) {
                 nickname.siblings('.error-text').html('');
                 nickname.siblings('.error-text').hide();
                 nickname.removeClass('error');
-                nickname.siblings('.error-text').html('<i class="fa fa-check"></i>Tài khoản hợp lệ').show();
-                if (data.description != '' && data.description.length > 0) {
-                    var listServer = data.description.split(',');
+                nickname.siblings('.success-text').html('<i class="fa fa-check"></i>Tài khoản hợp lệ').show();
+                if (data.d.description != '' && data.d.description.length > 0) {
+                    var listServer = data.d.description.split(',');
                     if (listServer.length > 0) {
                         $("#ddr-select-server").html('');
                         $("#ddr-select-server").material_select();
@@ -1557,7 +1560,7 @@
             }
             else {
                 nickname.focus();
-                nickname.siblings('.error-text').html('<i class="fa fa-warning"></i>' + $.t('error.nickNameNotExist'));
+                nickname.siblings('.error-text').html($.t('error.nickNameNotExist'));
                 nickname.siblings('.error-text').show();
                 nickname.addClass('error');
                 if (!$("#btnPaymentCheckInput").hasClass("disabled")) 
@@ -1567,7 +1570,7 @@
         }, function (dataErr) {
             utils.unLoading();
             nickname.focus();
-            nickname.siblings('.error-text').html('<i class="fa fa-warning"></i>' + $.t('error.nickNameNotExist'));
+            nickname.siblings('.error-text').html($.t('error.nickNameNotExist'));
             nickname.siblings('.error-text').show();
             nickname.addClass('error');
             if (!$("#btnPaymentCheckInput").hasClass("disabled"))
