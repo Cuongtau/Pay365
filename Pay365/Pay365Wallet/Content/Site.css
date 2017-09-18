@@ -14,7 +14,12 @@
 .has-error .checkbox, .has-error .checkbox-inline, .has-error .control-label, .has-error .help-block, .has-error .radio, .has-error .radio-inline, .has-error.checkbox label, .has-error.checkbox-inline label, .has-error.radio label, .has-error.radio-inline label {
     color: #ff7373;
 }
-
+.home-news .image img {
+    height:100%;
+}
+.modal-overlay + .modal-overlay {
+    z-index:1019 !important
+}
 .form-data.input-field .btn.btn-secondary {
     background: #f08946;
     border: none;

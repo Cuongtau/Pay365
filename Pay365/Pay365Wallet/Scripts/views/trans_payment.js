@@ -2392,6 +2392,7 @@
             if (header.AccountInfo.SecurityType > 0 && header.AccountInfo.SecurityType == 1)
                 content = utils.formatString($.t('payment.resendOTPSMS'), header.AccountInfo.Username);
             ModalNotificationInit(content, null, "success", $.t('payment.titleResendOTP'), btnClose);
+            $("#modal-alert").css("z-index", "1020");
         }, function (dataErr) {
             utils.unLoading();
             console.log(dataErr);
@@ -2406,6 +2407,7 @@
                 utils.translateLang('transaction.payment');
                 ModalNotificationInit(Msg, "", "error", "", btnClose);
             }
+            $("#modal-alert").css("z-index", "1020");
             return;
         });
     }
@@ -2416,33 +2418,7 @@
         $(Target).addClass('error');
         $(Target).focus();
     }
-    this.testshowCard = function () {
-        for (var i = 0; i < 100; i++) {
-            var card = {
-                Number: i + 1,
-                ProductName: 'thẻ viettel',
-                Value: 10000,
-                Code: 'viettel10-' + i * 1000,
-                Serial: 'serialviettel10-' + i * 1000,
-                ExpriredDate: new Date()
-            }
-            payment.listCard.push(card);
-        }
-        payment.actionView("ts-parent", "next", "View_ListCardInfo");
-
-        payment.BindCardPager(1);
-
-        $("#take_all").on('click', function () {
-            $('input.checkbox_i').prop('checked', this.checked);
-            var isChk = $(this).prop("checked");
-            if (isChk) {
-                payment.listCardSelected = payment.listCard.slice(0);
-            }
-            else {
-                payment.listCardSelected = [];
-            }
-        });
-    }
+    
     //Load dữ liệu thẻ - phân trang
     this.BindCardPager = function (currpage, lstData) {
         var listData = lstData ? lstData : payment.listCard;

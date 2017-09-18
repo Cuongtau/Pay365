@@ -1602,33 +1602,7 @@ function payMainLoad() {
             }
         });
     }
-    $(".payment-features a.waves-effect").on('mousemove', function (e) {
-        $(this).find('.icon').removeClass("animated tada");
-        var target = e.currentTarget; var findIcon = $(target).find('.icon');
-        findIcon.addClass('animated tada');
-    }).on('mouseout', function (e) {
-        var target = e.currentTarget; var findIcon = $(target).find('.icon');
-        findIcon.removeClass('animated tada');
-    });
-
-    $("a.sidebar-item-link").on('mousemove', function (e) {
-        $(this).find('.name').removeClass("animated bounceIn");
-        var target = e.currentTarget; var findIcon = $(target).find('.name');
-        findIcon.addClass('animated bounceIn');
-    }).on('mouseout', function (e) {
-        var target = e.currentTarget; var findIcon = $(target).find('.name');
-        findIcon.removeClass('animated bounceIn');
-    });
-
-    $(".security-forms .card.pricing").on('mousemove', function (e) {
-        $(this).find('.icon').removeClass("animated tada");
-        var target = e.currentTarget; var findIcon = $(target).find('.icon');
-        findIcon.addClass('animated tada');
-    }).on('mouseout', function (e) {
-        var target = e.currentTarget; var findIcon = $(target).find('.icon');
-        findIcon.removeClass('animated tada');
-    });
-    
+   
 }
 function isElementInView (element, fullyInView) {
     var pageTop = $(window).scrollTop();
