@@ -723,7 +723,7 @@ transaction_history = new function () {
             $('#modal-alert').modal('open');
             return;
         }
-        if (moment(fromDate, "DD/MM/YYYY", true)._d >= moment(toDate, "DD/MM/YYYY", true)._d) {
+        if (moment(fromDate, "DD/MM/YYYY", true)._d > moment(toDate, "DD/MM/YYYY", true)._d) {
             $('#modal-alert #modal_content').text(i18n.t('history.error3'));
             $('#modal-alert').modal('open');
             return;
