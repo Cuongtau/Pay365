@@ -281,6 +281,7 @@
                     $('#payment_topupMobile #payment_step1').height(totalHeight2);
             });
             payment.changeSelectGameAmount();
+            $("#btnPaymentGameCheckInput").addClass("disabled");
         }
         $("#discount").text(parseFloat(payment.discount) + "%");
         $("#txtQuantity").change(function (event) {
@@ -1128,6 +1129,7 @@
                 if (typeof JSON.parse(dataErr) === "object") {
                     var objReturn = JSON.parse(dataErr);
                     Msg = common.getDescription(objReturn.c);
+                    utils.translateLang('transaction.payment');
                     switch (objReturn.c) {
                         case -10047://mobile
                         case -10155://ko hỗ trợ nhà mạng 
@@ -1147,6 +1149,7 @@
                     }
                 }
                 else {
+                    utils.translateLang('transaction.payment');
                     ModalNotificationInit(Msg, "", "error", "", btnClose);
                 }
                 $("#btnPaymentCheckInput").removeClass("disabled");
@@ -1358,6 +1361,7 @@
                 if (typeof JSON.parse(dataErr) === "object") {
                     var objReturn = JSON.parse(dataErr);
                     Msg = common.getDescription(objReturn.c);
+                    utils.translateLang('transaction.payment');
                     switch (objReturn.c) {
                         case -10047://mobile
                         case -10155://ko hỗ trợ nhà mạng 
@@ -1378,6 +1382,7 @@
                     $("#payment_step1").trigger('heightChange');
                 }
                 else {
+                    utils.translateLang('transaction.payment');
                     ModalNotificationInit(Msg, "", "error", "", btnClose);
                 }
                 $("#btnPaymentCheckInput").removeClass("disabled");
@@ -1458,16 +1463,21 @@
             if (typeof JSON.parse(dataErr) === "object") {
                 var objReturn = JSON.parse(dataErr);
                 Msg = common.getDescription(objReturn.c);
+                utils.translateLang('transaction.payment');
                 switch (objReturn.c) {
                     case -6: case -7: case -49: case -111: case -10015: case -10105: case -10021://OTP Fail
                         payment.SwapErrorResult(confirmCode, Msg);
                         break;
                     case -19://giao dịch đang được xử lý
                         var contentMsg = utils.formatString($.t('payment.topupMobilePending'), $("#AmountTopup").html() + "," + $("#PhoneTopup").text());
+                        if ($("#View_PaymentConfirm").hasClass('modal'))
+                            $("#View_PaymentConfirm").modal("close");
                         ModalNotificationResultInit('warning', '', contentMsg, $.t('payment.btnGoHome'), $.t('payment.btnViewHistory'), callbackClose, callBackContinue);
                         break;
                     case -102: case -103: case -10056: case -10134:
                         var contentMsg = utils.formatString($.t('payment.topupMobileFail'), $("#AmountTopup").html() + "," + $("#PhoneTopup").text());
+                        if ($("#View_PaymentConfirm").hasClass('modal'))
+                            $("#View_PaymentConfirm").modal("close");
                         ModalNotificationResultInit('danger', '', contentMsg, $.t('payment.btnGoHome'), $.t('payment.btnViewHistory'), callbackClose, callBackContinue);
                         break;
                     default:
@@ -1476,6 +1486,9 @@
                 }
             }
             else {
+                utils.translateLang('transaction.payment');
+                if ($("#View_PaymentConfirm").hasClass('modal'))
+                    $("#View_PaymentConfirm").modal("close");
                 ModalNotificationInit(Msg, "", "error", "", btnClose);
             }
             $("#btnPaymentConfirm").removeClass('disabled');
@@ -1487,6 +1500,7 @@
     this.CheckNicknameExist = function () {
         utils.translateLang('transaction.payment');
         $("#payment_topupGame").find(".alert-danger").html('').hide();
+        
         $("#payment_topupGame").trigger('heightChange');
         var ddr_selectGame = $("#ddr-select-game");
         if ((!payment.cid || payment.cid <= 0) && ddr_selectGame.length > 0)
@@ -1502,6 +1516,8 @@
         }
         var nickname = $("#txtNickname");
         var nicknameValue = nickname.val();
+        nickname.siblings('.success-text').hide();
+        nickname.siblings('.error-text').hide();
         if (nicknameValue === '') {
             nickname.focus();
             nickname.siblings('.error-text').html(i18n.t('error.inputNickname'));
@@ -1530,17 +1546,20 @@
         };
         $("#selectServerGame").hide();
         var urlPaymentApi = utils.trasactionApi() + "Payment/CheckSocialGamesAccount";
-        $("#btnPaymentCheckInput").addClass('disabled');
+        if (ddr_selectGame.length > 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
+            $("#btnPaymentGameCheckInput").addClass('disabled');
+        else if (ddr_selectGame.length == 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
+            $("#btnPaymentCheckInput").addClass('disabled');
         utils.loading();
         utils.postData(urlPaymentApi, paramValid, function (data) {
             utils.unLoading();
-            if (data.responseCode >= 0) {
+            if (data.c >= 0 && data.d.responseCode > 0) {
                 nickname.siblings('.error-text').html('');
                 nickname.siblings('.error-text').hide();
                 nickname.removeClass('error');
-                nickname.siblings('.error-text').html('<i class="fa fa-check"></i>Tài khoản hợp lệ').show();
-                if (data.description != '' && data.description.length > 0) {
-                    var listServer = data.description.split(',');
+                nickname.siblings('.success-text').html('<i class="fa fa-check"></i>Tài khoản hợp lệ').show();
+                if (data.d.description != '' && data.d.description.length > 0) {
+                    var listServer = data.d.description.split(',');
                     if (listServer.length > 0) {
                         $("#ddr-select-server").html('');
                         $("#ddr-select-server").material_select();
@@ -1552,25 +1571,32 @@
                         $("#selectServerGame").show();
                     }
                 }
+                if (ddr_selectGame.length > 0)
+                    $("#btnPaymentGameCheckInput").removeClass('disabled');
+                else if (ddr_selectGame.length == 0)
+                    $("#btnPaymentCheckInput").removeClass('disabled');
                 
-                $("#btnPaymentCheckInput").removeClass('disabled');
             }
             else {
                 nickname.focus();
-                nickname.siblings('.error-text').html('<i class="fa fa-warning"></i>' + $.t('error.nickNameNotExist'));
+                nickname.siblings('.error-text').html($.t('error.nickNameNotExist'));
                 nickname.siblings('.error-text').show();
                 nickname.addClass('error');
-                if (!$("#btnPaymentCheckInput").hasClass("disabled")) 
+                if (ddr_selectGame.length > 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
+                    $("#btnPaymentGameCheckInput").addClass('disabled');
+                else if (ddr_selectGame.length == 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
                     $("#btnPaymentCheckInput").addClass('disabled');
             }
             $("#payment_topupGame").trigger('heightChange');
         }, function (dataErr) {
             utils.unLoading();
             nickname.focus();
-            nickname.siblings('.error-text').html('<i class="fa fa-warning"></i>' + $.t('error.nickNameNotExist'));
+            nickname.siblings('.error-text').html($.t('error.nickNameNotExist'));
             nickname.siblings('.error-text').show();
             nickname.addClass('error');
-            if (!$("#btnPaymentCheckInput").hasClass("disabled"))
+            if (ddr_selectGame.length > 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
+                $("#btnPaymentGameCheckInput").addClass('disabled');
+            else if (ddr_selectGame.length == 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
                 $("#btnPaymentCheckInput").addClass('disabled');
             $("#payment_topupGame").trigger('heightChange');
             return;
@@ -1705,6 +1731,7 @@
                 if (typeof JSON.parse(dataErr) === "object") {
                     var objReturn = JSON.parse(dataErr);
                     Msg = common.getDescription(objReturn.c);
+                    utils.translateLang('transaction.payment');
                     switch (objReturn.c) {
                         case -10033: case -10039: case -200: //nickname
                             payment.SwapErrorResult(nickname, Msg);
@@ -1723,6 +1750,7 @@
                     }
                 }
                 else {
+                    utils.translateLang('transaction.payment');
                     ModalNotificationInit(Msg, "", "error", "", btnClose);
                 }
                 $("#btnPaymentCheckInput").removeClass('disabled');
@@ -1738,8 +1766,6 @@
     };
     this.TopupGameMain_CheckInput = function () {
         utils.translateLang('transaction.payment');
-        if ($("#btnPaymentGameCheckInput").hasClass('disabled'))
-            return;
 
         $("#payment_topupGame").find(".alert-danger").html('').hide();
         $("#payment_topupGame").trigger('heightChange');
@@ -1788,6 +1814,10 @@
             nickname.siblings('.error-text').show();
             nickname.addClass('error');
             $("#payment_topupGame").trigger('heightChange');
+            return;
+        }
+        if ($("#btnPaymentGameCheckInput").hasClass('disabled')) {
+            payment.CheckNicknameExist();
             return;
         }
         var ddr_selectAmount = $("#ddr-select-gameAmount");
@@ -1889,6 +1919,7 @@
                 if (typeof JSON.parse(dataErr) === "object") {
                     var objReturn = JSON.parse(dataErr);
                     Msg = common.getDescription(objReturn.c);
+                    utils.translateLang('transaction.payment');
                     switch (objReturn.c) {
                         case -10033: case -10039: case -200: //nickname
                             payment.SwapErrorResult(nickname, Msg);
@@ -1908,6 +1939,7 @@
                     $("#payment_topupGame").trigger('heightChange');
                 }
                 else {
+                    utils.translateLang('transaction.payment');
                     ModalNotificationInit(Msg, "", "error", "", btnClose);
                 }
                 $("#btnPaymentGameCheckInput").addClass('disabled');
@@ -1957,14 +1989,14 @@
         var callBackContinue = function () {
             location.href = utils.rootUrl() + 'lich-su-giao-dich';
         };
+        var AmountValue = $("#AmountTopup").html();
+        var Nickname = $("#PhoneTopup").text();
+        var Product = $("#Product").text();
         utils.loading();
         utils.postData(urlPaymentApi, { Otp: Otp }, function (data) {
             utils.unLoading();
             if (data.c >= 0) {
-                var AmountValue = $("#AmountTopup").html();
-                var Nickname = $("#PhoneTopup").text();
-                var Product = $("#Product").text();
-
+                
                 var contentMsg = utils.formatString($.t('payment.topupGameSuccess'), AmountValue + "," + Product + "," + Nickname);
                 confirmCode.value = '';
                 if ($("#View_PaymentConfirm").hasClass('modal'))
@@ -1985,16 +2017,21 @@
             if (typeof JSON.parse(dataErr) === "object") {
                 var objReturn = JSON.parse(dataErr);
                 Msg = common.getDescription(objReturn.c);
+                utils.translateLang('transaction.payment');
                 switch (objReturn.c) {
                     case -6: case -7: case -49: case -111: case -10015: case -10105: case -10021://OTP Fail
                         payment.SwapErrorResult(confirmCode, Msg);
                         break;
                     case -19://giao dịch đang được xử lý
                         var contentMsg = utils.formatString($.t('payment.topupGamePending'), AmountValue + "," + Product + "," + Nickname);
+                        if ($("#View_PaymentConfirm").hasClass('modal'))
+                            $("#View_PaymentConfirm").modal("close");
                         ModalNotificationResultInit('warning', '', contentMsg, $.t('payment.btnGoHome'), $.t('payment.btnViewHistory'), callbackClose, callBackContinue);
                         break;
                     case -102: case -103: case -10056: case -10134:
                         var contentMsg = utils.formatString($.t('payment.topupGameFail'), AmountValue + "," + Product + "," + Nickname);
+                        if ($("#View_PaymentConfirm").hasClass('modal'))
+                            $("#View_PaymentConfirm").modal("close");
                         ModalNotificationResultInit('danger', '', contentMsg, $.t('payment.btnGoHome'), $.t('payment.btnViewHistory'), callbackClose, callBackContinue);
                         break;
                     default:
@@ -2003,6 +2040,9 @@
                 }
             }
             else {
+                utils.translateLang('transaction.payment');
+                if ($("#View_PaymentConfirm").hasClass('modal'))
+                    $("#View_PaymentConfirm").modal("close");
                 ModalNotificationInit(Msg, "", "error", "", btnClose);
             }
             $("#btnPaymentConfirm").removeClass('disabled');
@@ -2035,6 +2075,7 @@
                     
                     payment.discountGame = parseFloat(data[0].DiscountRate);
                     payment.pcode = data[0].ProductCode;
+                    payment.pid = data[0].ProductID;
                     $("#ddr-select-gameAmount").html('');
                     $("#ddr-select-gameAmount").material_select();
                     $.each(payment.topupGameAmount, function (k, v) {
@@ -2196,6 +2237,7 @@
                 if (typeof JSON.parse(dataErr) === "object") {
                     var objReturn = JSON.parse(dataErr);
                     Msg = common.getDescription(objReturn.c);
+                    utils.translateLang('transaction.payment');
                     switch (objReturn.c) {
                         case -10108://quantity
                         case -13: //số lượng thẻ ko đủ
@@ -2211,6 +2253,7 @@
                     }
                 }
                 else {
+                    utils.translateLang('transaction.payment');
                     ModalNotificationInit(Msg, "", "error", "", btnClose);
                 }
                 $("#btnPaymentCheckInput").removeClass('disabled');
@@ -2300,6 +2343,7 @@
             if (typeof JSON.parse(dataErr) === "object") {
                 var objReturn = JSON.parse(dataErr);
                 Msg = common.getDescription(objReturn.c);
+                utils.translateLang('transaction.payment');
                 switch (objReturn.c) {
                     case -6: case -7: case -49: case -111: case -10015: case -10105: case -10021://OTP Fail
                         payment.SwapErrorResult(confirmCode, Msg);
@@ -2318,6 +2362,7 @@
                 }
             }
             else {
+                utils.translateLang('transaction.payment');
                 ModalNotificationInit(Msg, "", "error", "", btnClose);
             }
             $("#btnPaymentConfirm").removeClass('disabled');
@@ -2354,9 +2399,11 @@
             if (typeof JSON.parse(dataErr) === "object") {
                 var objReturn = JSON.parse(dataErr);
                 Msg = common.getDescription(objReturn.c);
+                utils.translateLang('transaction.payment');
                 ModalNotificationInit(Msg, "", "error", "", btnClose);
             }
             else {
+                utils.translateLang('transaction.payment');
                 ModalNotificationInit(Msg, "", "error", "", btnClose);
             }
             return;

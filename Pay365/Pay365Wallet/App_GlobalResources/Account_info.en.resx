@@ -361,4 +361,10 @@
   <data name="lbl_linkCard" xml:space="preserve">
     <value>Linked card</value>
   </data>
+  <data name="lbl_accountHolder" xml:space="preserve">
+    <value>Account holder</value>
+  </data>
+  <data name="lbl_cardnumber" xml:space="preserve">
+    <value>Card number</value>
+  </data>
 </root>
