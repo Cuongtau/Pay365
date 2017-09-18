@@ -203,7 +203,8 @@ a.disabled {
     margin-bottom: 15px !important;
 }
 
-#main_topup_bank .input-field .error-text, #payment_step1 .input-field .error-text, #View_PaymentConfirm .input-field .error-text {
+#main_topup_bank .input-field .error-text, #payment_step1 .input-field .error-text, #View_PaymentConfirm .input-field .error-text,
+#main_topup_bank .input-field .success-text, #payment_step1 .input-field .success-text, #View_PaymentConfirm .input-field .success-text {
     margin-left: 3rem;
     text-align: left;
 }
