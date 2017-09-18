@@ -131,6 +131,7 @@
     "ACCOUNT_VERIFIED": "Tài khoản đã chứng thực",
     "TRANSACTION_PROCESSING": "Giao dịch đang được sử lý",
     "ERRORCODE_SACOMBANK": "Mã xác thực không hợp lệ",
+    "LINKCARD_NOTSUCCESS": "Liên kết thẻ không thành công. Vui lòng thử lại sau",
     "NICKNAME_NOTEXISTS": "Tài khoản không tồn tại",
     "AMOUNT_NOTVALID": "Số tiền không hợp lệ",
     "BANK_NOTSUPPORT": "Ngân hàng không được hỗ trợ",

@@ -1658,7 +1658,8 @@ linkcard = new function () {
                 }
                 utils.unLoading();
             }, function (err) {
-                var msg = common.getDescription(err.c);
+                var objReturn = JSON.parse(err);
+                var msg = common.getDescription(objReturn.c);
                 $('#error_linkcard').text(msg);
                 console.log(err);
                 utils.unLoading();
@@ -1695,7 +1696,8 @@ linkcard = new function () {
             }, function (err) {
                 utils.unLoading();
                 console.log(err);
-                var msg = common.getDescription(err.c);
+                var objReturn = JSON.parse(err);
+                var msg = common.getDescription(objReturn.c);
                 ModalNotificationInit(msg, "", "error", "", btnClose);
             });
     };
@@ -1733,7 +1735,8 @@ linkcard = new function () {
                     utils.unLoading();
                 }, function (err) {
                     console.log(err);
-                    var msg = common.getDescription(err.c);
+                    var objReturn = JSON.parse(err);
+                    var msg = common.getDescription(objReturn.c);
                     ModalNotificationInit(msg, "", "error", "", btnClose);
                     utils.unLoading();
                 });

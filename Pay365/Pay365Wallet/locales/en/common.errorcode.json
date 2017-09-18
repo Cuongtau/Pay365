@@ -131,6 +131,7 @@
     "ACCOUNT_VERIFIED": "Account is verified",
     "TRANSACTION_PROCESSING": "Transaction is processing. ",
     "ERRORCODE_SACOMBANK": "Activation code is invalid. Please try again later",
+    "LINKCARD_NOTSUCCESS": "Link card not success",
     "NICKNAME_NOTEXISTS": "Account is not exists",
     "AMOUNT_NOTVALID": "Amount is invalid",
     "BANK_NOTSUPPORT": "This bank is not support",

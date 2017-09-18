@@ -369,6 +369,9 @@
             case -20016:
                 description = i18n.t('Error.NOT_ENOUGH_MONEY');
                 break;
+            case -100001:
+                description = i18n.t('Error.LINKCARD_NOTSUCCESS'); // Gắn kết không thành công
+                break;
             case -100017:
                 description = i18n.t('Error.NICKNAME_NOTEXISTS'); // Tài khoản không tồn tại
                 break;
