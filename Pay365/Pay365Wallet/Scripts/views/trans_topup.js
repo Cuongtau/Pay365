@@ -130,30 +130,28 @@
         $('#topup_captcha, #cardContentStep1 #topup_amount').val('');
         utils.getCaptcha('main_topup_bank', 'payment');
         topup.GetListTopupRecent(false, true, 'topup_log_recent_t');
-        payment.actionView("ts-parent", "next", "View_PaymentConfirm");           
+        payment.actionView("ts-parent", "next", "View_PaymentConfirm");
         $('#topupByLinkedBank').hide();
         //ts-child height: 418px
         $('#topupByBank').show();
     };
 
-    this.TopupLinkedBankDetail = function (t) {
+    this.TopupLinkedBankDetail = function (t, bankAccount, subscriptionID) {
         var bankInfo = $(t).data('bankinfo');
         bankInfo = bankInfo.split('#');
         let $bankElm = $('#topup_bank_info');
         $bankElm.find('img').attr('src', utils.rootUrl() + 'Content/assets/images/brands/logo-banks/' + bankInfo[1] + '.png');
         $('#topup_bankcode').val(bankInfo[1]);
         $bankElm.find('#topup_bank_name').text(common.getbankFullName(bankInfo[1]));
-        $('#topup_account').val(utils.transactionAccountNumberFormat(null, null, header.AccountInfo.Username));
-        $('#topup_account').siblings('label').addClass('active');
-        $('#topup_account_name').text(header.AccountInfo.Fullname);
+        $('#topup_linkedaccount').val(bankAccount);
+        $('#topup_linkedaccount').siblings('label').addClass('active');
         $('#topup_bank_serviceid').val($(t).data('serviceid'));
-        $('#topup_captcha, #cardContentStep1 #topup_amount').val('');
-        utils.getCaptcha('main_topup_bank', 'payment');
+        $('#topupByLinkedBank').data('subscriptionid', subscriptionID);
+        $('#topupByLinkedBank #topuplinked_amount').val('');
         topup.GetListTopupRecent(false, true, 'topup_log_recent_t');
         payment.actionView("ts-parent", "next", "View_PaymentConfirm");
         $('#topupByBank').hide();
         $('#topupByLinkedBank').show();
-
     };
 
     this.TopupBankDetailRecent = function (t) {
@@ -162,24 +160,24 @@
         $('#topup_bank_t').find('a[data-bankcode="' + bankcode + '"]').click();
     };
 
-    this.CalculateTotalAmount = function () {
-
-        var amount = $('#topup_amount').val();
+    this.CalculateTotalAmount = function (formID) {
+        var $formID = $('#' + formID)
+        var amount = $formID.find('#topup_amount').val();
         if (!amount) {
             if (header.AccountInfo.CurrentLang === 'en') {
-                $('#topup_total_amount').text('0đ');
-                $('#topup_fee_rate').text('0đ');
+                $formID.find('#topup_total_amount').text('0đ');
+                $formID.find('#topup_fee_rate').text('0đ');
             }
             else {
-                $('#topup_total_amount').text('0đ');
-                $('#topup_fee_rate').text('0đ');
+                $formID.find('#topup_total_amount').text('0đ');
+                $formID.find('#topup_fee_rate').text('0đ');
             }
             return;
         }
 
         if (isNaN(amount.replace(/[,.]/g, ''))) {
-            $('#topup_amount').val(utils.formatMoney($('#topup_amount').val().replace(/\D/g, '')));
-            amount = $('#topup_amount').val();
+            $formID.find('#topup_amount').val(utils.formatMoney($formID.find('#topup_amount').val().replace(/\D/g, '')));
+            amount = $formID.find('#topup_amount').val();
         }
 
         var serviceID = $('#topup_bank_serviceid').val();
@@ -187,12 +185,12 @@
         utils.getData(utils.trasactionApi() + "Cashin/GetChargePolicy", { Amount: amount.replace(/[,.]/g, ''), ServiceID: serviceID }, function (data) {
             if (data.c >= 0 && data.d) {
                 if (header.AccountInfo.CurrentLang === 'en') {
-                    $('#topup_total_amount').text(utils.formatMoney(data.d.GrandAmount) + 'đ');
-                    $('#topup_fee_rate').text(utils.formatMoney(data.d.Fee) + 'đ');
+                    $formID.find('#topup_total_amount').text(utils.formatMoney(data.d.GrandAmount) + 'đ');
+                    $formID.find('#topup_fee_rate').text(utils.formatMoney(data.d.Fee) + 'đ');
                 }
                 else {
-                    $('#topup_total_amount').text(utils.formatMoney(data.d.GrandAmount) + 'đ');
-                    $('#topup_fee_rate').text(utils.formatMoney(data.d.Fee) + 'đ');
+                    $formID.find('#topup_total_amount').text(utils.formatMoney(data.d.GrandAmount) + 'đ');
+                    $formID.find('#topup_fee_rate').text(utils.formatMoney(data.d.Fee) + 'đ');
                 }
             }
         }, function (err) {
@@ -236,29 +234,95 @@
         $('.p-error-text').remove();
         $('input').removeClass('error');
         utils.translateLang('transaction.topupmoney');
-        var accountName = $('#topup_account').val();
-        if (!accountName) {
-            $('#topup_account').addClass('error');
-            $('#topup_account').parent().find('.error-text').text(i18n.t('error.account_empty'));
+        
+        //Nap qua the lien ket
+        if ($('#topupByLinkedBank').is(":visible")){
+            var $formID = $('#topupByLinkedBank');
+            //So tien
+            var amount = $formID.find('#topup_amount').val();
+            if (!amount) {
+                $formID.find('#topup_amount').addClass('error');
+                $formID.find('#topup_amount').parent().find('.error-text').text(i18n.t('error.amount_empty'));
+                return;
+            }
+            //<10k thi bao lỗi
+            if (parseInt(amount.replace(/[,.]/g, '')) < 10000) {
+                $formID.find('#topup_amount').addClass('error');
+                $formID.find('#topup_amount').parent().find('.error-text').text(i18n.t('error.bellow_min_amount'));
+                return;
+            }
+            var bankCode = $('#topup_bankcode').val();
+
+            topup.actionTracking = 'CashinViaLinkedBank - ' + bankCode + '-' + amount;
+            $("#cardContentStep1 #bt_topup_confirm").addClass('disabled');
+            var param = {
+                Amount: amount.replace(/[,.]/g, ''),
+                BankCode: bankCode,
+                SubscriptionID: $('#topupByLinkedBank').data('subscriptionid'),
+            };
+
+            utils.loading();
+            utils.postData(utils.trasactionApi() + "Cashin/PaymentSubscription", param, function (data) {
+                utils.unLoading();
+                if (data.c >= 0) {
+                    if (header.AccountInfo.CurrentLang === 'en') {
+                        ModalNotificationResultInit(null, null, utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'đ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'đ')) }), 'Go home page', 'Continue cashin', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'nap-tien'; });
+                    } else {
+                        ModalNotificationResultInit(null, null, utils.renderModalContent({ _transid: data.d.TransactionID, _totalamount: (!data.d.Amount ? '' : (utils.formatMoney(data.d.Amount) + 'đ')), _balance: ((!data.p || data.p.length === 0) ? '' : (utils.formatMoney(data.p[0]) + 'đ')) }), 'Về trang chủ', 'Tiếp tục nạp', function () { window.location.href = utils.rootUrl() + 'thong-tin'; }, function () { window.location.href = utils.rootUrl() + 'nap-tien'; });
+                    }
+                    ga('send', 'event', 'Transaction_Cashin', topup.actionTracking, 'Success');
+                    return;
+                }
+                common.saveLog(data);
+                utils.getCaptcha('main_topup_bank', 'payment');
+                $('#topup_captcha').val('');
+                common.getFormDescription(data.c, '#cardContentStep1 #topupByLinkedBank');
+                $('#cardContentStep1').parent('#ts-child').height(450);
+
+                ga('send', 'event', 'Transaction_Cashin', topup.actionTracking, 'Fail');
+            }, function (err) {
+                common.saveLog(err);
+                $("#cardContentStep1 #bt_topup_confirm").removeClass('disabled');
+                $('#cardContentStep1').parent('#ts-child').height(450);
+                utils.unLoading();
+                console.log(err);
+                if (utils.checkResponseIsValid(err)) {
+                    var dataErr = JSON.parse(err);
+                    common.getFormDescription(dataErr.c, '#cardContentStep1 #topupByLinkedBank');
+                    ga('send', 'event', 'Transaction_Cashin', topup.actionTracking + '-StepCheckBank', 'Fail');
+                    return;
+                }
+                common.getFormDescription(-9999999, '#cardContentStep1 #topupByLinkedBank');
+                ga('send', 'event', 'Transaction_Cashin', topup.actionTracking, 'Fail');
+            });
+
             return;
         }
-        var amount = $('#topup_amount').val();
+
+        var $formID = $('#topupByBank');
+        var accountName = $formID.find('#topup_account').val();
+        if (!accountName) {
+            $formID.find('#topup_account').addClass('error');
+            $formID.find('#topup_account').parent().find('.error-text').text(i18n.t('error.account_empty'));
+            return;
+        }
+        var amount = $formID.find('#topup_amount').val();
         if (!amount) {
-            $('#topup_amount').addClass('error');
-            $('#topup_amount').parent().find('.error-text').text(i18n.t('error.amount_empty'));
+            $formID.find('#topup_amount').addClass('error');
+            $formID.find('#topup_amount').parent().find('.error-text').text(i18n.t('error.amount_empty'));
             return;
         }
 
         if (parseInt(amount.replace(/[,.]/g, '')) < 10000) {
-            $('#topup_amount').addClass('error');
-            $('#topup_amount').parent().find('.error-text').text(i18n.t('error.bellow_min_amount'));
+            $formID.find('#topup_amount').addClass('error');
+            $formID.find('#topup_amount').parent().find('.error-text').text(i18n.t('error.bellow_min_amount'));
             return;
         }
 
-        var captcha = $('#topup_captcha').val();
+        var captcha = $formID.find('#topup_captcha').val();
         if (!captcha) {
-            $('#topup_captcha').addClass('error');
-            $('#topup_captcha').parent().find('.error-text').text(i18n.t('error.captcha_empty'));
+            $formID.find('#topup_captcha').addClass('error');
+            $formID.find('#topup_captcha').parent().find('.error-text').text(i18n.t('error.captcha_empty'));
             return;
         }
         //Amount int
@@ -536,26 +600,59 @@
 
     // Nạp qua thẻ gắn kết
     this.TopupLinkedBank = function (t) {
-        //this.TopupLinkedBankDetail(t);
-        //return;
-        utils.setCookie('LinkCard', false);
-        var msg = "Bạn chưa liên kết với ngân hàng này. Bạn có muốn thực hiện liên kết không";
-        var headerContent = "Thất bại";
-        var btnClose = "Đóng";
-        var btnContinue = "Liên kết";
-        if (header.AccountInfo.CurrentLang === 'en') {
-            msg = "Sacombank have not linked with your account yet. Do you want to link your account?";
-            headerContent = "Fail";
-            btnClose = "Close";
-            btnContinue = "Link Card";
-        }
-        ModalNotificationResultInit('danger', headerContent, msg, btnClose, btnContinue,
-            function () {
+        var bankID = $(t).data('bankinfo').split('#')[0];
+        var callbackSuccess = function (bankData) {
+            topup.TopupLinkedBankDetail(t, bankData.AssociateUsername, bankData.AssociateAccountID);
+        };
+        var callbackFail = function () {
+            utils.setCookie('LinkCard', false);
+            var msg = "Bạn chưa liên kết với ngân hàng này. Bạn có muốn thực hiện liên kết không";
+            var headerContent = "Thất bại";
+            var btnClose = "Đóng";
+            var btnContinue = "Liên kết";
+            if (header.AccountInfo.CurrentLang === 'en') {
+                msg = "Bank have not linked with your account yet. Do you want to link your account?";
+                headerContent = "Fail";
+                btnClose = "Close";
+                btnContinue = "Link Card";
+            }
+            ModalNotificationResultInit('danger', headerContent, msg, btnClose, btnContinue,
+                function () {
                     window.location.href = utils.rootUrl() + 'nap-tien';
-            },
-            function () {
-                var setcookie = utils.setCookie('LinkCard', true); // set cookie
-                window.location.href = utils.rootUrl() + 'link-card';
-            });
+                },
+                function () {
+                    var setcookie = utils.setCookie('LinkCard', true); // set cookie
+                    window.location.href = utils.rootUrl() + 'link-card';
+                });
+        };
+        this.GetLinkedBanks(bankID, callbackSuccess, callbackFail);
     };
+
+    this.GetLinkedBanks = function (bankID, callbackSuccess, callbackFail) {
+        utils.getData(utils.trasactionApi() + "AccountAssociate/GetAccountAssociateInfo", { AssociateSystem: bankID }, function (data) {
+            //Thanh cong thi nhay vao form nap
+            console.log(data);
+            if (data.c >= 0 && data.d && typeof callbackSuccess === 'function') {
+                callbackSuccess(data.d);
+                return;
+            }
+            // thong tin ko hop le thi Alert
+            if (header.AccountInfo.CurrentLang === 'en')
+                ModalNotificationInit('System is busy, please try again later', null, 'error', null, "Close");
+            else
+                ModalNotificationInit('Hệ thống đang bận, vui lòng thử lại sau', null, 'error', null, "Đóng");
+        }, function (err) {
+            //That bai thi thong bao tai khoan chua dc lien ket
+            console.log(err);
+            if (typeof callbackFail === 'function')
+                callbackFail();
+            else {
+                // thong tin ko hop le thi Alert
+                if (header.AccountInfo.CurrentLang === 'en')
+                    ModalNotificationInit('System is busy, please try again later', null, 'error', null, "Close");
+                else
+                    ModalNotificationInit('Hệ thống đang bận, vui lòng thử lại sau', null, 'error', null, "Đóng");
+            }
+        });
+    }
 };
