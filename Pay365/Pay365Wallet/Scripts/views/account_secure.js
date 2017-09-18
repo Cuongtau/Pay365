@@ -198,7 +198,7 @@
             var Msg = '';
             if (typeof JSON.parse(dataErr) === "object") {
                 var objReturn = JSON.parse(dataErr);
-                if (objReturn.c == -10148)// Yêu cầu bảo mật bằng OTP
+                if (objReturn.c == -10148 || objReturn.c == -10136 || objReturn.c == -632)// Yêu cầu bảo mật bằng OTP
                 {
                     account_secure.actionSecure(0, "next", "boxRegisterOTPConfirm");
                     nextDiv.find(".typeSecureReg").text(account_secure.secureName);
@@ -310,58 +310,56 @@
         utils.postData(urlAccountApi, {}, function (data) {
             utils.unLoading();
             account_secure.statusBtn = true;
-            if (data.c >= 0) {
-                account_secure.actionSecure(0, "next", "boxRegisterOTPConfirm");
-                nextDiv.find(".typeSecureReg").text(account_secure.secureName);
-                nextDiv.find(".limitSecureReg").html(utils.formatMoney(account_secure.minAmount) + "<sup>VNĐ</sup>");
-                nextDiv.find(".txtNewLimitSecure").html(utils.formatMoney(valueLimit) + "<sup>VNĐ</sup>");
-                nextDiv.find("#btnConfirmReg").attr("onclick", "account_secure.ChangeLimitSecure_confirm();");
-                nextDiv.find("#btnBackReg").attr("onclick", "account_secure.actionSecure(0,'prev','" + currentDiv + "');");
-                nextDiv.find("#btnResendOTP").hide();
-                nextDiv.find("#txtNoteSecure2").hide();
-                if (data.p && typeof data.p == "object" && data.p.length > 0 && parseInt(data.p[0].SecurityType) > 0)
-                    secureType_current = parseInt(data.p[0].SecurityType);
-                if (secureType_current == 1) {
-                    noteSecure = utils.formatString($.t('accountSecure.noteUpdateLimitSMS'), header.AccountInfo.Username);
-                    $("#boxRegisterOTPConfirm .security-image").find('img').attr("src", utils.rootUrl() + "Content/assets/images/security-sms.svg");
-                    $("#txtNoteSecure2").show();
-                }
-                else if (secureType_current == 2) {
-                    noteSecure = utils.formatString($.t('accountSecure.noteUpdateLimitEmail'), header.AccountInfo.Email);
-                    $("#boxRegisterOTPConfirm .security-image").find('img').attr("src", utils.rootUrl() + "Content/assets/images/security-email.svg");
-                    nextDiv.find("#btnResendOTP").attr("onclick", "account_secure.Resend_OTP(" + 2 + ");");
-                    nextDiv.find("#btnResendOTP").show();
-                }
-                else if (secureType_current == 3) {
-                    noteSecure = $.t('accountSecure.noteSecureApp');
-                    $("#boxRegisterOTPConfirm .security-image").find('img').attr("src", utils.rootUrl() + "Content/assets/images/security-app.svg");
-                }
-                else {
-                    noteSecure = $.t('accountSecure.noteSecureVoice');
-                    $("#boxRegisterOTPConfirm .security-image").find('img').attr("src", utils.rootUrl() + "Content/assets/images/security-voice.svg");
-                }
-
-                nextDiv.find("#hd_title").text($.t('accountSecure.changeLimit'));
-                nextDiv.find("#txtNoteSecure").html(noteSecure);
-                $("#r_new_limit").show();
-                $("#boxRegisterOTPConfirm").keypress(function (event) {
-                    if (event.which == 13) {
-                        event.preventDefault();
-                        account_secure.ChangeLimitSecure_confirm();
-                    }
-                });
-                setTimeout(function () {
-                    $("#txtVerifyCode").focus();
-                }, 300);
-                return;
+            account_secure.actionSecure(0, "next", "boxRegisterOTPConfirm");
+            nextDiv.find(".typeSecureReg").text(account_secure.secureName);
+            nextDiv.find(".limitSecureReg").html(utils.formatMoney(account_secure.minAmount) + "<sup>VNĐ</sup>");
+            nextDiv.find(".txtNewLimitSecure").html(utils.formatMoney(valueLimit) + "<sup>VNĐ</sup>");
+            nextDiv.find("#btnConfirmReg").attr("onclick", "account_secure.ChangeLimitSecure_confirm();");
+            nextDiv.find("#btnBackReg").attr("onclick", "account_secure.actionSecure(0,'prev','" + currentDiv + "');");
+            nextDiv.find("#btnResendOTP").hide();
+            nextDiv.find("#txtNoteSecure2").hide();
+            if (data.p && typeof data.p == "object" && data.p.length > 0 && parseInt(data.p[0].SecurityType) > 0)
+                secureType_current = parseInt(data.p[0].SecurityType);
+            if (secureType_current == 1) {
+                noteSecure = utils.formatString($.t('accountSecure.noteUpdateLimitSMS'), header.AccountInfo.Username);
+                $("#boxRegisterOTPConfirm .security-image").find('img').attr("src", utils.rootUrl() + "Content/assets/images/security-sms.svg");
+                $("#txtNoteSecure2").show();
             }
+            else if (secureType_current == 2) {
+                noteSecure = utils.formatString($.t('accountSecure.noteUpdateLimitEmail'), header.AccountInfo.Email);
+                $("#boxRegisterOTPConfirm .security-image").find('img').attr("src", utils.rootUrl() + "Content/assets/images/security-email.svg");
+                nextDiv.find("#btnResendOTP").attr("onclick", "account_secure.Resend_OTP(" + 2 + ");");
+                nextDiv.find("#btnResendOTP").show();
+            }
+            else if (secureType_current == 3) {
+                noteSecure = $.t('accountSecure.noteSecureApp');
+                $("#boxRegisterOTPConfirm .security-image").find('img').attr("src", utils.rootUrl() + "Content/assets/images/security-app.svg");
+            }
+            else {
+                noteSecure = $.t('accountSecure.noteSecureVoice');
+                $("#boxRegisterOTPConfirm .security-image").find('img').attr("src", utils.rootUrl() + "Content/assets/images/security-voice.svg");
+            }
+
+            nextDiv.find("#hd_title").text($.t('accountSecure.changeLimit'));
+            nextDiv.find("#txtNoteSecure").html(noteSecure);
+            $("#r_new_limit").show();
+            $("#boxRegisterOTPConfirm").keypress(function (event) {
+                if (event.which == 13) {
+                    event.preventDefault();
+                    account_secure.ChangeLimitSecure_confirm();
+                }
+            });
+            setTimeout(function () {
+                $("#txtVerifyCode").focus();
+            }, 300);
+            return;
         }, function (dataErr) {
             utils.unLoading();
             account_secure.statusBtn = true;
             var Msg = '';
             if (typeof JSON.parse(dataErr) === "object") {
                 var objReturn = JSON.parse(dataErr);
-                if (objReturn.c == -10148)// Yêu cầu bảo mật bằng OTP
+                if (objReturn.c == -10148 || objReturn.c == -10136 || objReturn.c == -632)// Yêu cầu bảo mật bằng OTP
                 {
                     account_secure.actionSecure(0, "next", "boxRegisterOTPConfirm")
                     nextDiv.find(".typeSecureReg").text(account_secure.secureName);
