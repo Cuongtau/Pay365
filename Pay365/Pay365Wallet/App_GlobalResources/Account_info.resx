@@ -360,4 +360,10 @@
   <data name="lbl_linkCard" xml:space="preserve">
     <value>Liên kết thẻ</value>
   </data>
+  <data name="lbl_accountHolder" xml:space="preserve">
+    <value>Tên chủ thẻ</value>
+  </data>
+  <data name="lbl_cardnumber" xml:space="preserve">
+    <value>Số thẻ</value>
+  </data>
 </root>

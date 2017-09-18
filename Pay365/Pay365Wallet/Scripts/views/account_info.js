@@ -1628,18 +1628,19 @@ linkcard = new function () {
     };
 
     this.createLinkCard_Step2 = function () {
+        utils.translateLang('profile.account');
         $('#error_linkcard').text("");
         var bankCard = $('#topup_bankcode').val();
 
         var cardNumber = $('#card_number').val();
         if (!cardNumber) {
-            $('#error_linkcard').text("Vui lòng nhập số thẻ");
+            $('#error_linkcard').text(i18n.t('linkcard.emptyCardNumber'));
             $('#card_number').focus();
             return;
         }
         var accountHolder = $('#account_holder').val();
         if (!accountHolder) {
-            $('#error_linkcard').text("Vui lòng nhập tên chủ thẻ");
+            $('#error_linkcard').text(i18n.t('linkcard.emptyAccountHolder'));
             $('#account_holder').focus();
             return;
         }
@@ -1680,12 +1681,17 @@ linkcard = new function () {
         var param = {
             Otp: otp
         };
+
+        var btnClose = "Đóng";
         utils.postData(utils.trasactionApi() + "AccountAssociate/SubscriptionConfirm", param,
             function (data) {
                 utils.unLoading();
                 console.log(data);
-                var Msg = "Liên kết ngân hàng thành công";
-                ModalNotificationInit(Msg, "", "success", "", "Đóng");
+                var msg = "Liên kết ngân hàng thành công";
+                if (header.AccountInfo.CurrentLang == 'en') {
+                    msg = "Link card success";
+                }
+                ModalNotificationInit(msg, "", "success", "", btnClose);
                 setTimeout(function () {
                     window.location.href = utils.rootUrl() + "link-card";
                 }, 3000);
@@ -1693,7 +1699,7 @@ linkcard = new function () {
                 utils.unLoading();
                 console.log(err);
                 var msg = common.getDescription(err.c);
-                ModalNotificationInit(msg, "", "error", "", "Đóng");
+                ModalNotificationInit(msg, "", "error", "", btnClose);
             });
     };
 
@@ -1706,21 +1712,33 @@ linkcard = new function () {
         var content = "Bạn có chắc muốn hủy gắn kết thẻ này này không ?";
         var btnClose = "Đóng";
         var btnContinue = "Hủy";
-        ModalNotificationResultInit("warning", "Thông báo", content, btnClose, btnContinue, function () {
+        var headerTitle = "Thông báo";
+        if (header.AccountInfo.CurrentLang == 'en') {
+            content = "Are you sure you want to unlink card?";
+            btnClose = "Close";
+            btnContinue = "Cancel";
+            headerTitle = "Notification";
+        }
+        ModalNotificationResultInit("warning", headerTitle, content, btnClose, btnContinue, function () {
             return;
         }, function () {
             utils.postData(utils.trasactionApi() + "AccountAssociate/ClientSubscriptionDelete", param,
                 function (data) {
                     console.log(data);
                     var msg = "Hủy gắn kết thẻ thành công";
-                    ModalNotificationInit(msg, "", "success", "", "Đóng");
-                    setTimeout(function () {
-                        window.location.href = utils.rootUrl() + "link-card";
-                    }, 3000);
+                    if (header.AccountInfo.CurrentLang == 'en') {
+                        msg = "Cancel link card success";
+                    }
+                    ModalNotificationInit(msg, "", "success", "", btnClose);
+                    $('#getlinkCard_info').remove();
+                    $('#linkCard_btnAdd').show();
+                    //setTimeout(function () {
+                    //    window.location.href = utils.rootUrl() + "link-card";
+                    //}, 3000);
                 }, function (err) {
                     console.log(err);
                     var msg = common.getDescription(err.c);
-                    ModalNotificationInit(msg, "", "error", "", "Đóng");
+                    ModalNotificationInit(msg, "", "error", "", btnClose);
                 });
         });
     };
