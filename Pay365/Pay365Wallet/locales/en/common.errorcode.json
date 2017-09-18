@@ -138,6 +138,8 @@
     "NOT_ENOUGHT_BALANCE": "You not enough balance",
     "LINKCARD_EXISTS": "This card is already link to another account",
     "CARDNUMBER_NOTACTIVE_ONLINE": "Card has not registered online transaction service",
+    "FAIL_OTP_TIMEOUT": "OTP time out",
+    "FAIL_OTP_ERROR": "OTP is invalid",
     "DEFAULT": "System fail. Please come back later !"
   }
 }

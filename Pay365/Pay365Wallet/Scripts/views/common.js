@@ -393,6 +393,12 @@
             case -100031:
                 description = i18n.t('Error.CARDNUMBER_NOTACTIVE_ONLINE'); //"Thẻ chưa đăng ký dịch vụ giao dịch trực tuyến.";
                 break;
+            case -100032:
+                description = i18n.t('Error.FAIL_OTP_ERROR'); // OTP sai
+                break;
+            case -100029:
+                description = i18n.t('Error.FAIL_OTP_TIMEOUT'); // OTP hết hiệu lực
+                break;
             case -100101:
                 description = i18n.t('Error.PAYMENT_FAIL');
                 break;

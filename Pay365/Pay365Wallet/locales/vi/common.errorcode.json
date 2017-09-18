@@ -138,6 +138,8 @@
     "NOT_ENOUGHT_BALANCE": "Không đủ số dư để thanh toán",
     "LINKCARD_EXISTS": "Thẻ này đã được liên kết với một tài khoản khác",
     "CARDNUMBER_NOTACTIVE_ONLINE": "Thẻ chưa đăng ký dịch vụ giao dịch trực tuyến",
+    "FAIL_OTP_TIMEOUT": "Mã OTP đã hết hiệu lực",
+    "FAIL_OTP_ERROR": "Mã OTP không đúng.",
     "DEFAULT": "Hệ thống đang bận. Vui lòng thử lại sau !"
   }
 }
