@@ -1667,7 +1667,6 @@ linkcard = new function () {
     };
 
     this.createLinkCard_Step3 = function () {
-        utils.loading();
         utils.translateLang('transaction.transfermoney');
         var otp = $('#txt_secureCode').val();
         if (!otp) {
@@ -1679,8 +1678,8 @@ linkcard = new function () {
         var param = {
             Otp: otp
         };
-
         var btnClose = "Đóng";
+        utils.loading();
         utils.postData(utils.trasactionApi() + "AccountAssociate/SubscriptionConfirm", param,
             function (data) {
                 utils.unLoading();
