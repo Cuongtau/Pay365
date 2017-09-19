@@ -105,16 +105,7 @@
             $("#ddl_selectAmount").removeClass("focus");
             $("#ddl_selectAmount").find(".dropdown-button").removeClass("select-only");
             payment.BindListCard();
-            payment.BindTempPaymentRecent(5, "loading", function () {
-                $(".box-bank-icon .bank-icon").on('mousemove', function (e) {
-                    $(this).find('img').removeClass("animated zoomIn");
-                    var target = e.currentTarget; var findIcon = $(target).find('img');
-                    findIcon.addClass('animated zoomIn');
-                }).on('mouseout', function (e) {
-                    var target = e.currentTarget; var findIcon = $(target).find('img');
-                    findIcon.removeClass('animated zoomIn');
-                });
-            });
+            payment.BindTempPaymentRecent(5, "loading");
             $("#payment_step1").keypress(function (event) {
                 if (event.which == 13) {
                     event.preventDefault();
@@ -146,16 +137,7 @@
             $("#btnPaymentCheckInput").attr("onclick", "payment.BuyCard_checkInput();");
             $("#btnPaymentConfirm").attr("onclick", "payment.BuyCard_Confirm();");
             payment.BindListCard();
-            payment.BindTempPaymentRecent(6, "loading", function () {
-                $(".box-bank-icon .bank-icon").on('mousemove', function (e) {
-                    $(this).find('img').removeClass("animated zoomIn");
-                    var target = e.currentTarget; var findIcon = $(target).find('img');
-                    findIcon.addClass('animated zoomIn');
-                }).on('mouseout', function (e) {
-                    var target = e.currentTarget; var findIcon = $(target).find('img');
-                    findIcon.removeClass('animated zoomIn');
-                });
-            });
+            payment.BindTempPaymentRecent(6, "loading");
             $("#payment_step1").keypress(function (event) {
                 if (event.which == 13) {
                     event.preventDefault();
@@ -168,16 +150,7 @@
             $("#btnPaymentCheckInput").attr("onclick", "payment.BuyCard_checkInput();");
             $("#btnPaymentConfirm").attr("onclick", "payment.BuyCard_Confirm();");
             payment.BindListCard();
-            payment.BindTempPaymentRecent(4, "loading", function () {
-                $(".box-bank-icon .bank-icon").on('mousemove', function (e) {
-                    $(this).find('img').removeClass("animated zoomIn");
-                    var target = e.currentTarget; var findIcon = $(target).find('img');
-                    findIcon.addClass('animated zoomIn');
-                }).on('mouseout', function (e) {
-                    var target = e.currentTarget; var findIcon = $(target).find('img');
-                    findIcon.removeClass('animated zoomIn');
-                });
-            });
+            payment.BindTempPaymentRecent(4, "loading");
             $("#payment_step1").keypress(function (event) {
                 if (event.which == 13) {
                     event.preventDefault();

@@ -1,4 +1,6 @@
 ﻿using Pay365Wallet.Helpers;
+using System;
+using System.Configuration;
 using System.Web.Mvc;
 
 namespace Pay365Wallet.Controllers
@@ -9,7 +11,22 @@ namespace Pay365Wallet.Controllers
         {
             return View();
         }
-
+        //[Route("~/bao-tri")]
+        //public ActionResult SiteMaintain()
+        //{
+        //    var time = ConfigurationManager.AppSettings["WEBSITE_MAINTAIN"];
+        //    double totalSecond = 1800;
+        //    try
+        //    {
+        //        var endDate = DateTime.ParseExact(time, "yyyyMMdd-HHmmss", System.Globalization.CultureInfo.InvariantCulture);
+        //        totalSecond = (endDate - DateTime.Now).TotalSeconds;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //    ViewBag.TotalTime = totalSecond <= 0 ? 1800 : totalSecond;
+        //    return View();
+        //}
         public ActionResult ChangeLanguage(string lang, string refUrl)
         {
             new LanguageHelper().SetLanguage(lang);

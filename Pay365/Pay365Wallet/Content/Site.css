@@ -36,7 +36,7 @@ a.disabled {
     pointer-events: none;
     cursor: default;
 }
-
+.card .coming-soon {z-index:99}
 #formLogin .form-data .eye, #form_register .form-data .eye {
     right: 3%;
 }

@@ -11,7 +11,7 @@ namespace Pay365Wallet
     {
         protected void Application_Start()
         {
-            System.Web.Optimization.BundleTable.EnableOptimizations = false;
+            System.Web.Optimization.BundleTable.EnableOptimizations = true;
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

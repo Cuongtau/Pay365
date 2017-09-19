@@ -23,7 +23,7 @@
         $(".tit_rs_sms").show();
         $(".tit_rs_email").hide();
         $("#formForgetPass > .foot").hide();
-        SlideToogle("ts-1", "next");
+        SlideToogle("ts-1", "next","resetPassStep1");
 
         setTimeout(function () {
             $("#txtUsername").focus();
@@ -43,7 +43,7 @@
         $(".tit_rs_sms").hide();
         $(".tit_rs_email").show();
         $("#formForgetPass > .foot").hide();
-        SlideToogle("ts-1", "next");
+        SlideToogle("ts-1", "next", "resetPassStep1");
 
         setTimeout(function () {
             $("#txtUsername").focus();
@@ -141,7 +141,7 @@
                 //window.location.href = utils.rootUrl() + "login";
                 //return;
 
-                SlideToogle("ts-1", "next");
+                SlideToogle("ts-1", "next","resetPassStep2");
                 utils.translateLang('profile.password');
 
                 account_changepass.InstanceFormValidation();
@@ -174,7 +174,7 @@
                         $("#sendOTP_Mobile").text(username.val().trim());
                     }
 
-                    SlideToogle("ts-1", "next");
+                    SlideToogle("ts-1", "next", "resetPassStep2");
                     utils.translateLang('profile.password');
 
                     account_changepass.InstanceFormValidation();

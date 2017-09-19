@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="@Html.Raw(Pay365.Utils.Config.Domain)assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="@Html.Raw(Pay365.Utils.Config.Domain)css/maintain.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=vietnamese" rel="stylesheet">
+
+</head>
+<body>
+    <div class="page-404">
+        <div class="content">
+            <div class="icon"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/baotrihethong.jpg" alt=""></div>
+            <div class="tt">Website đang bảo trì</div>
+            <div class="des">Thời gian bảo trì dự kiến <b id="time">00 D 01 H 00 M</b></div>
+        </div> <!-- end content -->
+    </div> <!-- end page 404 -->
+    <script src="@Html.Raw(Pay365.Utils.Config.Domain)Scripts/jquery-3.2.1.min.js"></script>
+    <script src="@Html.Raw(Pay365.Utils.Config.Domain)Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var delta = parseFloat(@ViewBag.TotalTime);
+        var days, hours, minutes, seconds
+        var timerId = setInterval(countdown, 1000);
+        function countdown() {
+            if (delta == 0) {
+                clearTimeout(timerId);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+            } else {
+                days = Math.floor(delta / 86400);
+                days = days < 10 ? "0" + days : days;
+                hours = Math.floor(delta / 3600) % 24;
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = Math.floor(delta / 60) % 60;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = delta % 60;  // in theory the modulus is not required
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                document.getElementById("time").innerHTML = days + " D " + hours + " H " + minutes + " M " + seconds + " S";
+                delta--;
+            }
+        }
+    </script>
+</body>
+</html>

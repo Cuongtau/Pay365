@@ -644,6 +644,7 @@
     <Content Include="Views\Cashout\_CashoutBankDetail.cshtml" />
     <Content Include="Scripts\jquery-2.2.4.min.map" />
     <Content Include="Views\Cashout\_CashoutBankOnlineDetail.cshtml" />
+    <Content Include="Views\Home\SiteMaintain.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -806,7 +807,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59869</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
