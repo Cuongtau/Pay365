@@ -1710,12 +1710,12 @@ linkcard = new function () {
         };
         var content = "Bạn có chắc muốn hủy gắn kết thẻ này này không ?";
         var btnClose = "Đóng";
-        var btnContinue = "Hủy";
+        var btnContinue = "Xác nhận";
         var headerTitle = "Thông báo";
         if (header.AccountInfo.CurrentLang == 'en') {
             content = "Do you want to disconnect this card from your account ?";
             btnClose = "Close";
-            btnContinue = "Cancel";
+            btnContinue = "Confirm";
             headerTitle = "Notification";
         }
         ModalNotificationResultInit("warning", headerTitle, content, btnClose, btnContinue, function () {
