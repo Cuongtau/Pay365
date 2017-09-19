@@ -1446,7 +1446,7 @@ transaction_history = new function () {
             html += " <div class=\"mathe_bor\">";
             html += "<div class=\"mathe\">";
             html += "<span class=\"logo-365\">";
-            html += "<p><img src=\"http://alpha.pay365.vn/Content/assets/images/logo-purple.svg\" alt=\"\" style=\"width: 155px;\"></p>";
+            html += "<p><img src=\"//pay365.vn/Content/assets/images/logo-purple.svg\" alt=\"\" style=\"width: 155px;\"></p>";
             html += "</span>";
             html += "<p id=\"accountName\">***************</p>";
             html += "<p>";

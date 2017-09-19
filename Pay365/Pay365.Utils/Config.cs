@@ -39,7 +39,7 @@ namespace Pay365.Utils
         {
             get
             {
-                var url = ConfigurationManager.AppSettings["DOMAIN"] ?? "http://" + HttpContext.Current.Request.Url.Authority +
+                var url = ConfigurationManager.AppSettings["DOMAIN"] ?? "//" + HttpContext.Current.Request.Url.Authority +
                    HttpContext.Current.Request.ApplicationPath;
                 return url.EndsWith("/") ? url : url + "/";
             }

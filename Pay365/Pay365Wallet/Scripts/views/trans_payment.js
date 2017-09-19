@@ -1,4 +1,5 @@
 ﻿payment = new function () {
+    this.checkNick = false;
     this.discount = 0;
     this.discountGame = 0;
     this.urlPaymentApi = utils.trasactionApi();
@@ -281,7 +282,6 @@
                     $('#payment_topupMobile #payment_step1').height(totalHeight2);
             });
             payment.changeSelectGameAmount();
-            $("#btnPaymentGameCheckInput").addClass("disabled");
         }
         $("#discount").text(parseFloat(payment.discount) + "%");
         $("#txtQuantity").change(function (event) {
@@ -389,6 +389,16 @@
         //bind ds tk đã nạp
         var cateId = $(target).val();
         payment.cid = parseInt(cateId);
+        payment.checkNick = false;
+        var nickname = $("#txtNickname");
+        nickname.siblings('.error-text').html('').hide();
+        nickname.removeClass('error');
+        nickname.siblings('.success-text').html('').hide();
+        if ($("#selectServerGame").is(":visible")) {
+            $("#ddr-select-server").html('');
+            $("#ddr-select-server").material_select();
+            $("#selectServerGame").hide();
+        }
         payment.GetListProductGame(payment.cid, 0, header.AccountInfo.Username, function (data) {
             if (data != null && data.length > 0) {
                 payment.discountGame = parseFloat(data[0].DiscountRate);
@@ -889,7 +899,18 @@
         $("#ddr-select-gameAmount").siblings("input.select-dropdown").attr("style", "color: #4e465b;font-weight:500;");
         $("#payment_topupMobile #payment_step1").trigger('heightChange');
     };
-
+    this.changeNickname = function () {
+        payment.checkNick = false;
+        var nickname = $("#txtNickname");
+        nickname.siblings('.error-text').html('').hide();
+        nickname.removeClass('error');
+        nickname.siblings('.success-text').html('').hide();
+        if ($("#selectServerGame").is(":visible")) {
+            $("#ddr-select-server").html('');
+            $("#ddr-select-server").material_select();
+            $("#selectServerGame").hide();
+        }
+    }
     this.selectInputValue = function (target, typeFormat) {
         var value_select = $(target).find("a").attr('data-value');
 
@@ -924,6 +945,8 @@
         else if (typeFormat === 3) //NickName
         {
             $_input.val(value_select);
+            payment.CheckNicknameExist();
+
             //var dropdown = $("#ddr-select-gameAmount").parent().find('.select-dropdown');
             //dropdown.dropdown('open');
             $("#ddr-select-gameAmount").parent().find(".dropdown-content.active li").click(function (e) {
@@ -1500,18 +1523,17 @@
     this.CheckNicknameExist = function () {
         utils.translateLang('transaction.payment');
         $("#payment_topupGame").find(".alert-danger").html('').hide();
-        
+
         $("#payment_topupGame").trigger('heightChange');
         var ddr_selectGame = $("#ddr-select-game");
-        if ((!payment.cid || payment.cid <= 0) && ddr_selectGame.length > 0)
-        {
+        if ((!payment.cid || payment.cid <= 0) && ddr_selectGame.length > 0) {
             var gameid = ddr_selectGame.find("option:selected").val();
             if (gameid == '') {
                 ddr_selectGame.parent().siblings('.error-text').html($.t("error.gameSelect"));
                 ddr_selectGame.parent().siblings('.error-text').show();
                 ddr_selectGame.siblings("input.select-dropdown").addClass('error');
                 $("#payment_topupGame").trigger('heightChange');
-                return;
+                return false;
             }
         }
         var nickname = $("#txtNickname");
@@ -1524,7 +1546,7 @@
             nickname.siblings('.error-text').show();
             nickname.addClass('error');
             $("#payment_topupGame").trigger('heightChange');
-            return;
+            return false;
         }
 
         if (!utils.validateLetter(nicknameValue) || nicknameValue.length < 4 || nicknameValue.length > 13) {
@@ -1533,12 +1555,12 @@
             nickname.siblings('.error-text').show();
             nickname.addClass('error');
             $("#payment_topupGame").trigger('heightChange');
-            return;
+            return false;
         }
         if (payment.listCateGame == null || payment.listCateGame.length <= 0)
             payment.listCateGame = payment.listCateProduct;
         var m_cate = payment.listCateGame.find(function (c) { return c.CategoryID === payment.cid; });
-        
+
         var paramValid = {
             PartnerCode: m_cate.CategoryCode,
             ProductCode: payment.pcode,
@@ -1546,14 +1568,12 @@
         };
         $("#selectServerGame").hide();
         var urlPaymentApi = utils.trasactionApi() + "Payment/CheckSocialGamesAccount";
-        if (ddr_selectGame.length > 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
-            $("#btnPaymentGameCheckInput").addClass('disabled');
-        else if (ddr_selectGame.length == 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
-            $("#btnPaymentCheckInput").addClass('disabled');
+
         utils.loading();
         utils.postData(urlPaymentApi, paramValid, function (data) {
             utils.unLoading();
             if (data.c >= 0 && data.d.responseCode > 0) {
+                payment.checkNick = true;
                 nickname.siblings('.error-text').html('');
                 nickname.siblings('.error-text').hide();
                 nickname.removeClass('error');
@@ -1569,38 +1589,34 @@
                         });
                         $("#ddr-select-server").material_select();
                         $("#selectServerGame").show();
+                        $("#payment_topupGame").trigger('heightChange');
+                        $("#ddr-select-server").siblings("input.select-dropdown").attr("style", "color: #4e465b;font-weight:500;");
+                        return false;
                     }
                 }
-                if (ddr_selectGame.length > 0)
-                    $("#btnPaymentGameCheckInput").removeClass('disabled');
-                else if (ddr_selectGame.length == 0)
-                    $("#btnPaymentCheckInput").removeClass('disabled');
-                
+                $("#payment_topupGame").trigger('heightChange');
             }
             else {
+                payment.checkNick = false;
                 nickname.focus();
                 nickname.siblings('.error-text').html($.t('error.nickNameNotExist'));
                 nickname.siblings('.error-text').show();
                 nickname.addClass('error');
-                if (ddr_selectGame.length > 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
-                    $("#btnPaymentGameCheckInput").addClass('disabled');
-                else if (ddr_selectGame.length == 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
-                    $("#btnPaymentCheckInput").addClass('disabled');
+                $("#payment_topupGame").trigger('heightChange');
+                return false;
             }
-            $("#payment_topupGame").trigger('heightChange');
+
         }, function (dataErr) {
             utils.unLoading();
             nickname.focus();
             nickname.siblings('.error-text').html($.t('error.nickNameNotExist'));
             nickname.siblings('.error-text').show();
             nickname.addClass('error');
-            if (ddr_selectGame.length > 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
-                $("#btnPaymentGameCheckInput").addClass('disabled');
-            else if (ddr_selectGame.length == 0 && !$("#btnPaymentCheckInput").hasClass("disabled"))
-                $("#btnPaymentCheckInput").addClass('disabled');
+            payment.checkNick = false;
             $("#payment_topupGame").trigger('heightChange');
-            return;
-        });
+            return false;
+        }, "", false);
+        return true;
     }
     this.TopupGame_checkInput = function () {
         utils.translateLang('transaction.payment');
@@ -1622,10 +1638,10 @@
             nickname.addClass('error');
             return;
         }
-        if ($("#btnPaymentCheckInput").hasClass('disabled'))
-        {
-            payment.CheckNicknameExist();
-            return;
+        if (!payment.checkNick) {
+            var isChk = payment.CheckNicknameExist();
+            if (!isChk)
+                return;
         }
         var ddr_selectAmount = $("#ddr-select-gameAmount");
         var AmountValue = ddr_selectAmount.find("option:selected").val().replace(/[,.]/g, '');
@@ -1816,9 +1832,10 @@
             $("#payment_topupGame").trigger('heightChange');
             return;
         }
-        if ($("#btnPaymentGameCheckInput").hasClass('disabled')) {
-            payment.CheckNicknameExist();
-            return;
+        if (!payment.checkNick) {
+            var isChk = payment.CheckNicknameExist();
+            if (!isChk)
+                return;
         }
         var ddr_selectAmount = $("#ddr-select-gameAmount");
         var AmountValue = ddr_selectAmount.find("option:selected").val().replace(/[,.]/g, '');
@@ -1996,7 +2013,7 @@
         utils.postData(urlPaymentApi, { Otp: Otp }, function (data) {
             utils.unLoading();
             if (data.c >= 0) {
-                
+
                 var contentMsg = utils.formatString($.t('payment.topupGameSuccess'), AmountValue + "," + Product + "," + Nickname);
                 confirmCode.value = '';
                 if ($("#View_PaymentConfirm").hasClass('modal'))
@@ -2057,10 +2074,6 @@
         payment.cid = parseInt($(target).attr("data-cid"));
         var m_cate = payment.listCateProduct.find(function (c) { return c.CategoryID === payment.cid; });
         if (m_cate != null && m_cate != undefined) {
-            if (m_cate.ParentCategoryID === payment.ConfigCateId.topupGame)
-                $("#btnPaymentCheckInput").addClass('disabled');
-            else
-                $("#btnPaymentCheckInput").removeClass('disabled');
             $("#payment_step1 .bank-icon").find("img").attr("src", (m_cate.Logo == "" || m_cate.Logo == null ? utils.rootUrl() + "/Content/assets/images/logo.jpg" : m_cate.Logo));
             $("#payment_step1 .bank-icon").show();
             $("#payment_step1 .title").text(m_cate.Description);
@@ -2072,7 +2085,16 @@
         payment.GetListProducts(payment.cid, 0, header.AccountInfo.Username, function (data) {
             if (data != null && data.length > 0) {
                 if (m_cate.ParentCategoryID === payment.ConfigCateId.topupGame) {
-                    
+                    payment.checkNick = false;
+                    var nickname = $("#txtNickname");
+                    nickname.siblings('.error-text').html('').hide();
+                    nickname.removeClass('error');
+                    nickname.siblings('.success-text').html('').hide();
+                    if ($("#selectServerGame").is(":visible")) {
+                        $("#ddr-select-server").html('');
+                        $("#ddr-select-server").material_select();
+                        $("#selectServerGame").hide();
+                    }
                     payment.discountGame = parseFloat(data[0].DiscountRate);
                     payment.pcode = data[0].ProductCode;
                     payment.pid = data[0].ProductID;
@@ -2418,7 +2440,7 @@
         $(Target).addClass('error');
         $(Target).focus();
     }
-    
+
     //Load dữ liệu thẻ - phân trang
     this.BindCardPager = function (currpage, lstData) {
         var listData = lstData ? lstData : payment.listCard;
@@ -2556,7 +2578,7 @@
             html += " <div class=\"mathe_bor\">";
             html += "<div class=\"mathe\">";
             html += "<span class=\"logo-365\">";
-            html += "<p><img src=\"http://alpha.pay365.vn/Content/assets/images/logo-purple.svg\" alt=\"\" style=\"width: 100px;\"></p>";
+            html += "<p><img src=\"//pay365.vn/Content/assets/images/logo-purple.svg\" alt=\"\" style=\"width: 100px;\"></p>";
             html += "</span>";
             html += "<p id=\"accountName\">***************</p>";
             html += "<p>";

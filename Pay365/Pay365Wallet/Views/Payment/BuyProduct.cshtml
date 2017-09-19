@@ -149,7 +149,7 @@
                                                 <ul id='ddr-input-nick' class='dropdown-content'></ul>
                                             </div>
                                             <a href="javascript:;" onclick="payment.CheckNicknameExist();" id="btnCheckNick" class="btn btn-sm btn-secondary btn-input-right waves-effect waves-light" style="right:30px">@Resources.Payment.btnCheck</a>
-                                            <input id="txtNickname" type="text" maxlength="13" onkeyup="utils.ChangeText(event);">
+                                            <input id="txtNickname" type="text" maxlength="13" onkeyup="utils.ChangeText(event);payment.changeNickname();">
                                             <label for="txtNickname">@Resources.Payment.NickName</label>
                                         }
                                         <span class="error-text"></span>
@@ -279,9 +279,9 @@
                                                     </strong>
                                                 </p>
                                                 {{if $value.JsonObject.ServiceID == 1}}
-                                                <p>Số điện thoại nạp: ${$value.JsonObject.UserName}</p>
+                                                <p>@Resources.Payment.String7: ${$value.JsonObject.UserName}</p>
                                                 {{else $value.JsonObject.ServiceID == 5}}
-                                                <p>Tài khoản: ${$value.JsonObject.UserName}</p>
+                                                <p>@Resources.Payment.NickName: ${$value.JsonObject.UserName}</p>
                                                 {{else $value.JsonObject.ServiceID == 6 || $value.JsonObject.ServiceID == 4}}
                                                 <p>@Resources.Payment.String11: ${$value.JsonObject.Quantiry}</p>
                                                 {{/if}}
