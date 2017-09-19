@@ -410,11 +410,13 @@
         $(document).on('change', 'input[type=radio][name=g_cashout_type]', function () {
             if (this.value === 'i_cashout_linkedbank') {
                 cashout.CashoutLinkedBank(this);
+                $('#save_bank_on').parent().parent().hide();
             }
             @*else if (this.value === 'i_cashout_account')
                 $('#cashout_online_content').find('#bank_account').siblings('label').text('@Html.Raw(Resources.Cashout.String33)');*@
             else {
                 $('#cashout_online_content').find('#bank_account').prop("disabled", false).val('').siblings('label').text('@Html.Raw(Resources.Cashout.String17)');
+                $('#save_bank_on').parent().parent().show();
             }
 
         });

@@ -308,19 +308,28 @@
                                             <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/thanh-toan.svg" alt="">
                                         </div>
                                         <div class="info">
-                                            <p class="danger">
+                                            {{if $value.ServiceID == common.serviceConfig.CASHOUTREFUND}}
+                                            <p class="success">
                                                 <strong>
-                                                    ${utils.formatMoney($value.GrandAmount*-1)}
+                                                    ${utils.formatMoney($value.GrandAmount)}
                                                     <sup>VNĐ</sup>
                                                 </strong>
                                             </p>
+                                            {{else}}
+                                            <p class="danger">
+                                                <strong>
+                                                    -${utils.formatMoney($value.GrandAmount)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+                                            {{/if}}
                                             <p>${utils.formDateTime($value.CreatedTime, true)}</p>
                                         </div>
                                         <div class="content">
                                             <p>${$value.ServiceName}</p>
                                             {{if $value.ServiceID == common.serviceConfig.BUYCARD}}
                                             <p>@Resources.Payment.String11: ${Math.abs($value.Amount/$value.ProductValue)}</p>
-                                            {{else ($value.ServiceID == common.serviceConfig.TOPUPTELCOBEFORE || $value.ServiceID == common.serviceConfig.TOPUPTELCOAFTER) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
+                                            {{else ($value.ServiceID == common.serviceConfig.TOPUPTELCOBEFORE || $value.ServiceID == common.serviceConfig.TOPUPTELCOAFTER || $value.ServiceID == common.serviceConfig.TOPUPGAME) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
                                             <p>@Resources.Payment.value13: ${$value.PartnerUsername}</p>
                                             {{/if}}
                                         </div>
@@ -345,10 +354,15 @@
                                                             <td>@Resources.Common.String16:</td>
                                                             <td>${$value.ServiceName}</td>
                                                         </tr>
-                                                        {{if $value.Description != null && $value.Description != ""}}
+                                                        {{if $value.Description != null && $value.Description != "" && $value.ServiceID != common.serviceConfig.TOPUPGAME}}
                                                         <tr>
                                                             <td>@Resources.Common.lbl_Description:</td>
                                                             <td>${$value.Description}</td>
+                                                        </tr>
+                                                        {{else}}
+                                                        <tr>
+                                                            <td>@Resources.Common.lbl_Description:</td>
+                                                            <td>${$value.ProductName}</td>
                                                         </tr>
                                                         {{/if}}
                                                     </tbody>
@@ -648,19 +662,28 @@
                                             <img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/thanh-toan.svg" alt="">
                                         </div>
                                         <div class="info">
-                                            <p class="danger">
+                                            {{if $value.ServiceID == common.serviceConfig.CASHOUTREFUND}}
+                                            <p class="success">
                                                 <strong>
-                                                    ${utils.formatMoney($value.GrandAmount*-1)}
+                                                    ${utils.formatMoney($value.GrandAmount)}
                                                     <sup>VNĐ</sup>
                                                 </strong>
                                             </p>
+                                            {{else}}
+                                            <p class="danger">
+                                                <strong>
+                                                    -${utils.formatMoney($value.GrandAmount)}
+                                                    <sup>VNĐ</sup>
+                                                </strong>
+                                            </p>
+                                            {{/if}}
                                             <p>${utils.formDateTime($value.CreatedTime, true)}</p>
                                         </div>
                                         <div class="content">
                                             <p>${$value.ServiceName}</p>
                                             {{if $value.ServiceID == common.serviceConfig.BUYCARD}}
                                             <p>@Resources.Payment.String11: ${Math.abs($value.Amount/$value.ProductValue)}</p>
-                                            {{else ($value.ServiceID == common.serviceConfig.TOPUPTELCOBEFORE || $value.ServiceID == common.serviceConfig.TOPUPTELCOAFTER) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
+                                            {{else ($value.ServiceID == common.serviceConfig.TOPUPTELCOBEFORE || $value.ServiceID == common.serviceConfig.TOPUPTELCOAFTER || $value.ServiceID == common.serviceConfig.TOPUPGAME) && $value.PartnerUsername != null && $value.PartnerUsername != ""}}
                                             <p>@Resources.Payment.value13: ${$value.PartnerUsername}</p>
                                             {{/if}}
                                         </div>
@@ -685,10 +708,15 @@
                                                             <td>@Resources.Common.String16:</td>
                                                             <td>${$value.ServiceName}</td>
                                                         </tr>
-                                                        {{if $value.Description != null && $value.Description != ""}}
+                                                        {{if $value.Description != null && $value.Description != "" && $value.ServiceID != common.serviceConfig.TOPUPGAME}}
                                                         <tr>
                                                             <td>@Resources.Common.lbl_Description:</td>
                                                             <td>${$value.Description}</td>
+                                                        </tr>
+                                                        {{else}}
+                                                        <tr>
+                                                            <td>@Resources.Common.lbl_Description:</td>
+                                                            <td>${$value.ProductName}</td>
                                                         </tr>
                                                         {{/if}}
                                                     </tbody>
