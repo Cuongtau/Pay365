@@ -119,7 +119,7 @@
     this.TopupBankDetail = function (t) {
         var bankInfo = $(t).data('bankinfo');
         bankInfo = bankInfo.split('#');
-        let $bankElm = $('#topup_bank_info');
+        var $bankElm = $('#topup_bank_info');
         $bankElm.find('img').attr('src', utils.rootUrl() + 'Content/assets/images/brands/logo-banks/' + bankInfo[1] + '.png');
         $('#topup_bankcode').val(bankInfo[1]);
         $bankElm.find('#topup_bank_name').text(common.getbankFullName(bankInfo[1]));
@@ -139,7 +139,7 @@
     this.TopupLinkedBankDetail = function (t, bankAccount, subscriptionID) {
         var bankInfo = $(t).data('bankinfo');
         bankInfo = bankInfo.split('#');
-        let $bankElm = $('#topup_bank_info');
+        var $bankElm = $('#topup_bank_info');
         $bankElm.find('img').attr('src', utils.rootUrl() + 'Content/assets/images/brands/logo-banks/' + bankInfo[1] + '.png');
         $('#topup_bankcode').val(bankInfo[1]);
         $bankElm.find('#topup_bank_name').text(common.getbankFullName(bankInfo[1]));

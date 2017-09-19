@@ -208,7 +208,7 @@
         };
 
         var callback = function (data) {
-            $("#form_login_otp #btLoginOTp").removeClass('disabled');            
+            $("#form_login_otp #btLoginOTp").removeClass('disabled');
             if (typeof data === "object") {
                 //Sang trang kich hoat
                 if (data.c >= 0) {
@@ -278,7 +278,7 @@
                     window.location.href = utils.rootUrl();
             }, function (err) {
                 console.log(err);
-                    window.location.href = utils.rootUrl();
+                window.location.href = utils.rootUrl();
             });
         });
     };

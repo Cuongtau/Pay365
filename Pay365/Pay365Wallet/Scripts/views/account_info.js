@@ -342,7 +342,7 @@ account_info = new function () {
         if ($("#formCertificateAccount #bt_ConfirmCertificate").hasClass('disabled')) {
             return;
         }
-        let params = {};
+        var params = {};
         $('#formCertificateAccount div.selected:visible').each(function (index) {
             var src = $(this).find('img').attr('src');
             if (src) {
@@ -601,7 +601,7 @@ account_info = new function () {
         var $form = $('#formChangeEmail');
         var newEmail = $form.find('#new_email').val().trim();
         if (!newEmail) {
-            let $newEmail = $form.find('#new_email');
+            var $newEmail = $form.find('#new_email');
             $newEmail.addClass('error');
             $newEmail.parent().find('.error-text').text(i18n.t('message.emailEmpty'));
             $('#ts-1').height($form.height() + parseInt($form.css('margin-bottom')) + parseInt($form.css('margin-top')));
@@ -610,7 +610,7 @@ account_info = new function () {
         }
 
         if (!utils.validateEmail(newEmail)) {
-            let $newEmail = $form.find('#new_email');
+            var $newEmail = $form.find('#new_email');
             $newEmail.addClass('error');
             $newEmail.parent().find('.error-text').text(i18n.t('message.emailIllegal'));
             $('#ts-1').height($form.height() + parseInt($form.css('margin-bottom')) + parseInt($form.css('margin-top')));
@@ -620,7 +620,7 @@ account_info = new function () {
 
         var otp = $form.find('#otp_change_email').val().trim();
         if ($('#formChangeEmail #div_otp_change_email').is(":visible") && !otp) {
-            let $otpChangeEmail = $('#formChangeEmail').find('#otp_change_email');
+            var $otpChangeEmail = $('#formChangeEmail').find('#otp_change_email');
             $otpChangeEmail.addClass('error');
             $otpChangeEmail.parent().find('.error-text').text(i18n.t('message.otpEmpty'));
             $('#ts-1').height($form.height() + parseInt($form.css('margin-bottom')) + parseInt($form.css('margin-top')));

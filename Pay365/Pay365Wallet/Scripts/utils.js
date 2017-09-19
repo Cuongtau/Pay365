@@ -4,18 +4,22 @@
         return 'http://localhost:6886/';
     },
     linkIdApi: function () {
-        return 'http://id.alpha.pay365.vn/api/';
+        return 'http://id.pay365.vn/api/';
     },
     linkNewApi: function () {
-        return 'http://news.alpha.pay365.vn/api/';
+        return 'http://news.pay365.vn/api/';
     },
 
     profileApi: function () {
-        return 'http://profile.alpha.pay365.vn/api/';
+        return 'http://profile.pay365.vn/api/';
     },
 
     trasactionApi: function () {
-        return 'http://payment.alpha.pay365.vn/api/';
+        return 'http://payment.pay365.vn/api/';
+    },
+
+    trasactionApi: function () {
+        return 'http://payment.pay365.vn/api/';
     },
 
     translateLang: function (namespace) {
@@ -1631,7 +1635,7 @@ function Pay365Carousel(options) {
         navPrev: null
     }, option.sliderOptions);
 
-    let target = option.target;
+    var target = option.target;
 
     this.start = function () {
         if (target && $(target).length) {
@@ -1714,7 +1718,7 @@ function sideBar() {
 }
 
 function SlideToogle(dt_slide, dt_toogle, id_next) {
-    let slideId, slideNext, slideActive, slide, slideNextHeight;
+    var slideId, slideNext, slideActive, slide, slideNextHeight;
     var index = 1;
 
     slideId = $('#' + dt_slide);

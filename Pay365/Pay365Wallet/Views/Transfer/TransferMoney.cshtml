@@ -326,7 +326,7 @@
     });
 
     $('#txtUsername').click(function (e) {
-        let dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
+        var dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
         setTimeout(function () {
             dropdown.dropdown('open');
         }, 100);

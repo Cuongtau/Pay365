@@ -235,7 +235,7 @@
 
         var bankInfo = $(t).data('bankinfo');
         bankInfo = bankInfo.split('#');
-        let $bankElm = $('#cashout_bank_info');
+        var $bankElm = $('#cashout_bank_info');
         $bankElm.find('img').attr('src', utils.rootUrl() + 'Content/assets/images/brands/logo-banks/' + bankInfo[1] + '.png');
         $('#cashout_bankcode').val(bankInfo[1]);
         $bankElm.find('#cashout_bank_name').text(common.getbankFullName(bankInfo[1]));

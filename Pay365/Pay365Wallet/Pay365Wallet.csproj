@@ -755,6 +755,7 @@
     <Content Include="App_GlobalResources\Account_info.en.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Account_info.en.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -776,6 +777,7 @@
     <Content Include="App_GlobalResources\Common.en.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Common.en.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -804,7 +806,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59869</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

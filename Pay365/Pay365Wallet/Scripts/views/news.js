@@ -566,8 +566,8 @@
 guide = new function () {
     this.GetListGuideDetail = function (category, alias) {
         var cul = utils.getCurrentLanguage();
-        let cateid = common.guideConfig.FAQ;
-        let keyword, title = 'FAQ';
+        var cateid = common.guideConfig.FAQ;
+        var keyword, title = 'FAQ';
         if (category === 'account') {
             cateid = common.guideConfig.ACCOUNT;
             title = cul === 'en' ? 'Account' : 'Tài khoản';
@@ -653,7 +653,7 @@ guide = new function () {
 
     this.GetRelatedGuide = function (category, top, isSearch) {
         var cul = utils.getCurrentLanguage();
-        let cateid = common.guideConfig.FAQ, title = 'FAQ';
+        var cateid = common.guideConfig.FAQ, title = 'FAQ';
         if (category === 'account') {
             cateid = common.guideConfig.ACCOUNT;
         }
