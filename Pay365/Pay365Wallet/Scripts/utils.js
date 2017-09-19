@@ -430,7 +430,7 @@
             return;
         }
         var val = ctrl.value;
-        val = val.replace(/[-]/g, "")
+        val = val.replace(/[-]/g, "");
         ctrl.value = "";
         val += '';
 
@@ -446,7 +446,6 @@
             rgx = /\D*(\d{4})\D*(\d{4})\D*(\d{3})\D*/;
             val = val.replace(rgx, '$1-$2-$3');
         }
-
 
         ctrl.value = val;
     },
