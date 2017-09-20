@@ -91,7 +91,7 @@
                         return (item.JsonObject.ServiceID === serviceID);
                     });
 
-                const $formId = $('#' + formID);
+                var $formId = $('#' + formID);
                 if (listBankRecent.length !== 0) {
                     listBankRecent.sort(function (a, b) {
                         return b.JsonObject.TransactionID - a.JsonObject.TransactionID;
@@ -114,7 +114,7 @@
             }
         }, function (err) {
             console.log(err);
-            const $formId = $('#' + formID);
+            var $formId = $('#' + formID);
             $formId.html('');
             //Ẩn gd gần đây
             if (formID === 'cashout_log_recent_t') {
