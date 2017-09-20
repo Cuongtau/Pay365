@@ -21,6 +21,9 @@
             case -13:
                 description = i18n.t('Error.CARDS_NOT_ENOUGH');
                 break;
+            case -15:
+                description = i18n.t('Error.SUBCRIBLE_EMAIL_EXISTS');
+                break;
             case - 19:
                 description = i18n.t('Error.TRANSACTION_PROCESSING');
                 break;

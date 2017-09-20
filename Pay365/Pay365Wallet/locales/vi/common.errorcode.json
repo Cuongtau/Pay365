@@ -122,6 +122,7 @@
         "SECURITY_OTP_REQUIRED": "Yêu cầu bảo mật bằng Mã xác thực",
         "SECURITYTYPE_INVALID": "Loại bảo mật không đúng",
         "STATUS_INVALID": "Dữ liệu không hợp lệ. Vui lòng thử lại sau",
+        "SUBCRIBLE_EMAIL_EXISTS": "Email này đã được đăng ký",
         "SYSTEM_ERROR": "Lỗi hệ thống. Vui lòng thử lại sau",
         "SYSTEM_EXCEPTION": "Lỗi hệ thống, vui lòng thử lại sau",
         "SYSTEM_TIMEOUT": "Hệ thống đã hết phiên làm việc. Vui lòng quay lại sau",

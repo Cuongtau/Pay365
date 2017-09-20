@@ -122,6 +122,7 @@
         "SECURITY_OTP_REQUIRED": "Security OTP require",
         "SECURITYTYPE_INVALID": "Secure type is invalid",
         "STATUS_INVALID": "Status is invalid",
+        "SUBCRIBLE_EMAIL_EXISTS": "Email is already subscribe",
         "SYSTEM_ERROR": "System fail. Please try again later",
         "SYSTEM_EXCEPTION": "System fail. Please come back later",
         "SYSTEM_TIMEOUT": "System timeout. Please try again later",
