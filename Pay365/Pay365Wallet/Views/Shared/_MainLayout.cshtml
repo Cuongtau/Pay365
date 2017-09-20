@@ -1,13 +1,5 @@
 ﻿@{
     var isAuthenticated = HttpContext.Current.User.Identity.IsAuthenticated;
-    if (isAuthenticated)
-    {
-        //đã login
-    }
-    else
-    {
-        //chưa login thì ra trang đăng nhập
-    }
 }
 
 <!DOCTYPE html>
@@ -462,12 +454,37 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/pay365libjs")
-    @Scripts.Render("~/bundles/js_main")
-    @Scripts.Render("~/bundles/pay365commonjs")
-    @Scripts.Render("~/bundles/pay365mainViewjs")
-    @Scripts.Render("~/bundles/pay365viewjs")
+    @if (Pay365.Utils.Utility.DeviceUtility.LowIosVersion(System.Web.HttpContext.Current.Request))
+    {
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/pay365libjs")
+        @Scripts.Render("~/bundles/js_main")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/utils.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/libs/paging/jquery.pager.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/libs/jquery.tmpl.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/views/common.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/views/header.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/views/account_info.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/views/account_secure.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/views/news.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/views/trans_topup.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/views/trans_transfer.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/views/trans_cashout.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/views/trans_payment.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Content/assets/js/materializeSelectOverride.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/libs/cropper/cropper.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/views/account_update.js")
+        @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"{0}\"></script>", "~/Scripts/views/login.js")
+    }
+    else
+    {
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/pay365libjs")
+        @Scripts.Render("~/bundles/js_main")
+        @Scripts.Render("~/bundles/pay365commonjs")
+        @Scripts.Render("~/bundles/pay365mainViewjs")
+        @Scripts.Render("~/bundles/pay365viewjs")
+    }
     <script type="text/javascript">
     var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode', 'profile.account', 'common.news', 'transaction.topupmoney', 'transaction.payment', 'transaction.transfermoney','transaction.cashoutmoney'];
     var currlang = utils.getCurrentLanguage();
@@ -480,7 +497,7 @@
             $(".translang").i18n();
         });
 
-        $(function () {           
+        $(function () {
         //header.BindTemp();
         $(document).click(function (event) {
             var $target = $(event.target);

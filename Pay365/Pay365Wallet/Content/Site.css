@@ -1161,6 +1161,15 @@ body.hideSidebar .sidebar .userinfo:hover .info {
     position: relative;
 }
 
+input[type="number"].arrow-hiden::-webkit-outer-spin-button, input[type="number"].arrow-hiden::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"].arrow-hiden {
+    -moz-appearance: textfield;
+}
+
 @-webkit-keyframes circle {
     0% {
         opacity: 1;

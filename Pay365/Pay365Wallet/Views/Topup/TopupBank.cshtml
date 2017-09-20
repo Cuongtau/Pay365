@@ -108,7 +108,7 @@
                                         </div>
                                         <div class="form-group input-field">
                                             <i class="material-icons prefix">monetization_on</i>
-                                            <input maxlength="12" id="topup_amount" onblur="topup.CalculateTotalAmount('topupByBank');" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.formatCurrency(this,event);" type="text" class="autocomplete">
+                                            <input maxlength="12" id="topup_amount" onblur="topup.CalculateTotalAmount('topupByBank');" onkeyup="utils.formatCurrency(this, event);" max="1000000000" type="tel" class="autocomplete arrow-hiden">
                                             <label for="topup_amount">@Resources.Payment.String13</label>
                                             <span class="error-text"></span>
 
@@ -154,7 +154,7 @@
                                         </div>
                                         <div class="form-group input-field">
                                             <i class="material-icons prefix">monetization_on</i>
-                                            <input maxlength="12" id="topup_amount" onblur="topup.CalculateTotalAmount('topupByLinkedBank');" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.formatCurrency(this,event);" type="text" class="autocomplete">
+                                            <input maxlength="12" id="topup_amount" onblur="topup.CalculateTotalAmount('topupByLinkedBank');" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.formatCurrency(this,event);" type="tel" class="autocomplete">
                                             <label for="topup_amount">@Resources.Payment.String13</label>
                                             <span class="error-text"></span>
 
