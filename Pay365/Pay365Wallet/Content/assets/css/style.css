@@ -1188,7 +1188,8 @@ input:not([type]) + label:after, input[type=text]:not(.browser-default) + label:
 .socials .social-link.tumblr:before { border-color: #413c55; }		
 .socials .social-link.youtube { background-color: #d02727; background-image: -webkit-linear-gradient(top right, #d02727, #ff7171); background-image: linear-gradient(to bottom left,#d02727, #ff7171); box-shadow: 0 4px 12px rgba(255, 75, 75, 0.4); }		
 .socials .social-link.youtube:before { border-color: #d02727; }
-
+.socials .social-link.google { background-color: #EB4235; background-image: -webkit-linear-gradient(top right, #EB4235, #f16f6f); background-image: linear-gradient(to bottom left,#EB4235, #f16f6f); box-shadow: 0 4px 12px rgba(75, 122, 255, 0.4); }		
+.socials .social-link.google:before { border-color: #d02727; }	
 .post-links li {margin-bottom: 10px;}
 .post-links li a {font-size: 1rem;}
 
