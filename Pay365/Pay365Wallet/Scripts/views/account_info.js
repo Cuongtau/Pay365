@@ -416,6 +416,7 @@ account_info = new function() {
         });
 
         if (!$.isEmptyObject(params)) {
+            common.saveLog(JSON.stringify(params));
             var callback = function(data) {
                 $("#formCertificateAccount #bt_ConfirmCertificate").removeClass("disabled");
                 utils.unLoading();
