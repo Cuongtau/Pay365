@@ -1,7 +1,7 @@
 ﻿window.utils = {
     rootUrl: function () {
         //return '//alpha.pay365.vn/';
-        return 'http://localhost:6886/';
+        return 'http://localhost:59869/';
     },
     linkIdApi: function () {
         return 'http://id.pay365.vn/api/';

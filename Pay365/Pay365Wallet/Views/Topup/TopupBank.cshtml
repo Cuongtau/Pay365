@@ -100,7 +100,7 @@
                                     <div id="topupByBank" class="card-content">
                                         <div class="form-group input-field">
                                             <i class="material-icons prefix">phone_iphone</i>
-                                            <input maxlength="20" id="topup_account" onblur="topup.GetTopupAccount(this);" onkeyup="utils.transactionAccountNumberFormat(this, event);" type="text">
+                                            <input maxlength="20" id="topup_account" onblur="topup.GetTopupAccount(this);" onkeyup="utils.transactionAccountNumberFormat(this, event);" type="tel" pattern="[0-9]*">
                                             <label for="topup_account" class="active">@Resources.Cashout.String33</label>
                                             <span class="error-text"></span>
                                             <span class="success-text"></span>
@@ -210,7 +210,7 @@
                                         </div>
                                         <div class="form-group input-field">
                                             <i class="material-icons prefix">credit_card</i>
-                                            <input maxlength="19" id="card_number" type="text" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
+                                            <input maxlength="19" id="card_number" type="tel" pattern="[0-9]*" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
                                             <label for="card_number">@Resources.Topup.number_card</label>
                                             <span class="error-text"></span>
                                         </div>

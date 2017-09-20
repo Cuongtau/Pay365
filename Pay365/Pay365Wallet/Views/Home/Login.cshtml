@@ -22,7 +22,7 @@
                                 <i class="material-icons">phone_iphone</i>
                             </div>
                             <div class="form-data input-field">
-                                <input type="text" autocomplete="off" id="login_phone" class="user-focus" onkeypress="return utils.forceNumber(this, event);" maxlength="20">
+                                <input type="tel" pattern="[0-9]*" autocomplete="off" id="login_phone" class="user-focus" onkeypress="return utils.forceNumber(this, event);" maxlength="20">
                                 <label for="login_phone">@Resources.Register.String2</label>
                                 <span class="error-text"></span>
                                 <span class="success-text"></span>
@@ -230,7 +230,7 @@
                             <i class="material-icons">phone_iphone</i>
                         </div>
                         <div class="form-data input-field">
-                            <input maxlength="20" type="text" id="reg_account_name" class="user-focus" onkeypress="utils.forceNumber(this, event);" autocomplete="off">
+                            <input maxlength="20" type="tel" pattern="[0-9]*" id="reg_account_name" class="user-focus" onkeypress="utils.forceNumber(this, event);" autocomplete="off">
                             <label for="reg_account_name">@Resources.Register.String2</label>
                             <span class="error-text"></span>
                             <span class="success-text"></span>
