@@ -72,9 +72,11 @@
                                 </div>
                                 <script id="topup_bank_tmpl" type="text/x-jquery-tmpl">
                                     {{each listBank}}
+                                    {{if BankCode == "STB"}}
                                     <div class="box-bank-icon">
                                         <a href="javascript:;" onclick="topup.TopupBankDetail(this);" data-serviceid="${$value.CushInServiceID}" data-bankname="${$value.BankName}" data-bankcode="${$value.BankCode}" data-bankinfo="${$value.BankID}#${$value.BankCode}#${$value.BankName}" class="bank-icon" title="${$value.BankCode}-${$value.BankName}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.BankCode}.png" alt=""></a>
                                     </div>
+                                    {{/if}}
                                     {{/each}}
                                 </script>
 
