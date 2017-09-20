@@ -1629,7 +1629,7 @@ linkcard = new function () {
         $('#error_linkcard').text("");
         var bankCard = $('#topup_bankcode').val();
 
-        var cardNumber = $('#card_number').val();
+        var cardNumber = $('#card_number').val().replace(/[ ]/g, '');
         if (!cardNumber) {
             $('#error_linkcard').text(i18n.t('linkcard.emptyCardNumber'));
             $('#card_number').focus();
