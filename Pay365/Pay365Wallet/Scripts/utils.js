@@ -1,7 +1,7 @@
 ﻿window.utils = {
     rootUrl: function () {
         //return '//alpha.pay365.vn/';
-        return 'http://localhost:6886/';
+        return 'http://localhost:59869/';
     },
     linkIdApi: function () {
         return 'http://id.pay365.vn/api/';
@@ -430,7 +430,7 @@
             return;
         }
         var val = ctrl.value;
-        val = val.replace(/[-]/g, "")
+        val = val.replace(/[-]/g, "");
         ctrl.value = "";
         val += '';
 
@@ -446,7 +446,6 @@
             rgx = /\D*(\d{4})\D*(\d{4})\D*(\d{3})\D*/;
             val = val.replace(rgx, '$1-$2-$3');
         }
-
 
         ctrl.value = val;
     },
@@ -637,7 +636,7 @@
         $('#divPopup').empty();
     },
 
-    forceNumber: function (obj, e) {
+    forceNumber: function (obj, e) {     
         var whichCode =
             (window.Event && e.which)
                 ? e.which
@@ -1346,12 +1345,11 @@ function Substring_LinkCard(str) {
         return;
     }
     var leng = str.length;
-    if (leng <= 4){
+    if (leng <= 4) {
         return str;
         console.log(str);
     }
-    else
-    {
+    else {
         return str.substring(leng - 4, leng);
         console.log(str);
     }
@@ -1606,9 +1604,9 @@ function payMainLoad() {
             }
         });
     }
-   
+
 }
-function isElementInView (element, fullyInView) {
+function isElementInView(element, fullyInView) {
     var pageTop = $(window).scrollTop();
     var pageBottom = pageTop + $(window).height();
     var elementTop = $(element).offset().top;
@@ -2144,4 +2142,3 @@ function trackingPageView() {
     else
         ga('send', 'pageview', 'trang-chu');
 }
-

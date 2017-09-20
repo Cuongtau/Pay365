@@ -72,9 +72,11 @@
                                 </div>
                                 <script id="topup_bank_tmpl" type="text/x-jquery-tmpl">
                                     {{each listBank}}
+                                    {{if BankCode == "STB"}}
                                     <div class="box-bank-icon">
                                         <a href="javascript:;" onclick="topup.TopupBankDetail(this);" data-serviceid="${$value.CushInServiceID}" data-bankname="${$value.BankName}" data-bankcode="${$value.BankCode}" data-bankinfo="${$value.BankID}#${$value.BankCode}#${$value.BankName}" class="bank-icon" title="${$value.BankCode}-${$value.BankName}"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/${$value.BankCode}.png" alt=""></a>
                                     </div>
+                                    {{/if}}
                                     {{/each}}
                                 </script>
 
@@ -98,7 +100,7 @@
                                     <div id="topupByBank" class="card-content">
                                         <div class="form-group input-field">
                                             <i class="material-icons prefix">phone_iphone</i>
-                                            <input maxlength="20" id="topup_account" onblur="topup.GetTopupAccount(this);" onkeyup="utils.transactionAccountNumberFormat(this, event);" type="text">
+                                            <input maxlength="20" id="topup_account" onblur="topup.GetTopupAccount(this);" onkeyup="utils.transactionAccountNumberFormat(this, event);" type="tel" pattern="[0-9]*">
                                             <label for="topup_account" class="active">@Resources.Cashout.String33</label>
                                             <span class="error-text"></span>
                                             <span class="success-text"></span>
@@ -208,7 +210,7 @@
                                         </div>
                                         <div class="form-group input-field">
                                             <i class="material-icons prefix">credit_card</i>
-                                            <input maxlength="19" id="card_number" type="text" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
+                                            <input maxlength="19" id="card_number" type="tel" pattern="[0-9]*" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
                                             <label for="card_number">@Resources.Topup.number_card</label>
                                             <span class="error-text"></span>
                                         </div>

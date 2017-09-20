@@ -79,7 +79,7 @@
                 if ($(this).parent().find('.input-dropdown-content .dropdown-button').hasClass('active'))
                     return;
 
-                let dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
+                var dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
                 setTimeout(function () {
                     dropdown.dropdown('open');
                 }, 200);
@@ -87,7 +87,7 @@
             });
             $("#txtPhoneNumber").focusout(function () {
                 if ($(this).parent().find('.input-dropdown-content .dropdown-button').hasClass('active')) {
-                    let dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
+                    var dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
                     setTimeout(function () {
                         dropdown.dropdown('close');
                     }, 200);
@@ -117,7 +117,7 @@
                 if ($(this).parent().find('.input-dropdown-content .dropdown-button').hasClass('active'))
                     return;
 
-                let dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
+                var dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
                 setTimeout(function () {
                     dropdown.dropdown('open');
                 }, 200);
@@ -125,7 +125,7 @@
             });
             $("#txtNickname").focusout(function () {
                 if ($(this).parent().find('.input-dropdown-content .dropdown-button').hasClass('active')) {
-                    let dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
+                    var dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
                     setTimeout(function () {
                         dropdown.dropdown('close');
                     }, 200);
@@ -186,21 +186,21 @@
                 if ($(this).parent().find('.input-dropdown-content .dropdown-button').hasClass('active'))
                     return;
 
-                let dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
+                var dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
                 setTimeout(function () {
                     dropdown.dropdown('open');
                 }, 200);
             });
             $("#txtPhoneNumber, #txtNickname").focusout(function () {
                 if ($(this).parent().find('.input-dropdown-content .dropdown-button').hasClass('active')) {
-                    let dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
+                    var dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
                     setTimeout(function () {
                         dropdown.dropdown('close');
                     }, 200);
                 }
             });
             $('#txtPhoneNumber, #txtNickname').click(function (e) {
-                let dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
+                var dropdown = $(this).parent().find('.input-dropdown-content .dropdown-button');
                 setTimeout(function () {
                     dropdown.dropdown('open');
                 }, 100);
@@ -224,7 +224,7 @@
                 }
             });
             $("#ddr-select-gameAmount").parent().find(".dropdown-content.active li").click(function () {
-                let dropdown = $(this).closest('.select-wrapper').find('input.select-dropdown.active');
+                var dropdown = $(this).closest('.select-wrapper').find('input.select-dropdown.active');
                 dropdown.dropdown('close');
             });
             $('#payment_topupMobile #payment_step1, #payment_topupGame').bind('heightChange', function () {
@@ -923,7 +923,7 @@
             //var dropdown = $("#ddr-select-gameAmount").parent().find('.select-dropdown');
             //dropdown.dropdown('open');
             $("#ddr-select-gameAmount").parent().find(".dropdown-content.active li").click(function (e) {
-                let dropdown = $(this).closest('.select-wrapper').find('input.select-dropdown.active');
+                var dropdown = $(this).closest('.select-wrapper').find('input.select-dropdown.active');
                 dropdown.attr("style", "color: #4e465b;font-weight:500;");
                 dropdown.dropdown('close');
             });

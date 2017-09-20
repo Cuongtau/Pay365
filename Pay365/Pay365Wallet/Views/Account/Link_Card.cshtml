@@ -450,7 +450,7 @@
                                 <span id="error_linkcard" style="color: red"></span>
                                 <div class="form-group input-field">
                                     <i class="material-icons prefix">credit_card</i>
-                                    <input maxlength="19" id="card_number" type="text" onkeypress="return utils.checkNumeric(event);">
+                                    <input maxlength="19" id="card_number" type="text" onkeypress="return utils.checkNumeric(event);" onkeyup="utils.bankCardFormat(this, event);">
                                     <label for="card_number">@Resources.Topup.number_card</label>
                                     <span class="error-text"></span>
                                 </div>
