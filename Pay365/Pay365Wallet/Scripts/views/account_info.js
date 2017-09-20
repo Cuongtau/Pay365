@@ -1847,6 +1847,7 @@ linkcard = new function() {
     // lấy thông tin thẻ liên kết
     this.CheckInfo_LinkCard = function() {
         $("#getlinkCard_info").hide();
+        $("#linkCard_btnAdd").hide();
         utils.getData(utils.trasactionApi() + "AccountAssociate/GetAccountAssociateInfo",
             { AssociateSystem: 19 },
             function(data) {
@@ -1862,7 +1863,8 @@ linkcard = new function() {
                 }
                 console.log(data);
             },
-            function(err) {
+            function (err) {
+                $("#linkCard_btnAdd").show();
                 console.log(err);
             });
     };
