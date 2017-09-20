@@ -349,7 +349,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Số 1. Đào Duy Anh. Đống Đa. Hà Nội.
+        ///   Looks up a localized string similar to Số 243A Đê La Thành. Hà Nội.
         /// </summary>
         internal static string lbl_AddressName {
             get {
