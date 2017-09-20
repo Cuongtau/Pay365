@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ms.Lê Thanh Hương.
+        ///   Looks up a localized string similar to Ms.Lê Hương.
         /// </summary>
         internal static string String11 {
             get {
