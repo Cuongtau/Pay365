@@ -19,7 +19,7 @@ namespace Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option or rebuild the Visual Studio project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "14.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Home {
@@ -433,7 +433,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Công ty cổ phần thanh toán Pay365.
+        ///   Looks up a localized string similar to CÔNG TY TNHH ĐẦU TƯ PHÁT TRIỂN AN NINH CÔNG NGHỆ CAO.
         /// </summary>
         internal static string String6 {
             get {
@@ -442,7 +442,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Số 1 Đào Duy Anh, Đống Đa, Hà Nội.
+        ///   Looks up a localized string similar to 243A Đê La Thành. Hà Nội.
         /// </summary>
         internal static string String7 {
             get {
