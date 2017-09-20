@@ -218,7 +218,7 @@
         var param = {
             culture: cul,
             cateId: common.NewsConfig.ALL_CATE,
-            keywords: encodeURIComponent(key),
+            keywords: key,
             page: 1,
             pageSize: 12
         };
@@ -254,7 +254,7 @@
         var param = {
             culture: cul,
             cateId: common.NewsConfig.ALL_CATE,
-            tags: encodeURIComponent(tags),
+            tags: tags,
             page: 1,
             pageSize: 6
         };

@@ -21,6 +21,9 @@
             case -13:
                 description = i18n.t('Error.CARDS_NOT_ENOUGH');
                 break;
+            case -15:
+                description = i18n.t('Error.SUBCRIBLE_EMAIL_EXISTS');
+                break;
             case - 19:
                 description = i18n.t('Error.TRANSACTION_PROCESSING');
                 break;
@@ -74,9 +77,6 @@
                 break;
             case -631:
                 description = i18n.t('Error.ACCOUNT_NOT_LOCK');
-                break;
-            case -632:
-                description = i18n.t('Error.SEND_OTP_MAX');
                 break;
             case -641:
                 description = i18n.t('Error.MOBILE_EXISTED');
@@ -174,9 +174,6 @@
             case -10030:
                 description = i18n.t('Error.IP_REGISTER_MAX');
                 break;
-            case -10031:
-                description = i18n.t('Error.REGISTER_SUCCESS_NONE_LOGIN');
-                break;
             case -10032:
                 description = i18n.t('Error.REGISTER_FAILED');
                 break;
@@ -267,9 +264,6 @@
             case -10109:
                 description = i18n.t('Error.ACCOUNT_NOT_REGISTER_SMSBANKING');
                 break;
-            case -10110:
-                description = i18n.t('Error.TIME_SMSBANKING_ACTIVE');
-                break;
             case -10111:
                 description = i18n.t('Error.ORDER_INFO_EXPRIZE');
                 break;
@@ -290,9 +284,6 @@
                 break;
             case -10117:
                 description = i18n.t('Error.TRANSFER_REASON_REQUIRED');
-                break;
-            case -10118:
-                description = i18n.t('Error.TRANSFER_PRIZE_MIN');
                 break;
             case -10119:
                 description = i18n.t('Error.AUTHEN_SOCIAL_FAILED');

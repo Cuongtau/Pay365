@@ -1140,7 +1140,7 @@
                             payment.SwapErrorResult(topupAmount, Msg);
                             break;
                         default:
-                            $("#payment_step1").find(".alert-danger").html('<i class="fa fa-warning"></i>' + objReturn.m).show();
+                            $("#payment_step1").find(".alert-danger").html('<i class="fa fa-warning"></i>' + Msg).show();
                             break;
                     }
                 }
@@ -1593,6 +1593,7 @@
     }
     this.TopupGame_checkInput = function () {
         utils.translateLang('transaction.payment');
+        ModalNotificationInit('Chức năng đang tạm thời đóng. Vui lòng quay lại sau', "", "warning", "", btnClose);
         $("#payment_step1").find(".alert-danger").html('').hide();
         var nickname = $("#txtNickname");
         var nicknameValue = nickname.val();
@@ -1755,7 +1756,7 @@
     };
     this.TopupGameMain_CheckInput = function () {
         utils.translateLang('transaction.payment');
-
+        ModalNotificationInit('Chức năng đang tạm thời đóng. Vui lòng quay lại sau', "", "warning", "", btnClose);
         $("#payment_topupGame").find(".alert-danger").html('').hide();
         $("#payment_topupGame").trigger('heightChange');
         var ddr_selectGame = $("#ddr-select-game");
@@ -1946,6 +1947,7 @@
     };
     this.TopupGame_Confirm = function () {
         utils.translateLang('transaction.payment');
+        ModalNotificationInit('Chức năng đang tạm thời đóng. Vui lòng quay lại sau', "", "warning", "", btnClose);
         if ($("#btnPaymentConfirm").hasClass('disabled'))
             return;
         var Otp = "";
@@ -2571,7 +2573,7 @@
             html += "Số seri: <strong id=\"Strong2\">" + item.Serial + "</strong><br>";
             html += "Hạn sử dụng: <b id=\"B1\">" + utils.formDateTime(item.ExpriredDate) + "</b><br>";
             html += "Ngày xuất: <b id=\"B1\">" + exportDate + "</b><br>";
-            html += "<label id=\"Label1\">Chăm sóc KH: 093-4626-505</label><br>";
+            html += "<label id=\"Label1\">Chăm sóc KH: 093-4676-505</label><br>";
 
             //if (hiddenAccount != null && hiddenAccount != "") {
             //    html += "Đại lý: <b id=\"B3\">" + hiddenAccount + "</b>";

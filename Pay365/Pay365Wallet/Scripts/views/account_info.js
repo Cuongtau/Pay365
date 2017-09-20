@@ -1706,7 +1706,7 @@ transaction_history = new function() {
                 html += "Số seri: <strong id=\"Strong2\">" + item.Serial + "</strong><br>";
                 html += "Hạn sử dụng: <b id=\"B1\">" + utils.formDateTime(item.ExpriredDate) + "</b><br>";
                 html += "Ngày xuất: <b id=\"B1\">" + exportDate + "</b><br>";
-                html += "<label id=\"Label1\">Chăm sóc KH: <b>093-4626-505</b></label><br>";
+                html += "<label id=\"Label1\">Chăm sóc KH: <b>093-4676-505</b></label><br>";
 
                 //if (hiddenAccount != null && hiddenAccount != "") {
                 //    html += "Đại lý: <b id=\"B3\">" + hiddenAccount + "</b>";
@@ -1848,6 +1848,7 @@ linkcard = new function() {
     // lấy thông tin thẻ liên kết
     this.CheckInfo_LinkCard = function() {
         $("#getlinkCard_info").hide();
+        $("#linkCard_btnAdd").hide();
         utils.getData(utils.trasactionApi() + "AccountAssociate/GetAccountAssociateInfo",
             { AssociateSystem: 19 },
             function(data) {
@@ -1863,7 +1864,8 @@ linkcard = new function() {
                 }
                 console.log(data);
             },
-            function(err) {
+            function (err) {
+                $("#linkCard_btnAdd").show();
                 console.log(err);
             });
     };
