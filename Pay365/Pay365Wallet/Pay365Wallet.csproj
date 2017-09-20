@@ -472,6 +472,7 @@
     <Content Include="Content\css\printcardstyle.css" />
     <Content Include="Content\libs\animate.min.css" />
     <Content Include="Content\libs\cropper.css" />
+    <Content Include="images\comingsoon_659.png" />
     <Content Include="images\X618po.gif" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Content\libs\croppie.css" />

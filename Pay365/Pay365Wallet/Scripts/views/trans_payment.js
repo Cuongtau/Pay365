@@ -1140,7 +1140,7 @@
                             payment.SwapErrorResult(topupAmount, Msg);
                             break;
                         default:
-                            $("#payment_step1").find(".alert-danger").html('<i class="fa fa-warning"></i>' + objReturn.m).show();
+                            $("#payment_step1").find(".alert-danger").html('<i class="fa fa-warning"></i>' + Msg).show();
                             break;
                     }
                 }
@@ -1593,6 +1593,7 @@
     }
     this.TopupGame_checkInput = function () {
         utils.translateLang('transaction.payment');
+        ModalNotificationInit('Chức năng đang tạm thời đóng. Vui lòng quay lại sau', "", "warning", "", btnClose);
         $("#payment_step1").find(".alert-danger").html('').hide();
         var nickname = $("#txtNickname");
         var nicknameValue = nickname.val();
@@ -1755,7 +1756,7 @@
     };
     this.TopupGameMain_CheckInput = function () {
         utils.translateLang('transaction.payment');
-
+        ModalNotificationInit('Chức năng đang tạm thời đóng. Vui lòng quay lại sau', "", "warning", "", btnClose);
         $("#payment_topupGame").find(".alert-danger").html('').hide();
         $("#payment_topupGame").trigger('heightChange');
         var ddr_selectGame = $("#ddr-select-game");
@@ -1946,6 +1947,7 @@
     };
     this.TopupGame_Confirm = function () {
         utils.translateLang('transaction.payment');
+        ModalNotificationInit('Chức năng đang tạm thời đóng. Vui lòng quay lại sau', "", "warning", "", btnClose);
         if ($("#btnPaymentConfirm").hasClass('disabled'))
             return;
         var Otp = "";
