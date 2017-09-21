@@ -92,6 +92,13 @@ a.disabled {
     text-transform: initial;
 }
 
+body {
+    overflow-x: hidden;
+}
+
+.showVisible {
+    overflow-y: hidden;
+}
 .tab-slides {
     position: relative;
     width: 100%;
