@@ -72,7 +72,7 @@
     </script>
     @Styles.Render("~/Content_main/css")
     @Scripts.Render("~/bundles/jquery")
-    
+
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -92,9 +92,9 @@
         window.$zopim || (function (d, s) {
             var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
                                                                d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
-                z.set.
-                    _.push(o)
-            }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute('charset', 'utf-8');
+                                                                   z.set.
+                                                                       _.push(o)
+                                                               }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute('charset', 'utf-8');
             $.src = 'https://v2.zopim.com/?53hxOfjSlu7ueig66jO5r1GClMwgcgj4'; z.t = +new Date; $.
                 type = 'text/javascript';
             e.parentNode.insertBefore($, e);
@@ -159,6 +159,7 @@
 
             @RenderBody()
         </aside>
+        <a href="javascript:;" class="btn btn-floating btn-top" id="btn-top"><i class="material-icons">expand_less</i></a>
     </div>
 
     <div id="modal-alert" class="modal">
@@ -189,53 +190,56 @@
 
     <script src="~/Scripts/libs/croppie/croppie.min.js"></script>
     <script type="text/javascript">
-    var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode','profile.account', 'common.news'];
-    var currlang = utils.getCurrentLanguage();
-    i18n.init({
+        var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode', 'profile.account', 'common.news'];
+        var currlang = utils.getCurrentLanguage();
+        i18n.init({
             lng: currlang,
             resGetPath: "@Html.Raw(Pay365.Utils.Config.Domain)locales/__lng__/__ns__.json",
             ns: { namespaces: listResource, defaultNs: 'common.homepage' } //khai báo các file resource
-        },
-        function (t) {
+        }, function (t) {
             $(".translang").i18n();
-            });
-
-    $('.modal').modal();
-
-    $('body').click(function(){
-        $('#headerSearchColumn').removeClass('show');
-        if($('body').hasClass('hideSidebar')){
-            $('.sidebar .menu-item').removeClass('expand');
-        }
         });
 
-    $('#headerBtnToggleSearch').click(function(e){
-        e.stopPropagation();
-        $('#headerSearchColumn').addClass('show').find('input').focus();
-    });
-    $('#headerSearchColumn').click(function(e){
-        e.stopPropagation();
-    });
+        $('.modal').modal();
 
+        $('body').click(function () {
+            $('#headerSearchColumn').removeClass('show');
+            if ($('body').hasClass('hideSidebar')) {
+                $('.sidebar .menu-item').removeClass('expand');
+            }
+        });
 
-    $('#txtEmailSubcrible').keyup(function(event) {
-        var keyCode = event.keyCode || event.which;
-        if (keyCode === 13) {
-            news.RegisterSubscripber();
-        } else {
-            $('#txterror_emailSubcrible').text('');
-        }
-    });
+        $('#headerBtnToggleSearch').click(function (e) {
+            e.stopPropagation();
+            $('#headerSearchColumn').addClass('show').find('input').focus();
+        });
 
+        $('#headerSearchColumn').click(function (e) {
+            e.stopPropagation();
+        });
 
+        $('#txtEmailSubcrible').keyup(function (event) {
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                news.RegisterSubscripber();
+            } else {
+                $('#txterror_emailSubcrible').text('');
+            }
+        });
 
-    $('#txt_keyword_search').keyup(function(event) {
-        var keyCode = event.keyCode || event.which;
-        if (keyCode === 13) {
-            news.Btn_SearchNews();
-        }
-    });
+        $('#btn-top, #explode').on('click', function () {
+            if (this.id === 'btn-top')
+                goToByScroll('body');
+            else
+                goToByScroll('#why-use');
+        });
 
+        $('#txt_keyword_search').keyup(function (event) {
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                news.Btn_SearchNews();
+            }
+        });
     </script>
 </body>
 </html>

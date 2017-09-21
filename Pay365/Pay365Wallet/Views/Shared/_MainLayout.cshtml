@@ -419,7 +419,7 @@
                     </div>
                 </section>*@
         </aside>
-
+        <a href="javascript:;" class="btn btn-floating btn-top" id="btn-top"><i class="material-icons">expand_less</i></a>
     </div>
 
     <div id="modal-alert" class="modal">
@@ -513,6 +513,13 @@
         if (keyCode === 13) {
             news.Btn_SearchNews();
         }
+    });
+
+    $('#btn-top, #explode').on('click', function () {
+        if (this.id === 'btn-top')
+            goToByScroll('body');
+        else
+            goToByScroll('#why-use');
     });
 
     $(window).resize(function () {
