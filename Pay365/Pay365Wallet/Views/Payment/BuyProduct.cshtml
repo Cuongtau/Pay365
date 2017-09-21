@@ -1,5 +1,13 @@
 ﻿@{
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var isAuthenticated = HttpContext.Current.User.Identity.IsAuthenticated;
+    if (!isAuthenticated)
+    {
+        Layout = "~/Views/Shared/_LayoutOut.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_MainLayout.cshtml";
+    }
     ViewBag.Title = Resources.Home.lbl_titleWeb;
 
     int TypeView = Convert.ToInt32(ViewBag.Id);

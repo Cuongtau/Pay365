@@ -56,7 +56,12 @@ namespace Pay365Wallet
                             "~/Content/assets/js/materializeSelectOverride.js",
                             "~/Scripts/libs/cropper/cropper.js"
                             ));
-
+            bundles.Add(new ScriptBundle("~/bundles/pay365LogoutViewjs").Include(
+                            "~/Scripts/views/news.js",
+                            "~/Scripts/views/trans_payment.js",
+                            "~/Content/assets/js/materializeSelectOverride.js",
+                            "~/Scripts/libs/cropper/cropper.js"
+                            ));
             bundles.Add(new ScriptBundle("~/bundles/pay365viewjs").Include(
                             "~/Scripts/views/account_update.js",
                             "~/Scripts/views/login.js",
