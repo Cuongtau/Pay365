@@ -254,31 +254,31 @@
 
                     @if (Pay365Wallet.Helpers.LanguageHelper.GetCurrentLanguage() == "vi")
                     {
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownLanguages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="flag-icon flag-icon-vn"></span>
-                                <span class="language-label">@Resources.Home.String3</span>
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu right" aria-labelledby="dropdownLanguages">
-                                <li><a href="javascript:;"><span class="flag-icon flag-icon-vn"></span>@Resources.Home.String3</a></li>
-                                <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)Home/ChangeLanguage?lang=en"><span class="flag-icon flag-icon-us"></span>English</a></li>
-                            </ul>
-                        </div>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownLanguages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="flag-icon flag-icon-vn"></span>
+                            <span class="language-label">@Resources.Home.String3</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu right" aria-labelledby="dropdownLanguages">
+                            <li><a href="javascript:;"><span class="flag-icon flag-icon-vn"></span>@Resources.Home.String3</a></li>
+                            <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)Home/ChangeLanguage?lang=en"><span class="flag-icon flag-icon-us"></span>English</a></li>
+                        </ul>
+                    </div>
                     }
                     else
                     {
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownLanguages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="flag-icon flag-icon-us"></span>
-                                <span class="language-label">English</span>
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu right" aria-labelledby="dropdownLanguages">
-                                <li><a href="javascript:;"><span class="flag-icon flag-icon-us"></span>English</a></li>
-                                <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)Home/ChangeLanguage?lang=vi"><span class="flag-icon flag-icon-vn"></span> @Resources.Home.String3</a></li>
-                            </ul>
-                        </div>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownLanguages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="flag-icon flag-icon-us"></span>
+                            <span class="language-label">English</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu right" aria-labelledby="dropdownLanguages">
+                            <li><a href="javascript:;"><span class="flag-icon flag-icon-us"></span>English</a></li>
+                            <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)Home/ChangeLanguage?lang=vi"><span class="flag-icon flag-icon-vn"></span> @Resources.Home.String3</a></li>
+                        </ul>
+                    </div>
                     }
 
                     <div class="search" id="headerSearchColumn">
@@ -298,8 +298,10 @@
 
             @RenderBody()
         </aside>
+        
         <a href="javascript:;" class="btn btn-floating btn-top" id="btn-top"><i class="material-icons">expand_less</i></a>
     </div>
+   
 
     <div id="modal-alert" class="modal">
         <div class="modal-content">
@@ -366,6 +368,10 @@
             }
         });
 
+        $(window).scroll(function () {
+            topBar();
+        });
+
         $('#btn-top, #explode').on('click', function () {
             if (this.id === 'btn-top')
                 goToByScroll('body');
@@ -373,12 +379,12 @@
                 goToByScroll('#why-use');
         });
 
-    $('#txt_keyword_search').keyup(function(event) {
-        var keyCode = event.keyCode || event.which;
-        if (keyCode === 13) {
-            news.Btn_SearchNews();
-        }
-    });
+        $('#txt_keyword_search').keyup(function (event) {
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                news.Btn_SearchNews();
+            }
+        });
 
     </script>
 </body>

@@ -1421,3 +1421,14 @@ textarea.materialize-textarea { height: 0; padding-top: 5px; padding-bottom: 0; 
 .mCustomScrollBox:hover .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar { background-color: rgba(170, 170, 170, 0.7); }
 
 .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar, .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar { background-color: #fff; background-color: rgba(255, 255, 255, 0.5); filter: "alpha(opacity=50)"; -ms-filter: "alpha(opacity=50)"; }
+
+.btn-top { height: 56px; width: 56px; background: #ff9149; box-shadow: 0 3px 8px rgba(255, 145, 73, 0.5); color: #fff; position: fixed; right: 20px; bottom: 50px; border-radius: 100%; padding: 8px 0 0 0; text-align: center; opacity: 0; visibility: hidden; -webkit-transition: all 250ms ease; -moz-transition: all 250ms ease; transition: all 250ms ease; box-shadow: none; }
+.btn-top.active { opacity: .5; visibility: visible; box-shadow: none; }
+.btn-top:hover { color: #fff; box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); opacity: 1; }
+.btn-top:focus { color: #fff; }
+.btn-top .material-icons { font-size: 48px; }
+
+body.topbarFixed .header .top-bar { background: rgba(255, 255, 255, 0.9) !important; position: fixed; top: 0; left: 0; width: 100%; height: 65px; box-shadow: 0 2px 4px rgba(117, 115, 121, 0.25); }
+body.topbarFixed .header .top-bar .logo { padding-top: 10px; }
+body.topbarFixed .header .top-bar .logo img { width: 120px; padding-top: 0; }
+body.topbarFixed .header .top-bar-button { padding-top: 15px; }
