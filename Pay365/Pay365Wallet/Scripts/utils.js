@@ -1604,7 +1604,8 @@ function payMainLoad() {
             }
         });
     }
-
+   
+    
 }
 function isElementInView(element, fullyInView) {
     var pageTop = $(window).scrollTop();
