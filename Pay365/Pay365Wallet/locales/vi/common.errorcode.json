@@ -2,7 +2,7 @@
     "Error": {
         "ACCESS_DENIED": "Bạn không có quyền truy câp, vui lòng thử lại sau",
         "ACCOUNT_ACTIVED": "Số tài khoản đã kích hoạt rồi không kích hoạt được nữa",
-        "ACCOUNT_BLOCKED": "Số tài khoản đang bị khóa. Vui lòng gọi số 093-4676-505 để được hỗ trợ",
+        "ACCOUNT_BLOCKED": "Số tài khoản đang bị khóa. Vui lòng gọi số 093-4626-505 để được hỗ trợ",
         "ACCOUNT_EXISTED": "Số tài khoản đã tồn tại",
         "ACCOUNT_ISNOTACCTIVE": "Số tài khoản chưa được kích hoạt, vui lòng kích hoạt",
         "ACCOUNT_NOT_LOCK": "Số tài khoản chưa khóa",
