@@ -112,14 +112,14 @@
                     z.set.
                         _.push(o)
                 }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute('charset', 'utf-8');
-                $.src = 'https://v2.zopim.com/?57myuEY8jh9WF8kBKZhnywgBT2ca2CUS'; z.t = +new Date; $.
-                type = 'text/javascript';
+            $.src = 'https://v2.zopim.com/?57myuEY8jh9WF8kBKZhnywgBT2ca2CUS'; z.t = +new Date; $.
+            type = 'text/javascript';
             e.parentNode.insertBefore($, e);
             $.onload = function () {
                 $zopim.livechat.theme.setColor('#834be1', 'badge');
                 $zopim.livechat.window.setColor('#834be1');
                 $zopim.livechat.theme.reload();
-                
+
                 var lang = utils.getCurrentLanguage();
                 if (lang == "vn")
                     lang = "vi";
@@ -378,8 +378,9 @@
 
 
             <div id="overpage"></div>
-            
+
         </aside>
+        <a href="javascript:;" class="btn btn-floating btn-top" id="btn-top"><i class="material-icons">expand_less</i></a>
 
     </div>
 
@@ -447,39 +448,50 @@
         @Scripts.Render("~/bundles/pay365viewjs")
     }
     <script type="text/javascript">
-    var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode', 'profile.account', 'common.news', 'transaction.topupmoney', 'transaction.payment', 'transaction.transfermoney','transaction.cashoutmoney'];
-    var currlang = utils.getCurrentLanguage();
-    i18n.init({
+        var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode', 'profile.account', 'common.news', 'transaction.topupmoney', 'transaction.payment', 'transaction.transfermoney', 'transaction.cashoutmoney'];
+        var currlang = utils.getCurrentLanguage();
+        i18n.init({
             lng: currlang,
             resGetPath: "@Html.Raw(Pay365.Utils.Config.Domain)locales/__lng__/__ns__.json",
             ns: { namespaces: listResource, defaultNs: 'common.homepage' } //khai báo các file resource
         },
-        function (t) {
-            $(".translang").i18n();
-        });
+            function (t) {
+                $(".translang").i18n();
+            });
 
         $(function () {
-        //header.BindTemp();
-        $(document).click(function (event) {
-            var $target = $(event.target);
-            if (!$target.is('.material-icons') && !$target.is('.btn-notifications') && !$('.notifications-section').has($target).length && $('.notifications-section').is(':visible')) {
-                $(".notifications-section").parent().removeClass("notifications-section-open");
-                $("#overpage").removeClass("overlay");
+            //header.BindTemp();
+            $(document).click(function (event) {
+                var $target = $(event.target);
+                if (!$target.is('.material-icons') && !$target.is('.btn-notifications') && !$('.notifications-section').has($target).length && $('.notifications-section').is(':visible')) {
+                    $(".notifications-section").parent().removeClass("notifications-section-open");
+                    $("#overpage").removeClass("overlay");
+                }
+            });
+        });
+
+        $('#txt_keyword_search').keyup(function (event) {
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                news.Btn_SearchNews();
             }
         });
-    });
 
-    $('#txt_keyword_search').keyup(function(event) {
-        var keyCode = event.keyCode || event.which;
-        if (keyCode === 13) {
-            news.Btn_SearchNews();
-        }
-    });
+        $(window).scroll(function() {
+            topBar();
+        });
 
-    $(window).resize(function () {
-        initHeightColumn();
-        sideBar();
-    });
+        $('#btn-top, #explode').on('click', function () {
+            if (this.id === 'btn-top')
+                goToByScroll('body');
+            else
+                goToByScroll('#why-use');
+        });
+
+        $(window).resize(function () {
+            initHeightColumn();
+            sideBar();
+        });
         $(window).on('load', function () {
             initHeightColumn();
             sideBar();

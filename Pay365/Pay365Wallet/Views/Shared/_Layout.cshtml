@@ -359,10 +359,10 @@
         var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode', 'profile.account'];
         var currlang = utils.getCurrentLanguage();
         i18n.init({
-                lng: currlang,
-                resGetPath: "@Html.Raw(Pay365.Utils.Config.Domain)locales/__lng__/__ns__.json",
-                ns: { namespaces: listResource, defaultNs: 'common.homepage' } //khai báo các file resource
-            },
+            lng: currlang,
+            resGetPath: "@Html.Raw(Pay365.Utils.Config.Domain)locales/__lng__/__ns__.json",
+            ns: { namespaces: listResource, defaultNs: 'common.homepage' } //khai báo các file resource
+        },
             function (t) {
                 $(".translang").i18n();
             });
@@ -452,7 +452,7 @@
                 goToByScroll('#why-use');
         });
 
-        $('#txtEmailSubcrible').keyup(function(event) {
+        $('#txtEmailSubcrible').keyup(function (event) {
             var keyCode = event.keyCode || event.which;
             if (keyCode === 13) {
                 RegisterSubscripber_Layout();
