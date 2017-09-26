@@ -637,7 +637,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Không nhận được mã vui lòng click Nhận lại OTP hoặc soạn tin P365 OTP gửi 8100 (1.000 VNĐ/SMS).
+        ///   Looks up a localized string similar to Không nhận được mã vui lòng click Nhận lại OTP hoặc soạn tin P365 OTP gửi 8100 (1.500 VNĐ/SMS).
         /// </summary>
         internal static string Noti_1 {
             get {

@@ -105,11 +105,11 @@
                     if (data.c == 1) { // OTP SMS
                         var des = "Mã xác thực đã được gửi về số điện thoại <span class='secondary'>" +
                             header.AccountInfo.Username +
-                            "</span> (Miễn phí 5 SMS/24h). </br> Không nhận được mã vui lòng click <span class='secondary'>Nhận lại OTP</span> hoặc soạn tin <span class='secondary'>P365 OTP</span> gửi <span class='secondary'>8100</span> (1000 VNĐ/SMS)";
+                            "</span> (Miễn phí 5 SMS/24h). </br> Không nhận được mã vui lòng click <span class='secondary'>Nhận lại OTP</span> hoặc soạn tin <span class='secondary'>P365 OTP</span> gửi <span class='secondary'>8100</span> (1.500 VNĐ/SMS)";
                         if (header.AccountInfo.CurrentLang == "en") {
                             des = "The authentication code has been sent to phone <span class='secondary'>" +
                                 header.AccountInfo.Username +
-                                "</span> (Free 5 SMS/24h). </br> Do not receive the code, click <span class='secondary'>Resend OTP</span> or compose the message <span class='secondary'>P365 OTP</span> send <span class='secondary'>8100</span> (1000 VNĐ/SMS)";
+                                "</span> (Free 5 SMS/24h). </br> Do not receive the code, click <span class='secondary'>Resend OTP</span> or compose the message <span class='secondary'>P365 OTP</span> send <span class='secondary'>8100</span> (1.500 VNĐ/SMS)";
                         }
                         $('#div_Otp').show();
                         $('#txt_typeOtp').html(des);
