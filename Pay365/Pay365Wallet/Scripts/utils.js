@@ -4,23 +4,20 @@
         return 'http://localhost:59869/';
     },
     linkIdApi: function () {
-        return 'http://id.pay365.vn/api/';
+        return 'http://id.alpha.pay365.vn/api/';
     },
     linkNewApi: function () {
         return 'http://news.pay365.vn/api/';
     },
 
     profileApi: function () {
-        return 'http://profile.pay365.vn/api/';
+        return 'http://profile.alpha.pay365.vn/api/';
     },
 
     trasactionApi: function () {
         return 'http://payment.pay365.vn/api/';
     },
-
-    trasactionApi: function () {
-        return 'http://payment.pay365.vn/api/';
-    },
+    
 
     translateLang: function (namespace) {
         //test i18n
