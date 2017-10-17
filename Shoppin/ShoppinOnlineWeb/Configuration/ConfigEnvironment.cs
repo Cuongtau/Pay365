@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Pay365.Pay365.Configuration;
-using UtilLibraries;
 
 namespace ShoppinOnline.Configuration
 {
@@ -9,12 +10,10 @@ namespace ShoppinOnline.Configuration
     {
         private readonly IHostingEnvironment _env;
         private readonly IConfigurationRoot _appConfiguration;
-        public string ConnectString { get; private set; }
         public ConfigEnvironment(IHostingEnvironment env)
         {
             _env = env;
             _appConfiguration = GetAppConfiguration(env);
-            CommonStorages.ConnectionString = _appConfiguration.GetConnectionString(ShopConsts.ConnectionStringName);
         }
 
         private IConfigurationRoot GetAppConfiguration(IHostingEnvironment env)
