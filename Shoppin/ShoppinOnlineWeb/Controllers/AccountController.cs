@@ -39,10 +39,10 @@ namespace ShoppinOnline.Controllers
         }
 
         /// <summary>
-        /// Delete API Value
+        /// Register account
         /// </summary>
-        /// <remarks>This API will create account the values.</remarks>
-        /// <param name="account">object account</param>
+        /// <remarks>This API will create an account</remarks>
+        /// <param name="account">Object account, param at Data Type column</param>
         /// <returns></returns>
         [HttpPost]
         public IActionResult Register([FromBody]Account account)
