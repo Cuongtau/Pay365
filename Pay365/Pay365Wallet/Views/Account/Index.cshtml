@@ -407,7 +407,7 @@
                     </div>
                     
                     <script id="getlinkCard_info_tmpl" type="text/x-jquery-tmpl">
-                        <li>
+                        <li onclick="gotoLinkCard();" style="cursor: pointer;">
                             <div class="link-card pay365 image_shine_af">
                                 <div class="subfix">${ Substring_LinkCard(AssociateUsername) }</div>
                                 <div class="logo"><img src="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/brands/logo-banks/STB.png" alt=""></div>

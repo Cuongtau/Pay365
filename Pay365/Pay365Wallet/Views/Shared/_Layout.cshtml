@@ -29,7 +29,7 @@
         "logo": "@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-purple.svg",
         "contactPoint" : [
         { "@@type" : "ContactPoint",
-        "telephone" : "0934676505",
+        "telephone" : "0934626505",
         "contactType" : "customer service"
         } ]
         }
@@ -44,7 +44,7 @@
         "logo": "@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-purple.svg",
         "sameAs" : [
         "https://twitter.com/pay365",
-        "https://www.facebook.com/pay365",
+        "https://www.facebook.com/Pay365-1725246437784710/",
         "https://plus.google.com/106377879920743719402/posts?hl=en",
         "@Html.Raw(Pay365.Utils.Config.Domain)"
         ]
@@ -88,9 +88,19 @@
             }, i[r].l = 1 * new Date(); a = s.createElement(o),
                 m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-105001096-1', 'auto');
-
+        var GA_LOCAL_STORAGE_KEY = 'ga:clientId';
+        if (window.localStorage) {
+            ga('create', 'UA-106798536-1', {
+                'storage': 'none',
+                'clientId': localStorage.getItem(GA_LOCAL_STORAGE_KEY)
+            });
+            ga(function (tracker) {
+                localStorage.setItem(GA_LOCAL_STORAGE_KEY, tracker.get('clientId'));
+            });
+        }
+        else {
+            ga('create', 'UA-106798536-1', 'auto');
+        }
         $(function () {
             trackingPageView();
         });
@@ -108,13 +118,17 @@
                     z.set.
                         _.push(o)
                 }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute('charset', 'utf-8');
-            $.src = 'https://v2.zopim.com/?53hxOfjSlu7ueig66jO5r1GClMwgcgj4'; z.t = +new Date; $.
+            $.src = 'https://v2.zopim.com/?57myuEY8jh9WF8kBKZhnywgBT2ca2CUS'; z.t = +new Date; $.
                 type = 'text/javascript';
             e.parentNode.insertBefore($, e);
             $.onload = function () {
                 $zopim.livechat.theme.setColor('#834be1', 'badge');
                 $zopim.livechat.window.setColor('#834be1');
                 $zopim.livechat.theme.reload();
+                var lang = utils.getCurrentLanguage();
+                if (lang == "vn")
+                    lang = "vi";
+                $zopim.livechat.setLanguage(lang);
             }
         })(document, 'script');
     </script>
@@ -279,7 +293,7 @@
                                     </li>
                                     <li>
                                         <i class="fa fa-skype"></i>
-                                        <span><a href="skype:phuongdt_ojb">phuongdt_ojb</a></span>
+                                        <span><a href="skype:lethithanhhuong.snh?chat">lethithanhhuong.snh</a></span>
                                     </li>
                                 </ul>
                             </div>
@@ -290,7 +304,7 @@
                                 <ul>
                                     <li>
                                         <i class="fa fa-phone"></i>
-                                        <span><a href="tel:0934676505">093-4676-505</a></span>
+                                        <span><a href="tel:0934626505">093-4626-505</a></span>
                                     </li>
                                     <li>
                                         <i class="fa fa-envelope"></i>
@@ -355,10 +369,10 @@
         var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode', 'profile.account'];
         var currlang = utils.getCurrentLanguage();
         i18n.init({
-                lng: currlang,
-                resGetPath: "@Html.Raw(Pay365.Utils.Config.Domain)locales/__lng__/__ns__.json",
-                ns: { namespaces: listResource, defaultNs: 'common.homepage' } //khai báo các file resource
-            },
+            lng: currlang,
+            resGetPath: "@Html.Raw(Pay365.Utils.Config.Domain)locales/__lng__/__ns__.json",
+            ns: { namespaces: listResource, defaultNs: 'common.homepage' } //khai báo các file resource
+        },
             function (t) {
                 $(".translang").i18n();
             });
@@ -448,7 +462,7 @@
                 goToByScroll('#why-use');
         });
 
-        $('#txtEmailSubcrible').keyup(function(event) {
+        $('#txtEmailSubcrible').keyup(function (event) {
             var keyCode = event.keyCode || event.which;
             if (keyCode === 13) {
                 RegisterSubscripber_Layout();

@@ -362,7 +362,7 @@ input:-ms-input-placeholder { font-weight: 400; color: #aaa; }
 .profile-section .profile-content .user-info .block-link-cards .list-link-card .link-card .subfix { color: #fff; font-weight: 500; font-size: 1.375rem; position: absolute; top: 10%; right:5% }
 .profile-section .profile-content .user-info .block-link-cards .list-link-card .link-card .subfix:before { content: ' '; border-radius: 100%; height: 4px; width: 4px; position: absolute; top: 2px; left: -100px; box-shadow: 0px 4px #fff, 5px 4px #fff, 10px 4px #fff, 15px 4px #fff,  35px 4px #fff, 40px 4px #fff, 45px 4px #fff, 50px 4px #fff,  70px 4px #fff, 75px 4px #fff, 80px 4px #fff, 85px 4px #fff; }
 .profile-section .profile-content .user-info .block-link-cards .list-link-card .credit { background-color: #2b2b3b; background-image: url(../images/world-black.png); box-shadow: 0 4px 8px rgba(43, 43, 59, 0.4); }
-.profile-section .profile-content .user-info .block-link-cards .list-link-card .pay365 { background-color: #a585cd; background-image: -webkit-linear-gradient(left, #a585cd, #8055cf); background-image: linear-gradient(to right,#a585cd, #8055cf); box-shadow: 0 4px 8px rgba(184, 143, 240, 0.4); }
+.profile-section .profile-content .user-info .block-link-cards .list-link-card .pay365 { background-color: #277bd0; background-image: -webkit-linear-gradient(left, #277bd0, #277bd0); background-image: linear-gradient(to right,#277bd0, #277bd0); box-shadow: 0 4px 8px rgba(184, 143, 240, 0.4); }
 .profile-section .profile-content .user-info .block-link-cards .list-link-card .pay365:before { content: ' '; height: 100%; width: 100%; background: url(../images/world-white.png) no-repeat center/cover; position: absolute; top: 0; left: 0; }
 .profile-section .profile-content .user-info .block-link-cards .action { padding-top: 25px; text-align: right; }
 .profile-section .profile-content .wallet-info { width: 100%; max-width: 100%; }
@@ -534,7 +534,7 @@ li.trans-head { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px so
 .widgets .list-link-cards li .link-card .subfix { color: #fff; font-weight: 500; font-size: 0.7rem; position: absolute; top: 10px; left: 120px; }
 .widgets .list-link-cards li .link-card .subfix:before { content: ' '; border-radius: 100%; height: 4px; width: 4px; position: absolute; top: 2px; left: -100px; box-shadow: 0px 4px #fff, 5px 4px #fff, 10px 4px #fff, 15px 4px #fff,  35px 4px #fff, 40px 4px #fff, 45px 4px #fff, 50px 4px #fff,  70px 4px #fff, 75px 4px #fff, 80px 4px #fff, 85px 4px #fff; }
 .widgets .list-link-cards li .credit { background-color: #2b2b3b; background-image: url(../images/world-black.png); box-shadow: 0 4px 8px rgba(43, 43, 59, 0.4); }
-.widgets .list-link-cards li .pay365 { background-color: #a585cd; background-image: -webkit-linear-gradient(left, #a585cd, #8055cf); background-image: linear-gradient(to right,#a585cd, #8055cf); box-shadow: 0 4px 8px rgba(184, 143, 240, 0.4); }
+.widgets .list-link-cards li .pay365 { background-color: #a585cd; background-image: -webkit-linear-gradient(left, #277bd0, #277bd0); background-image: linear-gradient(to right,#277BFA, #277BC6); box-shadow: 0 4px 8px rgba(184, 143, 240, 0.4); }
 .widgets .list-link-cards li .pay365:before { content: ' '; height: 100%; width: 100%; background: url(../images/world-white.png) no-repeat center/cover; position: absolute; top: 0; left: 0; }
 
 
@@ -556,7 +556,7 @@ li.trans-head { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px so
 .linked-cards .add:hover { text-decoration: none; color: #7852df; border-color: #7852df; }
 
 .link-card { width: 100%; height: 155px; border-radius: 15px; background-repeat: no-repeat; background-position: 50% 50%; background-size: 100% 100%; position: relative; margin: 0 auto; }
-.link-card.credit { background-color: #2b2b3b; background-image: url(../images/world-black.png); box-shadow: 0 4px 8px rgba(43, 43, 59, 0.4); }
+.link-card.credit { background-color: #277bd0; background-image: url(../images/world-black.png); box-shadow: 0 4px 8px rgba(43, 43, 59, 0.4); }
 .link-card.pay365 { background-color: #a585cd; background-image: -webkit-linear-gradient(left, #a585cd, #8055cf); background-image: linear-gradient(to right,#a585cd, #8055cf); box-shadow: 0 4px 8px rgba(184, 143, 240, 0.4); }
 .link-card.pay365:before { content: ' '; height: 100%; width: 100%; background: url(../images/world-white.png) no-repeat center/cover; position: absolute; top: 0; left: 0; }
 .link-card .logo { height: 20%; background: #fff; border-radius: 3px; position: absolute; top: 10%; left: 5%; max-width: 50%; overflow: hidden; padding: 0 2%; display: flex; justify-content: center; align-items: center; align-content: center; }
@@ -1188,7 +1188,8 @@ input:not([type]) + label:after, input[type=text]:not(.browser-default) + label:
 .socials .social-link.tumblr:before { border-color: #413c55; }		
 .socials .social-link.youtube { background-color: #d02727; background-image: -webkit-linear-gradient(top right, #d02727, #ff7171); background-image: linear-gradient(to bottom left,#d02727, #ff7171); box-shadow: 0 4px 12px rgba(255, 75, 75, 0.4); }		
 .socials .social-link.youtube:before { border-color: #d02727; }
-
+.socials .social-link.google { background-color: #EB4235; background-image: -webkit-linear-gradient(top right, #EB4235, #f16f6f); background-image: linear-gradient(to bottom left,#EB4235, #f16f6f); box-shadow: 0 4px 12px rgba(75, 122, 255, 0.4); }		
+.socials .social-link.google:before { border-color: #d02727; }	
 .post-links li {margin-bottom: 10px;}
 .post-links li a {font-size: 1rem;}
 
@@ -1420,3 +1421,14 @@ textarea.materialize-textarea { height: 0; padding-top: 5px; padding-bottom: 0; 
 .mCustomScrollBox:hover .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar { background-color: rgba(170, 170, 170, 0.7); }
 
 .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar, .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar { background-color: #fff; background-color: rgba(255, 255, 255, 0.5); filter: "alpha(opacity=50)"; -ms-filter: "alpha(opacity=50)"; }
+
+.btn-top { height: 56px; width: 56px; background: #ff9149; box-shadow: 0 3px 8px rgba(255, 145, 73, 0.5); color: #fff; position: fixed; right: 20px; bottom: 50px; border-radius: 100%; padding: 8px 0 0 0; text-align: center; opacity: 0; visibility: hidden; -webkit-transition: all 250ms ease; -moz-transition: all 250ms ease; transition: all 250ms ease; box-shadow: none; }
+.btn-top.active { opacity: .5; visibility: visible; box-shadow: none; }
+.btn-top:hover { color: #fff; box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); opacity: 1; }
+.btn-top:focus { color: #fff; }
+.btn-top .material-icons { font-size: 48px; }
+
+body.topbarFixed .header .top-bar { background: rgba(255, 255, 255, 0.9) !important; position: fixed; top: 0; left: 0; width: 100%; height: 65px; box-shadow: 0 2px 4px rgba(117, 115, 121, 0.25); }
+body.topbarFixed .header .top-bar .logo { padding-top: 10px; }
+body.topbarFixed .header .top-bar .logo img { width: 120px; padding-top: 0; }
+body.topbarFixed .header .top-bar-button { padding-top: 15px; }

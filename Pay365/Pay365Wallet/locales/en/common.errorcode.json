@@ -2,7 +2,7 @@
     "Error": {
         "ACCESS_DENIED": "You don't have permission to access. Please try again later",
         "ACCOUNT_ACTIVED": "Account is already active. ",
-        "ACCOUNT_BLOCKED": "Account is locking. Please call 093-4676-505 for assistance",
+        "ACCOUNT_BLOCKED": "Account is locking. Please call 093-4626-505 for assistance",
         "ACCOUNT_EXISTED": "Account is existed",
         "ACCOUNT_ISNOTACCTIVE": "Account is not active",
         "ACCOUNT_NOT_LOCK": "Account not lock",

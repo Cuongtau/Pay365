@@ -26,7 +26,7 @@
         "logo": "@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-purple.svg",
         "contactPoint" : [
         { "@@type" : "ContactPoint",
-        "telephone" : "+84-934676505",
+        "telephone" : "+84-934626505",
         "contactType" : "customer service"
         } ]
         }
@@ -41,8 +41,8 @@
         "logo": "@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-purple.svg",
         "sameAs" : [
         "https://twitter.com/pay365",
-        "https://www.facebook.com/pay365",
-        "https://plus.google.com/106377879920743719402/posts?hl=en",
+        "https://www.facebook.com/Pay365-1725246437784710/",
+        "https://plus.google.com/u/1/116306868248503257513",
         "@Html.Raw(Pay365.Utils.Config.Domain)"
         ]
         }
@@ -72,7 +72,7 @@
     </script>
     @Styles.Render("~/Content_main/css")
     @Scripts.Render("~/bundles/jquery")
-    
+
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -80,9 +80,19 @@
             }, i[r].l = 1 * new Date(); a = s.createElement(o),
                 m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-105001096-1', 'auto');
-
+        var GA_LOCAL_STORAGE_KEY = 'ga:clientId';
+        if (window.localStorage) {
+            ga('create', 'UA-106798536-1', {
+                'storage': 'none',
+                'clientId': localStorage.getItem(GA_LOCAL_STORAGE_KEY)
+            });
+            ga(function (tracker) {
+                localStorage.setItem(GA_LOCAL_STORAGE_KEY, tracker.get('clientId'));
+            });
+        }
+        else {
+            ga('create', 'UA-106798536-1', 'auto');
+        }
         $(function () {
             trackingPageView();
         });
@@ -91,55 +101,194 @@
     <script type="text/javascript">
         window.$zopim || (function (d, s) {
             var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
-                                                               d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
-                z.set.
-                    _.push(o)
-            }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute('charset', 'utf-8');
-            $.src = 'https://v2.zopim.com/?53hxOfjSlu7ueig66jO5r1GClMwgcgj4'; z.t = +new Date; $.
+                d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+                    z.set.
+                        _.push(o)
+                }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute('charset', 'utf-8');
+            $.src = 'https://v2.zopim.com/?57myuEY8jh9WF8kBKZhnywgBT2ca2CUS'; z.t = +new Date; $.
                 type = 'text/javascript';
             e.parentNode.insertBefore($, e);
             $.onload = function () {
                 $zopim.livechat.theme.setColor('#834be1', 'badge');
                 $zopim.livechat.window.setColor('#834be1');
                 $zopim.livechat.theme.reload();
+
+                var lang = utils.getCurrentLanguage();
+                if (lang == "vn")
+                    lang = "vi";
+                $zopim.livechat.setLanguage(lang);
             }
         })(document, 'script');
     </script>
 </head>
-
-<body class="news-no-user">
+@{ var rootDomain = Html.Raw(Pay365.Utils.Config.Domain);}
+<body class="">
     <div class="wrapper">
+        <aside class="sidebar">
+            <div class="sb-content">
+                <a href="/thong-tin" class="logo"><img src="@(rootDomain)Content/assets/images/logo-white.svg" alt=""></a>
+                <div class="userinfo" style="">
+
+                </div>
+                <div class="blocks mCustomScrollbar">
+                    <div class="sb-block" style="padding-top:20px">
+                        <p class="sb-title">@Resources.Common.String16</p>
+                        <ul class="menu">
+                            <li class="menu-item">
+                                <a href="@(rootDomain)dang-nhap?return=topup" class="sidebar-item-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" class="icon">
+                                        <defs>
+                                            <filter id="mask-ic-cash-in">
+                                                <feFlood flood-color="#a0a0b1" result="flood" />
+                                                <feComposite in="SourceGraphic" in2="flood" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" />
+                                            </filter>
+                                        </defs>
+                                        <image width="100%" height="100%" xlink:href="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/payicon/cash-in.svg" filter="url(#mask-ic-cash-in)" />
+                                    </svg>
+                                    <span class="name">@Resources.Common.String2</span> @*<i class="material-icons expand-icon">keyboard_arrow_down</i>*@
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="@(rootDomain)dang-nhap?return=transfer" class="sidebar-item-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" class="icon">
+                                        <defs>
+                                            <filter id="mask-ic-transfer">
+                                                <feFlood flood-color="#a0a0b1" result="flood" />
+                                                <feComposite in="SourceGraphic" in2="flood" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" />
+                                            </filter>
+                                        </defs>
+                                        <image width="100%" height="100%" xlink:href="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/payicon/transfer.svg" filter="url(#mask-ic-transfer)" />
+                                    </svg>
+                                    <span class="name">@Resources.Common.Menu_Transfer</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="@(rootDomain)dang-nhap?return=cashout" class="sidebar-item-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" class="icon">
+                                        <defs>
+                                            <filter id="mask-ic-cash-out">
+                                                <feFlood flood-color="#a0a0b1" result="flood" />
+                                                <feComposite in="SourceGraphic" in2="flood" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" />
+                                            </filter>
+                                        </defs>
+                                        <image width="100%" height="100%" xlink:href="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/payicon/cash-out.svg" filter="url(#mask-ic-cash-out)" />
+                                    </svg> <span class="name">@Resources.Common.Menu_CashOut</span>
+                                </a>
+                            </li>
+                            @*<li class="menu-item">
+                                    <a href="#!" class="sidebar-item-link"><i class="icon payicon borrow"></i> <span class="name">Mượn tiền</span></a>
+                                </li>*@
+                        </ul>
+                    </div>
+
+                    <div class="sb-block">
+                        <p class="sb-title">@Resources.Common.String15</p>
+                        <ul class="menu">
+                            <li class="menu-item">
+                                <a href="@(rootDomain)nap-dien-thoai" class="sidebar-item-link"><i class="icon material-icons">phone_iphone</i> <span class="name">@Resources.Common.Menu_Utility1</span></a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="@(rootDomain)mua-the-dien-thoai" class="sidebar-item-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" class="icon">
+                                        <defs>
+                                            <filter id="mask-ic-phone-card">
+                                                <feFlood flood-color="#a0a0b1" result="flood" />
+                                                <feComposite in="SourceGraphic" in2="flood" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" />
+                                            </filter>
+                                        </defs>
+                                        <image width="100%" height="100%" xlink:href="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/payicon/phone-card.svg" filter="url(#mask-ic-phone-card)" />
+                                    </svg> <span class="name">@Resources.Common.Menu_Utility2</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="@(rootDomain)mua-the-game" class="sidebar-item-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" class="icon">
+                                        <defs>
+                                            <filter id="mask-ic-game-card">
+                                                <feFlood flood-color="#a0a0b1" result="flood" />
+                                                <feComposite in="SourceGraphic" in2="flood" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" />
+                                            </filter>
+                                        </defs>
+                                        <image width="100%" height="100%" xlink:href="@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/icons/payicon/game-card.svg" filter="url(#mask-ic-game-card)" />
+                                    </svg> <span class="name">@Resources.Common.Menu_Utility5</span>
+                                </a>
+                            </li>
+
+                            @*<li class="menu-item">
+                                    <a href="@(rootDomain)nap-game" class="sidebar-item-link"><i class="icon material-icons">videogame_asset</i> <span class="name">@Resources.Common.Menu_Utility3</span></a>
+                                </li>*@
+
+                            @*<li class="menu-item">
+                                    <a href="/payment-bill" class="sidebar-item-link"><i class="icon material-icons">receipt</i> <span class="name">@Resources.Common.Menu_Utility4</span></a>
+                                </li>*@
+                            @*<li class="menu-item">
+                                    <a href="#!" class="sidebar-item-link"><i class="icon material-icons">local_activity</i> <span class="name">Đặt vé</span></a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#!" class="sidebar-item-link"><i class="icon material-icons">more_horiz</i> <span class="name">Khác</span></a>
+                                </li>*@
+                        </ul>
+                    </div>
+
+                    <div class="sb-block">
+                        <p class="sb-title">@Resources.Common.String14</p>
+                        <ul class="menu">
+                            <li class="menu-item">
+                                <a href="/tin-tuc" class="sidebar-item-link"><i class="icon material-icons">fiber_new</i> <span class="name">@Resources.Common.Menu_new</span> </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/ve-chung-toi" class="sidebar-item-link"><i class="icon material-icons">record_voice_over</i> <span class="name">@Resources.Common.Menu_About</span> </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/lien-he" class="sidebar-item-link"><i class="icon material-icons">contact_mail</i> <span class="name">@Resources.Common.Menu_Contact</span></a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/huong-dan" class="sidebar-item-link"><i class="icon material-icons">accessibility</i><span class="name">@Resources.Common.Menu_partner</span></a>
+                            </li>
+                            @*<li class="menu-item">
+                                    <a href="/privacy" class="sidebar-item-link"><i class="icon material-icons">new_releases</i><span class="name">@Resources.Common.Menu_privacy</span></a>
+                                </li>*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
         <aside class="content-wrapper">
             <header class="header">
+                <button class="btn btn-bars waves-effect waves-light" id="button-collapse"><i class="material-icons">menu</i></button>
                 <div class="content" id="header-content">
 
                     @if (Pay365Wallet.Helpers.LanguageHelper.GetCurrentLanguage() == "vi")
                     {
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownLanguages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="flag-icon flag-icon-vn"></span>
-                                <span class="language-label">@Resources.Home.String3</span>
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu right" aria-labelledby="dropdownLanguages">
-                                <li><a href="javascript:;"><span class="flag-icon flag-icon-vn"></span>@Resources.Home.String3</a></li>
-                                <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)Home/ChangeLanguage?lang=en"><span class="flag-icon flag-icon-us"></span>English</a></li>
-                            </ul>
-                        </div>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownLanguages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="flag-icon flag-icon-vn"></span>
+                            <span class="language-label">@Resources.Home.String3</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu right" aria-labelledby="dropdownLanguages">
+                            <li><a href="javascript:;"><span class="flag-icon flag-icon-vn"></span>@Resources.Home.String3</a></li>
+                            <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)Home/ChangeLanguage?lang=en"><span class="flag-icon flag-icon-us"></span>English</a></li>
+                        </ul>
+                    </div>
                     }
                     else
                     {
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownLanguages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="flag-icon flag-icon-us"></span>
-                                <span class="language-label">English</span>
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu right" aria-labelledby="dropdownLanguages">
-                                <li><a href="javascript:;"><span class="flag-icon flag-icon-us"></span>English</a></li>
-                                <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)Home/ChangeLanguage?lang=vi"><span class="flag-icon flag-icon-vn"></span> @Resources.Home.String3</a></li>
-                            </ul>
-                        </div>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownLanguages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="flag-icon flag-icon-us"></span>
+                            <span class="language-label">English</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu right" aria-labelledby="dropdownLanguages">
+                            <li><a href="javascript:;"><span class="flag-icon flag-icon-us"></span>English</a></li>
+                            <li><a href="@Html.Raw(Pay365.Utils.Config.Domain)Home/ChangeLanguage?lang=vi"><span class="flag-icon flag-icon-vn"></span> @Resources.Home.String3</a></li>
+                        </ul>
+                    </div>
                     }
 
                     <div class="search" id="headerSearchColumn">
@@ -159,7 +308,10 @@
 
             @RenderBody()
         </aside>
+        
+        <a href="javascript:;" class="btn btn-floating btn-top" id="btn-top"><i class="material-icons">expand_less</i></a>
     </div>
+   
 
     <div id="modal-alert" class="modal">
         <div class="modal-content">
@@ -185,56 +337,64 @@
     @Scripts.Render("~/bundles/pay365libjs")
     @Scripts.Render("~/bundles/js_main")
     @Scripts.Render("~/bundles/pay365commonjs")
-    <script src="@Html.Raw(Pay365.Utils.Config.Domain)Scripts/views/news.js"></script>
+    @Scripts.Render("~/bundles/pay365LogoutViewjs")
 
-    <script src="~/Scripts/libs/croppie/croppie.min.js"></script>
+
     <script type="text/javascript">
-    var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode','profile.account', 'common.news'];
-    var currlang = utils.getCurrentLanguage();
-    i18n.init({
+        var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode', 'profile.account', 'common.news'];
+        var currlang = utils.getCurrentLanguage();
+        i18n.init({
             lng: currlang,
             resGetPath: "@Html.Raw(Pay365.Utils.Config.Domain)locales/__lng__/__ns__.json",
             ns: { namespaces: listResource, defaultNs: 'common.homepage' } //khai báo các file resource
-        },
-        function (t) {
+        }, function (t) {
             $(".translang").i18n();
-            });
-
-    $('.modal').modal();
-
-    $('body').click(function(){
-        $('#headerSearchColumn').removeClass('show');
-        if($('body').hasClass('hideSidebar')){
-            $('.sidebar .menu-item').removeClass('expand');
-        }
         });
 
-    $('#headerBtnToggleSearch').click(function(e){
-        e.stopPropagation();
-        $('#headerSearchColumn').addClass('show').find('input').focus();
-    });
-    $('#headerSearchColumn').click(function(e){
-        e.stopPropagation();
-    });
+        $('.modal').modal();
 
+        $('body').click(function () {
+            $('#headerSearchColumn').removeClass('show');
+            if ($('body').hasClass('hideSidebar')) {
+                $('.sidebar .menu-item').removeClass('expand');
+            }
+        });
 
-    $('#txtEmailSubcrible').keyup(function(event) {
-        var keyCode = event.keyCode || event.which;
-        if (keyCode === 13) {
-            news.RegisterSubscripber();
-        } else {
-            $('#txterror_emailSubcrible').text('');
-        }
-    });
+        $('#headerBtnToggleSearch').click(function (e) {
+            e.stopPropagation();
+            $('#headerSearchColumn').addClass('show').find('input').focus();
+        });
 
+        $('#headerSearchColumn').click(function (e) {
+            e.stopPropagation();
+        });
 
+        $('#txtEmailSubcrible').keyup(function (event) {
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                news.RegisterSubscripber();
+            } else {
+                $('#txterror_emailSubcrible').text('');
+            }
+        });
 
-    $('#txt_keyword_search').keyup(function(event) {
-        var keyCode = event.keyCode || event.which;
-        if (keyCode === 13) {
-            news.Btn_SearchNews();
-        }
-    });
+        $(window).scroll(function () {
+            topBar();
+        });
+
+        $('#btn-top, #explode').on('click', function () {
+            if (this.id === 'btn-top')
+                goToByScroll('body');
+            else
+                goToByScroll('#why-use');
+        });
+
+        $('#txt_keyword_search').keyup(function (event) {
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                news.Btn_SearchNews();
+            }
+        });
 
     </script>
 </body>

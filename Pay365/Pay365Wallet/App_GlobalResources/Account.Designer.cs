@@ -304,7 +304,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Không nhận được mã, vui lòng soạn tin &lt;strong class=&quot;danger&quot;&gt;P365 BM&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8100&lt;/strong&gt; &lt;span class=&quot;warning&quot;&gt;(1.000VNĐ/SMS)&lt;/span&gt;.
+        ///   Looks up a localized string similar to Không nhận được mã, vui lòng soạn tin &lt;strong class=&quot;danger&quot;&gt;P365 BM&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8100&lt;/strong&gt; &lt;span class=&quot;warning&quot;&gt;(1.500 VNĐ/SMS)&lt;/span&gt;.
         /// </summary>
         internal static string NoteSecureOTPSMS {
             get {
@@ -466,7 +466,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Không nhận được mã, vui lòng soạn tin &lt;strong class=&quot;danger&quot;&gt;P365 MK&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8100&lt;/strong&gt; &lt;span class=&quot;warning&quot;&gt;(1.000VNĐ/SMS)&lt;/span&gt;.
+        ///   Looks up a localized string similar to Không nhận được mã, vui lòng soạn tin &lt;strong class=&quot;danger&quot;&gt;P365 MK&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8100&lt;/strong&gt; &lt;span class=&quot;warning&quot;&gt;(1.500 VNĐ/SMS)&lt;/span&gt;.
         /// </summary>
         internal static string StringMsg2 {
             get {
@@ -484,7 +484,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Quý khách vui lòng bấm nút Nhận mã để nhận mã xác thực. Nếu không nhận được mã, soạn tin &lt;strong class=&quot;danger&quot;&gt;P365 MK&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8100&lt;/strong&gt; (500đ/SMS).
+        ///   Looks up a localized string similar to Quý khách vui lòng bấm nút Nhận mã để nhận mã xác thực. Nếu không nhận được mã, soạn tin &lt;strong class=&quot;danger&quot;&gt;P365 MK&lt;/strong&gt; gửi &lt;strong class=&quot;danger&quot;&gt;8100&lt;/strong&gt; (1.500 đ/SMS).
         /// </summary>
         internal static string StringMsg4 {
             get {

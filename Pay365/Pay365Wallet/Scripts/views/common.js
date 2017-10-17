@@ -10,7 +10,7 @@
                 description = i18n.t('Error.ACCOUNT_NOTEXISTED');
                 break;
             case -2:
-                description = i18n.t('Error.NOT_PERMISSION');
+                description = i18n.t('Error.NOT_PERMISSION'); 
                 break;
             case -6:
                 description = i18n.t('Error.OTP_EXPIRE');

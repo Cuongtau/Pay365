@@ -235,13 +235,13 @@
     <value>An OTP has been sent to phone number: </value>
   </data>
   <data name="StringMsg2" xml:space="preserve">
-    <value>Do not receive OTP? Send &lt;span class="secondary"&gt;P365 MK&lt;/span&gt; to &lt;span class="secondary"&gt;8100&lt;/span &gt; (1.000VNĐ/SMS)</value>
+    <value>Do not receive OTP? Send &lt;span class="secondary"&gt;P365 MK&lt;/span&gt; to &lt;span class="secondary"&gt;8100&lt;/span &gt; (1.500 VNĐ/SMS)</value>
   </data>
   <data name="StringMsg3" xml:space="preserve">
     <value>An verify code has been sent to the email</value>
   </data>
   <data name="StringMsg4" xml:space="preserve">
-    <value>Do not receive the code, please click &lt;span class="secondary"&gt;Resend OTP&lt;/span&gt; or send &lt;strong class="secondary"&gt;P365 MK&lt;/strong&gt; to &lt;strong class="secondary"&gt;8100&lt;/strong&gt; (1.000đ/SMS)</value>
+    <value>Do not receive the code, please click &lt;span class="secondary"&gt;Resend OTP&lt;/span&gt; or send &lt;strong class="secondary"&gt;P365 MK&lt;/strong&gt; to &lt;strong class="secondary"&gt;8100&lt;/strong&gt; (1.500 đ/SMS)</value>
   </data>
   <data name="TextSMS" xml:space="preserve">
     <value>Text</value>
@@ -271,7 +271,7 @@
     <value>Phone number to receive OTP</value>
   </data>
   <data name="NoteSecureOTPSMS" xml:space="preserve">
-    <value>Do not receive the code, please send &lt;strong class="secandary"&gt;P365 BM&lt;/strong&gt; to &lt;strong class="secandary"&gt;8100&lt;/strong&gt; &lt;span class=""&gt;(1.000VNĐ/SMS)&lt;/span&gt;</value>
+    <value>Do not receive the code, please send &lt;strong class="secandary"&gt;P365 BM&lt;/strong&gt; to &lt;strong class="secandary"&gt;8100&lt;/strong&gt; &lt;span class=""&gt;(1.500 VNĐ/SMS)&lt;/span&gt;</value>
   </data>
   <data name="NoteLimitSecure" xml:space="preserve">
     <value>The secure limit is the minimum value for a transaction of which you need to enter OTP to confirm your transaction</value>

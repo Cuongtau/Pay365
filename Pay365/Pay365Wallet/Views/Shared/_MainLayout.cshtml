@@ -33,7 +33,7 @@
         "logo": "@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-purple.svg",
         "contactPoint" : [
         { "@@type" : "ContactPoint",
-        "telephone" : "+84-934676505",
+        "telephone" : "+84-934626505",
         "contactType" : "customer service"
         } ]
         }
@@ -48,8 +48,8 @@
         "logo": "@Html.Raw(Pay365.Utils.Config.Domain)Content/assets/images/logo-purple.svg",
         "sameAs" : [
         "https://twitter.com/pay365",
-        "https://www.facebook.com/pay365",
-        "https://plus.google.com/106377879920743719402/posts?hl=en",
+        "https://www.facebook.com/Pay365-1725246437784710/",
+        "https://plus.google.com/u/1/116306868248503257513",
         "@Html.Raw(Pay365.Utils.Config.Domain)"
         ]
         }
@@ -89,7 +89,7 @@
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
         var GA_LOCAL_STORAGE_KEY = 'ga:clientId';
         if (window.localStorage) {
-            ga('create', 'UA-105001096-1', {
+            ga('create', 'UA-106798536-1', {
                 'storage': 'none',
                 'clientId': localStorage.getItem(GA_LOCAL_STORAGE_KEY)
             });
@@ -98,7 +98,7 @@
             });
         }
         else {
-            ga('create', 'UA-105001096-1', 'auto');
+            ga('create', 'UA-106798536-1', 'auto');
         }
         $(function () {
             ga('set', 'userId', header.AccountInfo.AccountID);
@@ -112,13 +112,18 @@
                     z.set.
                         _.push(o)
                 }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute('charset', 'utf-8');
-            $.src = 'https://v2.zopim.com/?53hxOfjSlu7ueig66jO5r1GClMwgcgj4'; z.t = +new Date; $.
-                type = 'text/javascript';
+            $.src = 'https://v2.zopim.com/?57myuEY8jh9WF8kBKZhnywgBT2ca2CUS'; z.t = +new Date; $.
+            type = 'text/javascript';
             e.parentNode.insertBefore($, e);
             $.onload = function () {
                 $zopim.livechat.theme.setColor('#834be1', 'badge');
                 $zopim.livechat.window.setColor('#834be1');
                 $zopim.livechat.theme.reload();
+
+                var lang = utils.getCurrentLanguage();
+                if (lang == "vn")
+                    lang = "vi";
+                $zopim.livechat.setLanguage(lang);
             }
         })(document, 'script');
     </script>
@@ -373,52 +378,9 @@
 
 
             <div id="overpage"></div>
-            @*<section class="notifications-section">
-                    <div class="notif-box mCustomScrollbar">
-                        <ul class="notif">
-                            <li class="unread">
-                                <div class="image"><img src="~/Content/assets/images/persons/1.jpg" alt=""></div>
-                                <div class="content">
-                                    <p class="message">Bạn nhận được yêu cầu mượn 50.000VNĐ từ <strong>094-666-666</strong></p>
-                                    <span class="time"><i class="material-icons">query_builder</i> 1 giờ trước</span>
-                                </div>
-                            </li>
-                            <li class="unread">
-                                <div class="image"><img src="~/Content/assets/images/persons/1.jpg" alt=""></div>
-                                <div class="content">
-                                    <p class="message">Bạn nhận được yêu cầu mượn 50.000VNĐ từ <strong>094-666-666</strong></p>
-                                    <span class="time"><i class="material-icons">query_builder</i> 1 giờ trước</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="image"><img src="~/Content/assets/images/persons/1.jpg" alt=""></div>
-                                <div class="content">
-                                    <p class="message">Bạn nhận được yêu cầu mượn 50.000VNĐ từ <strong>094-666-666</strong></p>
-                                    <span class="time"><i class="material-icons">query_builder</i> 1 giờ trước</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="image"><img src="~/Content/assets/images/persons/1.jpg" alt=""></div>
-                                <div class="content">
-                                    <p class="message">Bạn nhận được yêu cầu mượn 50.000VNĐ từ <strong>094-666-666</strong></p>
-                                    <span class="time"><i class="material-icons">query_builder</i> 1 giờ trước</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="image"><img src="~/Content/assets/images/persons/1.jpg" alt=""></div>
-                                <div class="content">
-                                    <p class="message">Bạn nhận được yêu cầu mượn 50.000VNĐ từ <strong>094-666-666</strong></p>
-                                    <span class="time"><i class="material-icons">query_builder</i> 1 giờ trước</span>
-                                </div>
-                            </li>
 
-                            <li>
-                                <a href="#!" class="more">Xem thêm</a>
-                            </li>
-                        </ul>
-                    </div>
-                </section>*@
         </aside>
+        <a href="javascript:;" class="btn btn-floating btn-top" id="btn-top"><i class="material-icons">expand_less</i></a>
 
     </div>
 
@@ -486,39 +448,50 @@
         @Scripts.Render("~/bundles/pay365viewjs")
     }
     <script type="text/javascript">
-    var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode', 'profile.account', 'common.news', 'transaction.topupmoney', 'transaction.payment', 'transaction.transfermoney','transaction.cashoutmoney'];
-    var currlang = utils.getCurrentLanguage();
-    i18n.init({
+        var listResource = ['common.homepage', 'profile.password', 'common.register', 'common.errorcode', 'profile.account', 'common.news', 'transaction.topupmoney', 'transaction.payment', 'transaction.transfermoney', 'transaction.cashoutmoney'];
+        var currlang = utils.getCurrentLanguage();
+        i18n.init({
             lng: currlang,
             resGetPath: "@Html.Raw(Pay365.Utils.Config.Domain)locales/__lng__/__ns__.json",
             ns: { namespaces: listResource, defaultNs: 'common.homepage' } //khai báo các file resource
         },
-        function (t) {
-            $(".translang").i18n();
-        });
+            function (t) {
+                $(".translang").i18n();
+            });
 
         $(function () {
-        //header.BindTemp();
-        $(document).click(function (event) {
-            var $target = $(event.target);
-            if (!$target.is('.material-icons') && !$target.is('.btn-notifications') && !$('.notifications-section').has($target).length && $('.notifications-section').is(':visible')) {
-                $(".notifications-section").parent().removeClass("notifications-section-open");
-                $("#overpage").removeClass("overlay");
+            //header.BindTemp();
+            $(document).click(function (event) {
+                var $target = $(event.target);
+                if (!$target.is('.material-icons') && !$target.is('.btn-notifications') && !$('.notifications-section').has($target).length && $('.notifications-section').is(':visible')) {
+                    $(".notifications-section").parent().removeClass("notifications-section-open");
+                    $("#overpage").removeClass("overlay");
+                }
+            });
+        });
+
+        $('#txt_keyword_search').keyup(function (event) {
+            var keyCode = event.keyCode || event.which;
+            if (keyCode === 13) {
+                news.Btn_SearchNews();
             }
         });
-    });
 
-    $('#txt_keyword_search').keyup(function(event) {
-        var keyCode = event.keyCode || event.which;
-        if (keyCode === 13) {
-            news.Btn_SearchNews();
-        }
-    });
+        $(window).scroll(function() {
+            topBar();
+        });
 
-    $(window).resize(function () {
-        initHeightColumn();
-        sideBar();
-    });
+        $('#btn-top, #explode').on('click', function () {
+            if (this.id === 'btn-top')
+                goToByScroll('body');
+            else
+                goToByScroll('#why-use');
+        });
+
+        $(window).resize(function () {
+            initHeightColumn();
+            sideBar();
+        });
         $(window).on('load', function () {
             initHeightColumn();
             sideBar();
