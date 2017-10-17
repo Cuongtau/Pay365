@@ -17,29 +17,39 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Principal;
 using Services.IService;
 using DAL.Model;
+using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace ShoppinOnline.Controllers
 {
     [Route("api/[controller]/[action]")]
     public class AccountController : Controller
     {
+        private readonly ILogger<AccountController> _logger;
         private readonly IConfiguration _appConfiguration;
         private readonly IdentityOptions _identityOptions;
 
         private IAccountService _iAccountService;
-        public AccountController(IConfiguration appConfiguration, IOptions<IdentityOptions> identityOptions, IAccountService iAccountService)
+        public AccountController(ILogger<AccountController> logger, IConfiguration appConfiguration, IOptions<IdentityOptions> identityOptions, IAccountService iAccountService)
         {
+            _logger = logger;
             _appConfiguration = appConfiguration;
             _identityOptions = identityOptions.Value;
             _iAccountService = iAccountService;
         }
 
+        /// <summary>
+        /// Delete API Value
+        /// </summary>
+        /// <remarks>This API will create account the values.</remarks>
+        /// <param name="account">object account</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Register([FromBody]Account account)
         {
             try
             {
-                NLogLogger.LogInfo("123454");
+                _logger.LogInformation("123454");
                 if (string.IsNullOrEmpty(account.AccountName))
                 {
                     return StatusCode(500, new { status = CommonError.AccountNameEmpty, description = CommonError.Description(CommonError.AccountNameEmpty) });
@@ -64,7 +74,7 @@ namespace ShoppinOnline.Controllers
             }
             catch (Exception ex)
             {
-                NLogLogger.PublishException(ex);
+                _logger.LogDebug(ex, ex.Message);
                 return StatusCode(500, new { status = CommonError.Systembusy, description = ex.Message });
             }
         }
@@ -72,12 +82,13 @@ namespace ShoppinOnline.Controllers
         [HttpPost]
         public IActionResult Authentication([FromBody]Account account)
         {
-            var returnModel = new AuthenticateResultModel();
+
             var handler = new JwtSecurityTokenHandler();
             ClaimsIdentity identity = new ClaimsIdentity(
                 new GenericIdentity(account.AccountName, "TokenAuth"),
                 new[] { new Claim("ID", "1") }
             );
+
             var configKey = _appConfiguration.GetValue<string>("Authentication:JwtBearer:SecurityKey");
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -101,31 +112,6 @@ namespace ShoppinOnline.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        //// GET api/values/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        // POST api/values
-        [HttpPost]
-        public string Post([FromBody]string value)
-        {
-            return "Lon me may";
-        }
-
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE api/values/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
         private List<Claim> CreateJwtClaims(ClaimsIdentity identity)
         {
             var claims = identity.Claims.ToList();
