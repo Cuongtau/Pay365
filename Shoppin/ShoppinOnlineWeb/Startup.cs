@@ -10,6 +10,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Swashbuckle.AspNetCore.Swagger;
 using DryIoc;
 using DryIoc.Microsoft.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
+using System.Reflection;
+using System.IO;
 
 namespace ShoppinOnline
 {
@@ -23,10 +27,10 @@ namespace ShoppinOnline
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            new Container().WithDependencyInjectionAdapter(services).ConfigureServiceProvider<CompositionConfig>();
+
             services.AddSession();
             services.AddCors();
             services.AddAuthentication(sharedOptions =>
@@ -58,18 +62,23 @@ namespace ShoppinOnline
             {
                 c.SwaggerDoc("v1", new Info { Title = "Shoppin API", Version = "v1" });
                 c.DocInclusionPredicate((docName, description) => true);
+                var fileName = this.GetType().GetTypeInfo().Module.Name.Replace(".dll", ".xml").Replace(".exe", ".xml");
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, fileName));
+                c.DescribeAllEnumsAsStrings();
             });
+
+            return new Container().WithDependencyInjectionAdapter(services).ConfigureServiceProvider<CompositionConfig>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             new ConfigEnvironment(env);
-            app.UseCors(option => option.WithOrigins("http://localhost:61726").AllowAnyMethod().AllowCredentials().AllowAnyOrigin().AllowAnyHeader());
+            app.UseCors(option => option.WithOrigins(Configuration["CrossSite"]).AllowAnyMethod().AllowCredentials().AllowAnyOrigin().AllowAnyHeader());
             app.UseSession();
             app.UseAuthentication();
 
@@ -82,6 +91,10 @@ namespace ShoppinOnline
             });
 
             app.UseMvc();
+
+            //add NLog to ASP.NET Core
+            loggerFactory.AddNLog();
+            loggerFactory.ConfigureNLog("nlog.config");
         }
     }
 }

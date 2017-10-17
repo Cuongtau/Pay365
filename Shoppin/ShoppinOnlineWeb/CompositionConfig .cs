@@ -1,4 +1,6 @@
-﻿using DryIoc;
+﻿using DAL.IRepository;
+using DAL.Repository;
+using DryIoc;
 using Services.IService;
 using Services.Service;
 namespace ShoppinOnline
@@ -7,6 +9,7 @@ namespace ShoppinOnline
     {
         public CompositionConfig(IRegistrator registrator)
         {
+            registrator.Register<IAccountRepository, AccountRepository>();
             registrator.Register<IAccountService, AccountService>();
         }
     }
