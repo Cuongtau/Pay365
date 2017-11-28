@@ -55,7 +55,7 @@ img { max-width: 100%; }
 
 button, input, select { outline: none; }
 
-.btn-top { height: 56px; width: 56px; background: #ff9149; box-shadow: 0 3px 8px rgba(255, 145, 73, 0.5); color: #fff; position: fixed; right: 20px; bottom: 20px; border-radius: 100%; padding: 2px 0 0 0; text-align: center; opacity: 0; visibility: hidden; -webkit-transition: all 250ms ease; -moz-transition: all 250ms ease; transition: all 250ms ease; box-shadow: none; }
+.btn-top { height: 56px; width: 56px; background: #ff9149; box-shadow: 0 3px 8px rgba(255, 145, 73, 0.5); color: #fff; position: fixed; right: 20px; bottom: 35px; border-radius: 100%; padding: 2px 0 0 0; text-align: center; opacity: 0; visibility: hidden; -webkit-transition: all 250ms ease; -moz-transition: all 250ms ease; transition: all 250ms ease; box-shadow: none; }
 .btn-top.active { opacity: .5; visibility: visible; box-shadow: none; }
 .btn-top:hover { color: #fff; box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); opacity: 1; }
 .btn-top:focus { color: #fff; }
